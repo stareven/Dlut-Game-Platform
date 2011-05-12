@@ -2,50 +2,43 @@ Codec : UTF-8 Unicode text
 Language : Chinese Simplified
 We are looking forward to your help to translate this article into english
 
-字符编码 : UTF-8 Unicode text
-换行符 : LF
-语言 : 简体中文
-
-------------------概述--------------------
-大工游戏平台（地瓜皮，以下简称“DGP”）是一个由本人发起的，开源的，开放的游戏设计与开发项目，目的在于寻找大连理工大学热爱游戏设计和计算机编程的同学。
-本项目没有任何实际回报，仅凭借参与者的兴趣和爱好，也许能够锻炼大家的编程能力及实际软件工程项目能力。
-DGP仅包含一个游戏大厅，并不包含任何游戏。由热爱游戏设计和计算机编程的同学自己设计游戏，编程实现并上传至平台上，提供给同学们玩。
-项目目前仍处于开发阶段。
-如果您希望加入DGP项目，请与我联系。联系方式：elephant_liu@mail.dlut.edu.cn
-
-------------------技术概述------------------
-DGP目前使用的图形界面库为Qt4。
-	Qt相关学习资料请见：doc/learn.txt
-DGP使用git托管在github.com上。
-	Git工具相关学习资料请见：doc/learn.txt
-	本项目地址为：https://github.com/lexdene/Dlut-Game-Platform
-
-------------------各文件夹概述------------------
-请见doc/folder.txt
-
 ------------------目前已经确定的部分细节------------------
-详细内容请见doc/details.txt，这里仅摘录部分重要内容。如有差别，以doc/details.txt为准。
 1、身份：
+
     参与本项目的身份有四种：游戏玩家，游戏开发者，平台管理者，平台开发者。
     游戏玩家：负责玩。
     游戏开发者：由游戏开发者独立自主地进行游戏开发，并上传至平台提供给游戏玩家进行游戏。
     平台管理者：负责宣传，招募游戏开发者，管理游戏开发者。
     平台开发者：负责开发平台的核心部分并为游戏开发者提供API接口。
     每个用户可以同时有多个身份。
+
 2、项目结构：
+
     基本结构有五部分：MainServer ，GameServer ，GameFileServer ，MainClient ，GameClient 。
+
     MainServer：主服务器。负责管理用户信息，管理游戏信息，处理用户登录，用户信息下载，游戏列表下载。由“平台开发者”负责开发维护。
+
     GameServer：游戏服务器。每个游戏均有一个GameServer，负责处理游戏数据，被设计成单独的一个进程，甚至可能设计成与 MainServer运行在不同的机器上（取决于是否能够实现这样的功能及实现这样的功能所需的代码的复杂程度）。GameServer由“游戏开发者” 设计。
+
     GameFileServer：游戏客户端下载服务器。负责提供给“游戏玩家”下载最新版的GameClient。每个游戏对应一个GameFileServer，但是一个GameFileServer可以同时提供多个游戏的客户端下载服务。GameFileServer可以由“游戏开发者”设计或由“平台开发者”提供一个统计的模板。
+
     MainClient：主客户端。负责登录，查看游戏列表，查看玩家信息等功能。同时负责从GameFileServer下载需要的最新版本的GameClient。由“平台开发者”负责开发维护。
+
     GameClient：游戏客户端。每个游戏均有一个GameClient。由MainClient从GameFileServer上下载。GameClient被设计成单独的可执行程序。GameClient由“游戏开发者”设计。
 
-------------------纯文本相关问题------------------
-如果您在阅读doc/文件夹下的纯文本文件时出现以下问题，多是由于您使用的是SBMS公司的产品造成的。
-1、中文乱码：
-	我使用的字符编码统一为UTF-8格式。请您在您的计算机上做相应的设置以避免出现中文乱码的现象。
-2、多行接在一起：
-	我使用的换行符为LF，而不是SBMS公司使用的（Windows下默认的）换行符CRLF。请您在您的计算机上做相应的设置以避免出现多行接在一起的现象。
+3、身份认证问题：
+
+    由于“地瓜皮”是一个开源项目，任何人可以获得“地瓜皮”的通信协议源代码，并对服务器发起攻击。暂时未找到完美的解决方案，只能通过身份认证的方法予以缓解。
+
+    用户登录后，由MainServer通过MD5加密（通过Qt提供的QCryptographicHash类实现）得到身份认证码。之后一切的与 MainServer ， GameServer ， GameFileServer的通信均需携带此认证码访问，否则Server端拒绝提供服务。
+
+4、GameClient启动问题：
+
+    将GameClient设计成一个单独的可执行程序，由MainClient启动，并通过命令行传递给GameClient以下信息：玩家id，玩家身份认证码，MainServer的地址及端口，GameServer的地址及端口。
+
+5、MainServer提供服务：
+
+    MainServer为每个服务开放一个单独的端口。包括：1、用户注册登录。2、获取用户信息。3、获取游戏列表及游戏信息。
 
 JDMD studio , Dalian University of Technology , China
 E-mail : elephant_liu@mail.dlut.edu.cn
