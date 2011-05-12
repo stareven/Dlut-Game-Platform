@@ -18,7 +18,7 @@ DGP目前使用的图形界面库为Qt4。
 	Qt相关学习资料请见：doc/learn.txt
 DGP使用git托管在github.com上。
 	Git工具相关学习资料请见：doc/learn.txt
-	本项目地址为：https://github.com/lexdene/Dlut-Game-Platform
+	本项目地址为： https://github.com/lexdene/Dlut-Game-Platform
 
 ------------------各文件夹概述------------------
 请见doc/folder.txt
