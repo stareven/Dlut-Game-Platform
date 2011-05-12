@@ -9,18 +9,19 @@ Waiting for translation to English for this article
 	http://forum.ubuntu.org.cn/viewtopic.php?f=162&t=315317
 3、Qt资源链接收藏：
 	http://blog.csdn.net/changsheng230/archive/2010/12/23/6095288.aspx
-	
+
 第二部分：Git
 1、Git入门教程
 	http://hi.baidu.com/eehuang/blog/item/37af8d54242d6351564e00b5.html
 2、Git命令使用
 	http://apps.hi.baidu.com/share/detail/32309172
-3、可以自己先开个项目玩玩，推荐github.com
+3、Git中文教程
+	http://www.linuxsir.org/main/doc/git/gittutorcn.htm
+4、可以自己先开个项目玩玩，推荐github.com
 	https://github.com/
-4、太阳神三国杀也是用git托管的：
-	https://github.com/Moligaloo/QSanguosha
-	
-
+5、太阳神三国杀也是用git托管的：
+	介绍：http://baike.baidu.com/view/5112801.htm
+	代码：https://github.com/Moligaloo/QSanguosha
 
 JDMD studio , Dalian University of Technology , China
 E-mail : elephant_liu@mail.dlut.edu.cn

@@ -14,7 +14,7 @@ DGP仅包含一个游戏大厅，并不包含任何游戏。由热爱游戏设�
 如果您希望加入DGP项目，请与我联系。联系方式： elephant_liu@mail.dlut.edu.cn
 
 ------------------技术概述------------------
-DGP目前使用的图形界面库为Qt4。
+DGP目前使用的图形界面库为Qt4，版本为Qt 4.7.0。
 	Qt相关学习资料请见：doc/learn.txt
 DGP使用git托管在github.com上。
 	Git工具相关学习资料请见：doc/learn.txt
