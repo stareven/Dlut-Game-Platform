@@ -5,6 +5,7 @@
 
 #include "network/jloginsocket.h"
 #include "elogin.h"
+#include "service/jcryprorecorder.h"
 
 JLoginService2::JLoginService2(QObject *parent) :
     QObject(parent)
@@ -84,6 +85,10 @@ void JLoginService2::on_socket_loginCode(JCode code)
         break;
     case EL_SUCCESS:
         m_state=ES_Logined;
+        {
+            JCryproRecorder cr;
+            cr.set(m_socket->getCrypro(),m_socket->getUserId());
+        }
         break;
     default:
         m_state=ES_Error;

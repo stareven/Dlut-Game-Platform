@@ -1,0 +1,26 @@
+MainServer
+	-global
+		-JServerBase
+		-JConnectionBase
+	-获得服务端口列表
+		-JGetPortServer
+		-JGetPortConnection
+	-用户登录
+		-JLoginServer
+		-JLoginConnection
+		-database::JLoginValidate //take username , password ; return userid
+		-logincrypto::JAdd
+		-logincrypto::JDelete
+	-用户登录码验证
+		-JLcvServer
+		-JLcvConnection
+		-logincrypto::JBase
+		-logincrypto::JValidate
+	-取得用户信息
+		-JUserInfoServer
+		-JUserInfoConnection
+		-database::JGetUserInfo //take userid ; return user info
+	-取得游戏列表dynamic
+		-JGameListServer
+		-JGameListConnection
+		-dynamicdata::JGetGameList

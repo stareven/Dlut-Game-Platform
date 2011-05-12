@@ -31,7 +31,7 @@ void JSocketBase::connectToHost(const QHostAddress& address,
 
 bool JSocketBase::isConnected()const
 {
-    qDebug()<<m_socket->state();
+    //qDebug()<<m_socket->state();
     return m_socket->state()==QAbstractSocket::ConnectedState;
 }
 

@@ -13,11 +13,19 @@ class JLoginService2 : public QObject
     Q_OBJECT
 public:
     explicit JLoginService2(QObject *parent = 0);
-    void connectToHost(const QHostAddress& address,quint16 port);
+    void connectToHost(const QHostAddress& address,
+                       quint16 port);
     void login(const QString& loginname,
                const QString& passwd,
                const JID& role);
-    enum EState{ES_Close,ES_Connecting,ES_Connected,ES_Logining,ES_Logined,ES_Error};
+    enum EState{
+        ES_Close,
+        ES_Connecting,
+        ES_Connected,
+        ES_Logining,
+        ES_Logined,
+        ES_Error
+    };
     EState state()const;
     bool waitForConnected( int msecs = 30000 );
     bool waitForLogined(int msecs=30000);

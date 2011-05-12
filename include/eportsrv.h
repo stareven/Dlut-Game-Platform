@@ -2,7 +2,14 @@
 #define EPORTSRV_H
 
 enum EPSProtocol{EPP_LOGINHASH,EPP_PORT};
-enum EServerType{EST_LOGIN,EST_GAMEINFO,EST_FREEPORT,EST_SECRETPORT,EST_MAX};
+enum EServerType{
+    EST_LOGIN,
+    EST_GAMEINFO,
+    EST_FREEPORT,
+    EST_SECRETPORT,
+    EST_GAMESERVER,
+    EST_MAX
+};
 
 #define isInFree(type) ( EST_LOGIN==type || EST_SECRETPORT== type)
 

@@ -20,7 +20,8 @@ SOURCES += main/main.cpp \
     network/jsocketbase.cpp \
     service/jgameinfoservice.cpp \
     network/jportsocket.cpp \
-    service/jportservice.cpp
+    service/jportservice.cpp \
+    ../include/sgame.cpp
 HEADERS += gui/mainwindow.h \
     gui/dlglogin/jcomboselectserver.h \
     gui/dlglogin/jdlglogin.h \

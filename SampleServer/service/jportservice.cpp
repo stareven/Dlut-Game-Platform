@@ -97,7 +97,7 @@ bool JPortService::passLoginHash(JPortSocket& socket)
         case -1:
             if(cr.getUserId()==-1 || cr.getCrypro().isEmpty())
             {
-                qDebug()<<"JGameInfoService::rqsIdList : have not record the login hash . can not request id list!";
+                qDebug()<<"JPortService::passLoginHash : have not record the login hash . can not request id list!";
                 return false;
             }
             socket.sendCrypro(cr.getUserId(),cr.getCrypro());
@@ -114,7 +114,7 @@ bool JPortService::passLoginHash(JPortSocket& socket)
 
 void JPortService::on_socket_rcvPassLoginHash(bool plh)
 {
-    qDebug()<<"JGameInfoService::on_socket_rcvPassLoginHash : "<<plh;
+    qDebug()<<"JPortService::on_socket_rcvPassLoginHash : "<<plh;
     m_plh=plh;
 }
 

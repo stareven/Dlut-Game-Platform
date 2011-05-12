@@ -20,4 +20,19 @@ struct SGameInfo : public SGameName
     QString m_introduction;
 };
 
+class QDataStream;
+
+QDataStream& operator<<(QDataStream& stream,const SGameName&);
+
+QDataStream& operator<<(QDataStream& stream,const SGameInfo&);
+
+QDataStream& operator<<(QDataStream& stream,const JVersion& ver);
+
+QDataStream& operator>>(QDataStream& stream,SGameName&);
+
+QDataStream& operator>>(QDataStream& stream,SGameInfo&);
+
+QDataStream& operator>>(QDataStream& stream,JVersion& ver);
+
+
 #endif // SGAME_H

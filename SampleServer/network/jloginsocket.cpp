@@ -72,7 +72,7 @@ void JLoginSocket::on_socket_readyRead()
 	    if(code==0)
             {
                 stream>>m_userid>>m_crypro;
-                //qDebug()<<"userid = "<<m_userid<<" crypro="<<m_crypro.toHex().toUpper();
+                qDebug()<<"userid = "<<m_userid<<" crypro="<<m_crypro.toHex().toUpper();
 	    }
             emit loginCode(code);
 	}else if(m_socket->bytesAvailable()>=sizeof(int)){//size==0

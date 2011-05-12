@@ -26,7 +26,9 @@ HEADERS += main/jargumentanalyse.h \
     ../include/jglobal.h \
     ../include/eportsrv.h \
     ../include/elogin.h \
-    service/jloginservice2.h
+    service/jloginservice2.h \
+    network/jgsinfosocket.h \
+    service/jgsinfoservice.h
 SOURCES += main/jargumentanalyse.cpp \
            main/main.cpp \
            network/jloginsocket.cpp \
@@ -35,4 +37,7 @@ SOURCES += main/jargumentanalyse.cpp \
            service/jcryprorecorder.cpp \
            service/jloginservice.cpp \
            service/jportservice.cpp \
-    service/jloginservice2.cpp
+    service/jloginservice2.cpp \
+    network/jgsinfosocket.cpp \
+    ../include/sgame.cpp \
+    service/jgsinfoservice.cpp

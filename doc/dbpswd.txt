@@ -1,0 +1,4 @@
+1.DGPUserLoginAdmin:userloginadmin
+能对用户ID，用户名，密码进行增加，删除，修改，查询等操作。
+2.DGPUserLogin:userlogin
+仅能查询用户ID，用户名，密码。
