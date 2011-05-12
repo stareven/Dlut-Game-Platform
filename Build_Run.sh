@@ -6,7 +6,7 @@ exit
 fi
 name=$1
 cd ${name}-build-desktop
-make Makefile
+make -B Makefile
 make
 echo finish build . start to run .
 echo

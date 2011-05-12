@@ -1,3 +1,7 @@
+Codec : UTF-8 Unicode text
+Language : Chinese Simplified
+Waiting for translation to English for this article
+
 1.login srv:clt
 clt:CONNECT version
 srv:if(version==version)
@@ -23,3 +27,6 @@ srv:
 	}
 //figure should contain: userid username LoginTime rand
 clt:REGISTER username md5(password) //only gameplayer can be registered;
+
+JDMD studio , Dalian University of Technology , China
+E-mail : elephant_liu@mail.dlut.edu.cn

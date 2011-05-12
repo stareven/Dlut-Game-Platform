@@ -1,9 +1,8 @@
-较新一篇 / 较旧一篇
-编辑 | 删除 | 复制链接
-新功能 :
+Codec : UTF-8 Unicode text
+Language : Chinese Simplified
+Waiting for translation to English for this article
 
-可以和站外好友分享日志了
-下一代“地瓜皮”计划的乱七八糟的想法 2011-02-01 16:15 (分类:默认分类)
+第二版“地瓜皮”计划的乱七八糟的想法
 
 1、身份：
 
@@ -82,3 +81,6 @@
 所有通信协议的头部应增加控制数据以区分不同的协议。
 
 参考QAbstractSocket，所有“服务”应提供阻塞及非阻塞两种接口。
+
+JDMD studio , Dalian University of Technology , China
+E-mail : elephant_liu@mail.dlut.edu.cn

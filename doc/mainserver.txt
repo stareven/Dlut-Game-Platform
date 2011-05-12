@@ -1,3 +1,7 @@
+Codec : UTF-8 Unicode text
+Language : Chinese Simplified
+Waiting for translation to English for this article
+
 关于多端口。
 1、两个PortServer：FreePortServer和SecretPortServer。
 2、FreePortServer不需要loginHash验证。能够获取以下服务的IP地址和端口：userLogin，SecrePortServer。
@@ -8,3 +12,6 @@ GameFileServer
 2、以名字（字符串）为索引，可以存在多个。
 3、一个GFS可以挂多个游戏File。
 4、游戏File以游戏名及版本号作为索引。
+
+JDMD studio , Dalian University of Technology , China
+E-mail : elephant_liu@mail.dlut.edu.cn
