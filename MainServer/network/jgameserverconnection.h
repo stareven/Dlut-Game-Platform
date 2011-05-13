@@ -9,9 +9,11 @@ class JGameServerConnection : public JConnectionBase
 public:
     explicit JGameServerConnection(QTcpSocket* socket,QObject *parent = 0);
 protected:
-    virtual void dataProcess(const QByteArray&);
+    void dataProcess(const QByteArray&);
+    void on_socket_disconnected();
 private:
     bool m_passLoginHash;
+    JID m_gameid;
 };
 
 #endif // JGAMESERVERCONNECTION_H

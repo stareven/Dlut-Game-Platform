@@ -29,6 +29,7 @@ void JArgumentAnalyse::init()
 /*
 -a :address
 -p :port
+-f :setting file
 默认127.0.0.1:37373
 */
 
@@ -52,6 +53,9 @@ void JArgumentAnalyse::Analyse()
                 m_port=m_argv.front().toInt();
                 m_argv.pop_front();
                 break;
+            case 'f':
+                m_file=m_argv.front();
+                m_argv.pop_front();
             }
         }
     }

@@ -21,6 +21,7 @@ private:
     QStringList m_argv;
     QHostAddress m_address;
     quint16 m_port;
+    QString m_file;
 };
 
 #endif // JARGUMENTANALYSE_H

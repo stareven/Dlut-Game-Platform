@@ -99,7 +99,7 @@ const QString& JGsInfoService::error()const
 
 void JGsInfoService::on_socket_rcvPassLoginHash(bool plh)
 {
-    qDebug()<<"JGsInfoService::on_socket_rcvPassLoginHash"<<plh;
+//    qDebug()<<"JGsInfoService::on_socket_rcvPassLoginHash"<<plh;
     if(plh)
     {
         m_state=ES_PlhSuccess;
@@ -112,7 +112,7 @@ void JGsInfoService::on_socket_rcvPassLoginHash(bool plh)
 
 void JGsInfoService::on_socket_rcvGsInfo(JID)
 {
-    qDebug()<<"JGsInfoService::on_socket_rcvGsInfo";
+//    qDebug()<<"JGsInfoService::on_socket_rcvGsInfo";
     m_state=ES_SendGiSuccess;
 }
 

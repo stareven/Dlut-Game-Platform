@@ -48,6 +48,7 @@ void JGameServerConnection::dataProcess(const QByteArray& data)
             stream>>gi;
             JGameInfoSrv::JGis4Admin gis;
             gis.addGame(gi);
+            m_gameid=gi.m_gameId;
             QByteArray outdata;
             QDataStream outstream(&outdata,QIODevice::WriteOnly);
             outstream<<(JID)GameServer::EP_GameServer;
@@ -55,4 +56,11 @@ void JGameServerConnection::dataProcess(const QByteArray& data)
             sendData(outdata);
         }
     }
+}
+
+void JGameServerConnection::on_socket_disconnected()
+{
+    JGameInfoSrv::JGis4Admin gis;
+    gis.deleteGame(m_gameid);
+    JConnectionBase::on_socket_disconnected();
 }

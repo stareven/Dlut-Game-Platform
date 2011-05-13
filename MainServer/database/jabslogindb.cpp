@@ -14,12 +14,18 @@ struct SLoginUser
     JRole m_role;
 };
 
-static const int NUM_USER=3;
-static const SLoginUser loginusers[NUM_USER]={
-    {109,"elephant","acm",ROLE_GAMEPLAYER},
-    {241,"jdmd","jdmd",ROLE_ADMIN | ROLE_ROOT },
-    {794,"lixiaopang","lxp",ROLE_GAMEDESIGNER | ROLE_ADMIN }
+//static const int NUM_USER=3;
+static const SLoginUser loginusers[]={
+    {109,"elephant","acm",(1<<ROLE_GAMEPLAYER)},
+    {241,"jdmd","jdmd",(1<<ROLE_ADMIN) | (1<<ROLE_ROOT) },
+    {794,"lixiaopang","lxp",(1<<ROLE_GAMEDESIGNER) | (1<<ROLE_ADMIN) },
+    {900,"sampleplayer","123",(1<<ROLE_GAMEPLAYER)},
+    {901,"sampledesigner","123",(1<<ROLE_GAMEDESIGNER)},
+    {902,"sampleserverrunner","123",(1<<ROLE_GAMESERVERRUNNER)},
+    {903,"sampleadmin","123",(1<<ROLE_ADMIN)},
+    {904,"sampleroot","123",(1<<ROLE_ROOT)},
 };
+static const int NUM_USER=sizeof(loginusers)/sizeof(SLoginUser);
 
 JID JAbsLoginDB::checkLoginName(const QString& loginname)
 {

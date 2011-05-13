@@ -22,20 +22,20 @@ int main(int argc, char *argv[])
     ps.setServerPort(EST_FREEPORT,SHost(aa.getAddress(),aa.getPort()));
     JLoginService2 login;
     SHost loginHost=ps.rqsServerPort(EST_LOGIN);
-    qDebug()<<loginHost.m_address<<loginHost.m_port;
+//    qDebug()<<loginHost.m_address<<loginHost.m_port;
     login.connectToHost(loginHost.m_address,loginHost.m_port);
     if(!login.waitForConnected(1000))
     {
         qDebug()<<"connect failed . error :"<<login.error();
         return ERV_ConnectFailed;
     }
-    login.login("jdmd","jdmd",ROLE_GAMEDESIGNER);
+    login.login("sampleserverrunner","123",ROLE_GAMESERVERRUNNER);
     if(!login.waitForLogined(1000))
     {
         qDebug()<<"Login failed . error :"<<login.error();
         return ERV_LoginFailed;
     }
-    qDebug()<<"game info socket"<<ps.rqsServerPort(EST_GAMEINFO).m_port;
+//    qDebug()<<"game info socket"<<ps.rqsServerPort(EST_GAMEINFO).m_port;
     JGsInfoService gis;
     SHost gsiHost=ps.rqsServerPort(EST_GAMESERVER);
     gis.connectToHost(gsiHost.m_address,gsiHost.m_port);
@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
     }
     JCryproRecorder cr;
     gis.sendCrypro(cr.getUserId(),cr.getCrypro());
-    qDebug()<<gis.state();
+//    qDebug()<<gis.state();
     if(!gis.waitForPassLoginHash(1000))
     {
         qDebug()<<"gis pass Login Hash failed . error :"
@@ -65,5 +65,6 @@ int main(int argc, char *argv[])
         gi.m_introduction="this is just a sample.";
     }
     gis.sendGsInfo(gi);
+    qDebug()<<"game server startup success.";
     return a.exec();
 }

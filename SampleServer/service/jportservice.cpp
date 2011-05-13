@@ -114,7 +114,7 @@ bool JPortService::passLoginHash(JPortSocket& socket)
 
 void JPortService::on_socket_rcvPassLoginHash(bool plh)
 {
-    qDebug()<<"JPortService::on_socket_rcvPassLoginHash : "<<plh;
+//    qDebug()<<"JPortService::on_socket_rcvPassLoginHash : "<<plh;
     m_plh=plh;
 }
 

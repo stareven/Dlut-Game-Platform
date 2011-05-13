@@ -41,11 +41,11 @@ DGP使用git托管在github.com上。
     GameClient：游戏客户端。每个游戏均有一个GameClient。由MainClient从GameFileServer上下载。GameClient被设计成单独的可执行程序。GameClient由“游戏开发者”设计。
 
 ------------------纯文本相关问题------------------
-如果您在阅读doc/文件夹下的纯文本文件时出现以下问题，多是由于您使用的是SBMS公司的产品造成的。
+如果您使用的是其它操作系统（如Windows等），您在阅读doc/文件夹下的纯文本文件时可能会出现以下问题。这需要您做相应的设置才可能正常阅读。
 1、中文乱码：
 	我使用的字符编码统一为UTF-8格式。请您在您的计算机上做相应的设置以避免出现中文乱码的现象。
 2、多行接在一起：
-	我使用的换行符为LF，而不是SBMS公司使用的（Windows下默认的）换行符CRLF。请您在您的计算机上做相应的设置以避免出现多行接在一起的现象。
+	我使用的换行符为LF，而不是CRLF。请您在您的计算机上做相应的设置以避免出现多行接在一起的现象。
 
 JDMD studio , Dalian University of Technology , China
 E-mail : elephant_liu@mail.dlut.edu.cn

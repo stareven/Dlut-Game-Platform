@@ -26,7 +26,7 @@ void JLoginConnection::dataProcess(const QByteArray& data)
     JLoginVerification loginvrfc;
     JCode code=loginvrfc.verification(loginname,passwd,role);
     JUserIsOnline uio;
-    if(uio.userIsOnline(loginvrfc.getUserId())) code=EL_ALREADY_LOGIN;
+    if(role!=ROLE_GAMESERVERRUNNER && uio.userIsOnline(loginvrfc.getUserId())) code=EL_ALREADY_LOGIN;
     outstream<<code;
     if( 0 == code )
     {

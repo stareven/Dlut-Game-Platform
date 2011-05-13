@@ -41,6 +41,8 @@ void MainWindow::showEvent ( QShowEvent * event)
 
 void MainWindow::on_btn_refresh_list_clicked()
 {
+    ui->list_game->clear();
+    ui->tb_game->clear();
     m_gis->rqsNameList();
 }
 

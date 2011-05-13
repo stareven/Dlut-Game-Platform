@@ -16,8 +16,16 @@ namespace JGameInfoSrv
     };
     class JGis4Admin
     {
+    private:
+        enum{ GameidMin=256,GameidMax=65535 };
     public:
-	JCode addGame(const SGameInfo&)const;
+        // 0 succeed
+        // 1 game name duplicate
+        // 2 game id full
+        JCode addGame(SGameInfo&)const;
+
+        // 0 succeed
+        // 1 nothing to delete
 	JCode deleteGame(JID id)const;
     };
 }

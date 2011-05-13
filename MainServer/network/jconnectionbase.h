@@ -17,7 +17,8 @@ private:
     QTcpSocket* m_socket;
 private slots:
     void on_socket_readyRead();
-    void on_socket_disconnected();
+protected slots:
+    virtual void on_socket_disconnected();
 protected:
     virtual void dataProcess(const QByteArray&);
     void sendData(const QByteArray&);
