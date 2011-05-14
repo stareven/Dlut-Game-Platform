@@ -1,0 +1,35 @@
+Codec : UTF-8 Unicode text
+Language : Chinese Simplified
+We are looking forward to your help to translate this article into english
+
+字符编码 : UTF-8 Unicode text
+换行符 : LF
+语言 : Chinese Simplified
+
+SubServer
+1、GameServer（以下简称GS）和GameFileServer（以下简称GFS）统称SubServer，以区别于MainServer。
+2、SubServer应包含的数据成员：（这里仅是计划，实际以代码为准。include/ssubserver.h）
+struct SSubServer{
+	JID m_serverid;
+	QString m_name;
+	QHostAddress m_address;//地址
+	quint16 m_port;//主端口
+	enum EType{ET_GameServer,ET_GameFileServer} m_type;
+	struct SGameVersion : public SGameName{
+		JVersion m_version;
+	};
+	union {
+		SGameInfo m_gameinfo;
+		QList<SGameVersion> m_games;
+	};
+};
+3、通信协议
+	SubServer端：
+		发送LoginHash。
+		发送SSubServer。
+	MainServer端：
+		发送Command。
+			hello返回相关信息。kill直接结束。restart重启，将丢失全部未保存的数据。
+
+JDMD studio , Dalian University of Technology , China
+E-mail : elephant_liu@mail.dlut.edu.cn
