@@ -30,6 +30,13 @@ struct SSubServer{
 	MainServer端：
 		发送Command。
 			hello返回相关信息。kill直接结束。restart重启，将丢失全部未保存的数据。
+4、调用层次
+	MainServer端：
+		JSubServerConnection
+			--JSubServerSrv
+5、JSubServerSrv
+	添加SubServer
+	返回Game各级别相关信息。
 
 JDMD studio , Dalian University of Technology , China
 E-mail : elephant_liu@mail.dlut.edu.cn

@@ -11,7 +11,8 @@ enum ERuturnValue{
     ERV_Success,
     ERV_ConnectFailed,
     ERV_LoginFailed,
-    ERV_PlhFailed
+    ERV_PlhFailed,
+    ERV_SendFailed,
 };
 
 int main(int argc, char *argv[])
@@ -65,6 +66,12 @@ int main(int argc, char *argv[])
         gi.m_introduction="this is just a sample.";
     }
     gis.sendGsInfo(gi);
+    if(!gis.waitForSend(1000))
+    {
+        qDebug()<<"send game info failed . error :"
+                <<gis.error();
+        return ERV_SendFailed;
+    }
     qDebug()<<"game server startup success.";
     return a.exec();
 }

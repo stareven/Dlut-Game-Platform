@@ -83,7 +83,11 @@ SGameInfo JGameInfoSrv::JGis4Player::getInfoById(JID id)const
 
 JCode JGameInfoSrv::JGis4Admin::addGame(SGameInfo& gi)const
 {
-    if(map_name_id.contains(gi.m_name)) return 1;
+    if(map_name_id.contains(gi.m_name))
+    {
+        gi.m_gameId=-1;
+        return 1;
+    }
     if(map_gameinfo.contains(gi.m_gameId))
     {
         if(gi.m_gameId<GameidMin) gi.m_gameId=GameidMin;

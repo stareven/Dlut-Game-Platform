@@ -115,27 +115,27 @@ bool JGameInfoService::passLoginHash()
 
 void JGameInfoService::on_socket_rcvPassLoginHash(bool plh)
 {
-    qDebug()<<"JGameInfoService::on_socket_rcvPassLoginHash : "<<plh;
+//    qDebug()<<"JGameInfoService::on_socket_rcvPassLoginHash : "<<plh;
     m_plh=plh;
 }
 
 void JGameInfoService::on_socket_rcvIdList(const QList<JID>& idlist)
 {
-    qDebug()<<"JGameInfoService::on_socket_rcvIdList : "<<idlist.size();
+//    qDebug()<<"JGameInfoService::on_socket_rcvIdList : "<<idlist.size();
     m_idList=idlist;
     emit idListReady();
 }
 
 void JGameInfoService::on_socket_rcvNameList(const QList<SGameName>& namelist)
 {
-    qDebug()<<"JGameInfoService::on_socket_rcvNameList : "<<namelist.size();
+//    qDebug()<<"JGameInfoService::on_socket_rcvNameList : "<<namelist.size();
     m_nameList=namelist;
     emit nameListReady();
 }
 
 void JGameInfoService::on_socket_rcvGameInfo(const SGameInfo& gi)
 {
-    qDebug()<<"JGameInfoService::on_socket_rcvGameInfo : "<<gi.m_gameId;
+//    qDebug()<<"JGameInfoService::on_socket_rcvGameInfo : "<<gi.m_gameId;
     m_gameInfos.insert(gi.m_gameId,gi);
     emit gameInfoReady(gi.m_gameId);
 }

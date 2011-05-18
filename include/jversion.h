@@ -5,7 +5,7 @@ class JVersion
 public:
         JVersion()
         {
-            m_data=-1;
+			m_data=-1;
         }
         explicit JVersion(qint32 data)
         {

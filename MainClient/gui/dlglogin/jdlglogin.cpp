@@ -126,7 +126,7 @@ void JDlgLogin::on_edt_passwd_editingFinished()
 void JDlgLogin::on_loginsrv_loginMsg(JCode code)
 {
     //qDebug()<<"on_loginsrv_loginMsg : "<<code;
-    qDebug()<<loginMsg[code];
+//    qDebug()<<loginMsg[code];
     ui->lab_message->setText(loginMsg[code]);
     if(code==EL_SUCCESS) done(QDialog::Accepted);
 //    switch(code)

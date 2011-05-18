@@ -23,7 +23,8 @@ SOURCES += main/main.cpp \
     service/jportservice.cpp \
     network/jportconnection.cpp \
     network/jgameserverconnection.cpp \
-    ../include/sgame.cpp
+    ../include/sgame.cpp \
+    network/jsubserverconnection.cpp
 HEADERS += network/jserverbase.h \
     network/jconnectionbase.h \
     service/jloginverification.h \
@@ -44,4 +45,6 @@ HEADERS += network/jserverbase.h \
     network/jportconnection.h \
     ../include/eportsrv.h \
     network/jgameserverconnection.h \
-    ../include/egameserver.h
+    ../include/egameserver.h \
+    network/jsubserverconnection.h \
+    ../include/ssubserver.h

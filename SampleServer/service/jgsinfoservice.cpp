@@ -93,6 +93,7 @@ const QString& JGsInfoService::error()const
         tr("socket can not write"),//1
         tr("socket disconnected"),//2
         tr("pass login hash failed"),//3
+        tr("send game info failed"),//4
     };
     return errors[m_error];
 }
@@ -110,10 +111,16 @@ void JGsInfoService::on_socket_rcvPassLoginHash(bool plh)
     }
 }
 
-void JGsInfoService::on_socket_rcvGsInfo(JID)
+void JGsInfoService::on_socket_rcvGsInfo(JID id)
 {
 //    qDebug()<<"JGsInfoService::on_socket_rcvGsInfo";
-    m_state=ES_SendGiSuccess;
+    if(id<0)
+    {
+        m_state=ES_Error;
+        m_error=4;
+    }else{
+        m_state=ES_SendGiSuccess;
+    }
 }
 
 void JGsInfoService::on_socket_SocketCode(JCode code)

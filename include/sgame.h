@@ -5,6 +5,7 @@
 #include "jglobal.h"
 #include "jversion.h"
 
+//waste
 struct SGameName
 {
     SGameName():m_gameId(-1){}
