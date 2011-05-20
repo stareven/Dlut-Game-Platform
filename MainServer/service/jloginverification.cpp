@@ -3,7 +3,6 @@
 #include <QString>
 #include <QCryptographicHash>
 
-#include "jloginhash.h"
 #include "database/jabslogindb.h"
 
 JLoginVerification::JLoginVerification()
@@ -26,10 +25,10 @@ ELogin JLoginVerification::verification(const QString& loginname,const QString& 
     QByteArray data;
     data.append(loginname);
     data.append(passwd);
-    JLoginHash::JAdd add;
-    add.add(m_userid,data);
-    JLoginHash::JGet get;
-    m_crypro=get.get(m_userid);
+//    JLoginHash::JAdd add;
+//    add.add(m_userid,data);
+//    JLoginHash::JGet get;
+//    m_crypro=get.get(m_userid);
     return EL_SUCCESS;
 
 //    struct SLoginUser
@@ -86,8 +85,8 @@ JID JLoginVerification::JLoginVerification::getUserId()const
     return m_userid;
 }
 
-/// return crypto if succeed , QByteArray() if failed
-QByteArray JLoginVerification::getCrypro()const
-{
-    return m_crypro;
-}
+// return crypto if succeed , QByteArray() if failed
+//QByteArray JLoginVerification::getCrypro()const
+//{
+//    return m_crypro;
+//}

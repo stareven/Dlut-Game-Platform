@@ -2,8 +2,8 @@
 
 #include <QTcpSocket>
 
-#include "service/jloginhash.h"
-#include "service/juserisonline.h"
+//#include "service/jloginhash.h"
+//#include "service/juserisonline.h"
 
 JConnectionBase::JConnectionBase(QTcpSocket* socket,QObject *parent) :
     QObject(parent),
@@ -21,9 +21,9 @@ void JConnectionBase::on_socket_readyRead()
     {
         if(size>0)
         {
-            QByteArray data=m_socket->read(size);
-	    size=0;
-	    dataProcess(data);
+			QByteArray data=m_socket->read(size);
+			size=0;
+			dataProcess(data);
         }else if(m_socket->bytesAvailable()>=sizeof(int)){//size==0
             QDataStream stream(m_socket);
             stream>>size;
@@ -33,11 +33,11 @@ void JConnectionBase::on_socket_readyRead()
 
 void JConnectionBase::on_socket_disconnected()
 {
-    //qDebug()<<"JConnectionBase::on_socket_disconnected";
-    JLoginHash::JDelete del;
-    JUserIsOnline uio;
-    del.del(m_userid);
-    uio.userGetOff(m_userid);
+	qDebug()<<"JConnectionBase::on_socket_disconnected";
+//    JLoginHash::JDelete del;
+//    JUserIsOnline uio;
+//    del.del(m_userid);
+//    uio.userGetOff(m_userid);
 }
 
 void JConnectionBase::dataProcess(const QByteArray& data)

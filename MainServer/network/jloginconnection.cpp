@@ -6,6 +6,7 @@
 
 #include "service/jloginverification.h"
 #include "service/juserisonline.h"
+#include "service/jloginhash.h"
 
 JLoginConnection::JLoginConnection(QTcpSocket* socket,QObject *parent) :
     JConnectionBase(socket,parent)
@@ -30,8 +31,11 @@ void JLoginConnection::dataProcess(const QByteArray& data)
     outstream<<code;
     if( 0 == code )
     {
+		JLoginHash::JAdd add;
+		add.add(loginvrfc.getUserId(),data);
+		JLoginHash::JGet get;
         outstream<<loginvrfc.getUserId();
-        outstream<<loginvrfc.getCrypro();
+		outstream<<get.get(loginvrfc.getUserId());
         setUserId(loginvrfc.getUserId());
         uio.userGetOn(loginvrfc.getUserId());
     }
@@ -41,4 +45,12 @@ void JLoginConnection::dataProcess(const QByteArray& data)
 //    outsocketstream<<size;
 //    //socket->write(QByteArray::number(size));
 //    socket->write(outdata);
+}
+
+void JLoginConnection::on_socket_disconnected()
+{
+	JLoginHash::JDelete del;
+	JUserIsOnline uio;
+	del.del(getUserId());
+	uio.userGetOff(getUserId());
 }

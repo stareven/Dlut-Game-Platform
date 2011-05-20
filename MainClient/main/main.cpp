@@ -4,9 +4,9 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    JDlgLogin dlg;
-    if(dlg.exec()==QDialog::Rejected)
+	QApplication a(argc, argv);
+	JDlgLogin dlg;
+	if(dlg.exec()==QDialog::Rejected)
     {
         return 0;
     }

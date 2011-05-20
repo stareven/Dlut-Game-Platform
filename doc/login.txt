@@ -1,0 +1,13 @@
+Codec : UTF-8 Unicode text
+Language : Chinese Simplified
+We are looking forward to your help to translate this article into english
+
+字符编码 : UTF-8 Unicode text
+换行符 : LF
+语言 : Chinese Simplified
+
+1、Login的socket连接不能随意断开。
+	一旦Login的socket连接断开，MainServer会认为对方已经Logout。
+
+JDMD studio , Dalian University of Technology , China
+E-mail : elephant_liu@mail.dlut.edu.cn
