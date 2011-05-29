@@ -37,7 +37,6 @@ namespace SubServer{
 		SSubServer m_gameServer;
 		SSubServer m_gameFileServer;
 	};
-
 	struct SGameServerInfo0 : public SSubServer{
 		SGameInfo0 m_gameinfo;
 	};

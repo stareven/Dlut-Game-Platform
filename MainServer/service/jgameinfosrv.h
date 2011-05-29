@@ -10,9 +10,9 @@ namespace JGameInfoSrv
     class JGis4Player
     {
     public:
-	QList<JID> getIdList()const;
-	QList<SGameName> getNameList()const;
-	SGameInfo getInfoById(JID id)const;
+		QList<JID> getIdList()const;
+		QList<SGameName> getNameList()const;
+		SGameInfo getInfoById(JID id)const;
     };
     class JGis4Admin
     {
@@ -26,7 +26,7 @@ namespace JGameInfoSrv
 
         // 0 succeed
         // 1 nothing to delete
-	JCode deleteGame(JID id)const;
+		JCode deleteGame(JID id)const;
     };
 }
 #endif // JGAMEINFOSRV_H
