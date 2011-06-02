@@ -9,9 +9,13 @@ class JSubServerSrv
 public:
 	JCode addServer(const SubServer::SGameServerInfo0&);
 	JCode addServer(const SubServer::SGameFileServerInfo0 &);
-	JCode removeServer(JID id);
-	void getGameNameList()const;
-	void getGameIntro(JID id)const;
+	QList<SubServer::SGameInfo1> getAllGameList()const;
+	QList<SubServer::SGameInfo1> getAvailableGameList()const;
+	SubServer::SGameInfo4 getGameInfo(JID gameid)const;
+
+//	JCode removeServer(JID id);
+//	void getGameNameList()const;
+//	void getGameIntro(JID id)const;
 };
 
 #endif // JSUBSERVERSRV_H

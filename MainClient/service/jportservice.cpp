@@ -1,6 +1,6 @@
 #include "jportservice.h"
 
-#include <QElapsedTimer>
+#include "jelapsedtimer.h"
 #include <QCoreApplication>
 
 #include "network/jportsocket.h"
@@ -39,7 +39,7 @@ SHost JPortService::rqsServerPort(EServerType type)
         host=rqsServerPort(EST_SECRETPORT);
     }
     socket.connectToHost(host.m_address,host.m_port);
-    QElapsedTimer timer;
+    JElapsedTimer timer;
     timer.start();
     while(timer.elapsed()<1000)
     {
@@ -80,7 +80,7 @@ SHost JPortService::rqsServerPort(EServerType type)
 
 bool JPortService::passLoginHash(JPortSocket& socket)
 {
-    QElapsedTimer t;
+    JElapsedTimer t;
     JCryproRecorder cr;
     t.start();
     m_plh=-1;

@@ -21,7 +21,7 @@ namespace SubServer{
 		QString m_introduction;
 	};
 	struct SSubServer{
-		JID m_serverid;
+		JID m_serverId;
 		QString m_name;
 		QHostAddress m_address;//地址
 		quint16 m_port;//主端口
@@ -34,11 +34,13 @@ namespace SubServer{
 	};
 	struct SGameInfo4 : public SGameInfo2{
 		// 发送给Client的GameInfo
-		SSubServer m_gameServer;
-		SSubServer m_gameFileServer;
+//		SSubServer m_gameServer;
+//		SSubServer m_gameFileServer;
+		QMap<JVersion,SSubServer> m_gameServer;
+		QMap<JVersion,SSubServer> m_gameFileServer;
 	};
 	struct SGameServerInfo0 : public SSubServer{
-		SGameInfo0 m_gameinfo;
+		SGameInfo1 m_gameinfo;
 	};
 	struct SGameFileServerInfo0 : public SSubServer{
 		QList<SGameInfo1> m_games;

@@ -2,7 +2,11 @@
 
 #include <QTcpSocket>
 #include <QHostAddress>
-#include <QElapsedTimer>
+//#if QT_VERSION >= 0x040700
+//	#include <QElapsedTimer>
+//#else
+//	#include <QTime>
+//#endif
 #include <QCoreApplication>
 
 JSocketBase::JSocketBase(QObject *parent) :

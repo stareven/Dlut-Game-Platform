@@ -1,7 +1,7 @@
 #include "jgameinfoservice.h"
 
 #include <QCoreApplication>
-#include <QElapsedTimer>
+#include "jelapsedtimer.h"
 #include <QDebug>
 #include <QHostAddress>
 
@@ -79,7 +79,7 @@ void JGameInfoService::rqsGameInfo(JID id)
 
 bool JGameInfoService::passLoginHash()
 {
-    QElapsedTimer t;
+    JElapsedTimer t;
     JCryproRecorder cr;
     t.start();
     while(t.elapsed()<1000)

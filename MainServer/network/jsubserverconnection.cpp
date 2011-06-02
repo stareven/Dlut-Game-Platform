@@ -45,7 +45,7 @@ void JSubServerConnection::dataProcess(const QByteArray& data)
 				break;
 			}
 			SSubServer gi;
-			stream>>gi.m_serverid;
+			stream>>gi.m_serverId;
 			stream>>gi.m_name;
 			stream>>gi.m_address;
 			stream>>gi.m_port;

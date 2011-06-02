@@ -36,6 +36,7 @@ HEADERS += gui/mainwindow.h \
     ../include/egameinfo.h \
     ../include/sgame.h \
     ../include/jversion.h \
+    ../include/jelapsedtimer.h \
     network/jgameinfosocket.h \
     service/jcryprorecorder.h \
     network/jsocketbase.h \
