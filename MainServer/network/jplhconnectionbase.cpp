@@ -26,6 +26,7 @@ void JPlhConnectionBase::dataProcess(const QByteArray& data)
 		QDataStream outstream(&outdata,QIODevice::WriteOnly);
 		outstream<<plh;
 		sendData(outdata);
+		closeConnect();
 	}
 }
 

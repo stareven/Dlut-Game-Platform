@@ -45,11 +45,17 @@ namespace SubServer{
 	struct SGameFileServerInfo0 : public SSubServer{
 		QList<SGameInfo1> m_games;
 	};
+	struct SSubServerInfo0 : public SSubServer{
+		QList<SGameInfo1> m_games;
+	};
 	enum EProtocol{
-		EP_LoginHash,
 		EP_ServerInfo,
+		EP_GameInfo,
 		EP_Command,
 	};
 }
+class QDataStream;
+QDataStream& operator >> (QDataStream&,SubServer::SSubServerInfo0&);
+QDataStream& operator >> (QDataStream&,SubServer::SGameInfo2&);
 
-#endif //SSUBSERVER_H
+#endif // SSUBSERVER_H

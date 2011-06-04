@@ -1,68 +1,52 @@
 #include "jsubserverconnection.h"
 
 #include <QDataStream>
+#include <QDebug>
 
-#include "service/jloginhash.h"
 #include "ssubserver.h"
-
-using namespace SubServer;
+#include "service/jsubserversrv.h"
 
 JSubServerConnection::JSubServerConnection(QTcpSocket* socket,QObject *parent) :
-	JConnectionBase(socket,parent)
+	JPlhConnectionBase(socket,parent)
 {
-	m_passLoginHash=false;
 }
 
-void JSubServerConnection::dataProcess(const QByteArray& data)
+void JSubServerConnection::afterPlh(const QByteArray &data)
 {
 	QDataStream stream(data);
 	JID protocol;
 	stream>>protocol;
+	JSubServerSrv sss;
 	switch((SubServer::EProtocol)protocol)
 	{
-	case SubServer::EP_LoginHash:
+	case SubServer::EP_ServerInfo:
 		{
-			if(!m_passLoginHash)
-			{
-				JID userid;
-				QByteArray crypro;
-				JLoginHash::JCheck check;
-				stream>>userid>>crypro;
-				m_passLoginHash=(0==check.check(userid,crypro));
-			}
+			SubServer::SSubServerInfo0 subserver;
+			stream>>subserver;
+			JCode code=sss.addServer (subserver);
 			QByteArray outdata;
 			QDataStream outstream(&outdata,QIODevice::WriteOnly);
-			outstream<<(JID)SubServer::EP_LoginHash;
-			outstream<<m_passLoginHash;
+			outstream<<(JID)SubServer::EP_ServerInfo;
+			outstream<<code;
 			sendData(outdata);
 		}
 		break;
-	case SubServer::EP_ServerInfo:
+	case SubServer::EP_GameInfo:
 		{
-			if(!m_passLoginHash)
-			{
-				closeConnect();
-				break;
-			}
-			SSubServer gi;
-			stream>>gi.m_serverId;
-			stream>>gi.m_name;
-			stream>>gi.m_address;
-			stream>>gi.m_port;
-			stream>>(JID&)gi.m_type;
+			SubServer::SGameInfo2 gameinfo;
+			stream>>gameinfo;
+			JCode code=sss.updateGameInfo (gameinfo);
+			QByteArray outdate;
+			QDataStream outstream(&outdate,QIODevice::WriteOnly);
+			outstream<<(JID)SubServer::EP_GameInfo;
+			outstream<<code;
+			sendData(outdate);
 		}
 		break;
 	case SubServer::EP_Command:
 		{
-			//
+			qDebug()<<"JSubServerConnection::afterPlh : undefined protocol.";
 		}
 		break;
 	}
-}
-
-void JSubServerConnection::on_socket_disconnected()
-{
-//    JGameInfoSrv::JGis4Admin gis;
-//    gis.deleteGame(m_gameid);
-	JConnectionBase::on_socket_disconnected();
 }

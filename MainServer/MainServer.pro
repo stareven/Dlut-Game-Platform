@@ -51,4 +51,5 @@ HEADERS += network/jserverbase.h \
     network/jsubserverconnection.h \
     ../include/ssubserver.h \
     service/jsubserversrv.h \
-    network/jplhconnectionbase.h
+    network/jplhconnectionbase.h \
+    network/jsubserverconnection.h

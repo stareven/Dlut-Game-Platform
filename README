@@ -14,13 +14,14 @@ DGP仅包含一个游戏大厅，并不包含任何游戏。由热爱游戏设�
 如果您希望加入DGP项目，请与我联系。联系方式： elephant_liu@mail.dlut.edu.cn
 
 ------------------技术概述------------------
-DGP目前使用的图形界面库为Qt4，版本为Qt 4.7.0。
-	Qt相关学习资料请见：doc/learn.txt
+DGP计划支持多编程语言及多编程框架
+	参见本文“DGP关于支持多语言的设想”一节。
 DGP使用git托管在github.com上。
 	Git工具相关学习资料请见：doc/learn.txt
 	本项目地址为： https://github.com/lexdene/Dlut-Game-Platform
 DGP目前需要一名美工设计人员。
 	目前的界面全部采用Qt默认的界面风格。我们希望能够设计出更美观并易于使用的界面。
+
 
 ------------------各文件夹概述------------------
 请见doc/folder.txt
@@ -41,6 +42,11 @@ DGP目前需要一名美工设计人员。
     GameFileServer：游戏客户端下载服务器。负责提供给“游戏玩家”下载最新版的GameClient。每个游戏对应一个GameFileServer，但是一个GameFileServer可以同时提供多个游戏的客户端下载服务。GameFileServer可以由“游戏开发者”设计或由“平台开发者”提供一个统计的模板。
     MainClient：主客户端。负责登录，查看游戏列表，查看玩家信息等功能。同时负责从GameFileServer下载需要的最新版本的GameClient。由“平台开发者”负责开发维护。
     GameClient：游戏客户端。每个游戏均有一个GameClient。由MainClient从GameFileServer上下载。GameClient被设计成单独的可执行程序。GameClient由“游戏开发者”设计。
+3、DGP关于支持多语言的设想。
+	目前仍处于计划阶段，具体能否实现还需要看其技术难度。
+	设想大致内容：
+		DGP的核心部分（MainServer和MainClient）使用的编程语言为C++，使用的图形界面库为Qt4，版本为Qt 4.7.0（Qt相关学习资料请见：doc/learn.txt），但是我们希望游戏开发者能够使用任何编程语言来设计游戏。
+		在我们的计划中，GameClient与GameServer是一个独立的可执行程序，由MainClient与MainServer通过系统调用启动。因此，在我们的计划中，任何可以编译得到独立可执行程序的程序设计语言都可以用来在DGP中设计游戏。
 
 ------------------纯文本相关问题------------------
 如果您使用的是其它操作系统（如Windows等），您在阅读doc/文件夹下的纯文本文件时可能会出现以下问题。这需要您做相应的设置才可能正常阅读。
