@@ -17,11 +17,14 @@ int main(int argc, char *argv[])
     qDebug()<<"freeport Server : port is "<<freeportServer.run(37373);
     JServerBase gameserverServer(EST_GAMESERVER);
     qDebug()<<"gameserver Server : port is "<<gameserverServer.run(0);
+	JServerBase subserverServer(EST_SUBSERVER);
+	qDebug()<<"subserver Server : port is "<<subserverServer.run (0);
     JPortService freeps(JPortService::EPS_FREE);
     freeps.addSubServerPort(loginServer);
     freeps.addSubServerPort(secretportServer);
     JPortService secretps(JPortService::EPS_SECRET);
     secretps.addSubServerPort(gameInfoServer);
     secretps.addSubServerPort(gameserverServer);
+	secretps.addSubServerPort (subserverServer);
     return a.exec();
 }

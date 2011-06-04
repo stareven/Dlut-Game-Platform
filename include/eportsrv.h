@@ -8,6 +8,7 @@ enum EServerType{
     EST_FREEPORT,
     EST_SECRETPORT,
     EST_GAMESERVER,
+	EST_SUBSERVER,
     EST_MAX
 };
 
