@@ -37,6 +37,63 @@ struct SSubServer{
 5、JSubServerSrv
 	添加SubServer
 	返回Game各级别相关信息。
+6、如何避免误传信息
+	SubServer A可能由于错误上传了游戏B的信息，这会造成全局的混乱。
+7、数据结构
+	GameInfo：
+	1、MC <=> MS
+		1.1、gamelist
+			gameid;
+			gamename;
+		1.2、gameinfo
+			gameid;
+			gamename;
+			author;
+			introduction;
+			version;
+			以上皆为最新信息。
+		1.3、serverlist
+			gameid
+			map<version , pair<gs_id,gfs_id> >
+			在此才能得到全部的version
+	2、MS <=> GS
+		要求GS的runner对gameId有写权限，否则提示错误。
+		2.1、同1.2
+			这部分信息可以由GS上传（将发生更新）或继续使用数据库中的数据。
+		2.2、serverinfo
+			gameId;
+			servertype;
+			version;
+			将自身（MS）与gameId、version、servertype绑定。
+	3、MS <=> GFS
+		同2
+		3.1、同2.2
+	4、MC <=> GFS
+		4.1、download
+			gameId;
+			version;
+			platform;
+	SubServerInfo:
+	1、MC <=> MS
+		1.1、serverinfo
+			serverId;
+			name;
+			type;
+			address;
+			port;
+		1.2、gamelist
+			serverId;
+			map< gameId , set<version> >;
+	2、MS <=> GS
+		2.1、同1.1
+		2.2、gamelist
+			从2.1中获得当前serverId
+			map<gameId , set<version> >;
+	3、MS <=> GFS
+		3.1、同2.1
+		3.2、同2.2
+	4、MC <=> GFS
+		无
 
 JDMD studio , Dalian University of Technology , China
 E-mail : elephant_liu@mail.dlut.edu.cn

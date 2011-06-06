@@ -24,6 +24,7 @@ SOURCES += main/main.cpp \
     network/jportconnection.cpp \
     network/jgameserverconnection.cpp \
     ../include/sgame.cpp \
+	../include/ssubserver.cpp \
     network/jsubserverconnection.cpp \
     service/jsubserversrv.cpp \
     network/jplhconnectionbase.cpp

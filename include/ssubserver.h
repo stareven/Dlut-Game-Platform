@@ -48,12 +48,20 @@ namespace SubServer{
 	struct SSubServerInfo0 : public SSubServer{
 		QList<SGameInfo1> m_games;
 	};
+	struct SGameInfo_ID_VSN{
+		JID m_gameId;
+		JVersion m_version;
+	};
+	struct SSubServerInfo1 : public SSubServer{
+		QList<SGameInfo_ID_VSN> m_games;
+	};
 	enum EProtocol{
 		EP_ServerInfo,
 		EP_GameInfo,
 		EP_Command,
 	};
 }
+
 class QDataStream;
 QDataStream& operator >> (QDataStream&,SubServer::SSubServerInfo0&);
 QDataStream& operator >> (QDataStream&,SubServer::SGameInfo2&);

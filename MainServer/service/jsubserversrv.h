@@ -3,6 +3,7 @@
 
 #include <QList>
 //#include "ssubserver.h"
+#include <QMap>
 #include "jglobal.h"
 namespace SubServer
 {
@@ -12,7 +13,10 @@ namespace SubServer
 	class SGameInfo2;
 	class SGameInfo1;
 	class SGameInfo4;
+	class SSubServerInfo1;
+	class SGameInfo3;
 };
+class JVersion;
 
 class JSubServerSrv
 {
@@ -24,6 +28,10 @@ public:
 	QList<SubServer::SGameInfo1> getAllGameList()const;
 	QList<SubServer::SGameInfo1> getAvailableGameList()const;
 	SubServer::SGameInfo4 getGameInfo(JID gameid)const;
+private:
+	static QMap<JID,SubServer::SSubServerInfo1> g_servers;
+	static QMap<JID , QMap<JVersion,SubServer::SGameInfo3> > g_games;
+
 
 //	JCode removeServer(JID id);
 //	void getGameNameList()const;
