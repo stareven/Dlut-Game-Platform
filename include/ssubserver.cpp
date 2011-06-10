@@ -20,12 +20,12 @@ QDataStream& operator >> (QDataStream& stream,SubServer::SGameInfo1& gi)
 	return stream;
 }
 
-QDataStream& operator >> (QDataStream& stream,SubServer::SSubServerInfo0& ss)
-{
-	stream>>(SubServer::SSubServer&)ss;
-	stream>>ss.m_games;
-	return stream;
-}
+//QDataStream& operator >> (QDataStream& stream,SubServer::SSubServerInfo0& ss)
+//{
+//	stream>>(SubServer::SSubServer&)ss;
+//	stream>>ss.m_games;
+//	return stream;
+//}
 
 QDataStream& operator >> (QDataStream& stream,SubServer::SGameInfo2&)
 {

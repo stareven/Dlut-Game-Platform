@@ -8,6 +8,26 @@ CONFIG += console
 CONFIG -= app_bundle
 TEMPLATE = app
 INCLUDEPATH += ../include
+HEADERS += network/jserverbase.h \
+    network/jconnectionbase.h \
+    service/jloginverification.h \
+    service/juserlogincrypro.h \
+    database/jabslogindb.h \
+    service/jloginhash.h \
+	service/juserisonline.h \
+    network/jconnectionfactory.h \
+    network/jloginconnection.h \
+    network/jgameinfoconnection.h \
+    service/jportservice.h \
+    network/jportconnection.h \
+    network/jsubserverconnection.h \
+    service/jsubserversrv.h \
+	network/jplhconnectionbase.h \
+	../include/elogin.h \
+	../include/jglobal.h \
+	../include/jversion.h \
+	../include/eportsrv.h \
+	../include/ssubserver.h
 SOURCES += main/main.cpp \
     network/jserverbase.cpp \
     network/jconnectionbase.cpp \
@@ -15,42 +35,14 @@ SOURCES += main/main.cpp \
     service/juserlogincrypro.cpp \
     database/jabslogindb.cpp \
     service/jloginhash.cpp \
-    service/juserisonline.cpp \
-    service/jgameinfosrv.cpp \
+	service/juserisonline.cpp \
     network/jconnectionfactory.cpp \
     network/jloginconnection.cpp \
     network/jgameinfoconnection.cpp \
     service/jportservice.cpp \
     network/jportconnection.cpp \
-    network/jgameserverconnection.cpp \
-    ../include/sgame.cpp \
 	../include/ssubserver.cpp \
     network/jsubserverconnection.cpp \
     service/jsubserversrv.cpp \
-    network/jplhconnectionbase.cpp
-HEADERS += network/jserverbase.h \
-    network/jconnectionbase.h \
-    service/jloginverification.h \
-    service/juserlogincrypro.h \
-    database/jabslogindb.h \
-    service/jloginhash.h \
-    service/juserisonline.h \
-    ../include/elogin.h \
-    ../include/sgame.h \
-    ../include/jglobal.h \
-    ../include/jversion.h \
-    ../include/egameinfo.h \
-    service/jgameinfosrv.h \
-    network/jconnectionfactory.h \
-    network/jloginconnection.h \
-    network/jgameinfoconnection.h \
-    service/jportservice.h \
-    network/jportconnection.h \
-    ../include/eportsrv.h \
-    network/jgameserverconnection.h \
-    ../include/egameserver.h \
-    network/jsubserverconnection.h \
-    ../include/ssubserver.h \
-    service/jsubserversrv.h \
-    network/jplhconnectionbase.h \
-    network/jsubserverconnection.h
+	network/jplhconnectionbase.cpp
+

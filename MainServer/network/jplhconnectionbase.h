@@ -8,8 +8,9 @@ class JPlhConnectionBase : public JConnectionBase
     Q_OBJECT
 public:
 	explicit JPlhConnectionBase(QTcpSocket* socket,QObject *parent = 0);
-protected:
+private:
 	void dataProcess(const QByteArray &);
+protected:
 	virtual void afterPlh(const QByteArray&);
 };
 

@@ -45,25 +45,32 @@ namespace SubServer{
 	struct SGameFileServerInfo0 : public SSubServer{
 		QList<SGameInfo1> m_games;
 	};
-	struct SSubServerInfo0 : public SSubServer{
-		QList<SGameInfo1> m_games;
-	};
+//	struct SSubServerInfo0 : public SSubServer{
+//		QList<SGameInfo1> m_games;
+//	};
 	struct SGameInfo_ID_VSN{
 		JID m_gameId;
 		JVersion m_version;
 	};
-	struct SSubServerInfo1 : public SSubServer{
-		QList<SGameInfo_ID_VSN> m_games;
+//	struct SSubServerInfo1 : public SSubServer{
+//		QList<SGameInfo_ID_VSN> m_games;
+//	};
+	enum ESubServerProtocol{
+		ESP_ServerInfo,
+		ESP_GameInfo,
+		ESP_Relation,
+		ESP_Command,
 	};
-	enum EProtocol{
-		EP_ServerInfo,
-		EP_GameInfo,
-		EP_Command,
+	enum EGameInfoProtocol{
+		EGP_GameList,
+		EGP_Servers,
 	};
 }
 
 class QDataStream;
-QDataStream& operator >> (QDataStream&,SubServer::SSubServerInfo0&);
+//QDataStream& operator >> (QDataStream&,SubServer::SSubServerInfo0&);
+QDataStream& operator >> (QDataStream&,SubServer::SSubServer&);
 QDataStream& operator >> (QDataStream&,SubServer::SGameInfo2&);
+QDataStream& operator << (QDataStream&,const SubServer::SGameInfo2&);
 
 #endif // SSUBSERVER_H

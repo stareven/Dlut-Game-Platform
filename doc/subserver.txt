@@ -64,7 +64,7 @@ struct SSubServer{
 			gameId;
 			servertype;
 			version;
-			将自身（MS）与gameId、version、servertype绑定。
+			将自身（GS）与gameId、version、servertype绑定。
 	3、MS <=> GFS
 		同2
 		3.1、同2.2

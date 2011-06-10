@@ -15,27 +15,35 @@ namespace SubServer
 	class SGameInfo4;
 	class SSubServerInfo1;
 	class SGameInfo3;
+	class SSubServer;
 };
 class JVersion;
 
-class JSubServerSrv
+namespace SubServer
 {
-public:
-	JCode addServer(const SubServer::SGameServerInfo0 &);
-	JCode addServer(const SubServer::SGameFileServerInfo0 &);
-	JCode addServer(const SubServer::SSubServerInfo0 &);
-	JCode updateGameInfo(const SubServer::SGameInfo2 &);
-	QList<SubServer::SGameInfo1> getAllGameList()const;
-	QList<SubServer::SGameInfo1> getAvailableGameList()const;
-	SubServer::SGameInfo4 getGameInfo(JID gameid)const;
-private:
-	static QMap<JID,SubServer::SSubServerInfo1> g_servers;
-	static QMap<JID , QMap<JVersion,SubServer::SGameInfo3> > g_games;
+	class JSubServerSrv
+	{
+	public:
+		JCode addSubServer(const SSubServer&);
+		JCode updateGameInfo(const SGameInfo2&);
+		JCode addRelation(JID serverId,JID gameId,const JVersion& gameVersion);
+	};
 
+	class JGameInfoSrv
+	{
+	public:
+		QList<SGameInfo2> getGameList()const;
+		QMap<JVersion,QSet<JID> > getServersByGameid(JID gameid)const;
+	};
 
-//	JCode removeServer(JID id);
-//	void getGameNameList()const;
-//	void getGameIntro(JID id)const;
-};
+	class JSubServerData
+	{
+	public:
+	private:
+		JSubServerData();
+		friend class JSubServerSrv;
+		friend class JGameInfoSrv;
+	};
+}
 
 #endif // JSUBSERVERSRV_H

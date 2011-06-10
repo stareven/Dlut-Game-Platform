@@ -6,10 +6,9 @@ enum EServerType{
     EST_LOGIN,
     EST_GAMEINFO,
     EST_FREEPORT,
-    EST_SECRETPORT,
-    EST_GAMESERVER,
+	EST_SECRETPORT,
 	EST_SUBSERVER,
-    EST_MAX
+	EST_MAX,
 };
 
 #define isInFree(type) ( EST_LOGIN==type || EST_SECRETPORT== type)
