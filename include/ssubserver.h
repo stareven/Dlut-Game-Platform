@@ -5,7 +5,6 @@
 #include <QHostAddress>
 #include <QList>
 
-#include "jglobal.h"
 #include "jversion.h"
 
 namespace SubServer{
@@ -68,7 +67,6 @@ namespace SubServer{
 }
 
 class QDataStream;
-//QDataStream& operator >> (QDataStream&,SubServer::SSubServerInfo0&);
 QDataStream& operator >> (QDataStream&,SubServer::SSubServer&);
 QDataStream& operator >> (QDataStream&,SubServer::SGameInfo2&);
 QDataStream& operator << (QDataStream&,const SubServer::SGameInfo2&);

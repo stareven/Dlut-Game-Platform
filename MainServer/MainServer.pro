@@ -44,5 +44,5 @@ SOURCES += main/main.cpp \
 	../include/ssubserver.cpp \
     network/jsubserverconnection.cpp \
     service/jsubserversrv.cpp \
-	network/jplhconnectionbase.cpp
-
+	network/jplhconnectionbase.cpp \
+    ../include/jversion.cpp
