@@ -34,6 +34,10 @@ namespace SubServer
 		QMap<JVersion,QSet<JID> > getServersByGameid(JID gameid)const;
 	private:
 		JSubServerData();
+		static QMap<JID,SSubServer> s_servers;
+		static QMap<JID,SGameInfo2> s_games;
+		static QMap< JID,QMap<JVersion,QSet<JID> > > s_relations;
+
 		friend class JSubServerSrv;
 		friend class JGameInfoSrv;
 	};
@@ -44,8 +48,12 @@ namespace SubServer
 		JCode addSubServer(const SSubServer&);
 		JCode updateGameInfo(const SGameInfo2&);
 		JCode addRelation(JID serverId,JID gameId,const JVersion& gameVersion);
+
+		JSubServerSrv();
+		void setRunner(JID);
 	private:
 		JSubServerData m_data;
+		JID m_runner;
 	};
 
 	class JGameInfoSrv

@@ -46,6 +46,16 @@ JCode SubServer::JSubServerSrv::addRelation(JID serverId,JID gameId,const JVersi
 	return m_data.addRelation (serverId,gameId,gameVersion);
 }
 
+JCode SubServer::JSubServerSrv::JSubServerSrv()
+{
+	m_runner=-1;
+}
+
+void SubServer::JSubServerSrv::setRunner(JID runner)
+{
+	m_runner=runner;
+}
+
 QList<SubServer::SGameInfo2> SubServer::JGameInfoSrv::getGameList()const
 {
 	return m_data.getGameList ();

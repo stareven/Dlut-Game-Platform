@@ -95,5 +95,25 @@ struct SSubServer{
 	4、MC <=> GFS
 		无
 
+JSubServerSrv
+	JCode addSubServer(const SSubServer& server);
+		首先，检查server是否是由runner控制的。
+			server.m_serverId runner
+		然后，检查基本信息是否匹配。
+			m_serverId m_name m_type
+		最后，将其加入servers中。
+	JCode updateGameInfo(const SGameInfo2& gi);
+		首先，检查runner是否对gi有写权限。
+			gi.m_gameId runner
+		然后，查检基本信息是否匹配。
+			m_gameId m_name m_author
+		最后，将其加入games中。
+	JCode addRelation(JID serverId,JID gameId,const JVersion& gameVersion);
+		首先，检查serverId是否是由runner控制的。
+			serverId runner
+		然后，检查runner是否对gameId有写权限。
+			runner gameId
+		最后，将其加入relation中。
+
 JDMD studio , Dalian University of Technology , China
 E-mail : elephant_liu@mail.dlut.edu.cn
