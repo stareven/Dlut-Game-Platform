@@ -95,7 +95,7 @@ struct SSubServer{
 	4、MC <=> GFS
 		无
 
-JSubServerSrv
+8、JSubServerSrv
 	JCode addSubServer(const SSubServer& server);
 		首先，检查server是否是由runner控制的。
 			server.m_serverId runner
@@ -114,6 +114,14 @@ JSubServerSrv
 		然后，检查runner是否对gameId有写权限。
 			runner gameId
 		最后，将其加入relation中。
+9、Database
+	1、JSubServerDb
+		bool isControlAble(JID serverId,JID runnerId);
+		bool checkBaseInfo(const SSubServer&);
+	2、JGameInfoDb
+		bool isWritable(JID gameId,JID runnerId);
+		bool checkBaseInfo(const SGameInfo&);
+
 
 JDMD studio , Dalian University of Technology , China
 E-mail : elephant_liu@mail.dlut.edu.cn

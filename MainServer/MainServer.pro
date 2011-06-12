@@ -27,7 +27,9 @@ HEADERS += network/jserverbase.h \
 	../include/jglobal.h \
 	../include/jversion.h \
 	../include/eportsrv.h \
-	../include/ssubserver.h
+	../include/ssubserver.h \
+    database/jsubserverdb.h \
+    database/jgameinfodb.h
 SOURCES += main/main.cpp \
     network/jserverbase.cpp \
     network/jconnectionbase.cpp \
@@ -45,4 +47,6 @@ SOURCES += main/main.cpp \
     network/jsubserverconnection.cpp \
     service/jsubserversrv.cpp \
 	network/jplhconnectionbase.cpp \
-    ../include/jversion.cpp
+    ../include/jversion.cpp \
+    database/jsubserverdb.cpp \
+    database/jgameinfodb.cpp
