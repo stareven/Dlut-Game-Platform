@@ -27,7 +27,11 @@ namespace SubServer
 	class JSubServerData
 	{
 	public:
+		// 0 success
+		// 3 already contain
 		JCode addSubServer(const SSubServer&);
+		// 0 success
+		// 3 already contain
 		JCode updateGameInfo(const SGameInfo2&);
 		JCode addRelation(JID serverId,JID gameId,const JVersion& gameVersion);
 		QList<SGameInfo2> getGameList()const;
@@ -36,6 +40,8 @@ namespace SubServer
 		JSubServerData();
 		static QMap<JID,SSubServer> s_servers;
 		static QMap<JID,SGameInfo2> s_games;
+
+		// gameid version serverid
 		static QMap< JID,QMap<JVersion,QSet<JID> > > s_relations;
 
 		friend class JSubServerSrv;
@@ -45,12 +51,22 @@ namespace SubServer
 	class JSubServerSrv
 	{
 	public:
+		// 0 success
+		// 1 Permission denied
+		// 2 base info check failed
+		// 3 already contain
 		JCode addSubServer(const SSubServer&);
+		// 0 success
+		// 1 Permission denied
+		// 2 base info check failed
+		// 3 already contain
 		JCode updateGameInfo(const SGameInfo2&);
+		// 0 success
+		// 1 Permission denied
+		// 3 already contain
 		JCode addRelation(JID serverId,JID gameId,const JVersion& gameVersion);
 
-		JSubServerSrv();
-		void setRunner(JID);
+		JSubServerSrv(JID);
 	private:
 		JSubServerData m_data;
 		JID m_runner;
@@ -64,8 +80,6 @@ namespace SubServer
 	private:
 		JSubServerData m_data;
 	};
-
-
 }
 
 #endif // JSUBSERVERSRV_H

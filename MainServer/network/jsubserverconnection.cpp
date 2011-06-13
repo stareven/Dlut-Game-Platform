@@ -16,7 +16,7 @@ void JSubServerConnection::afterPlh(const QByteArray &data)
 	QDataStream stream(data);
 	JID protocol;
 	stream>>protocol;
-	SubServer::JSubServerSrv sss;
+	SubServer::JSubServerSrv sss(getUserId());
 	switch((SubServer::ESubServerProtocol)protocol)
 	{
 	case SubServer::ESP_ServerInfo:

@@ -5,9 +5,10 @@
 #include <QMap>
 
 #include "jglobal.h"
-#include "sgame.h"
 
 class JGameInfoSocket;
+
+#include "ssubserver.h"
 
 class JGameInfoService : public QObject
 {
@@ -15,22 +16,22 @@ class JGameInfoService : public QObject
 public:
     explicit JGameInfoService(QObject *parent = 0);
 
-    void rqsIdList();
-    void rqsNameList();
-    void rqsGameInfo(JID);
+//    void rqsIdList();
+	void rqsGameList();
+	void rqsGameInfo(JID);
 protected:
     bool passLoginHash();
 signals:
-    void idListReady();
-    void nameListReady();
-    void gameInfoReady(JID gameid);
+//    void idListReady();
+	void gameListReady();
+	void gameInfoReady(JID gameid);
 private:
     JGameInfoSocket* m_socket;
 protected slots:
     void on_socket_rcvPassLoginHash(bool);
-    void on_socket_rcvIdList(const QList<JID>&);
-    void on_socket_rcvNameList(const QList<SGameName>&);
-    void on_socket_rcvGameInfo(const SGameInfo&);
+//    void on_socket_rcvIdList(const QList<JID>&);
+	void on_socket_rcvGameList(const QList<SubServer::SGameInfo2>&);
+//	void on_socket_rcvGameList(const SubServer::SGameInfo2&);
 private:
     //pass login hash
     //0 failed
@@ -38,13 +39,13 @@ private:
     //-1 init
     //-2 rqs ing
     int m_plh;
-    QList<JID> m_idList;
-    QList<SGameName> m_nameList;
-    QMap<JID,SGameInfo> m_gameInfos;
+//    QList<JID> m_idList;
+	QList<SubServer::SGameInfo2> m_gameList;
 public:
-    const QList<JID>& getIdList()const;
-    const QList<SGameName>& getNameList()const;
-    SGameInfo getGameInfo(JID gameid)const;
+//    const QList<JID>& getIdList()const;
+//    const QList<SGameName>& getNameList()const;
+	const QList<SubServer::SGameInfo2>& getGameList()const;
+	SubServer::SGameInfo2 getGameInfo(JID gameid)const;
 };
 
 #endif // JGAMEINFOSERVICE_H

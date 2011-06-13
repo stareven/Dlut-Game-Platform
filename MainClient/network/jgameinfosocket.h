@@ -3,11 +3,15 @@
 
 #include "jsocketbase.h"
 
-#include "sgame.h"
 #include "jglobal.h"
 
 class QTcpSocket;
 class QHostAddress;
+namespace SubServer
+{
+	class SGameInfo2;
+}
+class JVersion;
 
 class JGameInfoSocket : public JSocketBase
 {
@@ -15,16 +19,16 @@ class JGameInfoSocket : public JSocketBase
 public:
     explicit JGameInfoSocket(QObject *parent = 0);
     void sendCrypro(JID,const QByteArray&);
-    void rqsIdList();
-    void rqsNameList();
-    void rqsGameInfo(JID);
+//    void rqsIdList();
+	void rqsGameList();
+	void rqsServers(JID gameId);
 protected:
     void dataProcess(const QByteArray&);
 signals:
-    void rcvPassLoginHash(bool);
-    void rcvIdList(const QList<JID>&);
-    void rcvNameList(const QList<SGameName>&);
-    void rcvGameInfo(const SGameInfo&);
+	void rcvPassLoginHash(bool);
+	void rcvGameList(const QList<SubServer::SGameInfo2>&);
+	void rcvServers(const QMap<JVersion,QSet<JID> >&);
+//    void rcvGameInfo(const SGameInfo&);
 //private:
 //    bool m_passLoginHash;
 //    QList<JID> m_idlist;
@@ -37,12 +41,12 @@ signals:
 //    const SGameInfo& getGameInfo()const;
 };
 
-class QDataStream;
+//class QDataStream;
 
-QDataStream& operator>>(QDataStream& stream,SGameName&);
+//QDataStream& operator>>(QDataStream& stream,SGameName&);
 
-QDataStream& operator>>(QDataStream& stream,SGameInfo&);
+//QDataStream& operator>>(QDataStream& stream,SGameInfo&);
 
-QDataStream& operator>>(QDataStream& stream,JVersion& ver);
+//QDataStream& operator>>(QDataStream& stream,JVersion& ver);
 
 #endif // JGAMEINFOSOCKET_H

@@ -121,6 +121,15 @@ struct SSubServer{
 	2、JGameInfoDb
 		bool isWritable(JID gameId,JID runnerId);
 		bool checkBaseInfo(const SGameInfo&);
+10、Sample：
+		gameId : 109
+		name : sample game
+		designer : 901
+		writable : 902
+	SampleGS
+		serverId : 53379
+		name : sample game server
+		runnerId : 902
 
 
 JDMD studio , Dalian University of Technology , China

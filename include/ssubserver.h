@@ -16,7 +16,8 @@ namespace SubServer{
 		JVersion m_version;
 	};
 	struct SGameInfo2 : public SGameInfo1{
-		QString m_author;
+//		QString m_author;
+		JID m_author;
 		QString m_introduction;
 	};
 	struct SSubServer{

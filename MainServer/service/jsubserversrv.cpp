@@ -1,60 +1,84 @@
 #include "jsubserversrv.h"
 
 #include "ssubserver.h"
+#include "jversion.h"
 
-JCode SubServer::JSubServerData::addSubServer(const SSubServer&)
+#include "database/jsubserverdb.h"
+#include "database/jgameinfodb.h"
+
+QMap<JID,SubServer::SSubServer> SubServer::JSubServerData::s_servers;
+QMap<JID,SubServer::SGameInfo2> SubServer::JSubServerData::s_games;
+QMap< JID,QMap<JVersion,QSet<JID> > > SubServer::JSubServerData::s_relations;
+
+JCode SubServer::JSubServerData::addSubServer(const SubServer::SSubServer& ss)
 {
-	a;
+	if(s_servers.contains (ss.m_serverId)) return 3;
+	s_servers.insert (ss.m_serverId,ss);
+	return 0;
 }
 
-JCode SubServer::JSubServerData::updateGameInfo(const SGameInfo2&)
+JCode SubServer::JSubServerData::updateGameInfo(const SubServer::SGameInfo2& gi)
 {
-	a;
+	if(s_games.contains (gi.m_gameId)) return 3;
+	s_games.insert (gi.m_gameId,gi);
+	return 0;
 }
 
 JCode SubServer::JSubServerData::addRelation(JID serverId,JID gameId,const JVersion& gameVersion)
 {
-	a;
+	if(s_relations[gameId][gameVersion].contains (serverId)) return 3;
+	s_relations[gameId][gameVersion].insert (serverId);
+	return 0;
 }
 
 QList<SubServer::SGameInfo2> SubServer::JSubServerData::getGameList()const
 {
-	a;
+	return s_games.values ();
 }
 
-QMap<JVersion,QSet<JID> > SubServer::JSubServerData::getServersByGameid(JID gameid)const
+QMap<JVersion,QSet<JID> > SubServer::JSubServerData::getServersByGameid(JID gameId)const
 {
-	a;
+	return s_relations.value (gameId);
 }
 
 SubServer::JSubServerData::JSubServerData()
 {
 }
 
+////////////////////////////////////////////////////////////////////
+
 JCode SubServer::JSubServerSrv::addSubServer(const SubServer::SSubServer &server)
 {
+	JSubServerDb db;
+	if(!db.isControlAble (server.m_serverId,m_runner)) return 1;
+	if(!db.checkBaseInfo (server)) return 2;
 	return m_data.addSubServer (server);
 }
 
 JCode SubServer::JSubServerSrv::updateGameInfo(const SubServer::SGameInfo2 &gi)
 {
+	JGameInfoDb db;
+	if(!db.isWritable (gi.m_gameId,m_runner)) return 1;
+	if(!db.checkBaseInfo (gi)) return 2;
 	return m_data.updateGameInfo (gi);
 }
 
 JCode SubServer::JSubServerSrv::addRelation(JID serverId,JID gameId,const JVersion& gameVersion)
 {
+	JSubServerDb sdb;
+	JGameInfoDb gdb;
+	if(!gdb.isWritable (gameId,m_runner)
+		|| !sdb.isControlAble (serverId,m_runner))
+		return 1;
 	return m_data.addRelation (serverId,gameId,gameVersion);
 }
 
-JCode SubServer::JSubServerSrv::JSubServerSrv()
-{
-	m_runner=-1;
-}
-
-void SubServer::JSubServerSrv::setRunner(JID runner)
+SubServer::JSubServerSrv::JSubServerSrv(JID runner)
 {
 	m_runner=runner;
 }
+
+////////////////////////////////////////////////////////////////////
 
 QList<SubServer::SGameInfo2> SubServer::JGameInfoSrv::getGameList()const
 {

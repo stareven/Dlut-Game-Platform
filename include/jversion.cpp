@@ -12,6 +12,11 @@ JVersion::JVersion(qint32 data)
 	m_data=data;
 }
 
+bool JVersion::operator<(const JVersion& b)const
+{
+	return m_data<b.m_data;
+}
+
 qint32 JVersion::getData()const
 {
 	return m_data;

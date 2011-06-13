@@ -5,6 +5,7 @@
 //#include <QDebug>
 
 #include "service/jgameinfoservice.h"
+#include "ssubserver.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -43,12 +44,12 @@ void MainWindow::on_btn_refresh_list_clicked()
 {
     ui->list_game->clear();
     ui->tb_game->clear();
-    m_gis->rqsNameList();
+	m_gis->rqsGameList();
 }
 
 void MainWindow::on_gameinfosrv_nameListReady()
 {
-    foreach(SGameName gn,m_gis->getNameList())
+	foreach(SubServer::SGameInfo2 gn,m_gis->getGameList())
     {
         ui->list_game->addItem(gn.m_name);
     }
@@ -56,7 +57,7 @@ void MainWindow::on_gameinfosrv_nameListReady()
 
 void MainWindow::on_list_game_itemClicked(QListWidgetItem* item)
 {
-    foreach(SGameName gn,m_gis->getNameList())
+	foreach(SubServer::SGameInfo2 gn,m_gis->getGameList())
     {
         if(item->text()==gn.m_name)
         {
@@ -68,7 +69,7 @@ void MainWindow::on_list_game_itemClicked(QListWidgetItem* item)
 
 void MainWindow::on_gameinfosrv_gameInfoReady(JID gameid)
 {
-    SGameInfo gi=m_gis->getGameInfo(gameid);
+	SubServer::SGameInfo2 gi=m_gis->getGameInfo(gameid);
     ui->tb_game->setText(tr("<font color=red>name</font> : %1 <br>"
                             "<font color=red>author</font> : %2 <br>"
                             "<font color=red>server version</font> : %3 <br>"
@@ -76,7 +77,7 @@ void MainWindow::on_gameinfosrv_gameInfoReady(JID gameid)
                             "<font color=red>introduction</font> :<br>"
                             "%5<br>").arg(gi.m_name)
                          .arg(gi.m_author)
-                         .arg(gi.m_serverVersion.getData())
-                         .arg(gi.m_localVersion.getData())
+						 .arg(gi.m_version.getData())
+//                         .arg(gi.m_localVersion.getData())
                          .arg(gi.m_introduction));
 }

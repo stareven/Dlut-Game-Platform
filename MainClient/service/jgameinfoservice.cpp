@@ -23,39 +23,39 @@ JGameInfoService::JGameInfoService(QObject *parent) :
     m_socket->connectToHost(host.m_address,host.m_port);
 }
 
-void JGameInfoService::rqsIdList()
-{
-//    JCryproRecorder cr;
-//    if(cr.getUserId()==-1 || cr.getCrypro().isEmpty())
-//    {
-//        qDebug()<<"JGameInfoService::rqsIdList : have not record the login hash . can not request id list!";
-//        return ;
-//    }else{
-//        int i;
-//        m_socket->sendCrypro(cr.getUserId(),cr.getCrypro());
-//        for(i=0;i<50;++i)
-//        {
-//            if(m_plh!=-1)
-//            {
-//                break;
-//            }
-//        }
-//        if(50==i)
-//        {
-//            qDebug()<<"pass login hash time out .";
-//            return;
-//        }
-//        if(m_plh==0)
-//        {
-//            qDebug()<<"pass login hash failed .";
-//            return;
-//        }
-//    }
-    if(!passLoginHash()) return;
-    m_socket->rqsIdList();
-}
+//void JGameInfoService::rqsIdList()
+//{
+////    JCryproRecorder cr;
+////    if(cr.getUserId()==-1 || cr.getCrypro().isEmpty())
+////    {
+////        qDebug()<<"JGameInfoService::rqsIdList : have not record the login hash . can not request id list!";
+////        return ;
+////    }else{
+////        int i;
+////        m_socket->sendCrypro(cr.getUserId(),cr.getCrypro());
+////        for(i=0;i<50;++i)
+////        {
+////            if(m_plh!=-1)
+////            {
+////                break;
+////            }
+////        }
+////        if(50==i)
+////        {
+////            qDebug()<<"pass login hash time out .";
+////            return;
+////        }
+////        if(m_plh==0)
+////        {
+////            qDebug()<<"pass login hash failed .";
+////            return;
+////        }
+////    }
+//    if(!passLoginHash()) return;
+//    m_socket->rqsIdList();
+//}
 
-void JGameInfoService::rqsNameList()
+void JGameInfoService::rqsGameList()
 {
 //    JCryproRecorder cr;
 //    if(cr.getUserId()==-1 || cr.getCrypro().isEmpty())
@@ -63,7 +63,7 @@ void JGameInfoService::rqsNameList()
 //        qDebug()<<"JGameInfoService::rqsIdList : have not record the login hash . can not request id list!";
 //    }
     if(!passLoginHash()) return;
-    m_socket->rqsNameList();
+	m_socket->rqsGameList();
 }
 
 void JGameInfoService::rqsGameInfo(JID id)
@@ -73,8 +73,9 @@ void JGameInfoService::rqsGameInfo(JID id)
 //    {
 //        qDebug()<<"JGameInfoService::rqsIdList : have not record the login hash . can not request id list!";
 //    }
-    if(!passLoginHash()) return;
-    m_socket->rqsGameInfo(id);
+//    if(!passLoginHash()) return;
+//    m_socket->rqsGameInfo(id);
+	emit gameInfoReady(id);
 }
 
 bool JGameInfoService::passLoginHash()
@@ -119,38 +120,38 @@ void JGameInfoService::on_socket_rcvPassLoginHash(bool plh)
     m_plh=plh;
 }
 
-void JGameInfoService::on_socket_rcvIdList(const QList<JID>& idlist)
-{
-//    qDebug()<<"JGameInfoService::on_socket_rcvIdList : "<<idlist.size();
-    m_idList=idlist;
-    emit idListReady();
-}
+//void JGameInfoService::on_socket_rcvIdList(const QList<JID>& idlist)
+//{
+////    qDebug()<<"JGameInfoService::on_socket_rcvIdList : "<<idlist.size();
+//    m_idList=idlist;
+//    emit idListReady();
+//}
 
-void JGameInfoService::on_socket_rcvNameList(const QList<SGameName>& namelist)
+void JGameInfoService::on_socket_rcvGameList(const QList<SubServer::SGameInfo2>& gamelist)
 {
 //    qDebug()<<"JGameInfoService::on_socket_rcvNameList : "<<namelist.size();
-    m_nameList=namelist;
-    emit nameListReady();
+	m_gameList=gamelist;
+	emit gameListReady();
 }
 
-void JGameInfoService::on_socket_rcvGameInfo(const SGameInfo& gi)
+//void JGameInfoService::on_socket_rcvGameInfo(const SGameInfo& gi)
+//{
+////    qDebug()<<"JGameInfoService::on_socket_rcvGameInfo : "<<gi.m_gameId;
+//    m_gameInfos.insert(gi.m_gameId,gi);
+//    emit gameInfoReady(gi.m_gameId);
+//}
+
+//const QList<JID>& JGameInfoService::getIdList()const
+//{
+//    return m_idList;
+//}
+
+const QList<SubServer::SGameInfo2>& JGameInfoService::getGameList()const
 {
-//    qDebug()<<"JGameInfoService::on_socket_rcvGameInfo : "<<gi.m_gameId;
-    m_gameInfos.insert(gi.m_gameId,gi);
-    emit gameInfoReady(gi.m_gameId);
+	return m_gameList;
 }
 
-const QList<JID>& JGameInfoService::getIdList()const
+SubServer::SGameInfo2 JGameInfoService::getGameInfo(JID gameid)const
 {
-    return m_idList;
-}
-
-const QList<SGameName>& JGameInfoService::getNameList()const
-{
-    return m_nameList;
-}
-
-SGameInfo JGameInfoService::getGameInfo(JID gameid)const
-{
-    return m_gameInfos.value(gameid);
+	return m_gameList.value(gameid);
 }

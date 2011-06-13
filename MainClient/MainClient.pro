@@ -21,7 +21,8 @@ SOURCES += main/main.cpp \
     service/jgameinfoservice.cpp \
     network/jportsocket.cpp \
     service/jportservice.cpp \
-    ../include/sgame.cpp
+    ../include/jversion.cpp \
+    ../include/ssubserver.cpp
 HEADERS += gui/mainwindow.h \
     gui/dlglogin/jcomboselectserver.h \
     gui/dlglogin/jdlglogin.h \
@@ -33,10 +34,9 @@ HEADERS += gui/mainwindow.h \
     service/jloginservice.h \
     ../include/elogin.h \
     ../include/jglobal.h \
-    ../include/egameinfo.h \
-    ../include/sgame.h \
     ../include/jversion.h \
     ../include/jelapsedtimer.h \
+    ../include/ssubserver.h \
     network/jgameinfosocket.h \
     service/jcryprorecorder.h \
     network/jsocketbase.h \
