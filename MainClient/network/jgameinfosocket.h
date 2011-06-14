@@ -21,13 +21,13 @@ public:
     void sendCrypro(JID,const QByteArray&);
 //    void rqsIdList();
 	void rqsGameList();
-	void rqsServers(JID gameId);
+	void rqsServers(JID gameId,const JVersion&);
 protected:
     void dataProcess(const QByteArray&);
 signals:
 	void rcvPassLoginHash(bool);
 	void rcvGameList(const QList<SubServer::SGameInfo2>&);
-	void rcvServers(const QMap<JVersion,QSet<JID> >&);
+	void rcvServers(JID,const JVersion&,const QSet<JID>&);
 //    void rcvGameInfo(const SGameInfo&);
 //private:
 //    bool m_passLoginHash;

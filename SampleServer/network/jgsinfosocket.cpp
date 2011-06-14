@@ -43,6 +43,17 @@ void JGsInfoSocket::sendGameInfo(const SubServer::SGameInfo2& gi)
 	sendData(outdata);
 }
 
+void JGsInfoSocket::sendRelation(JID serverId,
+								 JID gameId,
+								 const JVersion& gameVersion)
+{
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<(JID)SubServer::ESP_Relation;
+	outstream<<serverId<<gameId<<gameVersion;
+	sendData(outdata);
+}
+
 void JGsInfoSocket::dataProcess(const QByteArray& data)
 {
     QDataStream stream(data);

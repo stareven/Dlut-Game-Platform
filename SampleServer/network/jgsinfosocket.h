@@ -8,6 +8,7 @@ namespace SubServer
 	class SSubServer;
 	class SGameInfo2;
 }
+class JVersion;
 
 class JGsInfoSocket : public JSocketBase
 {
@@ -18,6 +19,7 @@ public:
 //    void sendGsInfo(const SGameInfo&);
 	void sendServerInfo(const SubServer::SSubServer&);
 	void sendGameInfo(const SubServer::SGameInfo2&);
+	void sendRelation(JID serverId,JID gameId,const JVersion& gameVersion);
 protected:
     void dataProcess(const QByteArray&);
 signals:

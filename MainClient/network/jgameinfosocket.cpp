@@ -3,6 +3,7 @@
 #include <QDataStream>
 
 #include "ssubserver.h"
+#include "jversion.h"
 
 JGameInfoSocket::JGameInfoSocket(QObject *parent) :
     JSocketBase(parent)
@@ -34,12 +35,13 @@ void JGameInfoSocket::rqsGameList()
     sendData(outdata);
 }
 
-void JGameInfoSocket::rqsServers(JID gameId)
+void JGameInfoSocket::rqsServers(JID gameId,const JVersion& version)
 {
     QByteArray outdata;
     QDataStream outstream(&outdata,QIODevice::WriteOnly);
 	outstream<<(JID)SubServer::EGP_Servers;
 	outstream<<gameId;
+	outstream<<version;
     sendData(outdata);
 }
 
@@ -68,9 +70,11 @@ void JGameInfoSocket::dataProcess(const QByteArray& data)
         break;
 	case SubServer::EGP_Servers:
         {
-			QMap<JVersion,QSet<JID> > servers;
-			stream>>servers;
-			emit rcvServers(servers);
+			QSet<JID> servers;
+			JID gameId;
+			JVersion version;
+			stream>>gameId>>version>>servers;
+			emit rcvServers(gameId,version,servers);
         }
         break;
     }

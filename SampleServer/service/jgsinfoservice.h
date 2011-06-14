@@ -13,6 +13,7 @@ namespace SubServer
 	class SSubServer;
 	class SGameInfo2;
 }
+class JVersion;
 
 class JGsInfoService : public QObject
 {
@@ -25,6 +26,7 @@ public:
 //    void sendGsInfo(const SGameInfo&);
 	void sendServerInfo(const SubServer::SSubServer&);
 	void sendGameInfo(const SubServer::SGameInfo2&);
+	void sendRelation(JID serverId,JID gameId,const JVersion& gameVersion);
     enum EState{
         ES_Close,//0
         ES_Connecting,//1

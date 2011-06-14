@@ -18,6 +18,7 @@ JGameInfoService::JGameInfoService(QObject *parent) :
 //    connect(m_socket,SIGNAL(rcvNameList(QList<SGameName>)),SLOT(on_socket_rcvNameList(QList<SGameName>)));
 //    connect(m_socket,SIGNAL(rcvGameInfo(SGameInfo)),SLOT(on_socket_rcvGameInfo(SGameInfo)));
 	connect(m_socket,SIGNAL(rcvGameList(QList<SubServer::SGameInfo2>)),SLOT(on_socket_rcvGameList(QList<SubServer::SGameInfo2>)));
+	connect(m_socket,SIGNAL(rcvServers(JID,JVersion,QSet<JID>)),SLOT(on_socket_rcvServers(JID,JVersion,QSet<JID>)));
     m_plh=-1;
     JPortService ps;
     SHost host=ps.rqsServerPort(EST_GAMEINFO);
@@ -63,9 +64,7 @@ void JGameInfoService::rqsGameList()
 //    {
 //        qDebug()<<"JGameInfoService::rqsIdList : have not record the login hash . can not request id list!";
 //    }
-	qDebug()<<"JGameInfoService::rqsGameList";
-    if(!passLoginHash()) return;
-	qDebug()<<"JGameInfoService::rqsGameList2";
+	if(!passLoginHash()) return;
 	m_socket->rqsGameList();
 }
 
@@ -79,6 +78,12 @@ void JGameInfoService::rqsGameInfo(JID id)
 //    if(!passLoginHash()) return;
 //    m_socket->rqsGameInfo(id);
 	emit gameInfoReady(id);
+}
+
+void JGameInfoService::rqsServers(JID gameId,const JVersion& version)
+{
+	if(!passLoginHash()) return;
+	m_socket->rqsServers(gameId,version);
 }
 
 bool JGameInfoService::passLoginHash()
@@ -140,6 +145,11 @@ void JGameInfoService::on_socket_rcvGameList(const QList<SubServer::SGameInfo2>&
 	}
 
 	emit gameListReady();
+}
+
+void JGameInfoService::on_socket_rcvServers(JID gameId,const JVersion& version,const QSet<JID>& servers)
+{
+	qDebug()<<gameId<<version.getData()<<servers;
 }
 
 //void JGameInfoService::on_socket_rcvGameInfo(const SGameInfo& gi)

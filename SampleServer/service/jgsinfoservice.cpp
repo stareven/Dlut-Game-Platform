@@ -48,6 +48,14 @@ void JGsInfoService::sendGameInfo(const SubServer::SGameInfo2& gi)
 	m_socket->sendGameInfo (gi);
 }
 
+void JGsInfoService::sendRelation(JID serverId,
+								  JID gameId,
+								  const JVersion& gameVersion)
+{
+	m_state=ES_Sending;
+	m_socket->sendRelation(serverId,gameId,gameVersion);
+}
+
 JGsInfoService::EState JGsInfoService::state()const
 {
     return m_state;

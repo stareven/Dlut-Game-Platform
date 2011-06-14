@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     m_gis=new JGameInfoService(this);
     m_gis->setObjectName(tr("gameinfosrv"));
+	m_currentId=-1;
     ui->setupUi(this);
 }
 
@@ -44,6 +45,7 @@ void MainWindow::on_btn_refresh_list_clicked()
 {
     ui->list_game->clear();
     ui->tb_game->clear();
+	m_currentId=-1;
 	m_gis->rqsGameList();
 }
 
@@ -61,10 +63,12 @@ void MainWindow::on_list_game_itemClicked(QListWidgetItem* item)
     {
         if(item->text()==gn.m_name)
         {
-            m_gis->rqsGameInfo(gn.m_gameId);
+			m_currentId=gn.m_gameId;
+			//m_gis->rqsGameInfo(gn.m_gameId);
             break;
         }
     }
+	m_gis->rqsGameInfo(m_currentId);
 }
 
 void MainWindow::on_gameinfosrv_gameInfoReady(JID gameid)
@@ -79,4 +83,9 @@ void MainWindow::on_gameinfosrv_gameInfoReady(JID gameid)
 						 .arg(gi.m_version.getData())
 //                         .arg(gi.m_localVersion.getData())
                          .arg(gi.m_introduction));
+}
+
+void MainWindow::on_btn_get_servers_clicked()
+{
+	m_gis->rqsServers(m_currentId,m_gis->getGameInfo(m_currentId).m_version);
 }

@@ -36,6 +36,7 @@ namespace SubServer
 		JCode addRelation(JID serverId,JID gameId,const JVersion& gameVersion);
 		QList<SGameInfo2> getGameList()const;
 		QMap<JVersion,QSet<JID> > getServersByGameid(JID gameid)const;
+		QSet<JID> getServers(JID gameId,JVersion version)const;
 	private:
 		JSubServerData();
 		static QMap<JID,SSubServer> s_servers;
@@ -77,6 +78,7 @@ namespace SubServer
 	public:
 		QList<SGameInfo2> getGameList()const;
 		QMap<JVersion,QSet<JID> > getServersByGameid(JID gameid)const;
+		QSet<JID> getServers(JID gameId,JVersion version)const;
 	private:
 		JSubServerData m_data;
 	};

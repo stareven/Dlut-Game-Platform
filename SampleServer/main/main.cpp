@@ -92,6 +92,15 @@ int main(int argc, char *argv[])
 	}else{
 		qDebug()<<"send server info success.";
 	}
+	gis.sendRelation(ss.m_serverId,gi.m_gameId,gi.m_version);
+	if(!gis.waitForSend(1000))
+	{
+		qDebug()<<"send relation failed . error :"
+				<<gis.error();
+		return ERV_SendFailed;
+	}else{
+		qDebug()<<"send relation success.";
+	}
 	qDebug()<<"sample game server startup success.";
     return a.exec();
 }

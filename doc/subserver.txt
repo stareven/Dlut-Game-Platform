@@ -130,6 +130,25 @@ struct SSubServer{
 		serverId : 53379
 		name : sample game server
 		runnerId : 902
+11、SubServer启动所需信息
+	SHost
+		address
+		port
+	Login
+		name
+		passwd
+		role
+	SGameInfo2
+		gameId
+		name
+		author
+		version
+		introduction
+	SSubServer
+		serverId
+		name
+		address
+		port
 
 
 JDMD studio , Dalian University of Technology , China

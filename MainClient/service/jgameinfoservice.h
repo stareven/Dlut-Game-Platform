@@ -19,6 +19,7 @@ public:
 //    void rqsIdList();
 	void rqsGameList();
 	void rqsGameInfo(JID);
+	void rqsServers(JID gameId,const JVersion&);
 protected:
     bool passLoginHash();
 signals:
@@ -32,6 +33,7 @@ protected slots:
 //    void on_socket_rcvIdList(const QList<JID>&);
 	void on_socket_rcvGameList(const QList<SubServer::SGameInfo2>&);
 //	void on_socket_rcvGameList(const SubServer::SGameInfo2&);
+	void on_socket_rcvServers(JID,const JVersion&,const QSet<JID>&);
 private:
     //pass login hash
     //0 failed
