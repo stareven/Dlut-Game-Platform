@@ -47,9 +47,9 @@ void MainWindow::on_btn_refresh_list_clicked()
 	m_gis->rqsGameList();
 }
 
-void MainWindow::on_gameinfosrv_nameListReady()
+void MainWindow::on_gameinfosrv_gameListReady()
 {
-	foreach(SubServer::SGameInfo2 gn,m_gis->getGameList())
+	foreach(SubServer::SGameInfo2 gn,m_gis->getGames())
     {
         ui->list_game->addItem(gn.m_name);
     }
@@ -57,7 +57,7 @@ void MainWindow::on_gameinfosrv_nameListReady()
 
 void MainWindow::on_list_game_itemClicked(QListWidgetItem* item)
 {
-	foreach(SubServer::SGameInfo2 gn,m_gis->getGameList())
+	foreach(SubServer::SGameInfo2 gn,m_gis->getGames())
     {
         if(item->text()==gn.m_name)
         {
@@ -72,10 +72,9 @@ void MainWindow::on_gameinfosrv_gameInfoReady(JID gameid)
 	SubServer::SGameInfo2 gi=m_gis->getGameInfo(gameid);
     ui->tb_game->setText(tr("<font color=red>name</font> : %1 <br>"
                             "<font color=red>author</font> : %2 <br>"
-                            "<font color=red>server version</font> : %3 <br>"
-                            "<font color=red>local version</font> : %4 <br>"
+							"<font color=red>version</font> : %3 <br>"
                             "<font color=red>introduction</font> :<br>"
-                            "%5<br>").arg(gi.m_name)
+							"%4<br>").arg(gi.m_name)
                          .arg(gi.m_author)
 						 .arg(gi.m_version.getData())
 //                         .arg(gi.m_localVersion.getData())

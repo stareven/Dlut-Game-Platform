@@ -51,7 +51,8 @@ void JGameInfoSocket::dataProcess(const QByteArray& data)
 	if(!plh)
 	{
 		stream>>plh;
-		rcvPassLoginHash(plh);
+		qDebug()<<plh;
+		emit rcvPassLoginHash(plh);
 		return;
 	}
     stream>>protocol;
@@ -61,6 +62,7 @@ void JGameInfoSocket::dataProcess(const QByteArray& data)
         {
 			QList<SubServer::SGameInfo2> gamelist;
 			stream>>gamelist;
+			qDebug()<<"rcv game list:"<<gamelist.size ();
 			emit rcvGameList(gamelist);
         }
         break;

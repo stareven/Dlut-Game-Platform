@@ -13,7 +13,7 @@ JGsInfoService::JGsInfoService(QObject *parent) :
     m_error=0;
     m_plh=false;
     connect(m_socket,SIGNAL(rcvPassLoginHash(bool)),SLOT(on_socket_rcvPassLoginHash(bool)));
-    connect(m_socket,SIGNAL(rcvGsInfo(JID)),SLOT(on_socket_rcvGsInfo(JID)));
+	connect(m_socket,SIGNAL(rcvSendCode(JID,JCode)),SLOT(on_socket_rcvSendCode(JID,JCode)));
     connect(m_socket,SIGNAL(SocketCode(JCode)),SLOT(on_socket_SocketCode(JCode)));
 }
 
@@ -30,10 +30,22 @@ void JGsInfoService::sendCrypro(JID id,const QByteArray& data)
     m_socket->sendCrypro(id,data);
 }
 
-void JGsInfoService::sendGsInfo(const SGameInfo& gi)
+//void JGsInfoService::sendGsInfo(const SGameInfo& gi)
+//{
+//    m_state=ES_SendingGi;
+//    m_socket->sendGsInfo(gi);
+//}
+
+void JGsInfoService::sendServerInfo(const SubServer::SSubServer& ss)
 {
-    m_state=ES_SendingGi;
-    m_socket->sendGsInfo(gi);
+	m_state=ES_Sending;
+	m_socket->sendServerInfo (ss);
+}
+
+void JGsInfoService::sendGameInfo(const SubServer::SGameInfo2& gi)
+{
+	m_state=ES_Sending;
+	m_socket->sendGameInfo (gi);
 }
 
 JGsInfoService::EState JGsInfoService::state()const
@@ -77,13 +89,13 @@ bool JGsInfoService::waitForSend(int msecs)
     timer.start();
     while(timer.elapsed()<msecs)
     {
-        if(state()!=ES_SendingGi)
+		if(state()!=ES_Sending)
         {
             break;
         }
         QCoreApplication::processEvents();
     }
-    return state()==ES_SendGiSuccess;
+	return state()==ES_SendSuccess;
 }
 
 const QString& JGsInfoService::error()const
@@ -93,7 +105,7 @@ const QString& JGsInfoService::error()const
         tr("socket can not write"),//1
         tr("socket disconnected"),//2
         tr("pass login hash failed"),//3
-        tr("send game info failed"),//4
+		tr("send failed"),//4
     };
     return errors[m_error];
 }
@@ -111,16 +123,28 @@ void JGsInfoService::on_socket_rcvPassLoginHash(bool plh)
     }
 }
 
-void JGsInfoService::on_socket_rcvGsInfo(JID id)
+void JGsInfoService::on_socket_rcvSendCode(JID protocol,JCode code)
 {
+	qDebug()<<"JGsInfoService::on_socket_rcvSendCode . protocol="
+			<<protocol
+			<<"code="
+			<<code;
+	if(0==code)
+	{
+		m_state=ES_SendSuccess;
+		m_error=0;
+	}else{
+		m_state=ES_Error;
+		m_error=4;
+	}
 //    qDebug()<<"JGsInfoService::on_socket_rcvGsInfo";
-    if(id<0)
-    {
-        m_state=ES_Error;
-        m_error=4;
-    }else{
-        m_state=ES_SendGiSuccess;
-    }
+//    if(id<0)
+//    {
+//        m_state=ES_Error;
+//        m_error=4;
+//    }else{
+//        m_state=ES_SendGiSuccess;
+//    }
 }
 
 void JGsInfoService::on_socket_SocketCode(JCode code)

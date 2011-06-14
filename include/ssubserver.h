@@ -69,6 +69,7 @@ namespace SubServer{
 
 class QDataStream;
 QDataStream& operator >> (QDataStream&,SubServer::SSubServer&);
+QDataStream& operator << (QDataStream&,const SubServer::SSubServer&);
 QDataStream& operator >> (QDataStream&,SubServer::SGameInfo2&);
 QDataStream& operator << (QDataStream&,const SubServer::SGameInfo2&);
 

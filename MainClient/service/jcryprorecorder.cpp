@@ -1,6 +1,6 @@
 #include "jcryprorecorder.h"
 
-//#include <QDebug>
+#include <QDebug>
 
 QByteArray JCryproRecorder::s_crypro;
 JID JCryproRecorder::s_userid;
@@ -17,7 +17,7 @@ void JCryproRecorder::set(const QByteArray& crypro,JID id)
 
 void JCryproRecorder::setCrypro(const QByteArray& crypro)
 {
-    //qDebug()<<"JCryproRecorder::setCrypro : crypro="<<crypro.toHex().toUpper();
+	qDebug()<<"JCryproRecorder::setCrypro : crypro="<<crypro.toHex().toUpper();
     s_crypro=crypro;
 }
 
@@ -28,7 +28,7 @@ const QByteArray& JCryproRecorder::getCrypro()const
 
 void JCryproRecorder::setUserId(JID id)
 {
-    //qDebug()<<"JCryproRecorder::setCrypro : userid="<<id;
+	qDebug()<<"JCryproRecorder::setCrypro : userid="<<id;
     s_userid=id;
 }
 

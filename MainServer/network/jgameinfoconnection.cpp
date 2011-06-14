@@ -24,6 +24,7 @@ void JGameInfoConnection::afterPlh(const QByteArray& data)
 			SubServer::JGameInfoSrv gisp;
 			outstream<<(JID)SubServer::EGP_GameList;
 			outstream<<gisp.getGameList ();
+			qDebug()<<"send game list"<<gisp.getGameList ().size ();
             sendData(outdata);
         }
         break;

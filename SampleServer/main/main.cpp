@@ -5,7 +5,8 @@
 #include "service/jloginservice2.h"
 #include "service/jgsinfoservice.h"
 #include "service/jcryprorecorder.h"
-#include "sgame.h"
+
+#include "ssubserver.h"
 
 enum ERuturnValue{
     ERV_Success,
@@ -38,40 +39,59 @@ int main(int argc, char *argv[])
     }
 //    qDebug()<<"game info socket"<<ps.rqsServerPort(EST_GAMEINFO).m_port;
     JGsInfoService gis;
-    SHost gsiHost=ps.rqsServerPort(EST_GAMESERVER);
-    gis.connectToHost(gsiHost.m_address,gsiHost.m_port);
-    if(!gis.waitForConnected(1000))
-    {
-        qDebug()<<"game server connect failed . error :"
-                <<gis.error();
-        return ERV_ConnectFailed;
-    }
-    JCryproRecorder cr;
-    gis.sendCrypro(cr.getUserId(),cr.getCrypro());
+	SHost gsiHost=ps.rqsServerPort(EST_SUBSERVER);
+	gis.connectToHost(gsiHost.m_address,gsiHost.m_port);
+	if(!gis.waitForConnected(1000))
+	{
+		qDebug()<<"game server connect failed . error :"
+				<<gis.error();
+		return ERV_ConnectFailed;
+	}
+	JCryproRecorder cr;
+	gis.sendCrypro(cr.getUserId(),cr.getCrypro());
 //    qDebug()<<gis.state();
-    if(!gis.waitForPassLoginHash(1000))
-    {
-        qDebug()<<"gis pass Login Hash failed . error :"
-                //<<cr.getUserId()<<cr.getCrypro().toHex().toUpper()
-                <<gis.state()
-                <<gis.error();
-        return ERV_PlhFailed;
-    }
-    SGameInfo gi;
-    {
-        gi.m_gameId=109;
-        gi.m_name="sample server";
-        gi.m_author="elephant liu";
-        gi.m_serverVersion=JVersion(1);
-        gi.m_introduction="this is just a sample.";
-    }
-    gis.sendGsInfo(gi);
-    if(!gis.waitForSend(1000))
-    {
-        qDebug()<<"send game info failed . error :"
-                <<gis.error();
-        return ERV_SendFailed;
-    }
-    qDebug()<<"game server startup success.";
+	if(!gis.waitForPassLoginHash(1000))
+	{
+		qDebug()<<"1 gis pass Login Hash failed . error :"
+				//<<cr.getUserId()<<cr.getCrypro().toHex().toUpper()
+				<<gis.state()
+				<<gis.error();
+		return ERV_PlhFailed;
+	}
+	SubServer::SGameInfo2 gi;
+	{
+		gi.m_gameId=109;
+		gi.m_name="sample game";
+		gi.m_author=901;
+		gi.m_version=JVersion(1);
+		gi.m_introduction="this is just a sample.";
+	}
+	gis.sendGameInfo(gi);
+	if(!gis.waitForSend(1000))
+	{
+		qDebug()<<"send game info failed . error :"
+				<<gis.error();
+		return ERV_SendFailed;
+	}else{
+		qDebug()<<"send game info success.";
+	}
+	SubServer::SSubServer ss;
+	{
+		ss.m_serverId=53379;
+		ss.m_name="sample game server";
+		ss.m_address=QHostAddress::LocalHost;
+		ss.m_port=60373;
+		ss.m_type=SubServer::SSubServer::ET_GameServer;
+	}
+	gis.sendServerInfo(ss);
+	if(!gis.waitForSend(1000))
+	{
+		qDebug()<<"send server info failed . error :"
+				<<gis.error();
+		return ERV_SendFailed;
+	}else{
+		qDebug()<<"send server info success.";
+	}
+	qDebug()<<"sample game server startup success.";
     return a.exec();
 }

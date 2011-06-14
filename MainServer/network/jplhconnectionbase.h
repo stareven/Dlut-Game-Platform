@@ -12,6 +12,8 @@ private:
 	void dataProcess(const QByteArray &);
 protected:
 	virtual void afterPlh(const QByteArray&);
+private:
+	bool m_plh;
 };
 
 #endif // JPLHCONNECTIONBASE_H

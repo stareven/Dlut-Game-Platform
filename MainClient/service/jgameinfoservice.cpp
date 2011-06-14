@@ -14,9 +14,10 @@ JGameInfoService::JGameInfoService(QObject *parent) :
 {
     m_socket=new JGameInfoSocket(this);
     connect(m_socket,SIGNAL(rcvPassLoginHash(bool)),SLOT(on_socket_rcvPassLoginHash(bool)));
-    connect(m_socket,SIGNAL(rcvIdList(QList<JID>)),SLOT(on_socket_rcvIdList(QList<JID>)));
-    connect(m_socket,SIGNAL(rcvNameList(QList<SGameName>)),SLOT(on_socket_rcvNameList(QList<SGameName>)));
-    connect(m_socket,SIGNAL(rcvGameInfo(SGameInfo)),SLOT(on_socket_rcvGameInfo(SGameInfo)));
+//    connect(m_socket,SIGNAL(rcvIdList(QList<JID>)),SLOT(on_socket_rcvIdList(QList<JID>)));
+//    connect(m_socket,SIGNAL(rcvNameList(QList<SGameName>)),SLOT(on_socket_rcvNameList(QList<SGameName>)));
+//    connect(m_socket,SIGNAL(rcvGameInfo(SGameInfo)),SLOT(on_socket_rcvGameInfo(SGameInfo)));
+	connect(m_socket,SIGNAL(rcvGameList(QList<SubServer::SGameInfo2>)),SLOT(on_socket_rcvGameList(QList<SubServer::SGameInfo2>)));
     m_plh=-1;
     JPortService ps;
     SHost host=ps.rqsServerPort(EST_GAMEINFO);
@@ -62,7 +63,9 @@ void JGameInfoService::rqsGameList()
 //    {
 //        qDebug()<<"JGameInfoService::rqsIdList : have not record the login hash . can not request id list!";
 //    }
+	qDebug()<<"JGameInfoService::rqsGameList";
     if(!passLoginHash()) return;
+	qDebug()<<"JGameInfoService::rqsGameList2";
 	m_socket->rqsGameList();
 }
 
@@ -116,7 +119,7 @@ bool JGameInfoService::passLoginHash()
 
 void JGameInfoService::on_socket_rcvPassLoginHash(bool plh)
 {
-//    qDebug()<<"JGameInfoService::on_socket_rcvPassLoginHash : "<<plh;
+	qDebug()<<"JGameInfoService::on_socket_rcvPassLoginHash : "<<plh;
     m_plh=plh;
 }
 
@@ -129,8 +132,13 @@ void JGameInfoService::on_socket_rcvPassLoginHash(bool plh)
 
 void JGameInfoService::on_socket_rcvGameList(const QList<SubServer::SGameInfo2>& gamelist)
 {
-//    qDebug()<<"JGameInfoService::on_socket_rcvNameList : "<<namelist.size();
-	m_gameList=gamelist;
+	qDebug()<<"JGameInfoService::on_socket_rcvGameList : "<<gamelist.size();
+//	m_gameList=gamelist;
+	foreach(SubServer::SGameInfo2 gi,gamelist)
+	{
+		m_games.insert (gi.m_gameId,gi);
+	}
+
 	emit gameListReady();
 }
 
@@ -146,12 +154,12 @@ void JGameInfoService::on_socket_rcvGameList(const QList<SubServer::SGameInfo2>&
 //    return m_idList;
 //}
 
-const QList<SubServer::SGameInfo2>& JGameInfoService::getGameList()const
+const QMap<JID,SubServer::SGameInfo2>& JGameInfoService::getGames()const
 {
-	return m_gameList;
+	return m_games;
 }
 
 SubServer::SGameInfo2 JGameInfoService::getGameInfo(JID gameid)const
 {
-	return m_gameList.value(gameid);
+	return m_games.value(gameid);
 }

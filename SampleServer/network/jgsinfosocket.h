@@ -2,7 +2,12 @@
 #define JGSINFOSOCKET_H
 
 #include "jsocketbase.h"
-#include "sgame.h"
+
+namespace SubServer
+{
+	class SSubServer;
+	class SGameInfo2;
+}
 
 class JGsInfoSocket : public JSocketBase
 {
@@ -10,12 +15,14 @@ class JGsInfoSocket : public JSocketBase
 public:
     explicit JGsInfoSocket(QObject *parent = 0);
     void sendCrypro(JID,const QByteArray&);
-    void sendGsInfo(const SGameInfo&);
+//    void sendGsInfo(const SGameInfo&);
+	void sendServerInfo(const SubServer::SSubServer&);
+	void sendGameInfo(const SubServer::SGameInfo2&);
 protected:
     void dataProcess(const QByteArray&);
 signals:
-    void rcvPassLoginHash(bool);
-    void rcvGsInfo(JID);
+	void rcvPassLoginHash(bool);
+	void rcvSendCode(JID protocol,JCode code);
 };
 
 #endif // JGSINFOSOCKET_H

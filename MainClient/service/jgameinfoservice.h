@@ -40,11 +40,12 @@ private:
     //-2 rqs ing
     int m_plh;
 //    QList<JID> m_idList;
-	QList<SubServer::SGameInfo2> m_gameList;
+//	QList<SubServer::SGameInfo2> m_gameList;
+	QMap<JID,SubServer::SGameInfo2> m_games;
 public:
 //    const QList<JID>& getIdList()const;
 //    const QList<SGameName>& getNameList()const;
-	const QList<SubServer::SGameInfo2>& getGameList()const;
+	const QMap<JID,SubServer::SGameInfo2>& getGames()const;
 	SubServer::SGameInfo2 getGameInfo(JID gameid)const;
 };
 

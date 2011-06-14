@@ -1,18 +1,19 @@
 #include "jplhconnectionbase.h"
 
 #include <QDebug>
+#include <QDataStream>
 
 #include "service/jloginhash.h"
 
 JPlhConnectionBase::JPlhConnectionBase(QTcpSocket* socket,QObject *parent) :
 	JConnectionBase(socket,parent)
 {
+	m_plh=false;
 }
 
 void JPlhConnectionBase::dataProcess(const QByteArray& data)
 {
-	static bool plh=false;
-	if(plh)
+	if(m_plh)
 	{
 		afterPlh(data);
 	}else{
@@ -21,12 +22,14 @@ void JPlhConnectionBase::dataProcess(const QByteArray& data)
 		QByteArray crypro;
 		JLoginHash::JCheck check;
 		stream>>userid>>crypro;
-		plh=(0==check.check(userid,crypro));
+		JCode plhCode=check.check (userid,crypro);
+		m_plh=(0==plhCode);
 		QByteArray outdata;
 		QDataStream outstream(&outdata,QIODevice::WriteOnly);
-		outstream<<plh;
+		outstream<<m_plh;
 		sendData(outdata);
-		closeConnect();
+		if(!m_plh) closeConnect();
+		setUserId(userid);
 	}
 }
 
