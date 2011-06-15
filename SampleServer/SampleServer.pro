@@ -28,7 +28,8 @@ HEADERS += main/jargumentanalyse.h \
 	../include/ssubserver.h \
 	service/jloginservice2.h \
 	network/jgsinfosocket.h \
-	service/jgsinfoservice.h
+	service/jgsinfoservice.h \
+    main/jsubserverstartup.h
 SOURCES += main/jargumentanalyse.cpp \
 	main/main.cpp \
 	network/jloginsocket.cpp \
@@ -41,4 +42,5 @@ SOURCES += main/jargumentanalyse.cpp \
 	network/jgsinfosocket.cpp \
 	service/jgsinfoservice.cpp \
 	../include/ssubserver.cpp \
-	../include/jversion.cpp
+	../include/jversion.cpp \
+    main/jsubserverstartup.cpp
