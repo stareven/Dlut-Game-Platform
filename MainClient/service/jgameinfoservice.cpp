@@ -1,7 +1,7 @@
 #include "jgameinfoservice.h"
 
 #include <QCoreApplication>
-#include "jelapsedtimer.h"
+#include "global/jelapsedtimer.h"
 #include <QDebug>
 #include <QHostAddress>
 

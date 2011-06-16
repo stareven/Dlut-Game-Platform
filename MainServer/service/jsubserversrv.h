@@ -4,7 +4,7 @@
 #include <QList>
 //#include "ssubserver.h"
 #include <QMap>
-#include "jglobal.h"
+#include "global/jglobal.h"
 namespace SubServer
 {
 	class SGameServerInfo0;

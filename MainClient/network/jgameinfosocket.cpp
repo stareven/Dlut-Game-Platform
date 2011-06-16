@@ -2,8 +2,8 @@
 
 #include <QDataStream>
 
-#include "ssubserver.h"
-#include "jversion.h"
+#include "global/ssubserver.h"
+#include "global/jversion.h"
 
 JGameInfoSocket::JGameInfoSocket(QObject *parent) :
     JSocketBase(parent)

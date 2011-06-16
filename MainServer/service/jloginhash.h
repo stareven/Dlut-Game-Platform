@@ -1,7 +1,7 @@
 #ifndef JLOGINHASH_H
 #define JLOGINHASH_H
 
-#include "jglobal.h"
+#include "global/jglobal.h"
 
 namespace JLoginHash
 {

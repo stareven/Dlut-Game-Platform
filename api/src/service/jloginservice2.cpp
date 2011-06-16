@@ -1,10 +1,10 @@
-#include "jloginservice2.h"
+#include "service/jloginservice2.h"
 
 #include <QElapsedTimer>
 #include <QCoreApplication>
 
 #include "network/jloginsocket.h"
-#include "elogin.h"
+#include "global/elogin.h"
 #include "service/jcryprorecorder.h"
 
 JLoginService2::JLoginService2(QObject *parent) :

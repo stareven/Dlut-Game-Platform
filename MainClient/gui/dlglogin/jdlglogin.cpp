@@ -8,7 +8,7 @@
 
 #include "service/jloginservice.h"
 //#include "network/jloginsocket.h"
-#include "elogin.h"
+#include "global/elogin.h"
 #include "service/jportservice.h"
 
 JDlgLogin::JDlgLogin(QWidget *parent) :

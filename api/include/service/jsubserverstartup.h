@@ -1,9 +1,9 @@
 #ifndef JSUBSERVERSTARTUP_H
 #define JSUBSERVERSTARTUP_H
 
-#include "eportsrv.h"
-#include "jglobal.h"
-#include "ssubserver.h"
+#include "global/eportsrv.h"
+#include "global/jglobal.h"
+#include "global/ssubserver.h"
 
 
 

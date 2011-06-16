@@ -1,4 +1,4 @@
-#include "jsocketbase.h"
+#include "network/jsocketbase.h"
 
 #include <QTcpSocket>
 #include <QHostAddress>

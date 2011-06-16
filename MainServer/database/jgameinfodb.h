@@ -1,7 +1,7 @@
 #ifndef JGAMEINFODB_H
 #define JGAMEINFODB_H
 
-#include "jglobal.h"
+#include "global/jglobal.h"
 
 namespace SubServer
 {

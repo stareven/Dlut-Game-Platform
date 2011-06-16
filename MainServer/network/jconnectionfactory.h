@@ -1,7 +1,7 @@
 #ifndef JCONNECTIONFACTORY_H
 #define JCONNECTIONFACTORY_H
 
-#include "eportsrv.h"
+#include "global/eportsrv.h"
 
 class JConnectionBase;
 class QTcpSocket;

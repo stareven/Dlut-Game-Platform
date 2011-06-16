@@ -1,4 +1,4 @@
-#include "jconnectionbase.h"
+#include "network/jconnectionbase.h"
 
 #include <QTcpSocket>
 

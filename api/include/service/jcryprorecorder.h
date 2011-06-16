@@ -3,7 +3,7 @@
 
 #include <QByteArray>
 
-#include "jglobal.h"
+#include "global/jglobal.h"
 
 class JCryproRecorder
 {

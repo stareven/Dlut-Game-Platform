@@ -3,7 +3,7 @@
 #include <QDataStream>
 #include <QDebug>
 
-#include "ssubserver.h"
+#include "global/ssubserver.h"
 #include "service/jsubserversrv.h"
 
 JSubServerConnection::JSubServerConnection(QTcpSocket* socket,QObject *parent) :

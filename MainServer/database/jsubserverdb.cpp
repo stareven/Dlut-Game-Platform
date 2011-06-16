@@ -2,7 +2,7 @@
 
 #include <QMap>
 
-#include "ssubserver.h"
+#include "global/ssubserver.h"
 
 static QMap<JID,JID> s_server_runner;
 struct SSubServerCheck{
@@ -17,12 +17,13 @@ JSubServerDb::JSubServerDb()
 	if(s_server_runner.isEmpty ())
 	{
 		s_server_runner.insert (53379,902);
+		s_server_runner.insert (53380,902);
 	}
 	if(s_subservers.isEmpty ())
 	{
 		SSubServerCheck sscs[]={
 			{53379,"sample game server",SubServer::SSubServer::ET_GameServer},
-			{53380,"sample game file server",SubServer::SSubServer::ET_GameFileServer},
+			{53380,"game file server 1",SubServer::SSubServer::ET_GameFileServer},
 		};
 		int NUM_SERVERS=sizeof(sscs)/sizeof(SSubServerCheck);
 		for(int i=0;i<NUM_SERVERS;++i)
@@ -37,8 +38,6 @@ bool JSubServerDb::isControlAble(JID serverId,JID runnerId)
 	if(!s_server_runner.contains (serverId)) return false;
 	return s_server_runner[serverId]==runnerId;
 }
-
-
 
 bool JSubServerDb::checkBaseInfo(const SubServer::SSubServer& ss)
 {

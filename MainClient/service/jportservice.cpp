@@ -1,6 +1,6 @@
 #include "jportservice.h"
 
-#include "jelapsedtimer.h"
+#include "global/jelapsedtimer.h"
 #include <QCoreApplication>
 
 #include "network/jportsocket.h"

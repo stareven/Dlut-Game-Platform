@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include "jglobal.h"
+#include "global/jglobal.h"
 
 class QTcpSocket;
 class QHostAddress;

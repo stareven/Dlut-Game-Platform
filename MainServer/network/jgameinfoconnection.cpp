@@ -3,7 +3,7 @@
 #include <QDataStream>
 
 #include "service/jsubserversrv.h"
-#include "ssubserver.h"
+#include "global/ssubserver.h"
 
 JGameInfoConnection::JGameInfoConnection(QTcpSocket* socket,QObject *parent) :
 	JPlhConnectionBase(socket,parent)

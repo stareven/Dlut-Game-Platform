@@ -1,4 +1,4 @@
-#include "jcryprorecorder.h"
+#include "service/jcryprorecorder.h"
 
 //#include <QDebug>
 

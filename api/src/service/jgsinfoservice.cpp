@@ -1,4 +1,4 @@
-#include "jgsinfoservice.h"
+#include "service/jgsinfoservice.h"
 
 #include <QElapsedTimer>
 #include <QCoreApplication>

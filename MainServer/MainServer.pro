@@ -7,7 +7,7 @@ TARGET = MainServer
 CONFIG += console
 CONFIG -= app_bundle
 TEMPLATE = app
-INCLUDEPATH += ../include
+INCLUDEPATH += ../api/include
 HEADERS += network/jserverbase.h \
     network/jconnectionbase.h \
     service/jloginverification.h \
@@ -23,11 +23,11 @@ HEADERS += network/jserverbase.h \
     network/jsubserverconnection.h \
     service/jsubserversrv.h \
 	network/jplhconnectionbase.h \
-	../include/elogin.h \
-	../include/jglobal.h \
-	../include/jversion.h \
-	../include/eportsrv.h \
-	../include/ssubserver.h \
+	../api/include/global/elogin.h \
+	../api/include/global/jglobal.h \
+	../api/include/global/jversion.h \
+	../api/include/global/eportsrv.h \
+	../api/include/global/ssubserver.h \
     database/jsubserverdb.h \
     database/jgameinfodb.h
 SOURCES += main/main.cpp \
@@ -43,10 +43,10 @@ SOURCES += main/main.cpp \
     network/jgameinfoconnection.cpp \
     service/jportservice.cpp \
     network/jportconnection.cpp \
-	../include/ssubserver.cpp \
+	../api/src/global/ssubserver.cpp \
     network/jsubserverconnection.cpp \
     service/jsubserversrv.cpp \
 	network/jplhconnectionbase.cpp \
-    ../include/jversion.cpp \
+    ../api/src/global/jversion.cpp \
     database/jsubserverdb.cpp \
     database/jgameinfodb.cpp

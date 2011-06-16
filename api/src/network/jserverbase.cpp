@@ -1,9 +1,9 @@
-#include "jserverbase.h"
+#include "network/jserverbase.h"
 
 #include <QTcpServer>
 #include <QCoreApplication>
 
-#include "jgfsconnection.h"
+#include "network/jgfsconnection.h"
 
 JServerBase::JServerBase(QObject *parent) :
 	QObject(parent)

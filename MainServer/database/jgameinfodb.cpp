@@ -3,7 +3,7 @@
 #include <QMap>
 #include <QSet>
 
-#include "ssubserver.h"
+#include "global/ssubserver.h"
 
 static QMap<JID,QSet<JID > > s_game_runner;
 

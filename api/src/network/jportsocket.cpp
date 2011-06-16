@@ -1,4 +1,4 @@
-#include "jportsocket.h"
+#include "network/jportsocket.h"
 
 JPortSocket::JPortSocket(QObject *parent) :
     JSocketBase(parent)

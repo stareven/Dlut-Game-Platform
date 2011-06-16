@@ -1,7 +1,7 @@
 #include <QtCore/QCoreApplication>
 
 #include "jargumentanalyse.h"
-#include "jsubserverstartup.h"
+#include "service/jsubserverstartup.h"
 //#include "service/jportservice.h"
 //#include "service/jloginservice2.h"
 //#include "service/jgsinfoservice.h"

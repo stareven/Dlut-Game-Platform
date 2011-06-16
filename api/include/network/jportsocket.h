@@ -2,7 +2,7 @@
 #define JPORTSOCKET_H
 
 #include "jsocketbase.h"
-#include "eportsrv.h"
+#include "global/eportsrv.h"
 
 class JPortSocket : public JSocketBase
 {

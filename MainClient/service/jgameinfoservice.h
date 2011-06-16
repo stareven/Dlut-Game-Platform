@@ -4,11 +4,11 @@
 #include <QObject>
 #include <QMap>
 
-#include "jglobal.h"
+#include "global/jglobal.h"
 
 class JGameInfoSocket;
 
-#include "ssubserver.h"
+#include "global/ssubserver.h"
 
 class JGameInfoService : public QObject
 {

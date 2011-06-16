@@ -1,9 +1,9 @@
-#include "jloginservice.h"
+#include "service/jloginservice.h"
 
 #include "network/jloginsocket.h"
-#include "jcryprorecorder.h"
+#include "service/jcryprorecorder.h"
 
-#include "elogin.h"
+#include "global/elogin.h"
 
 JLoginService::JLoginService(QObject *parent) :
     QObject(parent)

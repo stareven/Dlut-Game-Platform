@@ -11,36 +11,36 @@ QT       -= gui
 TARGET = SampleServer
 CONFIG   += console
 CONFIG   -= app_bundle
-INCLUDEPATH += ../include
+INCLUDEPATH += ../api/include
 
 # Input
 HEADERS += main/jargumentanalyse.h \
-	network/jloginsocket.h \
-	network/jportsocket.h \
-	network/jsocketbase.h \
-	service/jcryprorecorder.h \
-	service/jloginservice.h \
-	service/jportservice.h \
-	../include/jversion.h \
-	../include/jglobal.h \
-	../include/eportsrv.h \
-	../include/elogin.h \
-	../include/ssubserver.h \
-	service/jloginservice2.h \
-	network/jgsinfosocket.h \
-	service/jgsinfoservice.h \
-    main/jsubserverstartup.h
+	../api/include/network/jloginsocket.h \
+	../api/include/network/jportsocket.h \
+	../api/include/network/jsocketbase.h \
+	../api/include/service/jcryprorecorder.h \
+	../api/include/service/jloginservice.h \
+	../api/include/service/jportservice.h \
+	../api/include/global/jversion.h \
+	../api/include/global/jglobal.h \
+	../api/include/global/eportsrv.h \
+	../api/include/global/elogin.h \
+	../api/include/global/ssubserver.h \
+	../api/include/service/jloginservice2.h \
+	../api/include/network/jgsinfosocket.h \
+	../api/include/service/jgsinfoservice.h \
+    ../api/include/service/jsubserverstartup.h
 SOURCES += main/jargumentanalyse.cpp \
 	main/main.cpp \
-	network/jloginsocket.cpp \
-	network/jportsocket.cpp \
-	network/jsocketbase.cpp \
-	service/jcryprorecorder.cpp \
-	service/jloginservice.cpp \
-	service/jportservice.cpp \
-	service/jloginservice2.cpp \
-	network/jgsinfosocket.cpp \
-	service/jgsinfoservice.cpp \
-	../include/ssubserver.cpp \
-	../include/jversion.cpp \
-    main/jsubserverstartup.cpp
+	../api/src/network/jloginsocket.cpp \
+	../api/src/network/jportsocket.cpp \
+	../api/src/network/jsocketbase.cpp \
+	../api/src/service/jcryprorecorder.cpp \
+	../api/src/service/jloginservice.cpp \
+	../api/src/service/jportservice.cpp \
+	../api/src/service/jloginservice2.cpp \
+	../api/src/network/jgsinfosocket.cpp \
+	../api/src/service/jgsinfoservice.cpp \
+	../api/src/global/ssubserver.cpp \
+	../api/src/global/jversion.cpp \
+    ../api/src/service/jsubserverstartup.cpp

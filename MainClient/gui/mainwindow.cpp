@@ -5,7 +5,7 @@
 //#include <QDebug>
 
 #include "service/jgameinfoservice.h"
-#include "ssubserver.h"
+#include "global/ssubserver.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

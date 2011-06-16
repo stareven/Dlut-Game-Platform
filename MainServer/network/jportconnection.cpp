@@ -3,7 +3,7 @@
 #include <QDataStream>
 #include <QDebug>
 
-#include "eportsrv.h"
+#include "global/eportsrv.h"
 #include "service/jloginhash.h"
 
 JPortConnection::JPortConnection(JPortService::EPortServer port,QTcpSocket* socket,QObject *parent) :

@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QAbstractSocket>
 
-#include "jglobal.h"
+#include "global/jglobal.h"
 
 class QTcpSocket;
 class QHostAddress;

@@ -1,7 +1,7 @@
 #ifndef JUSERLOGINCRYPRO_H
 #define JUSERLOGINCRYPRO_H
 
-#include "jglobal.h"
+#include "global/jglobal.h"
 #include "jloginhash.h"
 
 #include <QMap>

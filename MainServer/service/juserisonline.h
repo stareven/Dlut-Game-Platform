@@ -3,7 +3,7 @@
 
 #include <QSet>
 
-#include "jglobal.h"
+#include "global/jglobal.h"
 
 class JUserIsOnline
 {

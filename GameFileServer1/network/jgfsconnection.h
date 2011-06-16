@@ -1,7 +1,7 @@
 #ifndef JGFSCONNECTION_H
 #define JGFSCONNECTION_H
 
-#include "jconnectionbase.h"
+#include "network/jconnectionbase.h"
 
 class JGfsConnection : public JConnectionBase
 {

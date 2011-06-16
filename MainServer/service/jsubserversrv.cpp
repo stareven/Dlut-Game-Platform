@@ -1,7 +1,7 @@
 #include "jsubserversrv.h"
 
-#include "ssubserver.h"
-#include "jversion.h"
+#include "global/ssubserver.h"
+#include "global/jversion.h"
 
 #include "database/jsubserverdb.h"
 #include "database/jgameinfodb.h"
@@ -72,9 +72,16 @@ JCode SubServer::JSubServerSrv::addRelation(JID serverId,JID gameId,const JVersi
 {
 	JSubServerDb sdb;
 	JGameInfoDb gdb;
-	if(!gdb.isWritable (gameId,m_runner)
-		|| !sdb.isControlAble (serverId,m_runner))
+	if(!gdb.isWritable (gameId,m_runner))
+	{
+		qDebug()<<"runner"<<m_runner<<"can not write game"<<gameId;
 		return 1;
+	}
+	if(!sdb.isControlAble (serverId,m_runner))
+	{
+		qDebug()<<"runner"<<m_runner<<"can not control server"<<serverId;
+		return 1;
+	}
 	return m_data.addRelation (serverId,gameId,gameVersion);
 }
 

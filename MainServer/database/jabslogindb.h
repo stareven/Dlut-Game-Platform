@@ -1,7 +1,7 @@
 #ifndef JABSLOGINDB_H
 #define JABSLOGINDB_H
 
-#include "jglobal.h"
+#include "global/jglobal.h"
 
 class JAbsLoginDB
 {

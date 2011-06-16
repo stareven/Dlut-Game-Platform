@@ -4,7 +4,7 @@
 #include <QDialog>
 
 #include "settings/jsettinglogin.h"
-#include "jglobal.h"
+#include "global/jglobal.h"
 
 namespace Ui {
     class JDlgLogin;

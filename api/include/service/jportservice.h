@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QMap>
 
-#include "eportsrv.h"
+#include "global/eportsrv.h"
 
 class JPortSocket;
 

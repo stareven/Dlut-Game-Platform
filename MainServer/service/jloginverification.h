@@ -3,8 +3,8 @@
 
 #include <QByteArray>
 
-#include "jglobal.h"
-#include "elogin.h"
+#include "global/jglobal.h"
+#include "global/elogin.h"
 
 class QString;
 

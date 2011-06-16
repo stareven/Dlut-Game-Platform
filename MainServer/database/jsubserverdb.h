@@ -1,7 +1,7 @@
 #ifndef JSUBSERVERDB_H
 #define JSUBSERVERDB_H
 
-#include "jglobal.h"
+#include "global/jglobal.h"
 
 namespace SubServer
 {

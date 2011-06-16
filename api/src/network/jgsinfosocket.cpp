@@ -1,6 +1,6 @@
-#include "jgsinfosocket.h"
+#include "network/jgsinfosocket.h"
 
-#include "ssubserver.h"
+#include "global/ssubserver.h"
 
 JGsInfoSocket::JGsInfoSocket(QObject *parent) :
     JSocketBase(parent)

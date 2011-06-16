@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 
-#include "jglobal.h"
+#include "global/jglobal.h"
 
 namespace Ui {
     class MainWindow;

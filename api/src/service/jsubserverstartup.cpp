@@ -1,4 +1,4 @@
-#include "jsubserverstartup.h"
+#include "service/jsubserverstartup.h"
 
 #include "service/jportservice.h"
 #include "service/jloginservice2.h"
@@ -53,14 +53,17 @@ JSubServerStartup::ERuturnValue JSubServerStartup::startup()const
 //		gi.m_version=JVersion(1);
 //		gi.m_introduction="this is just a sample.";
 //	}
-	gis.sendGameInfo(m_gameinfo);
-	if(!gis.waitForSend(1000))
+	if(m_gameinfo.m_gameId>0 && !m_gameinfo.m_name.isEmpty())
 	{
-		qDebug()<<"send game info failed . error :"
-				<<gis.error();
-		return ERV_SendFailed;
-	}else{
-		qDebug()<<"send game info success.";
+		gis.sendGameInfo(m_gameinfo);
+		if(!gis.waitForSend(1000))
+		{
+			qDebug()<<"send game info failed . error :"
+					<<gis.error();
+			return ERV_SendFailed;
+		}else{
+			qDebug()<<"send game info success.";
+		}
 	}
 //	SubServer::SSubServer ss;
 //	{

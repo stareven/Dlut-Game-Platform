@@ -1,4 +1,4 @@
-#include "jversion.h"
+#include "global/jversion.h"
 
 #include <QDataStream>
 

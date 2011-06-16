@@ -2,7 +2,7 @@
 
 #include <QTcpSocket>
 #include <QHostAddress>
-#include "elogin.h"
+#include "global/elogin.h"
 
 JLoginSocket::JLoginSocket(QObject *parent) :
     QObject(parent)
