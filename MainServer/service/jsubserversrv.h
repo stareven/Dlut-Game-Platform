@@ -34,9 +34,11 @@ namespace SubServer
 		// 3 already contain
 		JCode updateGameInfo(const SGameInfo2&);
 		JCode addRelation(JID serverId,JID gameId,const JVersion& gameVersion);
+		JCode deleteSubServer(JID serverId);
 		QList<SGameInfo2> getGameList()const;
 		QMap<JVersion,QSet<JID> > getServersByGameid(JID gameid)const;
 		QSet<JID> getServers(JID gameId,JVersion version)const;
+
 	private:
 		JSubServerData();
 		static QMap<JID,SSubServer> s_servers;
@@ -66,7 +68,11 @@ namespace SubServer
 		// 1 Permission denied
 		// 3 already contain
 		JCode addRelation(JID serverId,JID gameId,const JVersion& gameVersion);
-
+		// 0 success
+		// 1 Permission denied
+		// 2 serverId not exist
+		// 3 failed
+		JCode deleteSubServer(JID serverId);
 		JSubServerSrv(JID);
 	private:
 		JSubServerData m_data;

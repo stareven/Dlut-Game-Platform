@@ -10,8 +10,8 @@ We are looking forward to your help to translate this article into english
 ------------------各文件夹概述------------------
 doc/
 	相关文字资料。
-include/
-	各工程公用头文件。
+api/
+	游戏开发者可能会用到的一些接口及各个工程间公用的声明和定义。
 MainClient/
 	MainClient工程源代码。
 MainServer/

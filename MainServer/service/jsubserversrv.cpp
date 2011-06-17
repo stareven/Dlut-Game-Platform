@@ -14,6 +14,7 @@ JCode SubServer::JSubServerData::addSubServer(const SubServer::SSubServer& ss)
 {
 	if(s_servers.contains (ss.m_serverId)) return 3;
 	s_servers.insert (ss.m_serverId,ss);
+	qDebug()<<"addSubServer:"<<s_servers.keys();
 	return 0;
 }
 
@@ -31,18 +32,35 @@ JCode SubServer::JSubServerData::addRelation(JID serverId,JID gameId,const JVers
 	return 0;
 }
 
+JCode SubServer::JSubServerData::deleteSubServer(JID serverId)
+{
+	qDebug()<<"deleteSubServer:"<<serverId;
+	s_servers.remove(serverId);
+	return 0;
+}
+
 QList<SubServer::SGameInfo2> SubServer::JSubServerData::getGameList()const
 {
 	return s_games.values ();
 }
 
-QMap<JVersion,QSet<JID> > SubServer::JSubServerData::getServersByGameid(JID gameId)const
-{
-	return s_relations.value (gameId);
-}
+//QMap<JVersion,QSet<JID> > SubServer::JSubServerData::getServersByGameid(JID gameId)const
+//{
+//	return s_relations.value (gameId);
+//}
 
 QSet<JID> SubServer::JSubServerData::getServers(JID gameId,JVersion version)const
 {
+	qDebug()<<s_servers.keys();
+	foreach(JID serverId,s_relations[gameId][version])
+	{
+		if(!s_servers.contains(serverId))
+		{
+			qDebug()<<gameId<<version.getData()<<serverId;
+			s_relations[gameId][version].remove(serverId);
+		}
+	}
+
 	return s_relations.value(gameId).value(version);
 }
 
@@ -85,6 +103,16 @@ JCode SubServer::JSubServerSrv::addRelation(JID serverId,JID gameId,const JVersi
 	return m_data.addRelation (serverId,gameId,gameVersion);
 }
 
+JCode SubServer::JSubServerSrv::deleteSubServer(JID serverId)
+{
+	JSubServerDb sdb;
+	if(!sdb.isControlAble(serverId,m_runner))
+	{
+		return 1;
+	}
+	return m_data.deleteSubServer(serverId);
+}
+
 SubServer::JSubServerSrv::JSubServerSrv(JID runner)
 {
 	m_runner=runner;
@@ -97,10 +125,10 @@ QList<SubServer::SGameInfo2> SubServer::JGameInfoSrv::getGameList()const
 	return m_data.getGameList ();
 }
 
-QMap<JVersion,QSet<JID> > SubServer::JGameInfoSrv::getServersByGameid(JID gameid)const
-{
-	return m_data.getServersByGameid (gameid);
-}
+//QMap<JVersion,QSet<JID> > SubServer::JGameInfoSrv::getServersByGameid(JID gameid)const
+//{
+//	return m_data.getServersByGameid (gameid);
+//}
 
 QSet<JID> SubServer::JGameInfoSrv::getServers(JID gameId,JVersion version)const
 {

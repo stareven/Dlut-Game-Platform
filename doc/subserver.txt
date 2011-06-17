@@ -149,6 +149,8 @@ struct SSubServer{
 		name
 		address
 		port
+12、SubServer放弃plh。
+	不再对SubServer使用plh，仅在MainServer上使用plh。
 
 
 JDMD studio , Dalian University of Technology , China

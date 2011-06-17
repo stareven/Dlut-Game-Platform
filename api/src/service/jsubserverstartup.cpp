@@ -7,42 +7,45 @@
 
 JSubServerStartup::JSubServerStartup()
 {
+	m_ps=new JPortService;
+	m_login=new JLoginService2;
+	m_gis=new JGsInfoService;
 }
 
 JSubServerStartup::ERuturnValue JSubServerStartup::startup()const
 {
-	JPortService ps;
-	ps.setServerPort(EST_FREEPORT,m_host);
-	JLoginService2 login;
-	SHost loginHost=ps.rqsServerPort(EST_LOGIN);
-	login.connectToHost(loginHost.m_address,loginHost.m_port);
-	if(!login.waitForConnected(1000))
+//	JPortService ps;
+	m_ps->setServerPort(EST_FREEPORT,m_host);
+//	JLoginService2 login;
+	SHost loginHost=m_ps->rqsServerPort(EST_LOGIN);
+	m_login->connectToHost(loginHost.m_address,loginHost.m_port);
+	if(!m_login->waitForConnected(1000))
 	{
-		qDebug()<<"connect failed . error :"<<login.error();
+		qDebug()<<"connect failed . error :"<<m_login->error();
 		return ERV_ConnectFailed;
 	}
-	login.login(m_loginname,m_passwd,m_role);
-	if(!login.waitForLogined(1000))
+	m_login->login(m_loginname,m_passwd,m_role);
+	if(!m_login->waitForLogined(1000))
 	{
-		qDebug()<<"Login failed . error :"<<login.error();
+		qDebug()<<"Login failed . error :"<<m_login->error();
 		return ERV_LoginFailed;
 	}
-	JGsInfoService gis;
-	SHost gsiHost=ps.rqsServerPort(EST_SUBSERVER);
-	gis.connectToHost(gsiHost.m_address,gsiHost.m_port);
-	if(!gis.waitForConnected(1000))
+//	JGsInfoService gis;
+	SHost gsiHost=m_ps->rqsServerPort(EST_SUBSERVER);
+	m_gis->connectToHost(gsiHost.m_address,gsiHost.m_port);
+	if(!m_gis->waitForConnected(1000))
 	{
 		qDebug()<<"game server connect failed . error :"
-				<<gis.error();
+				<<m_gis->error();
 		return ERV_ConnectFailed;
 	}
 	JCryproRecorder cr;
-	gis.sendCrypro(cr.getUserId(),cr.getCrypro());
-	if(!gis.waitForPassLoginHash(1000))
+	m_gis->sendCrypro(cr.getUserId(),cr.getCrypro());
+	if(!m_gis->waitForPassLoginHash(1000))
 	{
 		qDebug()<<"1 gis pass Login Hash failed . error :"
-				<<gis.state()
-				<<gis.error();
+				<<m_gis->state()
+				<<m_gis->error();
 		return ERV_PlhFailed;
 	}
 //	SubServer::SGameInfo2 gi;
@@ -55,11 +58,11 @@ JSubServerStartup::ERuturnValue JSubServerStartup::startup()const
 //	}
 	if(m_gameinfo.m_gameId>0 && !m_gameinfo.m_name.isEmpty())
 	{
-		gis.sendGameInfo(m_gameinfo);
-		if(!gis.waitForSend(1000))
+		m_gis->sendGameInfo(m_gameinfo);
+		if(!m_gis->waitForSend(1000))
 		{
 			qDebug()<<"send game info failed . error :"
-					<<gis.error();
+					<<m_gis->error();
 			return ERV_SendFailed;
 		}else{
 			qDebug()<<"send game info success.";
@@ -73,20 +76,20 @@ JSubServerStartup::ERuturnValue JSubServerStartup::startup()const
 //		ss.m_port=60373;
 //		ss.m_type=SubServer::SSubServer::ET_GameServer;
 //	}
-	gis.sendServerInfo(m_serverinfo);
-	if(!gis.waitForSend(1000))
+	m_gis->sendServerInfo(m_serverinfo);
+	if(!m_gis->waitForSend(1000))
 	{
 		qDebug()<<"send server info failed . error :"
-				<<gis.error();
+				<<m_gis->error();
 		return ERV_SendFailed;
 	}else{
 		qDebug()<<"send server info success.";
 	}
-	gis.sendRelation(m_serverinfo.m_serverId,m_gameinfo.m_gameId,m_gameinfo.m_version);
-	if(!gis.waitForSend(1000))
+	m_gis->sendRelation(m_serverinfo.m_serverId,m_gameinfo.m_gameId,m_gameinfo.m_version);
+	if(!m_gis->waitForSend(1000))
 	{
 		qDebug()<<"send relation failed . error :"
-				<<gis.error();
+				<<m_gis->error();
 		return ERV_SendFailed;
 	}else{
 		qDebug()<<"send relation success.";

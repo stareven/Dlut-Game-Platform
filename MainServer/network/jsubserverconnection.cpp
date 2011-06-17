@@ -9,6 +9,7 @@
 JSubServerConnection::JSubServerConnection(QTcpSocket* socket,QObject *parent) :
 	JPlhConnectionBase(socket,parent)
 {
+	m_subserverId=-1;
 }
 
 void JSubServerConnection::afterPlh(const QByteArray &data)
@@ -29,6 +30,10 @@ void JSubServerConnection::afterPlh(const QByteArray &data)
 			outstream<<(JID)SubServer::ESP_ServerInfo;
 			outstream<<code;
 			sendData(outdata);
+			if(0==code)
+			{
+				m_subserverId=subserver.m_serverId;
+			}
 		}
 		break;
 	case SubServer::ESP_GameInfo:
@@ -62,4 +67,10 @@ void JSubServerConnection::afterPlh(const QByteArray &data)
 		}
 		break;
 	}
+}
+
+void JSubServerConnection::on_socket_disconnected()
+{
+	SubServer::JSubServerSrv sss(getUserId());
+	sss.deleteSubServer(m_subserverId);
 }
