@@ -5,6 +5,7 @@
 //#include <QDebug>
 
 #include "service/jgameinfoservice.h"
+#include "service/jdownloadrun.h"
 #include "global/ssubserver.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -88,4 +89,10 @@ void MainWindow::on_gameinfosrv_gameInfoReady(JID gameid)
 void MainWindow::on_btn_get_servers_clicked()
 {
 	m_gis->rqsServers(m_currentId,m_gis->getGameInfo(m_currentId).m_version);
+}
+
+void MainWindow::on_btn_download_run_clicked()
+{
+	JDownloadRun dr;
+	dr.start(m_gis->getGameInfo(m_currentId).m_name,this);
 }

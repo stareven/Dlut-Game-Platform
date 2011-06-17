@@ -60,6 +60,19 @@
      <string>get servers</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="btn_download_run">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>260</y>
+      <width>141</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>download and run</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -67,7 +80,7 @@
      <x>0</x>
      <y>0</y>
      <width>600</width>
-     <height>25</height>
+     <height>27</height>
     </rect>
    </property>
   </widget>

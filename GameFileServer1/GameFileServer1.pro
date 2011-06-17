@@ -32,7 +32,8 @@ SOURCES += main/main.cpp \
 	../api/src/service/jgsinfoservice.cpp \
 	../api/src/global/ssubserver.cpp \
 	../api/src/global/jversion.cpp \
-    ../api/src/service/jsubserverstartup.cpp
+    ../api/src/service/jsubserverstartup.cpp \
+    service/jgamefilemanager.cpp
 
 HEADERS += \
     ../api/include/network/jserverbase.h \
@@ -53,4 +54,5 @@ HEADERS += \
 	../api/include/service/jloginservice2.h \
 	../api/include/network/jgsinfosocket.h \
 	../api/include/service/jgsinfoservice.h \
-    ../api/include/service/jsubserverstartup.h
+    ../api/include/service/jsubserverstartup.h \
+    service/jgamefilemanager.h

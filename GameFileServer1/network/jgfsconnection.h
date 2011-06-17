@@ -8,11 +8,8 @@ class JGfsConnection : public JConnectionBase
     Q_OBJECT
 public:
 	explicit JGfsConnection(QTcpSocket* socket,QObject *parent = 0);
-
-signals:
-
-public slots:
-
+protected:
+	void dataProcess(const QByteArray &);
 };
 
 #endif // JGFSCONNECTION_H

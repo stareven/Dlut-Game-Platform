@@ -22,7 +22,8 @@ SOURCES += main/main.cpp \
     network/jportsocket.cpp \
     service/jportservice.cpp \
     ../api/src/global/jversion.cpp \
-    ../api/src/global/ssubserver.cpp
+    ../api/src/global/ssubserver.cpp \
+    service/jdownloadrun.cpp
 HEADERS += gui/mainwindow.h \
     gui/dlglogin/jcomboselectserver.h \
     gui/dlglogin/jdlglogin.h \
@@ -43,7 +44,8 @@ HEADERS += gui/mainwindow.h \
     service/jgameinfoservice.h \
     network/jportsocket.h \
     ../api/include/global/eportsrv.h \
-    service/jportservice.h
+    service/jportservice.h \
+    service/jdownloadrun.h
 FORMS += gui/mainwindow.ui \
     gui/dlglogin/jdlglogin.ui \
     gui/dlglogin/jdlgnewserver.ui
