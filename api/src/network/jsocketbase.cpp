@@ -2,8 +2,9 @@
 
 #include <QTcpSocket>
 #include <QHostAddress>
-#include <QElapsedTimer>
 #include <QCoreApplication>
+
+#include "global/jelapsedtimer.h"
 
 JSocketBase::JSocketBase(QObject *parent) :
     QObject(parent)

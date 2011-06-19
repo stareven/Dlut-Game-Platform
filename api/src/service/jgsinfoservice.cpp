@@ -1,9 +1,10 @@
 #include "service/jgsinfoservice.h"
 
-#include <QElapsedTimer>
+
 #include <QCoreApplication>
 
 #include "network/jgsinfosocket.h"
+#include "global/jelapsedtimer.h"
 
 JGsInfoService::JGsInfoService(QObject *parent) :
     QObject(parent)
@@ -63,7 +64,7 @@ JGsInfoService::EState JGsInfoService::state()const
 
 bool JGsInfoService::waitForConnected(int msecs)
 {
-    QElapsedTimer timer;
+    JElapsedTimer timer;
     timer.start();
     while(timer.elapsed()<msecs)
     {
@@ -78,7 +79,7 @@ bool JGsInfoService::waitForConnected(int msecs)
 
 bool JGsInfoService::waitForPassLoginHash(int msecs)
 {
-    QElapsedTimer timer;
+    JElapsedTimer timer;
     timer.start();
     while(timer.elapsed()<msecs)
     {
@@ -93,7 +94,7 @@ bool JGsInfoService::waitForPassLoginHash(int msecs)
 
 bool JGsInfoService::waitForSend(int msecs)
 {
-    QElapsedTimer timer;
+    JElapsedTimer timer;
     timer.start();
     while(timer.elapsed()<msecs)
     {

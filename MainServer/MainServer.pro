@@ -8,13 +8,14 @@ CONFIG += console
 CONFIG -= app_bundle
 TEMPLATE = app
 INCLUDEPATH += ../api/include
-HEADERS += network/jserverbase.h \
-    network/jconnectionbase.h \
+HEADERS += \
+    network/jserverbase.h \
+    ../api/include/network/jconnectionbase.h \
     service/jloginverification.h \
     service/juserlogincrypro.h \
     database/jabslogindb.h \
     service/jloginhash.h \
-	service/juserisonline.h \
+    service/juserisonline.h \
     network/jconnectionfactory.h \
     network/jloginconnection.h \
     network/jgameinfoconnection.h \
@@ -32,7 +33,7 @@ HEADERS += network/jserverbase.h \
     database/jgameinfodb.h
 SOURCES += main/main.cpp \
     network/jserverbase.cpp \
-    network/jconnectionbase.cpp \
+    ../api/src/network/jconnectionbase.cpp \
     service/jloginverification.cpp \
     service/juserlogincrypro.cpp \
     database/jabslogindb.cpp \

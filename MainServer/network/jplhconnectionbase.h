@@ -1,7 +1,7 @@
 #ifndef JPLHCONNECTIONBASE_H
 #define JPLHCONNECTIONBASE_H
 
-#include "jconnectionbase.h"
+#include "network/jconnectionbase.h"
 
 class JPlhConnectionBase : public JConnectionBase
 {

@@ -1,7 +1,7 @@
 #ifndef JLOGINCONNECTION_H
 #define JLOGINCONNECTION_H
 
-#include "jconnectionbase.h"
+#include "network/jconnectionbase.h"
 
 class JLoginConnection : public JConnectionBase
 {

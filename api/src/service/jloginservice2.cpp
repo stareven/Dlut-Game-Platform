@@ -1,11 +1,11 @@
 #include "service/jloginservice2.h"
 
-#include <QElapsedTimer>
 #include <QCoreApplication>
 
 #include "network/jloginsocket.h"
 #include "global/elogin.h"
 #include "service/jcryprorecorder.h"
+#include "global/jelapsedtimer.h"
 
 JLoginService2::JLoginService2(QObject *parent) :
     QObject(parent)
@@ -37,7 +37,7 @@ JLoginService2::EState JLoginService2::state()const
 
 bool JLoginService2::waitForConnected( int msecs)
 {
-    QElapsedTimer timer;
+    JElapsedTimer timer;
     timer.start();
     while(timer.elapsed()<msecs)
     {
@@ -52,7 +52,7 @@ bool JLoginService2::waitForConnected( int msecs)
 
 bool JLoginService2::waitForLogined(int msecs)
 {
-    QElapsedTimer timer;
+    JElapsedTimer timer;
     timer.start();
     while(timer.elapsed()<msecs)
     {

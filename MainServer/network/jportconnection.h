@@ -1,7 +1,7 @@
 #ifndef JPORTCONNECTION_H
 #define JPORTCONNECTION_H
 
-#include "jconnectionbase.h"
+#include "network/jconnectionbase.h"
 #include "service/jportservice.h"
 
 class JPortConnection : public JConnectionBase

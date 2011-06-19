@@ -1,6 +1,6 @@
 #include "jconnectionfactory.h"
 
-#include "jconnectionbase.h"
+#include "network/jconnectionbase.h"
 #include "jloginconnection.h"
 #include "jgameinfoconnection.h"
 #include "jportconnection.h"

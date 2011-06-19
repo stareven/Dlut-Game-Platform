@@ -6,7 +6,7 @@
 #include <QHostAddress>
 
 #include "network/jgameinfosocket.h"
-#include "jcryprorecorder.h"
+#include "service/jcryprorecorder.h"
 #include "jportservice.h"
 
 JGameInfoService::JGameInfoService(QObject *parent) :

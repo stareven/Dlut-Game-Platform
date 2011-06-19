@@ -13,17 +13,18 @@ SOURCES += main/main.cpp \
     gui/dlglogin/shallserver.cpp \
     gui/dlglogin/settings/jrememberpassword.cpp \
     gui/dlglogin/settings/jsettinglogin.cpp \
-    network/jloginsocket.cpp \
-    service/jloginservice.cpp \
     network/jgameinfosocket.cpp \
-    service/jcryprorecorder.cpp \
-    network/jsocketbase.cpp \
     service/jgameinfoservice.cpp \
-    network/jportsocket.cpp \
     service/jportservice.cpp \
     ../api/src/global/jversion.cpp \
     ../api/src/global/ssubserver.cpp \
-    service/jdownloadrun.cpp
+    service/jdownloadrun.cpp \
+    ../api/src/network/jsocketbase.cpp \
+    ../api/src/service/jcryprorecorder.cpp \
+    ../api/src/service/jloginservice2.cpp \
+    ../api/src/service/jloginservice.cpp \
+    ../api/src/network/jloginsocket.cpp \
+    ../api/src/network/jportsocket.cpp
 HEADERS += gui/mainwindow.h \
     gui/dlglogin/jcomboselectserver.h \
     gui/dlglogin/jdlglogin.h \
@@ -31,21 +32,22 @@ HEADERS += gui/mainwindow.h \
     gui/dlglogin/shallserver.h \
     gui/dlglogin/settings/jrememberpassword.h \
     gui/dlglogin/settings/jsettinglogin.h \
-    network/jloginsocket.h \
-    service/jloginservice.h \
     ../api/include/global/elogin.h \
     ../api/include/global/jglobal.h \
     ../api/include/global/jversion.h \
     ../api/include/global/jelapsedtimer.h \
     ../api/include/global/ssubserver.h \
+    ../api/include/network/jsocketbase.h \
     network/jgameinfosocket.h \
-    service/jcryprorecorder.h \
-    network/jsocketbase.h \
     service/jgameinfoservice.h \
-    network/jportsocket.h \
     ../api/include/global/eportsrv.h \
     service/jportservice.h \
-    service/jdownloadrun.h
+    service/jdownloadrun.h \
+    ../api/include/service/jcryprorecorder.h \
+    ../api/include/service/jloginservice2.h \
+    ../api/include/service/jloginservice.h \
+    ../api/include/network/jloginsocket.h \
+    ../api/include/network/jportsocket.h
 FORMS += gui/mainwindow.ui \
     gui/dlglogin/jdlglogin.ui \
     gui/dlglogin/jdlgnewserver.ui

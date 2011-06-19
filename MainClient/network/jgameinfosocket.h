@@ -1,7 +1,7 @@
 #ifndef JGAMEINFOSOCKET_H
 #define JGAMEINFOSOCKET_H
 
-#include "jsocketbase.h"
+#include "network/jsocketbase.h"
 
 #include "global/jglobal.h"
 

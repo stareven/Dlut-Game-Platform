@@ -5,7 +5,7 @@
 
 #include "network/jportsocket.h"
 
-#include "jcryprorecorder.h"
+#include "service/jcryprorecorder.h"
 
 QMap<EServerType,SHost> JPortService::s_ports;
 
