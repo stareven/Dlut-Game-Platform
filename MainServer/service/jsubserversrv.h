@@ -58,6 +58,7 @@ namespace SubServer
 		// 1 Permission denied
 		// 2 base info check failed
 		// 3 already contain
+		// 4 type does not match id
 		JCode addSubServer(const SSubServer&);
 		// 0 success
 		// 1 Permission denied

@@ -80,10 +80,16 @@ void JRequestGameInfo::rqsGameInfo(JID id)
 	emit gameInfoReady(id);
 }
 
-void JRequestGameInfo::rqsServers(JID gameId,const JVersion& version)
+void JRequestGameInfo::rqsServerList(JID gameId,const JVersion& version)
 {
 	if(!passLoginHash()) return;
 	m_socket->rqsServers(gameId,version);
+}
+
+void JRequestGameInfo::rqsServerInfo(JID serverId)
+{
+	if(!passLoginHash()) return;
+	m_socket->rqsServerInfo(serverId);
 }
 
 bool JRequestGameInfo::passLoginHash()
@@ -149,7 +155,18 @@ void JRequestGameInfo::on_socket_rcvGameList(const QList<SubServer::SGameInfo2>&
 
 void JRequestGameInfo::on_socket_rcvServers(JID gameId,const JVersion& version,const QSet<JID>& servers)
 {
-	qDebug()<<gameId<<version.getData()<<servers;
+//	qDebug()<<gameId<<version.getData()<<servers;
+	SubServer::SGameInfo2 gi=getGameInfo(gameId);
+	if(version!=gi.m_version)
+	{
+		qDebug()<<"JRequestGameInfo::on_socket_rcvServers : version not match";
+		return;
+	}
+	foreach(JID serverId,servers)
+	{
+		rqsServerInfo(serverId);
+	}
+	m_relations[gameId].unite(servers);
 }
 
 //void JRequestGameInfo::on_socket_rcvGameInfo(const SGameInfo& gi)

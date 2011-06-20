@@ -11,6 +11,8 @@ public:
 	bool isNull()const;//-1 is NULL
 	bool operator<(const JVersion&)const;
 	bool operator>(const JVersion&)const;
+	bool operator==(const JVersion&)const;
+	bool operator!=(const JVersion&)const;
 	qint32 getData()const;
 private:
 	bool isLowerThan(const JVersion&)const;

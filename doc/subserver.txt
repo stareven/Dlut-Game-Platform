@@ -151,6 +151,7 @@ struct SSubServer{
 		port
 12、SubServer放弃plh。
 	不再对SubServer使用plh，仅在MainServer上使用plh。
+13、GS都是奇数。GFS都是偶数。
 
 
 JDMD studio , Dalian University of Technology , China

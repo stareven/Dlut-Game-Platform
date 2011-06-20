@@ -22,6 +22,7 @@ public:
 //    void rqsIdList();
 	void rqsGameList();
 	void rqsServers(JID gameId,const JVersion&);
+	void rqsServerInfo(JID serverId);
 protected:
     void dataProcess(const QByteArray&);
 signals:

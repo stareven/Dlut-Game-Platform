@@ -75,6 +75,10 @@ JCode SubServer::JSubServerSrv::addSubServer(const SubServer::SSubServer &server
 	JSubServerDb db;
 	if(!db.isControlAble (server.m_serverId,m_runner)) return 1;
 	if(!db.checkBaseInfo (server)) return 2;
+
+	if( ( SubServer::SSubServer::ET_GameServer == server.m_type && server.m_serverId%2 == 0)
+		|| ( SubServer::SSubServer::ET_GameFileServer == server.m_type && server.m_serverId%2 == 1) )
+		return 4;
 	return m_data.addSubServer (server);
 }
 

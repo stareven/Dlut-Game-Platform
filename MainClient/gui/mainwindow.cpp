@@ -88,11 +88,27 @@ void MainWindow::on_gameinfosrv_gameInfoReady(JID gameid)
 
 void MainWindow::on_btn_get_servers_clicked()
 {
-	m_gis->rqsServers(m_currentId,m_gis->getGameInfo(m_currentId).m_version);
+	m_gis->rqsServerList(m_currentId,m_gis->getGameInfo(m_currentId).m_version);
 }
 
 void MainWindow::on_btn_download_run_clicked()
 {
 	JDownloadRun dr;
-	dr.start(m_gis->getGameInfo(m_currentId).m_name,this);
+	SubServer::SGameInfo2 gi=m_gis->getGameInfo(m_currentId);
+	QSet<JID> servers=m_gis->getServerListOnGame(gi.m_gameId);
+	if(servers.empty())
+	{
+		qDebug()<<"server list on game"<<gi.m_gameId<<"is empty.";
+		return;
+	}
+	foreach(JID serverId,servers)
+	{
+		SubServer::SSubServer si=m_gis->getServerInfo(serverId);
+		if( SubServer::SSubServer::ET_GameFileServer ==si.m_type)
+		{
+			dr.start(gi.m_name,this,si.m_address,si.m_port);
+		}
+	}
+
+
 }

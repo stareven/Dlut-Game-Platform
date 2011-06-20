@@ -2,31 +2,40 @@
 
 #include <QProcess>
 #include <QDebug>
+#include <QString>
+#include <QHostAddress>
 
 JDownloadRun::JDownloadRun()
 {
 }
 
-void JDownloadRun::start(const QString& gamename,QObject* parent)
+void JDownloadRun::start(const QString& gamename,
+						 QObject* parent,
+						 const QHostAddress& address,
+						 quint16 port)
 {
-	download(gamename);
-	run(gamename,parent);
+	m_gamename=gamename;
+	m_parent=parent;
+	m_address=address;
+	m_port=port;
+	download();
+	run();
 }
 
-void JDownloadRun::download(const QString& gamename)
+void JDownloadRun::download()
 {
-	qDebug()<<"JDownloadRun::download"<<gamename;
+	qDebug()<<"JDownloadRun::download"<<m_gamename;
 }
 
-void JDownloadRun::run(const QString& gamename,QObject* parent)
+void JDownloadRun::run()
 {
-	QString path=name2Path(gamename);
-	QProcess *process=new QProcess(parent);
+	QString path=getPath();
+	QProcess *process=new QProcess(m_parent);
 	process->start(path);
 }
 
-QString JDownloadRun::name2Path(const QString& gamename)
+QString JDownloadRun::getPath()
 {
-	qDebug()<<"unfinished : JDownloadRun::name2Path"<<gamename;
+	qDebug()<<"unfinished : JDownloadRun::name2Path"<<m_gamename;
 	return QString("../SnakeClient-build-desktop/SnakeClient");
 }
