@@ -1,5 +1,5 @@
-#ifndef JGAMEINFOSOCKET_H
-#define JGAMEINFOSOCKET_H
+#ifndef JREQUESTGAMEINFOSOCKET_H
+#define JREQUESTGAMEINFOSOCKET_H
 
 #include "network/jsocketbase.h"
 
@@ -13,11 +13,11 @@ namespace SubServer
 }
 class JVersion;
 
-class JGameInfoSocket : public JSocketBase
+class JRequestGameInfoSocket : public JSocketBase
 {
     Q_OBJECT
 public:
-    explicit JGameInfoSocket(QObject *parent = 0);
+    explicit JRequestGameInfoSocket(QObject *parent = 0);
     void sendCrypro(JID,const QByteArray&);
 //    void rqsIdList();
 	void rqsGameList();
@@ -49,4 +49,4 @@ signals:
 
 //QDataStream& operator>>(QDataStream& stream,JVersion& ver);
 
-#endif // JGAMEINFOSOCKET_H
+#endif // JREQUESTGAMEINFOSOCKET_H

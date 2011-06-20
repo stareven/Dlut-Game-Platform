@@ -2,16 +2,16 @@
 #define JPORTCONNECTION_H
 
 #include "network/jconnectionbase.h"
-#include "service/jportservice.h"
+#include "service/jportmanager.h"
 
 class JPortConnection : public JConnectionBase
 {
     Q_OBJECT
 public:
-    explicit JPortConnection(JPortService::EPortServer,QTcpSocket* socket,QObject *parent = 0);
+    explicit JPortConnection(JPortManager::EPortServer,QTcpSocket* socket,QObject *parent = 0);
 
 private:
-    JPortService m_srv;
+    JPortManager m_srv;
 protected:
     virtual void dataProcess(const QByteArray&);
 

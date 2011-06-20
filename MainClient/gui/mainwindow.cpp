@@ -4,7 +4,7 @@
 #include <QShowEvent>
 //#include <QDebug>
 
-#include "service/jgameinfoservice.h"
+#include "service/jrequestgameinfo.h"
 #include "service/jdownloadrun.h"
 #include "global/ssubserver.h"
 
@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    m_gis=new JGameInfoService(this);
+    m_gis=new JRequestGameInfo(this);
     m_gis->setObjectName(tr("gameinfosrv"));
 	m_currentId=-1;
     ui->setupUi(this);

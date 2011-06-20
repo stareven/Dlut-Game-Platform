@@ -1,20 +1,20 @@
-#ifndef JSERVERBASE_H
-#define JSERVERBASE_H
+#ifndef JSERVERTYPE_H
+#define JSERVERTYPE_H
 
 #include <QObject>
 
-#include "jconnectionfactory.h"
+#include "global/eportsrv.h"
 
 class QTcpServer;
 class QByteArray;
 class QTcpSocket;
 class JConnectionBase;
 
-class JServerBase : public QObject
+class JServerType : public QObject
 {
 Q_OBJECT
 public:
-    explicit JServerBase(EServerType,QObject *parent = 0);
+    explicit JServerType(EServerType,QObject *parent = 0);
     virtual quint16 run(quint16 port);
     quint16 serverPort()const;
     EServerType serverType()const;
@@ -26,4 +26,4 @@ protected slots:
     void on_server_newConnection();
 };
 
-#endif // JSERVERBASE_H
+#endif // JSERVERTYPE_H

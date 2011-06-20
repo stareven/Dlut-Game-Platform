@@ -1,11 +1,11 @@
-#include "jserverbase.h"
+#include "jservertype.h"
 
 #include "jconnectionfactory.h"
 
 #include <QTcpServer>
 #include <QCoreApplication>
 
-JServerBase::JServerBase(EServerType st,QObject *parent) :
+JServerType::JServerType(EServerType st,QObject *parent) :
     QObject(parent),
     m_servertype(st)
 {
@@ -14,7 +14,7 @@ JServerBase::JServerBase(EServerType st,QObject *parent) :
     connect(m_server,SIGNAL(newConnection()),SLOT(on_server_newConnection()));
 }
 
-quint16 JServerBase::run(quint16 port)
+quint16 JServerType::run(quint16 port)
 {
     if(!m_server->listen(QHostAddress::Any,port))
     {
@@ -29,17 +29,17 @@ quint16 JServerBase::run(quint16 port)
     return m_server->serverPort();
 }
 
-quint16 JServerBase::serverPort()const
+quint16 JServerType::serverPort()const
 {
     return m_server->serverPort();
 }
 
-EServerType JServerBase::serverType()const
+EServerType JServerType::serverType()const
 {
     return m_servertype;
 }
 
-void JServerBase::on_server_newConnection()
+void JServerType::on_server_newConnection()
 {
     while(m_server->hasPendingConnections())
     {

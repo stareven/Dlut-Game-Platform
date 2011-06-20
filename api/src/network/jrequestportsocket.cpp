@@ -1,11 +1,11 @@
-#include "network/jportsocket.h"
+#include "network/jrequestportsocket.h"
 
-JPortSocket::JPortSocket(QObject *parent) :
+JRequestPortSocket::JRequestPortSocket(QObject *parent) :
     JSocketBase(parent)
 {
 }
 
-void JPortSocket::sendCrypro(JID id,const QByteArray& crypro)
+void JRequestPortSocket::sendCrypro(JID id,const QByteArray& crypro)
 {
     QByteArray outdata;
     QDataStream outstream(&outdata,QIODevice::WriteOnly);
@@ -15,7 +15,7 @@ void JPortSocket::sendCrypro(JID id,const QByteArray& crypro)
     sendData(outdata);
 }
 
-void JPortSocket::rqsServerPort(EServerType type)
+void JRequestPortSocket::rqsServerPort(EServerType type)
 {
     QByteArray outdata;
     QDataStream outstream(&outdata,QIODevice::WriteOnly);
@@ -24,7 +24,7 @@ void JPortSocket::rqsServerPort(EServerType type)
     sendData(outdata);
 }
 
-void JPortSocket::dataProcess(const QByteArray& data)
+void JRequestPortSocket::dataProcess(const QByteArray& data)
 {
     QDataStream stream(data);
     JID protocol;
@@ -46,7 +46,7 @@ void JPortSocket::dataProcess(const QByteArray& data)
         }
         break;
     default:
-        qDebug()<<"JPortSocket::dataProcess error protocol"<<protocol;
+        qDebug()<<"JRequestPortSocket::dataProcess error protocol"<<protocol;
         break;
     }
 }

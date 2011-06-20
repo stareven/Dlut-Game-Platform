@@ -1,10 +1,10 @@
-#include "network/jloginsocket.h"
+#include "network/jrequestloginsocket.h"
 
 #include <QTcpSocket>
 #include <QHostAddress>
 #include "global/elogin.h"
 
-JLoginSocket::JLoginSocket(QObject *parent) :
+JRequestLoginSocket::JRequestLoginSocket(QObject *parent) :
     QObject(parent)
 {
     m_socket = new QTcpSocket(this);
@@ -12,7 +12,7 @@ JLoginSocket::JLoginSocket(QObject *parent) :
     QMetaObject::connectSlotsByName(this);
 }
 
-void JLoginSocket::login(const QString& loginname,const QString& passwd,const JID& role)
+void JRequestLoginSocket::login(const QString& loginname,const QString& passwd,const JID& role)
 {
     if(!m_socket->isWritable())
     {
@@ -29,7 +29,7 @@ void JLoginSocket::login(const QString& loginname,const QString& passwd,const JI
     m_socket->write(data);
 }
 
-void JLoginSocket::connectToHost(const QHostAddress& address,
+void JRequestLoginSocket::connectToHost(const QHostAddress& address,
 		    quint16 port)
 {
     if(m_socket->state()==QAbstractSocket::ConnectedState)
@@ -45,18 +45,18 @@ void JLoginSocket::connectToHost(const QHostAddress& address,
     m_socket->connectToHost(address,port);
 }
 
-void JLoginSocket::on_socket_connected()
+void JRequestLoginSocket::on_socket_connected()
 {
     emit loginCode(EL_CONNECTED);
-    //qDebug()<<"JLoginSocket::on_socket_connected";
+    //qDebug()<<"JRequestLoginSocket::on_socket_connected";
 }
 
-void JLoginSocket::on_socket_disconnected()
+void JRequestLoginSocket::on_socket_disconnected()
 {
     emit loginCode(JCode(EL_SOCKET_DISCONNECTED));
 }
 
-void JLoginSocket::on_socket_readyRead()
+void JRequestLoginSocket::on_socket_readyRead()
 {
     static int size=0;
     while(m_socket->bytesAvailable()>0)
@@ -82,12 +82,12 @@ void JLoginSocket::on_socket_readyRead()
     }
 }
 
-JID JLoginSocket::getUserId()const
+JID JRequestLoginSocket::getUserId()const
 {
     return m_userid;
 }
 
-const QByteArray& JLoginSocket::getCrypro()const
+const QByteArray& JRequestLoginSocket::getCrypro()const
 {
     return m_crypro;
 }

@@ -9,7 +9,7 @@ CONFIG -= app_bundle
 TEMPLATE = app
 INCLUDEPATH += ../api/include
 HEADERS += \
-    network/jserverbase.h \
+    network/jservertype.h \
     ../api/include/network/jconnectionbase.h \
     service/jloginverification.h \
     service/juserlogincrypro.h \
@@ -19,7 +19,7 @@ HEADERS += \
     network/jconnectionfactory.h \
     network/jloginconnection.h \
     network/jgameinfoconnection.h \
-    service/jportservice.h \
+    service/jportmanager.h \
     network/jportconnection.h \
     network/jsubserverconnection.h \
     service/jsubserversrv.h \
@@ -32,7 +32,7 @@ HEADERS += \
     database/jsubserverdb.h \
     database/jgameinfodb.h
 SOURCES += main/main.cpp \
-    network/jserverbase.cpp \
+    network/jservertype.cpp \
     ../api/src/network/jconnectionbase.cpp \
     service/jloginverification.cpp \
     service/juserlogincrypro.cpp \
@@ -42,7 +42,7 @@ SOURCES += main/main.cpp \
     network/jconnectionfactory.cpp \
     network/jloginconnection.cpp \
     network/jgameinfoconnection.cpp \
-    service/jportservice.cpp \
+    service/jportmanager.cpp \
     network/jportconnection.cpp \
 	../api/src/global/ssubserver.cpp \
     network/jsubserverconnection.cpp \

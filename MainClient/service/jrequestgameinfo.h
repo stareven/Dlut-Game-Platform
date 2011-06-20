@@ -1,20 +1,20 @@
-#ifndef JGAMEINFOSERVICE_H
-#define JGAMEINFOSERVICE_H
+#ifndef JREQUESTGAMEINFO_H
+#define JREQUESTGAMEINFO_H
 
 #include <QObject>
 #include <QMap>
 
 #include "global/jglobal.h"
 
-class JGameInfoSocket;
+class JRequestGameInfoSocket;
 
 #include "global/ssubserver.h"
 
-class JGameInfoService : public QObject
+class JRequestGameInfo : public QObject
 {
     Q_OBJECT
 public:
-    explicit JGameInfoService(QObject *parent = 0);
+    explicit JRequestGameInfo(QObject *parent = 0);
 
 //    void rqsIdList();
 	void rqsGameList();
@@ -27,7 +27,7 @@ signals:
 	void gameListReady();
 	void gameInfoReady(JID gameid);
 private:
-    JGameInfoSocket* m_socket;
+    JRequestGameInfoSocket* m_socket;
 protected slots:
     void on_socket_rcvPassLoginHash(bool);
 //    void on_socket_rcvIdList(const QList<JID>&);
@@ -51,4 +51,4 @@ public:
 	SubServer::SGameInfo2 getGameInfo(JID gameid)const;
 };
 
-#endif // JGAMEINFOSERVICE_H
+#endif // JREQUESTGAMEINFO_H

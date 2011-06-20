@@ -1,23 +1,23 @@
-#ifndef JPORTSERVICE_H
-#define JPORTSERVICE_H
+#ifndef JREQUESTPORT_H
+#define JREQUESTPORT_H
 
 #include <QObject>
 #include <QMap>
 
 #include "global/eportsrv.h"
 
-class JPortSocket;
+class JRequestPortSocket;
 
-class JPortService : public QObject
+class JRequestPort : public QObject
 {
     Q_OBJECT
 public:
-    explicit JPortService(QObject *parent = 0);
+    explicit JRequestPort(QObject *parent = 0);
     void setServerPort(EServerType,const SHost&);
     SHost rqsServerPort(EServerType);
     SHost getServerPort(EServerType)const;
 protected:
-    bool passLoginHash(JPortSocket&);
+	bool passLoginHash(JRequestPortSocket&);
 protected slots:
     void on_socket_rcvPassLoginHash(bool);
     void on_socket_rcvServerPort(quint16);
@@ -33,4 +33,4 @@ private:
     static QMap<EServerType,SHost> s_ports;
 };
 
-#endif // JPORTSERVICE_H
+#endif // JREQUESTPORT_H

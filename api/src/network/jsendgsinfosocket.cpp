@@ -1,13 +1,13 @@
-#include "network/jgsinfosocket.h"
+#include "network/jsendgsinfosocket.h"
 
 #include "global/ssubserver.h"
 
-JGsInfoSocket::JGsInfoSocket(QObject *parent) :
+JSendGsInfoSocket::JSendGsInfoSocket(QObject *parent) :
     JSocketBase(parent)
 {
 }
 
-void JGsInfoSocket::sendCrypro(JID id,const QByteArray& crypro)
+void JSendGsInfoSocket::sendCrypro(JID id,const QByteArray& crypro)
 {
     QByteArray outdata;
 	QDataStream outstream(&outdata,QIODevice::WriteOnly);
@@ -16,7 +16,7 @@ void JGsInfoSocket::sendCrypro(JID id,const QByteArray& crypro)
     sendData(outdata);
 }
 
-//void JGsInfoSocket::sendGsInfo(const SGameInfo& gi)
+//void JSendGsInfoSocket::sendGsInfo(const SGameInfo& gi)
 //{
 //    QByteArray outdata;
 //    QDataStream outstream(&outdata,QIODevice::WriteOnly);
@@ -25,7 +25,7 @@ void JGsInfoSocket::sendCrypro(JID id,const QByteArray& crypro)
 //    sendData(outdata);
 //}
 
-void JGsInfoSocket::sendServerInfo(const SubServer::SSubServer& ss)
+void JSendGsInfoSocket::sendServerInfo(const SubServer::SSubServer& ss)
 {
 	QByteArray outdata;
 	QDataStream outstream(&outdata,QIODevice::WriteOnly);
@@ -34,7 +34,7 @@ void JGsInfoSocket::sendServerInfo(const SubServer::SSubServer& ss)
 	sendData(outdata);
 }
 
-void JGsInfoSocket::sendGameInfo(const SubServer::SGameInfo2& gi)
+void JSendGsInfoSocket::sendGameInfo(const SubServer::SGameInfo2& gi)
 {
 	QByteArray outdata;
 	QDataStream outstream(&outdata,QIODevice::WriteOnly);
@@ -43,7 +43,7 @@ void JGsInfoSocket::sendGameInfo(const SubServer::SGameInfo2& gi)
 	sendData(outdata);
 }
 
-void JGsInfoSocket::sendRelation(JID serverId,
+void JSendGsInfoSocket::sendRelation(JID serverId,
 								 JID gameId,
 								 const JVersion& gameVersion)
 {
@@ -54,7 +54,7 @@ void JGsInfoSocket::sendRelation(JID serverId,
 	sendData(outdata);
 }
 
-void JGsInfoSocket::dataProcess(const QByteArray& data)
+void JSendGsInfoSocket::dataProcess(const QByteArray& data)
 {
     QDataStream stream(data);
     JID protocol;

@@ -5,9 +5,9 @@
 #include "global/jglobal.h"
 #include "global/ssubserver.h"
 
-class JPortService;
-class JLoginService2;
-class JGsInfoService;
+class JRequestPort;
+class JRequestLogin;
+class JSendGsInfo;
 
 class JSubServerStartup
 {
@@ -29,9 +29,9 @@ public:
 	};
 	ERuturnValue startup()const;
 private:
-	JPortService* m_ps;
-	JLoginService2* m_login;
-	JGsInfoService* m_gis;
+	JRequestPort* m_ps;
+	JRequestLogin* m_login;
+	JSendGsInfo* m_gis;
 };
 
 #endif // JSUBSERVERSTARTUP_H

@@ -1,5 +1,5 @@
-#ifndef JGSINFOSOCKET_H
-#define JGSINFOSOCKET_H
+#ifndef JSENDGSINFOSOCKET_H
+#define JSENDGSINFOSOCKET_H
 
 #include "jsocketbase.h"
 
@@ -10,11 +10,11 @@ namespace SubServer
 }
 class JVersion;
 
-class JGsInfoSocket : public JSocketBase
+class JSendGsInfoSocket : public JSocketBase
 {
     Q_OBJECT
 public:
-    explicit JGsInfoSocket(QObject *parent = 0);
+    explicit JSendGsInfoSocket(QObject *parent = 0);
     void sendCrypro(JID,const QByteArray&);
 //    void sendGsInfo(const SGameInfo&);
 	void sendServerInfo(const SubServer::SSubServer&);
@@ -27,4 +27,4 @@ signals:
 	void rcvSendCode(JID protocol,JCode code);
 };
 
-#endif // JGSINFOSOCKET_H
+#endif // JSENDGSINFOSOCKET_H

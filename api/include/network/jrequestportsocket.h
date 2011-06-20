@@ -1,14 +1,14 @@
-#ifndef JPORTSOCKET_H
-#define JPORTSOCKET_H
+#ifndef JREQUESTPORTSOCKET_H
+#define JREQUESTPORTSOCKET_H
 
 #include "jsocketbase.h"
 #include "global/eportsrv.h"
 
-class JPortSocket : public JSocketBase
+class JRequestPortSocket : public JSocketBase
 {
     Q_OBJECT
 public:
-    explicit JPortSocket(QObject *parent = 0);
+    explicit JRequestPortSocket(QObject *parent = 0);
     void sendCrypro(JID,const QByteArray&);
     void rqsServerPort(EServerType);
 protected:
@@ -18,4 +18,4 @@ signals:
     void rcvServerPort(quint16);
 };
 
-#endif // JPORTSOCKET_H
+#endif // JREQUESTPORTSOCKET_H

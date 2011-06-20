@@ -6,17 +6,17 @@
 
 #include <QMessageBox>
 
-#include "service/jloginservice.h"
+#include "service/jrequestlogin.h"
 //#include "network/jloginsocket.h"
 #include "global/elogin.h"
-#include "service/jportservice.h"
+#include "service/jrequestport.h"
 
 JDlgLogin::JDlgLogin(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::JDlgLogin)
 {
-    m_loginsrv=new JLoginService(this);
-    m_loginsrv->setObjectName("loginsrv");
+	m_rqslogin=new JRequestLogin(this);
+	m_rqslogin->setObjectName("rqsloginsrv");
     ui->setupUi(this);
     ui->edt_username->setText(m_remember.getUserName());
     ui->edt_passwd->setText(m_remember.getPassWord());
@@ -77,16 +77,32 @@ void JDlgLogin::accept()
         m_remember.remember();
     }else{
         m_remember.remove();
-    }
-    ui->lab_message->setText(tr("connecting to server"));
-    JPortService ps;
+	}
+	JRequestPort ps;
     ps.setServerPort(EST_FREEPORT,SHost(ui->cb_server->getServer().getAddress(),ui->cb_server->getServer().getPort()));
     SHost host=ps.rqsServerPort(EST_LOGIN);
-    m_loginsrv->login(ui->edt_username->text(),
-		      ui->edt_passwd->text(),
-		      ui->cb_role->currentIndex(),
-                      host.m_address,
-                      host.m_port);
+	m_rqslogin->connectToHost(host.m_address,host.m_port);
+	ui->lab_message->setText(tr("connecting to server"));
+	if(!m_rqslogin->waitForConnected(1000))
+	{
+		ui->lab_message->setText(tr("connect failed : %1").arg(m_rqslogin->error()));
+		return;
+	}
+	m_rqslogin->login(ui->edt_username->text(),
+					  ui->edt_passwd->text(),
+					  ui->cb_role->currentIndex());
+	ui->lab_message->setText(tr("begin to login"));
+	if(!m_rqslogin->waitForLogined(1000))
+	{
+		ui->lab_message->setText(tr("login failed : ").arg(m_rqslogin->error()));
+		return;
+	}
+	done(QDialog::Accepted);
+//	m_rqsloginsrv->login(ui->edt_username->text(),
+//		      ui->edt_passwd->text(),
+//		      ui->cb_role->currentIndex(),
+//                      host.m_address,
+//                      host.m_port);
 //    JLoginService loginsvc(this);
 //    JCode code;
 //    if((code=loginsvc.login(ui->edt_username->text(),
@@ -123,44 +139,44 @@ void JDlgLogin::on_edt_passwd_editingFinished()
 //    ui->lab_message->setText(tr("connecting to server %1").arg(ui->cb_server->getServer().toString()));
 //}
 
-void JDlgLogin::on_loginsrv_loginMsg(JCode code)
-{
-    //qDebug()<<"on_loginsrv_loginMsg : "<<code;
-//    qDebug()<<loginMsg[code];
-    ui->lab_message->setText(loginMsg[code]);
-    if(code==EL_SUCCESS) done(QDialog::Accepted);
-//    switch(code)
-//    {
-//    case 0:
-//	outputLoginMsg("login success");
-//	this->done(QDialog::Accepted);
-//	break;
-//    case 1:
-//	outputLoginMsg("no such user");
-//	break;
-//    case 2:
-//	outputLoginMsg("password wrong");
-//	break;
-//    case 3:
-//	outputLoginMsg("no such role");
-//	break;
-//    case LC_CONNECTED:
-//	outputLoginMsg("connected");
-//	break;
-//    case LC_UNWRITABLE:
-//	outputLoginMsg("socket can not write");
-//	break;
-//    case LC_DISCONNECTED:
-//	outputLoginMsg("socket disconnected");
-//	break;
-//    case JLoginService::LM_BEGIN_TO_LOGIN:
-//	outputLoginMsg("begin to login");
-//	break;
-//	case 0x40:
-//	outputLoginMsg("has already logined.");
-//	break;
-//    }
-}
+//void JDlgLogin::on_loginsrv_loginMsg(JCode code)
+//{
+//    //qDebug()<<"on_loginsrv_loginMsg : "<<code;
+////    qDebug()<<loginMsg[code];
+//    ui->lab_message->setText(loginMsg[code]);
+//    if(code==EL_SUCCESS) done(QDialog::Accepted);
+////    switch(code)
+////    {
+////    case 0:
+////	outputLoginMsg("login success");
+////	this->done(QDialog::Accepted);
+////	break;
+////    case 1:
+////	outputLoginMsg("no such user");
+////	break;
+////    case 2:
+////	outputLoginMsg("password wrong");
+////	break;
+////    case 3:
+////	outputLoginMsg("no such role");
+////	break;
+////    case LC_CONNECTED:
+////	outputLoginMsg("connected");
+////	break;
+////    case LC_UNWRITABLE:
+////	outputLoginMsg("socket can not write");
+////	break;
+////    case LC_DISCONNECTED:
+////	outputLoginMsg("socket disconnected");
+////	break;
+////    case JLoginService::LM_BEGIN_TO_LOGIN:
+////	outputLoginMsg("begin to login");
+////	break;
+////	case 0x40:
+////	outputLoginMsg("has already logined.");
+////	break;
+////    }
+//}
 
 //void JDlgLogin::outputLoginMsg(const char* msg)
 //{

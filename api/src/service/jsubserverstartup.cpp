@@ -1,15 +1,15 @@
 #include "service/jsubserverstartup.h"
 
-#include "service/jportservice.h"
-#include "service/jloginservice2.h"
-#include "service/jgsinfoservice.h"
+#include "service/jrequestport.h"
+#include "service/jrequestlogin.h"
+#include "service/jsendgsinfo.h"
 #include "service/jcryprorecorder.h"
 
 JSubServerStartup::JSubServerStartup()
 {
-	m_ps=new JPortService;
-	m_login=new JLoginService2;
-	m_gis=new JGsInfoService;
+	m_ps=new JRequestPort;
+	m_login=new JRequestLogin;
+	m_gis=new JSendGsInfo;
 }
 
 JSubServerStartup::ERuturnValue JSubServerStartup::startup()const

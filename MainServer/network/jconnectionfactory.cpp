@@ -20,9 +20,9 @@ JConnectionBase* JConnectionFactory::createConnection(EServerType st,QTcpSocket*
     case EST_GAMEINFO:
         return new JGameInfoConnection(socket,parent);
     case EST_FREEPORT:
-        return new JPortConnection(JPortService::EPS_FREE,socket,parent);
+        return new JPortConnection(JPortManager::EPS_FREE,socket,parent);
     case EST_SECRETPORT:
-        return new JPortConnection(JPortService::EPS_SECRET,socket,parent);
+        return new JPortConnection(JPortManager::EPS_SECRET,socket,parent);
 	case EST_SUBSERVER:
 		return new JSubServerConnection(socket,parent);
     case EST_MAX:

@@ -9,7 +9,7 @@ namespace Ui {
     class MainWindow;
 }
 
-class JGameInfoService;
+class JRequestGameInfo;
 class QListWidgetItem;
 
 class MainWindow : public QMainWindow {
@@ -33,7 +33,7 @@ private slots:
 	void on_gameinfosrv_gameListReady();
     void on_gameinfosrv_gameInfoReady(JID gameid);
 private:
-    JGameInfoService* m_gis;
+    JRequestGameInfo* m_gis;
 	JID m_currentId;
 };
 

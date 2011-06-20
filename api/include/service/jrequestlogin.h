@@ -1,18 +1,18 @@
-#ifndef JLOGINSERVICE2_H
-#define JLOGINSERVICE2_H
+#ifndef JREQUESTLOGIN_H
+#define JREQUESTLOGIN_H
 
 #include <QObject>
 
 #include "global/jglobal.h"
 
 class QHostAddress;
-class JLoginSocket;
+class JRequestLoginSocket;
 
-class JLoginService2 : public QObject
+class JRequestLogin : public QObject
 {
     Q_OBJECT
 public:
-    explicit JLoginService2(QObject *parent = 0);
+    explicit JRequestLogin(QObject *parent = 0);
     void connectToHost(const QHostAddress& address,
                        quint16 port);
     void login(const QString& loginname,
@@ -38,8 +38,8 @@ protected slots:
     void on_socket_loginCode(JCode);
 private:
     EState m_state;
-    JLoginSocket *m_socket;
+	JRequestLoginSocket *m_socket;
     int m_error;
 };
 
-#endif // JLOGINSERVICE2_H
+#endif // JREQUESTLOGIN_H

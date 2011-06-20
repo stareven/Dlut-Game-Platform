@@ -1,16 +1,16 @@
-#include "jgameinfosocket.h"
+#include "jrequestgameinfosocket.h"
 
 #include <QDataStream>
 
 #include "global/ssubserver.h"
 #include "global/jversion.h"
 
-JGameInfoSocket::JGameInfoSocket(QObject *parent) :
+JRequestGameInfoSocket::JRequestGameInfoSocket(QObject *parent) :
     JSocketBase(parent)
 {
 }
 
-void JGameInfoSocket::sendCrypro(JID id,const QByteArray& crypro)
+void JRequestGameInfoSocket::sendCrypro(JID id,const QByteArray& crypro)
 {
     QByteArray outdata;
 	QDataStream outstream(&outdata,QIODevice::WriteOnly);
@@ -19,7 +19,7 @@ void JGameInfoSocket::sendCrypro(JID id,const QByteArray& crypro)
     sendData(outdata);
 }
 
-//void JGameInfoSocket::rqsIdList()
+//void JRequestGameInfoSocket::rqsIdList()
 //{
 //    QByteArray outdata;
 //    QDataStream outstream(&outdata,QIODevice::WriteOnly);
@@ -27,7 +27,7 @@ void JGameInfoSocket::sendCrypro(JID id,const QByteArray& crypro)
 //    sendData(outdata);
 //}
 
-void JGameInfoSocket::rqsGameList()
+void JRequestGameInfoSocket::rqsGameList()
 {
     QByteArray outdata;
     QDataStream outstream(&outdata,QIODevice::WriteOnly);
@@ -35,7 +35,7 @@ void JGameInfoSocket::rqsGameList()
     sendData(outdata);
 }
 
-void JGameInfoSocket::rqsServers(JID gameId,const JVersion& version)
+void JRequestGameInfoSocket::rqsServers(JID gameId,const JVersion& version)
 {
     QByteArray outdata;
     QDataStream outstream(&outdata,QIODevice::WriteOnly);
@@ -45,7 +45,7 @@ void JGameInfoSocket::rqsServers(JID gameId,const JVersion& version)
     sendData(outdata);
 }
 
-void JGameInfoSocket::dataProcess(const QByteArray& data)
+void JRequestGameInfoSocket::dataProcess(const QByteArray& data)
 {
     QDataStream stream(data);
     JID protocol;

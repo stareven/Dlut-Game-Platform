@@ -1,12 +1,12 @@
-#ifndef JGSINFOSERVICE_H
-#define JGSINFOSERVICE_H
+#ifndef JSENDGSINFO_H
+#define JSENDGSINFO_H
 
 #include <QObject>
 
 #include "global/jglobal.h"
 
 class QHostAddress;
-class JGsInfoSocket;
+class JSendGsInfoSocket;
 class SGameInfo;
 namespace SubServer
 {
@@ -15,11 +15,11 @@ namespace SubServer
 }
 class JVersion;
 
-class JGsInfoService : public QObject
+class JSendGsInfo : public QObject
 {
     Q_OBJECT
 public:
-    explicit JGsInfoService(QObject *parent = 0);
+    explicit JSendGsInfo(QObject *parent = 0);
     void connectToHost(const QHostAddress& address,
                        quint16 port);
     void sendCrypro(JID,const QByteArray&);
@@ -54,9 +54,9 @@ protected slots:
     void on_socket_SocketCode(JCode);
 private:
     EState m_state;
-    JGsInfoSocket* m_socket;
+	JSendGsInfoSocket* m_socket;
     int m_error;
     bool m_plh;
 };
 
-#endif // JGSINFOSERVICE_H
+#endif // JSENDGSINFO_H

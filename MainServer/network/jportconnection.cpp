@@ -6,11 +6,11 @@
 #include "global/eportsrv.h"
 #include "service/jloginhash.h"
 
-JPortConnection::JPortConnection(JPortService::EPortServer port,QTcpSocket* socket,QObject *parent) :
+JPortConnection::JPortConnection(JPortManager::EPortServer port,QTcpSocket* socket,QObject *parent) :
     JConnectionBase(socket,parent),
     m_srv(port)
 {
-    m_passLoginHash=(port==JPortService::EPS_FREE);
+    m_passLoginHash=(port==JPortManager::EPS_FREE);
 }
 
 void JPortConnection::dataProcess(const QByteArray& data)

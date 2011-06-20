@@ -1,5 +1,5 @@
-#ifndef JLOGINSOCKET_H
-#define JLOGINSOCKET_H
+#ifndef JREQUESTLOGINSOCKET_H
+#define JREQUESTLOGINSOCKET_H
 
 #include <QObject>
 
@@ -8,11 +8,11 @@
 class QTcpSocket;
 class QHostAddress;
 
-class JLoginSocket : public QObject
+class JRequestLoginSocket : public QObject
 {
 Q_OBJECT
 public:
-    explicit JLoginSocket(QObject *parent = 0);
+    explicit JRequestLoginSocket(QObject *parent = 0);
 
     void login(const QString& loginname,const QString& passwd,const JID& role);
     void connectToHost(const QHostAddress& address,
@@ -34,4 +34,4 @@ public:
     JID getUserId()const;
     const QByteArray& getCrypro()const;
 };
-#endif // JLOGINSOCKET_H
+#endif // JREQUESTLOGINSOCKET_H

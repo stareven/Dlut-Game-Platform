@@ -12,7 +12,7 @@ namespace Ui {
 
 #include <QAbstractSocket>
 
-class JLoginService;
+class JRequestLogin;
 
 class JDlgLogin : public QDialog {
     Q_OBJECT
@@ -31,13 +31,13 @@ private:
     JSettingLogin m_remember;
 
     //bool is_accepted;
-    JLoginService *m_loginsrv;
+	JRequestLogin *m_rqslogin;
 
 private slots:
     void on_edt_passwd_editingFinished();
     void on_edt_username_editingFinished();
 //    void on_cb_server_selectUpdate();
-    void on_loginsrv_loginMsg(JCode);
+//    void on_loginsrv_loginMsg(JCode);
 signals:
     void autoLogin();
 private:

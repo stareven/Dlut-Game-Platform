@@ -13,18 +13,17 @@ SOURCES += main/main.cpp \
     gui/dlglogin/shallserver.cpp \
     gui/dlglogin/settings/jrememberpassword.cpp \
     gui/dlglogin/settings/jsettinglogin.cpp \
-    network/jgameinfosocket.cpp \
-    service/jgameinfoservice.cpp \
-    service/jportservice.cpp \
+    network/jrequestgameinfosocket.cpp \
+	service/jrequestgameinfo.cpp \
+	service/jdownloadrun.cpp \
     ../api/src/global/jversion.cpp \
     ../api/src/global/ssubserver.cpp \
-    service/jdownloadrun.cpp \
     ../api/src/network/jsocketbase.cpp \
     ../api/src/service/jcryprorecorder.cpp \
-    ../api/src/service/jloginservice2.cpp \
-    ../api/src/service/jloginservice.cpp \
-    ../api/src/network/jloginsocket.cpp \
-    ../api/src/network/jportsocket.cpp
+    ../api/src/service/jrequestlogin.cpp \
+	../api/src/service/jrequestport.cpp \
+    ../api/src/network/jrequestloginsocket.cpp \
+    ../api/src/network/jrequestportsocket.cpp
 HEADERS += gui/mainwindow.h \
     gui/dlglogin/jcomboselectserver.h \
     gui/dlglogin/jdlglogin.h \
@@ -38,16 +37,15 @@ HEADERS += gui/mainwindow.h \
     ../api/include/global/jelapsedtimer.h \
     ../api/include/global/ssubserver.h \
     ../api/include/network/jsocketbase.h \
-    network/jgameinfosocket.h \
-    service/jgameinfoservice.h \
-    ../api/include/global/eportsrv.h \
-    service/jportservice.h \
+    network/jrequestgameinfosocket.h \
+    service/jrequestgameinfo.h \
+	../api/include/global/eportsrv.h \
     service/jdownloadrun.h \
     ../api/include/service/jcryprorecorder.h \
-    ../api/include/service/jloginservice2.h \
-    ../api/include/service/jloginservice.h \
-    ../api/include/network/jloginsocket.h \
-    ../api/include/network/jportsocket.h
+    ../api/include/service/jrequestlogin.h \
+	../api/include/service/jrequestport.h \
+    ../api/include/network/jrequestloginsocket.h \
+    ../api/include/network/jrequestportsocket.h
 FORMS += gui/mainwindow.ui \
     gui/dlglogin/jdlglogin.ui \
     gui/dlglogin/jdlgnewserver.ui

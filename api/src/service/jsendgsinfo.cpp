@@ -1,16 +1,15 @@
-#include "service/jgsinfoservice.h"
-
+#include "service/jsendgsinfo.h"
 
 #include <QCoreApplication>
 
-#include "network/jgsinfosocket.h"
+#include "network/jsendgsinfosocket.h"
 #include "global/jelapsedtimer.h"
 
-JGsInfoService::JGsInfoService(QObject *parent) :
+JSendGsInfo::JSendGsInfo(QObject *parent) :
     QObject(parent)
 {
     m_state=ES_Close;
-    m_socket=new JGsInfoSocket(this);
+    m_socket=new JSendGsInfoSocket(this);
     m_error=0;
     m_plh=false;
     connect(m_socket,SIGNAL(rcvPassLoginHash(bool)),SLOT(on_socket_rcvPassLoginHash(bool)));
@@ -18,38 +17,38 @@ JGsInfoService::JGsInfoService(QObject *parent) :
     connect(m_socket,SIGNAL(SocketCode(JCode)),SLOT(on_socket_SocketCode(JCode)));
 }
 
-void JGsInfoService::connectToHost(const QHostAddress& address,
+void JSendGsInfo::connectToHost(const QHostAddress& address,
                    quint16 port)
 {
     m_state=ES_Connecting;
     m_socket->connectToHost(address,port);
 }
 
-void JGsInfoService::sendCrypro(JID id,const QByteArray& data)
+void JSendGsInfo::sendCrypro(JID id,const QByteArray& data)
 {
     m_state=ES_SendingPlh;
     m_socket->sendCrypro(id,data);
 }
 
-//void JGsInfoService::sendGsInfo(const SGameInfo& gi)
+//void JSendGsInfo::sendGsInfo(const SGameInfo& gi)
 //{
 //    m_state=ES_SendingGi;
 //    m_socket->sendGsInfo(gi);
 //}
 
-void JGsInfoService::sendServerInfo(const SubServer::SSubServer& ss)
+void JSendGsInfo::sendServerInfo(const SubServer::SSubServer& ss)
 {
 	m_state=ES_Sending;
 	m_socket->sendServerInfo (ss);
 }
 
-void JGsInfoService::sendGameInfo(const SubServer::SGameInfo2& gi)
+void JSendGsInfo::sendGameInfo(const SubServer::SGameInfo2& gi)
 {
 	m_state=ES_Sending;
 	m_socket->sendGameInfo (gi);
 }
 
-void JGsInfoService::sendRelation(JID serverId,
+void JSendGsInfo::sendRelation(JID serverId,
 								  JID gameId,
 								  const JVersion& gameVersion)
 {
@@ -57,12 +56,12 @@ void JGsInfoService::sendRelation(JID serverId,
 	m_socket->sendRelation(serverId,gameId,gameVersion);
 }
 
-JGsInfoService::EState JGsInfoService::state()const
+JSendGsInfo::EState JSendGsInfo::state()const
 {
     return m_state;
 }
 
-bool JGsInfoService::waitForConnected(int msecs)
+bool JSendGsInfo::waitForConnected(int msecs)
 {
     JElapsedTimer timer;
     timer.start();
@@ -77,7 +76,7 @@ bool JGsInfoService::waitForConnected(int msecs)
     return state()==ES_Connected;
 }
 
-bool JGsInfoService::waitForPassLoginHash(int msecs)
+bool JSendGsInfo::waitForPassLoginHash(int msecs)
 {
     JElapsedTimer timer;
     timer.start();
@@ -92,7 +91,7 @@ bool JGsInfoService::waitForPassLoginHash(int msecs)
     return state()==ES_PlhSuccess;
 }
 
-bool JGsInfoService::waitForSend(int msecs)
+bool JSendGsInfo::waitForSend(int msecs)
 {
     JElapsedTimer timer;
     timer.start();
@@ -107,7 +106,7 @@ bool JGsInfoService::waitForSend(int msecs)
 	return state()==ES_SendSuccess;
 }
 
-const QString& JGsInfoService::error()const
+const QString& JSendGsInfo::error()const
 {
     static const QString errors[]={
         tr("no error"),//0
@@ -119,9 +118,9 @@ const QString& JGsInfoService::error()const
     return errors[m_error];
 }
 
-void JGsInfoService::on_socket_rcvPassLoginHash(bool plh)
+void JSendGsInfo::on_socket_rcvPassLoginHash(bool plh)
 {
-//    qDebug()<<"JGsInfoService::on_socket_rcvPassLoginHash"<<plh;
+//    qDebug()<<"JSendGsInfo::on_socket_rcvPassLoginHash"<<plh;
     if(plh)
     {
         m_state=ES_PlhSuccess;
@@ -132,9 +131,9 @@ void JGsInfoService::on_socket_rcvPassLoginHash(bool plh)
     }
 }
 
-void JGsInfoService::on_socket_rcvSendCode(JID protocol,JCode code)
+void JSendGsInfo::on_socket_rcvSendCode(JID protocol,JCode code)
 {
-	qDebug()<<"JGsInfoService::on_socket_rcvSendCode . protocol="
+	qDebug()<<"JSendGsInfo::on_socket_rcvSendCode . protocol="
 			<<protocol
 			<<"code="
 			<<code;
@@ -146,7 +145,7 @@ void JGsInfoService::on_socket_rcvSendCode(JID protocol,JCode code)
 		m_state=ES_Error;
 		m_error=4;
 	}
-//    qDebug()<<"JGsInfoService::on_socket_rcvGsInfo";
+//    qDebug()<<"JSendGsInfo::on_socket_rcvGsInfo";
 //    if(id<0)
 //    {
 //        m_state=ES_Error;
@@ -156,7 +155,7 @@ void JGsInfoService::on_socket_rcvSendCode(JID protocol,JCode code)
 //    }
 }
 
-void JGsInfoService::on_socket_SocketCode(JCode code)
+void JSendGsInfo::on_socket_SocketCode(JCode code)
 {
     switch(code)
     {

@@ -1,24 +1,24 @@
-#include "service/jportservice.h"
+#include "service/jrequestport.h"
 
 #include <QCoreApplication>
 
-#include "network/jportsocket.h"
+#include "network/jrequestportsocket.h"
 #include "service/jcryprorecorder.h"
 #include "global/jelapsedtimer.h"
 
-QMap<EServerType,SHost> JPortService::s_ports;
+QMap<EServerType,SHost> JRequestPort::s_ports;
 
-JPortService::JPortService(QObject *parent) :
+JRequestPort::JRequestPort(QObject *parent) :
     QObject(parent)
 {
 }
 
-void JPortService::setServerPort(EServerType type,const SHost& host)
+void JRequestPort::setServerPort(EServerType type,const SHost& host)
 {
     s_ports.insert(type,host);
 }
 
-SHost JPortService::rqsServerPort(EServerType type)
+SHost JRequestPort::rqsServerPort(EServerType type)
 {
     if(s_ports.contains(type))
     {
@@ -29,7 +29,7 @@ SHost JPortService::rqsServerPort(EServerType type)
         qDebug()<<"free port not set!";
         return SHost(QHostAddress("127.0.0.1"),37373);
     }
-    JPortSocket socket;
+    JRequestPortSocket socket;
     SHost host;
     if(isInFree(type))
     {
@@ -77,7 +77,7 @@ SHost JPortService::rqsServerPort(EServerType type)
     return s_ports.value(type);
 }
 
-bool JPortService::passLoginHash(JPortSocket& socket)
+bool JRequestPort::passLoginHash(JRequestPortSocket& socket)
 {
     JElapsedTimer t;
     JCryproRecorder cr;
@@ -96,7 +96,7 @@ bool JPortService::passLoginHash(JPortSocket& socket)
         case -1:
             if(cr.getUserId()==-1 || cr.getCrypro().isEmpty())
             {
-                qDebug()<<"JPortService::passLoginHash : have not record the login hash . can not request id list!";
+                qDebug()<<"JRequestPort::passLoginHash : have not record the login hash . can not request id list!";
                 return false;
             }
             socket.sendCrypro(cr.getUserId(),cr.getCrypro());
@@ -111,18 +111,18 @@ bool JPortService::passLoginHash(JPortSocket& socket)
     return false;
 }
 
-void JPortService::on_socket_rcvPassLoginHash(bool plh)
+void JRequestPort::on_socket_rcvPassLoginHash(bool plh)
 {
-//    qDebug()<<"JPortService::on_socket_rcvPassLoginHash : "<<plh;
+//    qDebug()<<"JRequestPort::on_socket_rcvPassLoginHash : "<<plh;
     m_plh=plh;
 }
 
-void JPortService::on_socket_rcvServerPort(quint16 port)
+void JRequestPort::on_socket_rcvServerPort(quint16 port)
 {
     m_port=port;
 }
 
-SHost JPortService::getServerPort(EServerType type)const
+SHost JRequestPort::getServerPort(EServerType type)const
 {
     return s_ports.value(type);
 }
