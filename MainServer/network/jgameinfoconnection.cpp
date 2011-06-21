@@ -44,5 +44,18 @@ void JGameInfoConnection::afterPlh(const QByteArray& data)
             sendData(outdata);
         }
 		break;
+	case SubServer::EGP_ServerInfo:
+		{
+			QByteArray outdata;
+			QDataStream outstream(&outdata,QIODevice::WriteOnly);
+			SubServer::JGameInfoSrv gisp;
+			JID serverId;
+			stream>>serverId;
+			SubServer::SSubServer si;
+			si=gisp.getServerInfo(serverId);
+			outstream<<(JID)SubServer::EGP_ServerInfo;
+			outstream<<si;
+			sendData(outdata);
+		}
     }
 }

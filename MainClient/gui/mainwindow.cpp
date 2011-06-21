@@ -109,6 +109,4 @@ void MainWindow::on_btn_download_run_clicked()
 			dr.start(gi.m_name,this,si.m_address,si.m_port);
 		}
 	}
-
-
 }

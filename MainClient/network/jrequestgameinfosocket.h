@@ -10,6 +10,7 @@ class QHostAddress;
 namespace SubServer
 {
 	class SGameInfo2;
+	class SSubServer;
 }
 class JVersion;
 
@@ -29,6 +30,7 @@ signals:
 	void rcvPassLoginHash(bool);
 	void rcvGameList(const QList<SubServer::SGameInfo2>&);
 	void rcvServers(JID,const JVersion&,const QSet<JID>&);
+	void rcvServerInfo(const SubServer::SSubServer&);
 //    void rcvGameInfo(const SGameInfo&);
 //private:
 //    bool m_passLoginHash;

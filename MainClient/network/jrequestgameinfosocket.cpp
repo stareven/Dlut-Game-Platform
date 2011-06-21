@@ -45,6 +45,15 @@ void JRequestGameInfoSocket::rqsServers(JID gameId,const JVersion& version)
     sendData(outdata);
 }
 
+void JRequestGameInfoSocket::rqsServerInfo(JID serverId)
+{
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<(JID)SubServer::EGP_ServerInfo;
+	outstream<<serverId;
+	sendData(outdata);
+}
+
 void JRequestGameInfoSocket::dataProcess(const QByteArray& data)
 {
     QDataStream stream(data);
@@ -77,5 +86,11 @@ void JRequestGameInfoSocket::dataProcess(const QByteArray& data)
 			emit rcvServers(gameId,version,servers);
         }
         break;
+	case SubServer::EGP_ServerInfo:
+		{
+			SubServer::SSubServer ss;
+			stream>>ss;
+			emit rcvServerInfo(ss);
+		}
     }
 }

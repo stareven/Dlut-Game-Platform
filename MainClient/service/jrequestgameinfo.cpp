@@ -19,6 +19,7 @@ JRequestGameInfo::JRequestGameInfo(QObject *parent) :
 //    connect(m_socket,SIGNAL(rcvGameInfo(SGameInfo)),SLOT(on_socket_rcvGameInfo(SGameInfo)));
 	connect(m_socket,SIGNAL(rcvGameList(QList<SubServer::SGameInfo2>)),SLOT(on_socket_rcvGameList(QList<SubServer::SGameInfo2>)));
 	connect(m_socket,SIGNAL(rcvServers(JID,JVersion,QSet<JID>)),SLOT(on_socket_rcvServers(JID,JVersion,QSet<JID>)));
+	connect(m_socket,SIGNAL(rcvServerInfo(SubServer::SSubServer)),SLOT(on_socket_rcvServerInfo(SubServer::SSubServer)));
     m_plh=-1;
 	JRequestPort ps;
     SHost host=ps.rqsServerPort(EST_GAMEINFO);
@@ -169,6 +170,11 @@ void JRequestGameInfo::on_socket_rcvServers(JID gameId,const JVersion& version,c
 	m_relations[gameId].unite(servers);
 }
 
+void JRequestGameInfo::on_socket_rcvServerInfo(const SubServer::SSubServer& si)
+{
+	m_servers.insert(si.m_serverId,si);
+}
+
 //void JRequestGameInfo::on_socket_rcvGameInfo(const SGameInfo& gi)
 //{
 ////    qDebug()<<"JRequestGameInfo::on_socket_rcvGameInfo : "<<gi.m_gameId;
@@ -189,4 +195,14 @@ const QMap<JID,SubServer::SGameInfo2>& JRequestGameInfo::getGames()const
 SubServer::SGameInfo2 JRequestGameInfo::getGameInfo(JID gameid)const
 {
 	return m_games.value(gameid);
+}
+
+QSet<JID> JRequestGameInfo::getServerListOnGame(JID gameId)const
+{
+	return m_relations.value(gameId);
+}
+
+SubServer::SSubServer JRequestGameInfo::getServerInfo(JID serverId)const
+{
+	return m_servers.value(serverId);
 }

@@ -64,6 +64,7 @@ namespace SubServer{
 	enum EGameInfoProtocol{
 		EGP_GameList,
 		EGP_Servers,
+		EGP_ServerInfo,
 	};
 }
 

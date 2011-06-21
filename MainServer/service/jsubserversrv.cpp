@@ -64,6 +64,11 @@ QSet<JID> SubServer::JSubServerData::getServers(JID gameId,JVersion version)cons
 	return s_relations.value(gameId).value(version);
 }
 
+SubServer::SSubServer SubServer::JSubServerData::getServerInfo(JID serverId)const
+{
+	return s_servers.value(serverId);
+}
+
 SubServer::JSubServerData::JSubServerData()
 {
 }
@@ -137,4 +142,9 @@ QList<SubServer::SGameInfo2> SubServer::JGameInfoSrv::getGameList()const
 QSet<JID> SubServer::JGameInfoSrv::getServers(JID gameId,JVersion version)const
 {
 	return m_data.getServers(gameId,version);
+}
+
+SubServer::SSubServer SubServer::JGameInfoSrv::getServerInfo(JID serverId)const
+{
+	return m_data.getServerInfo(serverId);
 }

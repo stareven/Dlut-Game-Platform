@@ -18,6 +18,7 @@ void JDownloadRun::start(const QString& gamename,
 	m_parent=parent;
 	m_address=address;
 	m_port=port;
+	qDebug()<<"gamename:"<<m_gamename<<"address:"<<m_address.toString()<<"port:"<<m_port;
 	download();
 	run();
 }
@@ -29,6 +30,8 @@ void JDownloadRun::download()
 
 void JDownloadRun::run()
 {
+	qDebug()<<"zan shi bu xiang run.";
+	return;
 	QString path=getPath();
 	QProcess *process=new QProcess(m_parent);
 	process->start(path);
