@@ -6,6 +6,8 @@
 #include <QString>
 #include <QHostAddress>
 
+#include "global/jversion.h"
+
 class QObject;
 
 class JDownloadRun
@@ -13,15 +15,17 @@ class JDownloadRun
 public:
     JDownloadRun();
 	void start(const QString& gamename,
+			   const JVersion& version,
 			   QObject* parent,
 			   const QHostAddress& address,
 			   quint16 port);
 private:
-	void download();
-	void run();
+	bool download();
+	bool run();
 	QString getPath();
 
 	QString m_gamename;
+	JVersion m_version;
 	QObject* m_parent;
 	QHostAddress m_address;
 	quint16 m_port;

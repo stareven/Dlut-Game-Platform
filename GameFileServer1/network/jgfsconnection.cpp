@@ -30,7 +30,7 @@ void JGfsConnection::dataProcess(const QByteArray& data)
 		size=file.size();
 	}
 	const qint64 SIZE_PIECE=8*1024;
-	qint64 n=size/SIZE_PIECE;
+	qint64 n=(size+SIZE_PIECE-1)/SIZE_PIECE;
 	{
 		QByteArray outdata;
 		QDataStream outstream(&outdata,QIODevice::WriteOnly);

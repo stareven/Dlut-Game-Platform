@@ -23,7 +23,8 @@ SOURCES += main/main.cpp \
     ../api/src/service/jrequestlogin.cpp \
 	../api/src/service/jrequestport.cpp \
     ../api/src/network/jrequestloginsocket.cpp \
-    ../api/src/network/jrequestportsocket.cpp
+    ../api/src/network/jrequestportsocket.cpp \
+    network/jdownloadgamefilesocket.cpp
 HEADERS += gui/mainwindow.h \
     gui/dlglogin/jcomboselectserver.h \
     gui/dlglogin/jdlglogin.h \
@@ -45,7 +46,8 @@ HEADERS += gui/mainwindow.h \
     ../api/include/service/jrequestlogin.h \
 	../api/include/service/jrequestport.h \
     ../api/include/network/jrequestloginsocket.h \
-    ../api/include/network/jrequestportsocket.h
+    ../api/include/network/jrequestportsocket.h \
+    network/jdownloadgamefilesocket.h
 FORMS += gui/mainwindow.ui \
     gui/dlglogin/jdlglogin.ui \
     gui/dlglogin/jdlgnewserver.ui

@@ -12,6 +12,7 @@ JSocketBase::JSocketBase(QObject *parent) :
     m_socket = new QTcpSocket(this);
     m_socket->setObjectName("socket");
     QMetaObject::connectSlotsByName(this);
+	m_size=0;
 }
 
 void JSocketBase::connectToHost(const QHostAddress& address,
@@ -49,19 +50,23 @@ void JSocketBase::on_socket_disconnected()
 void JSocketBase::on_socket_readyRead()
 {
     //qDebug()<<"JSocketBase::on_socket_readyRead";
-    static int size=0;
+//    static int size=0;
     while(m_socket->bytesAvailable()>0)
     {
-        if(size>0)
-        {
-            //qDebug()<<"size="<<size;
-            QByteArray data=m_socket->read(size);
-            //qDebug()<<"read data size="<<data.size();
-            size=0;
-            dataProcess(data);
+		if(m_size>0)
+		{
+			QByteArray readdata=m_socket->read(m_size-m_data.size());
+			m_data+=readdata;
+			qDebug()<<"size="<<m_size<<"read data size="<<m_data.size();
+			if(m_data.size()==m_size)
+			{
+				dataProcess(m_data);
+				m_data.clear();
+				m_size=0;
+			}
         }else if(m_socket->bytesAvailable()>=sizeof(int)){//size==0
             QDataStream stream(m_socket);
-            stream>>size;
+			stream>>m_size;
         }
     }
 }
@@ -99,4 +104,9 @@ void JSocketBase::sendData(const QByteArray& data)
     QDataStream outsocketstream(m_socket);
     outsocketstream<<size;
     m_socket->write(data);
+}
+
+QAbstractSocket::SocketState JSocketBase::socketState()const
+{
+	return m_socket->state();
 }

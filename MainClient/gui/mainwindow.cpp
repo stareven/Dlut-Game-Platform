@@ -106,7 +106,7 @@ void MainWindow::on_btn_download_run_clicked()
 		SubServer::SSubServer si=m_gis->getServerInfo(serverId);
 		if( SubServer::SSubServer::ET_GameFileServer ==si.m_type)
 		{
-			dr.start(gi.m_name,this,si.m_address,si.m_port);
+			dr.start(gi.m_name,gi.m_version,this,si.m_address,si.m_port);
 		}
 	}
 }

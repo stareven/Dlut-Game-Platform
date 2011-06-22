@@ -19,6 +19,8 @@ public:
     bool isConnected()const;
 private:
     QTcpSocket *m_socket;
+	int m_size;
+	QByteArray m_data;
 
 signals:
     void SocketCode(JCode code);
@@ -33,6 +35,7 @@ protected:
     virtual void dataProcess(const QByteArray&)=0;
     void sendData(const QByteArray&);
     void closeConnect();
+	QAbstractSocket::SocketState socketState()const;
 };
 
 #endif // JSOCKETBASE_H
