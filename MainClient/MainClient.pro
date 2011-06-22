@@ -47,7 +47,8 @@ HEADERS += gui/mainwindow.h \
 	../api/include/service/jrequestport.h \
     ../api/include/network/jrequestloginsocket.h \
     ../api/include/network/jrequestportsocket.h \
-    network/jdownloadgamefilesocket.h
+    network/jdownloadgamefilesocket.h \
+    ../api/include/global/magicnumber.h
 FORMS += gui/mainwindow.ui \
     gui/dlglogin/jdlglogin.ui \
     gui/dlglogin/jdlgnewserver.ui

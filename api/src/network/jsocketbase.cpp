@@ -66,7 +66,13 @@ void JSocketBase::on_socket_readyRead()
 			}
         }else if(m_socket->bytesAvailable()>=sizeof(int)){//size==0
             QDataStream stream(m_socket);
+			MagicNumber::JMagicNumber mn;
+			stream>>mn;
 			stream>>m_size;
+			if(mn != getMagicNumber())
+			{
+				qDebug()<<"magic number error:"<<mn<<getMagicNumber();
+			}
         }
     }
 }
@@ -102,6 +108,7 @@ void JSocketBase::sendData(const QByteArray& data)
     }
     int size=data.size();
     QDataStream outsocketstream(m_socket);
+	outsocketstream<<getMagicNumber();
     outsocketstream<<size;
     m_socket->write(data);
 }

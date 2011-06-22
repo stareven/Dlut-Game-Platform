@@ -30,7 +30,8 @@ HEADERS += \
 	../api/include/global/eportsrv.h \
 	../api/include/global/ssubserver.h \
     database/jsubserverdb.h \
-    database/jgameinfodb.h
+    database/jgameinfodb.h \
+    ../api/include/global/magicnumber.h
 SOURCES += main/main.cpp \
     network/jservertype.cpp \
     ../api/src/network/jconnectionbase.cpp \

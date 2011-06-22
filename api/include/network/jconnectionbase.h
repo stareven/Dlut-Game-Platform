@@ -4,6 +4,7 @@
 #include <QObject>
 
 #include "global/jglobal.h"
+#include "global/magicnumber.h"
 
 class QTcpSocket;
 
@@ -17,6 +18,8 @@ private:
     QTcpSocket* m_socket;
 private slots:
     void on_socket_readyRead();
+private:
+	virtual MagicNumber::JMagicNumber getMagicNumber()const=0;
 protected slots:
     virtual void on_socket_disconnected();
 protected:
