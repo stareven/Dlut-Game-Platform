@@ -17,6 +17,11 @@ protected:
 
 private:
     bool m_passLoginHash;
+private:
+	MagicNumber::JMagicNumber getMagicNumber()const
+	{
+		return MagicNumber::EMN_GetPort;
+	}
 };
 
 #endif // JPORTCONNECTION_H

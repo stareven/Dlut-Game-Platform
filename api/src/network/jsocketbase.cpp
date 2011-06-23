@@ -71,7 +71,7 @@ void JSocketBase::on_socket_readyRead()
 			stream>>m_size;
 			if(mn != getMagicNumber())
 			{
-				qDebug()<<"magic number error:"<<mn<<getMagicNumber();
+				qDebug()<<"magic number error:"<<metaObject()->className()<<mn<<getMagicNumber();
 			}
         }
     }

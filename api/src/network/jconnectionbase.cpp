@@ -31,7 +31,7 @@ void JConnectionBase::on_socket_readyRead()
             stream>>size;
 			if(mn != getMagicNumber())
 			{
-				qDebug()<<"magic number error:"<<mn<<getMagicNumber();
+				qDebug()<<"magic number error:"<<metaObject()->className()<<mn<<getMagicNumber();
 			}
         }
     }

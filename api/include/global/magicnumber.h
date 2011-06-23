@@ -13,19 +13,20 @@ namespace MagicNumber
 		EMN_GetGameInfo,
 		EMN_GetPort,
 		EMN_UploadSubServer,
+		EMN_DownloadGameClientFile,
 	};
 
 	typedef qint32 JMagicNumber;
 
-	inline JMagicNumber getMagicNumber(EMagicNumber mn)
-	{
-		JMagicNumber ret;
-		ret=('D' << 24 ) |
-			('G' << 16 ) |
-			('P' <<  8 ) |
-			mn;
-		return ret;
-	}
+//	inline JMagicNumber getMagicNumber(EMagicNumber mn)
+//	{
+//		JMagicNumber ret;
+//		ret=('D' << 24 ) |
+//			('G' << 16 ) |
+//			('P' <<  8 ) |
+//			mn;
+//		return ret;
+//	}
 }
 
 #endif // MAGICNUMBER_H

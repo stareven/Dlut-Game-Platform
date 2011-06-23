@@ -31,6 +31,11 @@ private:
 	QString m_path;
 	QFile *m_file;
 	bool m_isError;
+private:
+	MagicNumber::JMagicNumber getMagicNumber()const
+	{
+		return MagicNumber::EMN_DownloadGameClientFile;
+	}
 };
 
 #endif // JDOWNLOADGAMEFILESOCKET_H

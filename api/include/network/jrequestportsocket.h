@@ -16,6 +16,11 @@ protected:
 signals:
     void rcvPassLoginHash(bool);
     void rcvServerPort(quint16);
+private:
+	MagicNumber::JMagicNumber getMagicNumber()const
+	{
+		return MagicNumber::EMN_GetPort;
+	}
 };
 
 #endif // JREQUESTPORTSOCKET_H

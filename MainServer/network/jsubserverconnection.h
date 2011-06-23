@@ -14,6 +14,11 @@ private:
 	JID m_subserverId;
 protected:
 	void on_socket_disconnected();
+private:
+	MagicNumber::JMagicNumber getMagicNumber()const
+	{
+		return MagicNumber::EMN_UploadSubServer;
+	}
 };
 
 #endif // JSUBSERVERCONNECTION_H

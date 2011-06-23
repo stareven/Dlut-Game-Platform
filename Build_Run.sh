@@ -8,6 +8,9 @@ name=$1
 cd ${name}-build-desktop
 #make -B Makefile
 make
-echo finish build . start to run .
-echo
-./$name
+if [ $? -eq "0" ];
+then
+	echo finish build . start to run .
+	echo
+	./$name
+fi

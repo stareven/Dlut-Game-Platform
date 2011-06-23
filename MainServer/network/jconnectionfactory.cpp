@@ -26,7 +26,9 @@ JConnectionBase* JConnectionFactory::createConnection(EServerType st,QTcpSocket*
 	case EST_SUBSERVER:
 		return new JSubServerConnection(socket,parent);
     case EST_MAX:
-	return new JConnectionBase(socket,parent);
+		return NULL;
+//		return new JConnectionBase(socket,parent);
     }
-    return new JConnectionBase(socket,parent);
+//		return new JConnectionBase(socket,parent);
+	return NULL;
 }

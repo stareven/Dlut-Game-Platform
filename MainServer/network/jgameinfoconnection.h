@@ -10,6 +10,11 @@ public:
     explicit JGameInfoConnection(QTcpSocket* socket,QObject *parent = 0);
 protected:
 	void afterPlh(const QByteArray&);
+private:
+	MagicNumber::JMagicNumber getMagicNumber()const
+	{
+		return MagicNumber::EMN_GetGameInfo;
+	}
 };
 
 #endif // JGAMEINFOCONNECTION_H

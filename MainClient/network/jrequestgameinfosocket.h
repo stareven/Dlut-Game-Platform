@@ -42,6 +42,11 @@ signals:
 //    const QList<JID>& getIdList()const;
 //    const QList<SGameName>& getNameList()const;
 //    const SGameInfo& getGameInfo()const;
+private:
+	MagicNumber::JMagicNumber getMagicNumber()const
+	{
+		return MagicNumber::EMN_GetGameInfo;
+	}
 };
 
 //class QDataStream;
