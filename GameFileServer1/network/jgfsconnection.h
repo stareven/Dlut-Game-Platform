@@ -10,6 +10,11 @@ public:
 	explicit JGfsConnection(QTcpSocket* socket,QObject *parent = 0);
 protected:
 	void dataProcess(const QByteArray &);
+private:
+	MagicNumber::JMagicNumber getMagicNumber()const
+	{
+		return MagicNumber::EMN_DownloadGameClientFile;
+	}
 };
 
 #endif // JGFSCONNECTION_H

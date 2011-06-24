@@ -36,6 +36,7 @@ signals:
     void error(const QString&);
 protected slots:
     void on_socket_loginCode(JCode);
+	void on_socket_SocketCode(JCode);
 private:
     EState m_state;
 	JRequestLoginSocket *m_socket;

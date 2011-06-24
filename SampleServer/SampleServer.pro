@@ -28,7 +28,8 @@ HEADERS += main/jargumentanalyse.h \
 	../api/include/service/jrequestlogin.h \
 	../api/include/network/jsendgsinfosocket.h \
 	../api/include/service/jsendgsinfo.h \
-    ../api/include/service/jsubserverstartup.h
+    ../api/include/service/jsubserverstartup.h \
+    ../api/include/global/magicnumber.h
 SOURCES += main/jargumentanalyse.cpp \
 	main/main.cpp \
 	../api/src/network/jrequestloginsocket.cpp \

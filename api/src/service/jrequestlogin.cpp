@@ -14,6 +14,7 @@ JRequestLogin::JRequestLogin(QObject *parent) :
     m_state=ES_Close;
     m_error=0;
     connect(m_socket,SIGNAL(loginCode(JCode)),SLOT(on_socket_loginCode(JCode)));
+	connect(m_socket,SIGNAL(SocketCode(JCode)),SLOT(on_socket_SocketCode(JCode)));
 }
 
 void JRequestLogin::connectToHost(const QHostAddress& address,quint16 port)
@@ -65,24 +66,17 @@ bool JRequestLogin::waitForLogined(int msecs)
     return state()==ES_Logined;
 }
 
-//const static QString errors[]={
-//    "no error",
-//};
-
 const QString& JRequestLogin::error()const
 {
     static QString noerror="no error";
-    if(EL_SUCCESS==m_error||EL_CONNECTED==m_error) return noerror;
+	if(EL_SUCCESS==m_error) return noerror;
     return loginMsg[m_error];
 }
 
 void JRequestLogin::on_socket_loginCode(JCode code)
 {
     switch(code)
-    {
-    case EL_CONNECTED:
-        m_state=ES_Connected;
-        break;
+	{
     case EL_SUCCESS:
         m_state=ES_Logined;
         {
@@ -95,4 +89,19 @@ void JRequestLogin::on_socket_loginCode(JCode code)
         m_error=code;
         break;
     }
+}
+
+void JRequestLogin::on_socket_SocketCode(JCode code)
+{
+	switch((ENet)code)
+	{
+	case EN_CONNECTED:
+		m_state=ES_Connected;
+		m_error=EL_SUCCESS;
+		break;
+	case EN_DISCONNECTED:
+		m_state=ES_Error;
+		m_error=EL_SOCKET_DISCONNECTED;
+		break;
+	}
 }

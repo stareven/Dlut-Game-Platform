@@ -54,4 +54,5 @@ HEADERS += \
 	../api/include/network/jsendgsinfosocket.h \
 	../api/include/service/jsendgsinfo.h \
     ../api/include/service/jsubserverstartup.h \
-    service/jgamefilemanager.h
+    service/jgamefilemanager.h \
+    ../api/include/global/magicnumber.h

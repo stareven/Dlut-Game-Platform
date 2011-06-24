@@ -25,6 +25,11 @@ protected:
 signals:
 	void rcvPassLoginHash(bool);
 	void rcvSendCode(JID protocol,JCode code);
+private:
+	MagicNumber::JMagicNumber getMagicNumber()const
+	{
+		return MagicNumber::EMN_UploadSubServer;
+	}
 };
 
 #endif // JSENDGSINFOSOCKET_H
