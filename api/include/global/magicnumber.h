@@ -14,6 +14,7 @@ namespace MagicNumber
 		EMN_GetPort,
 		EMN_UploadSubServer,
 		EMN_DownloadGameClientFile,
+		EMN_GetUserInfo,
 	};
 
 	typedef qint32 JMagicNumber;

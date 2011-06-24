@@ -31,7 +31,10 @@ HEADERS += \
 	../api/include/global/ssubserver.h \
     database/jsubserverdb.h \
     database/jgameinfodb.h \
-    ../api/include/global/magicnumber.h
+    ../api/include/global/magicnumber.h \
+    ../api/include/global/userinfo.h \
+    network/juserinfoconnection.h \
+    database/juserinfodb.h
 SOURCES += main/main.cpp \
     network/jservertype.cpp \
     ../api/src/network/jconnectionbase.cpp \
@@ -51,4 +54,7 @@ SOURCES += main/main.cpp \
 	network/jplhconnectionbase.cpp \
     ../api/src/global/jversion.cpp \
     database/jsubserverdb.cpp \
-    database/jgameinfodb.cpp
+    database/jgameinfodb.cpp \
+	../api/src/global/userinfo.cpp \
+    network/juserinfoconnection.cpp \
+    database/juserinfodb.cpp

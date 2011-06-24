@@ -27,7 +27,7 @@ public:
         ES_Error
     };
     EState state()const;
-    bool waitForConnected( int msecs = 30000 );
+	bool waitForConnected( int msecs = 30000 )const;
     bool waitForLogined(int msecs=30000);
     const QString& error()const;
 signals:

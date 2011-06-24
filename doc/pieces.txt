@@ -83,6 +83,12 @@ Waiting for translation to English for this article
 参考QAbstractSocket，所有“服务”应提供阻塞及非阻塞两种接口。
 
 14、subserver需要的API放在include目录下，并且按照原文件结构保存。
+15、request类（原service类）
+		connectToHost
+		waitForConnected
+	PlhRequest
+		sendPlh
+		waitForPlh// init . sending . success . failed .
 
 JDMD studio , Dalian University of Technology , China
 E-mail : elephant_liu@mail.dlut.edu.cn

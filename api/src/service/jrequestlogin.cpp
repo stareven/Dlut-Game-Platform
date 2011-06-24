@@ -36,7 +36,7 @@ JRequestLogin::EState JRequestLogin::state()const
     return m_state;
 }
 
-bool JRequestLogin::waitForConnected( int msecs)
+bool JRequestLogin::waitForConnected( int msecs)const
 {
     JElapsedTimer timer;
     timer.start();
