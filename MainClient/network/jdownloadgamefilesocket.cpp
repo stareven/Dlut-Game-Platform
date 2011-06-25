@@ -48,7 +48,7 @@ bool JDownloadGameFileSocket::waitForDownloaded(int msecs)
 		}
 		QCoreApplication::processEvents();
 	}
-	return m_head.m_nNow==m_head.m_nTotal;
+	return m_head.m_nNow==m_head.m_nTotal && m_head.m_nTotal!=0;
 }
 
 void JDownloadGameFileSocket::dataProcess(const QByteArray &data)

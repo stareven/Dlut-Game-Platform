@@ -12,7 +12,6 @@ HEADERS += \
     network/jservertype.h \
     ../api/include/network/jconnectionbase.h \
     service/jloginverification.h \
-    service/juserlogincrypro.h \
     database/jabslogindb.h \
     service/jloginhash.h \
     service/juserisonline.h \
@@ -39,7 +38,6 @@ SOURCES += main/main.cpp \
     network/jservertype.cpp \
     ../api/src/network/jconnectionbase.cpp \
     service/jloginverification.cpp \
-    service/juserlogincrypro.cpp \
     database/jabslogindb.cpp \
     service/jloginhash.cpp \
 	service/juserisonline.cpp \

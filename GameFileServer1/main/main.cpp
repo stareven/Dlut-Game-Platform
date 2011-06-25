@@ -4,6 +4,7 @@
 
 #include "network/jserverbase.h"
 #include "service/jsubserverstartup.h"
+#include "global/elogin.h"
 
 int main(int argc, char *argv[])
 {

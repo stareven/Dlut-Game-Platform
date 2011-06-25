@@ -1,23 +1,39 @@
 #include "jloginhash.h"
 
-#include "juserlogincrypro.h"
+#include <QCryptographicHash>
+#include <QTime>
 
-JCode JLoginHash::JAdd::add(JID userid, const QByteArray &extra)
+QMap<JID,QByteArray> JLoginHash::s_data;
+
+// 0 if success , 1 if multi the same id
+JCode JLoginHash::add(JID userid,const QByteArray& extra)
 {
-    return JUserLoginCrypro::getInstance().addUserLogin(userid,extra);
+	if(s_data.contains(userid)) return 1;
+	QCryptographicHash ch(QCryptographicHash::Md5);
+	ch.addData(extra);
+	ch.addData(QTime::currentTime().toString().toAscii());
+	s_data.insert(userid,ch.result());
+	return 0;
 }
 
-QByteArray JLoginHash::JGet::get(JID userid)const
+QByteArray JLoginHash::get(JID userid)const
 {
-    return JUserLoginCrypro::getInstance().getCrypro(userid);
+	return s_data.value(userid);
 }
 
-JCode JLoginHash::JDelete::del(JID userid)
+// 0 if success , 1 if no such user
+JCode JLoginHash::del(JID userid)
 {
-    return JUserLoginCrypro::getInstance().delUserLogin(userid);
+	if(!s_data.contains(userid)) return 1;
+	s_data.remove(userid);
+	return 0;
 }
 
-JCode JLoginHash::JCheck::check(JID userid,const QByteArray& crypro)const
+// 0 if success , 1 if no such user , 2 if crypro not same
+JCode JLoginHash::check(JID userid,
+						const QByteArray& crypro)const
 {
-    return JUserLoginCrypro::getInstance().checkUserLogin(userid,crypro);
+	if(!s_data.contains(userid)) return 1;
+	if(s_data.value(userid)!=crypro) return 2;
+	return 0;
 }

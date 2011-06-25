@@ -1,25 +1,28 @@
 #include "juserisonline.h"
 
-QSet<JID> JUserIsOnline::g_onlineUsers;
+//QSet<JID> JUserIsOnline::g_onlineUsers;
 
-bool JUserIsOnline::userGetOn(JID userid)
+QMap<JID,quint16> JUserIsOnline::s_onlineUsers;
+
+void JUserIsOnline::getOn(JID id)
 {
-	if(userid<0) return false;
-	if(g_onlineUsers.contains(userid)) return false;
-	g_onlineUsers.insert(userid);
-	return true;
+	s_onlineUsers[id]++;
 }
 
-bool JUserIsOnline::userGetOff(JID userid)
+void JUserIsOnline::getOff(JID id)
 {
-	if(userid<0) return false;
-	if(!g_onlineUsers.contains(userid)) return false;
-	return g_onlineUsers.remove(userid);
+	if(--s_onlineUsers[id])
+	{
+		s_onlineUsers.remove(id);
+	}
 }
 
-bool JUserIsOnline::userIsOnline(JID userid)const
+quint16 JUserIsOnline::count(JID id)const
 {
-	if(userid<0) return false;
-	if(g_onlineUsers.contains(userid)) return true;
-	else return false;
+	return s_onlineUsers.value(id);
+}
+
+bool JUserIsOnline::isOnline(JID id)const
+{
+	return count(id)>0;
 }

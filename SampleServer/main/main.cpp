@@ -2,6 +2,7 @@
 
 #include "jargumentanalyse.h"
 #include "service/jsubserverstartup.h"
+#include "global/elogin.h"
 //#include "service/jportservice.h"
 //#include "service/jloginservice2.h"
 //#include "service/jgsinfoservice.h"

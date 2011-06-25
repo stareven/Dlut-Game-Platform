@@ -27,17 +27,16 @@ void JLoginConnection::dataProcess(const QByteArray& data)
     JLoginVerification loginvrfc;
     JCode code=loginvrfc.verification(loginname,passwd,role);
     JUserIsOnline uio;
-    if(role!=ROLE_GAMESERVERRUNNER && uio.userIsOnline(loginvrfc.getUserId())) code=EL_ALREADY_LOGIN;
+	if(role!=ROLE_GAMESERVERRUNNER && uio.isOnline(loginvrfc.getUserId())) code=EL_ALREADY_LOGIN;
     outstream<<code;
     if( 0 == code )
     {
-		JLoginHash::JAdd add;
-		add.add(loginvrfc.getUserId(),data);
-		JLoginHash::JGet get;
+		JLoginHash lh;
+		lh.add(loginvrfc.getUserId(),data);
         outstream<<loginvrfc.getUserId();
-		outstream<<get.get(loginvrfc.getUserId());
+		outstream<<lh.get(loginvrfc.getUserId());
         setUserId(loginvrfc.getUserId());
-        uio.userGetOn(loginvrfc.getUserId());
+		uio.getOn(loginvrfc.getUserId());
     }
     sendData(outdata);
 //    int size=outdata.size();
@@ -49,8 +48,12 @@ void JLoginConnection::dataProcess(const QByteArray& data)
 
 void JLoginConnection::on_socket_disconnected()
 {
-	JLoginHash::JDelete del;
+	JLoginHash lh;
 	JUserIsOnline uio;
-	del.del(getUserId());
-	uio.userGetOff(getUserId());
+	uio.getOff(getUserId());
+	if(!uio.isOnline(getUserId()))
+	{
+		lh.del(getUserId());
+	}
+
 }

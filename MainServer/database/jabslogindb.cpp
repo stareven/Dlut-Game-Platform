@@ -1,6 +1,7 @@
 #include "jabslogindb.h"
 
 #include <QString>
+#include "global/elogin.h"
 
 JAbsLoginDB::JAbsLoginDB()
 {

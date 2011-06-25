@@ -20,9 +20,9 @@ void JPlhConnectionBase::dataProcess(const QByteArray& data)
 		QDataStream stream(data);
 		JID userid;
 		QByteArray crypro;
-		JLoginHash::JCheck check;
+		JLoginHash lh;
 		stream>>userid>>crypro;
-		JCode plhCode=check.check (userid,crypro);
+		JCode plhCode=lh.check (userid,crypro);
 		m_plh=(0==plhCode);
 		QByteArray outdata;
 		QDataStream outstream(&outdata,QIODevice::WriteOnly);

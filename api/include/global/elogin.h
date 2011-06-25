@@ -4,6 +4,15 @@
 #include <QString>
 #include <QObject>
 
+typedef qint16 JRole;
+enum ERole{
+	ROLE_GAMEPLAYER,
+	ROLE_GAMEDESIGNER,
+	ROLE_GAMESERVERRUNNER,
+	ROLE_ADMIN,
+	ROLE_ROOT
+};
+
 enum ELogin{
 	EL_SUCCESS,			//from server
 	EL_NO_SUCH_USER,
