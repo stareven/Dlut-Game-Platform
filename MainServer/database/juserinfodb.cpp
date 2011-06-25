@@ -6,11 +6,11 @@ static const UserInfo::SUserInfo users[]={
 	{109,"elephant liu","JDMD studio"},
 	{241,"JDMD studio","CPF"},
 	{794,"li xiao pang","CPF"},
-	{900,"sample player","JDMD studio"},
-	{901,"sampledesigner","123"},
-	{902,"sampleserverrunner","123"},
-	{903,"sampleadmin","123"},
-	{904,"sampleroot","123"}
+	{900,"sample player","sample.org"},
+	{901,"sample designer","sample.org"},
+	{902,"sample serverrunner","sample.org"},
+	{903,"sample admin","sample.org"},
+	{904,"sample root","sample.org"}
 };
 
 static QMap<JID,UserInfo::SUserInfo> s_users;
@@ -33,8 +33,7 @@ UserInfo::SUserInfo JUserInfoDb::getUserInfo(JID userId)const
 	{
 		return s_users.value(userId);
 	}else{
-		static const UserInfo::SUserInfo userinfo(-1,"no such user","error");
+		static const UserInfo::SUserInfo userinfo(userId,"no such user","error");
 		return userinfo;
-
 	}
 }

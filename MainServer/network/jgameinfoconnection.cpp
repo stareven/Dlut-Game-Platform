@@ -24,7 +24,6 @@ void JGameInfoConnection::afterPlh(const QByteArray& data)
 			SubServer::JGameInfoSrv gisp;
 			outstream<<(JID)SubServer::EGP_GameList;
 			outstream<<gisp.getGameList ();
-			qDebug()<<"send game list"<<gisp.getGameList ().size ();
             sendData(outdata);
         }
         break;
@@ -40,7 +39,7 @@ void JGameInfoConnection::afterPlh(const QByteArray& data)
 			outstream<<(JID)SubServer::EGP_Servers;
 			outstream<<gameId;
 			outstream<<version;
-			outstream<<gisp.getServers (gameId,version);//QSet<JID>
+			outstream<<gisp.getServers (gameId,version);
             sendData(outdata);
         }
 		break;

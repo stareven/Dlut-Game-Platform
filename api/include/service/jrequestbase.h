@@ -3,6 +3,8 @@
 
 #include <QObject>
 
+#include "global/jglobal.h"
+
 class QHostAddress;
 class JSocketBase;
 
@@ -21,10 +23,13 @@ public:
 	EConnectState getConnectState()const;
 	bool waitForConnected(int msecs=30000)const;
 	const QString& error()const;
+	void setSocket(JSocketBase* socket);
 private:
 	JSocketBase* m_socket;
 	EConnectState m_state;
 	const QString* m_error;
+private slots:
+	void on_socket_SocketCode(JCode code);
 };
 
 #endif // JREQUESTBASE_H

@@ -15,6 +15,7 @@ void JUserInfoConnection::afterPlh(const QByteArray& data)
 	QDataStream stream(data);
 	JID userId;
 	stream>>userId;
+	qDebug()<<"userinfo "<<userId;
 	JUserInfoDb db;
 	QByteArray outdata;
 	QDataStream outstream(&outdata,QIODevice::WriteOnly);

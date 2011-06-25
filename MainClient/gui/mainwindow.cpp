@@ -7,6 +7,9 @@
 #include "service/jrequestgameinfo.h"
 #include "service/jdownloadrun.h"
 #include "global/ssubserver.h"
+#include "service/jrequestuserinfo.h"
+#include "service/jrequestport.h"
+#include "service/jcryprorecorder.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -75,12 +78,23 @@ void MainWindow::on_list_game_itemClicked(QListWidgetItem* item)
 void MainWindow::on_gameinfosrv_gameInfoReady(JID gameid)
 {
 	SubServer::SGameInfo2 gi=m_gis->getGameInfo(gameid);
+	JRequestUserInfo requi;
+	JRequestPort reqpt;
+	SHost hostui=reqpt.rqsServerPort(EST_USERINFO);
+	requi.connectToHost(hostui.m_address,hostui.m_port);
+	requi.waitForConnected(1000);
+	JCryproRecorder cr;
+	requi.sendCrypro(cr.getUserId(),cr.getCrypro());
+	requi.waitForPlh(1000);
+	UserInfo::SUserInfo author=requi.rqsUserInfo(gi.m_author);
     ui->tb_game->setText(tr("<font color=red>name</font> : %1 <br>"
-                            "<font color=red>author</font> : %2 <br>"
-							"<font color=red>version</font> : %3 <br>"
+							"<font color=red>author</font> : %2 %3 %4<br>"
+							"<font color=red>version</font> : %5 <br>"
                             "<font color=red>introduction</font> :<br>"
-							"%4<br>").arg(gi.m_name)
-                         .arg(gi.m_author)
+							"%6<br>").arg(gi.m_name)
+						 .arg(author.m_userId)
+						 .arg(author.m_nickname)
+						 .arg(author.m_organization)
 						 .arg(gi.m_version.getData())
 //                         .arg(gi.m_localVersion.getData())
                          .arg(gi.m_introduction));

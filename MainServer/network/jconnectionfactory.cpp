@@ -5,6 +5,7 @@
 #include "jgameinfoconnection.h"
 #include "jportconnection.h"
 #include "jsubserverconnection.h"
+#include "juserinfoconnection.h"
 
 JConnectionFactory::JConnectionFactory()
 {
@@ -25,6 +26,8 @@ JConnectionBase* JConnectionFactory::createConnection(EServerType st,QTcpSocket*
         return new JPortConnection(JPortManager::EPS_SECRET,socket,parent);
 	case EST_SUBSERVER:
 		return new JSubServerConnection(socket,parent);
+	case EST_USERINFO:
+		return new JUserInfoConnection(socket,parent);
     case EST_MAX:
 		return NULL;
 //		return new JConnectionBase(socket,parent);
