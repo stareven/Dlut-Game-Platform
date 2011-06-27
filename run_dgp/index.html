@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>如何运行“地瓜皮”</title>
+<link href="../static/style.css" media="screen" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="content">
+	  <b class="container">
+	  <b class="container1"><b></b></b>
+	  <b class="container2"><b></b></b>
+	  <b class="container3"></b>
+	  <b class="container4"></b>
+	  <b class="container5"></b></b>
+	
+	  <div class="containerfg">
+	  	<div id="portfolio">
+	  	  <h1>如何运行“地瓜皮”</h1>
+<h4>首先，请确定你已经完成DGP的编译</h4>
+<a href="../compile/index.html">如何编译“地瓜皮”项目源代码</a>
+<h4>运行主服务器</h4>
+在ubuntu linux 10.10下，直接双击“ServerBuildRun.sh”，选择“在终端中运行”即可。<br>
+<div style="text-indent:2em">其它操作系统请自行研究。<br></div>
+记录下“freeport Server : port is ”后面的数字。我的是37373。（如果你的不是37373，后面的SampleServer和GameFileServer1将会启动失败，暂时我也没有解决办法。）<br>
+<h4>运行主客户端</h4>
+在ubuntu linux 10.10下，直接双击“ServerBuildRun.sh”，选择“在终端中运行”即可。<br>
+<div style="text-indent:2em">其它操作系统请自行研究。<br></div>
+在User name与Pass word中填入用户名和密码。<br>
+<div style="text-indent:2em">目前仅有一名用户。用户名为“elephant”，密码为“acm”。（请注意，全部为小写。）<br></div>
+点击server -> new server，name不用管，地址填入“127.0.0.1”（没有引号），端口填入主服务器中“freeport Server : port is ”后面的数字，我的是37373.<br>
+点击OK，登录成功<br>
+<h4>运行SampleServer与GameFileServer1</h4>
+在ubuntu linux 10.10下，双击“SampleServerBuildRun.sh”，选择“在终端中运行”;双击“GameFileServer1BuildRun.sh”，选择“在终端中运行”<br>
+<div style="text-indent:2em">其它操作系统请自行研究。<br></div>
+<h4>刷新游戏列表并启动游戏</h4>
+切换回主客户端，点击“refresh list”，选择“sample game”。<br>
+点击“start game”，它会提示询问是否下载游戏，选择“Yes”。<br>
+它会提示询问选择哪个下载服务器。目前我们只有一个下载服务器。保持默认值即可，选择“OK”。<br>
+游戏下载完成后便会自动启动。<br>
+多人贪食蛇游戏：ASDF控制右下角粉色的蛇，上下左右控制左上角绿色的蛇。另外两条蛇暂时无人控制（自生自灭）。<br>
+<h4>全部</h4>
+以下内容能够运行在ubuntu linux 10.10下，其它操作系统请自行研究。<br>
+关闭主服务器，关闭主客户端，关闭SampleServer与GameFileServer1。<br>
+然后双击“AllBuildRun.sh”，选择“在终端中运行”。<br>
+会是什么效果呢？<br>
+<br>
+<br>
+<br>
+<a href="../index.html">回到首页</a>
+</div>
+	  </div>
+	
+	  <b class="container">
+	  <b class="container5"></b>
+	  <b class="container4"></b>
+	  <b class="container3"></b>
+	  <b class="container2"><b></b></b>
+	  <b class="container1"><b></b></b></b>
+	</div>
+</body>
+</html>
