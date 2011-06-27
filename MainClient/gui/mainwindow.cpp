@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <QShowEvent>
-//#include <QDebug>
+#include <QMessageBox>
 
 #include "service/jrequestgameinfo.h"
 #include "service/jdownloadrun.h"
@@ -10,6 +10,8 @@
 #include "service/jrequestuserinfo.h"
 #include "service/jrequestport.h"
 #include "service/jcryprorecorder.h"
+
+#include "jdlgselectserver.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -78,15 +80,15 @@ void MainWindow::on_list_game_itemClicked(QListWidgetItem* item)
 void MainWindow::on_gameinfosrv_gameInfoReady(JID gameid)
 {
 	SubServer::SGameInfo2 gi=m_gis->getGameInfo(gameid);
-	JRequestUserInfo requi;
+	JRequestUserInfo requserinfo;
 	JRequestPort reqpt;
-	SHost hostui=reqpt.rqsServerPort(EST_USERINFO);
-	requi.connectToHost(hostui.m_address,hostui.m_port);
-	requi.waitForConnected(1000);
+	SHost hostuserinfo=reqpt.rqsServerPort(EST_USERINFO);
+	requserinfo.connectToHost(hostuserinfo.m_address,hostuserinfo.m_port);
+	requserinfo.waitForConnected(1000);
 	JCryproRecorder cr;
-	requi.sendCrypro(cr.getUserId(),cr.getCrypro());
-	requi.waitForPlh(1000);
-	UserInfo::SUserInfo author=requi.rqsUserInfo(gi.m_author);
+	requserinfo.sendCrypro(cr.getUserId(),cr.getCrypro());
+	requserinfo.waitForPlh(1000);
+	UserInfo::SUserInfo author=requserinfo.rqsUserInfo(gi.m_author);
     ui->tb_game->setText(tr("<font color=red>name</font> : %1 <br>"
 							"<font color=red>author</font> : %2 %3 %4<br>"
 							"<font color=red>version</font> : %5 <br>"
@@ -98,29 +100,82 @@ void MainWindow::on_gameinfosrv_gameInfoReady(JID gameid)
 						 .arg(gi.m_version.getData())
 //                         .arg(gi.m_localVersion.getData())
                          .arg(gi.m_introduction));
-}
-
-void MainWindow::on_btn_get_servers_clicked()
-{
 	m_gis->rqsServerList(m_currentId,m_gis->getGameInfo(m_currentId).m_version);
 }
 
-void MainWindow::on_btn_download_run_clicked()
+//void MainWindow::on_btn_get_servers_clicked()
+//{
+//	m_gis->rqsServerList(m_currentId,m_gis->getGameInfo(m_currentId).m_version);
+//}
+
+//void MainWindow::on_btn_download_run_clicked()
+//{
+//	JDownloadRun dr;
+//	SubServer::SGameInfo2 gi=m_gis->getGameInfo(m_currentId);
+//	QSet<JID> servers=m_gis->getServerListOnGame(gi.m_gameId);
+//	if(servers.empty())
+//	{
+//		qDebug()<<"server list on game"<<gi.m_gameId<<"is empty.";
+//		return;
+//	}
+//	foreach(JID serverId,servers)
+//	{
+//		SubServer::SSubServer si=m_gis->getServerInfo(serverId);
+//		if( SubServer::SSubServer::ET_GameFileServer ==si.m_type)
+//		{
+//			dr.start(gi.m_name,gi.m_version,this,si.m_address,si.m_port);
+//		}
+//	}
+//}
+
+void MainWindow::on_btn_start_game_clicked()
 {
+	//
 	JDownloadRun dr;
 	SubServer::SGameInfo2 gi=m_gis->getGameInfo(m_currentId);
-	QSet<JID> servers=m_gis->getServerListOnGame(gi.m_gameId);
-	if(servers.empty())
+	dr.setGame(gi.m_name,gi.m_version);
+	if(dr.needDownload())
 	{
-		qDebug()<<"server list on game"<<gi.m_gameId<<"is empty.";
-		return;
-	}
-	foreach(JID serverId,servers)
-	{
-		SubServer::SSubServer si=m_gis->getServerInfo(serverId);
-		if( SubServer::SSubServer::ET_GameFileServer ==si.m_type)
-		{
-			dr.start(gi.m_name,gi.m_version,this,si.m_address,si.m_port);
+		if( QMessageBox::Yes == QMessageBox::question(this,
+													  tr("need download"),
+													  tr("game file does not exist or version does not match . do you want to download the game client ?"),
+													  QMessageBox::Yes | QMessageBox::No
+													  )
+			){
+			qDebug()<<"download";
+			QSet<JID> servers=m_gis->getServerListOnGame(gi.m_gameId);
+			JDlgSelectServer dlg(this);
+			dlg.setText(tr("select server for download"));
+			foreach(JID serverId,servers)
+			{
+				SubServer::SSubServer si=m_gis->getServerInfo(serverId);
+				if( SubServer::SSubServer::ET_GameFileServer ==si.m_type)
+				{
+					dlg.addServer(si);
+				}
+			}
+			if(QDialog::Rejected==dlg.exec())
+			{
+				return;
+			}else{
+				SubServer::SSubServer si=m_gis->getServerInfo(dlg.getSelectedServer());
+				dr.setHost(si.m_address,si.m_port);
+
+				if(!dr.download())
+				{
+					qDebug()<<"download failed";
+					return;
+				}
+
+			}
+		}else{
+			qDebug()<<"not download";
 		}
+	}
+	dr.setParent(this);
+	if(!dr.run())
+	{
+		qDebug()<<"run failed";
+		return;
 	}
 }

@@ -1,0 +1,15 @@
+Codec : UTF-8 Unicode text
+Language : Chinese Simplified
+We are looking forward to your help to translate this article into english
+
+字符编码 : UTF-8 Unicode text
+换行符 : LF
+语言 : Chinese Simplified
+
+编译全部：
+	find . -path '*-build-desktop' -exec make -C {} \;
+全部中间文件：
+	find *-build-desktop \( -not -name 'Makefile' -and -type f \)
+
+JDMD studio , Dalian University of Technology , China
+E-mail : elephant_liu@mail.dlut.edu.cn

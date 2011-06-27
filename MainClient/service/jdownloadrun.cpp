@@ -12,28 +12,57 @@ JDownloadRun::JDownloadRun()
 {
 }
 
-void JDownloadRun::start(const QString& gamename,
-						 const JVersion& version,
-						 QObject* parent,
-						 const QHostAddress& address,
-						 quint16 port)
+//void JDownloadRun::start(const QString& gamename,
+//						 const JVersion& version,
+//						 QObject* parent,
+//						 const QHostAddress& address,
+//						 quint16 port)
+//{
+//	m_gamename=gamename;
+//	m_version=version;
+//	m_parent=parent;
+//	m_address=address;
+//	m_port=port;
+//	qDebug()<<"gamename:"<<m_gamename<<"address:"<<m_address.toString()<<"port:"<<m_port;
+//	if(!download())
+//	{
+//		qDebug()<<"download failed.";
+//		return;
+//	}
+//	if(!run())
+//	{
+//		qDebug()<<"run failed.";
+//		return;
+//	}
+//}
+
+void JDownloadRun::setGame(const QString& gamename,
+			 const JVersion& version)
 {
 	m_gamename=gamename;
 	m_version=version;
-	m_parent=parent;
+}
+
+void JDownloadRun::setHost(const QHostAddress& address,
+			 quint16 port)
+{
 	m_address=address;
 	m_port=port;
-	qDebug()<<"gamename:"<<m_gamename<<"address:"<<m_address.toString()<<"port:"<<m_port;
-	if(!download())
+}
+
+void JDownloadRun::setParent(QObject* parent)
+{
+	m_parent=parent;
+}
+
+bool JDownloadRun::needDownload()const
+{
+	QFileInfo fi(getPath());
+	if(fi.exists())
 	{
-		qDebug()<<"download failed.";
-		return;
+		return false;
 	}
-	if(!run())
-	{
-		qDebug()<<"run failed.";
-		return;
-	}
+	return true;
 }
 
 bool JDownloadRun::download()
@@ -69,7 +98,7 @@ bool JDownloadRun::run()
 	return true;
 }
 
-QString JDownloadRun::getPath()
+QString JDownloadRun::getPath()const
 {
 	return QString("./%1%2").arg(m_gamename).arg(m_version.getData()).replace(' ','_');
 }

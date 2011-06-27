@@ -14,15 +14,21 @@ class JDownloadRun
 {
 public:
     JDownloadRun();
-	void start(const QString& gamename,
-			   const JVersion& version,
-			   QObject* parent,
-			   const QHostAddress& address,
-			   quint16 port);
-private:
+	void setGame(const QString& gamename,
+				 const JVersion& version);
+	void setHost(const QHostAddress& address,
+				 quint16 port);
+	void setParent(QObject* parent);
+	bool needDownload()const;
 	bool download();
 	bool run();
-	QString getPath();
+//	void start(const QString& gamename,
+//			   const JVersion& version,
+//			   QObject* parent,
+//			   const QHostAddress& address,
+//			   quint16 port);
+private:
+	QString getPath()const;
 
 	QString m_gamename;
 	JVersion m_version;

@@ -26,9 +26,10 @@ private:
     Ui::MainWindow *ui;
 
 private slots:
-	void on_btn_download_run_clicked();
- void on_btn_get_servers_clicked();
-	void on_list_game_itemClicked(QListWidgetItem* item);
+//	void on_btn_download_run_clicked();
+//	void on_btn_get_servers_clicked();
+	void on_btn_start_game_clicked();
+ void on_list_game_itemClicked(QListWidgetItem* item);
     void on_btn_refresh_list_clicked();
 	void on_gameinfosrv_gameListReady();
     void on_gameinfosrv_gameInfoReady(JID gameid);
