@@ -1,0 +1,115 @@
+/*
+-----------------------------
+Screen Stylesheet
+Author: @oppih28
+-----------------------------
+*/
+
+body  {
+  font-family: "Lucida Sans", "Lucida Grande", verdana, arial, helvetica, sans-serif;
+  font-size:   14px;
+  line-height: 1.5em;
+  background-color: #c2ddf9;
+  color: #333;
+}
+
+h1 {
+	margin: 0;
+	margin-bottom: 1em;
+	padding: 0;
+  font-size: 1.5em;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  text-shadow: 1px 2px 1px #ba9;
+  text-align: center;
+}
+
+ul li {
+	list-style-image: url(checkmark.png);
+	padding: 0;
+	margin: 0;
+}
+
+#intro {
+	text-align: justify;
+}
+
+table {
+	margin: auto;
+	width: 100%;
+}
+
+td {
+	border: 1px dotted #dedede;
+	padding: 1em;
+}
+
+a { 
+	color: #356aa0;
+	text-decoration: none;
+}
+a:hover { color: #e81f20; }
+
+#content {
+	width: 750px;
+	margin: auto;
+}
+
+#portfolio {
+	background-color: #ffffff;
+	padding: 4em;
+}
+
+.help {
+	font-style: italic;
+	font-weight: normal;
+	color: #888;
+	font-size: 10px;
+	line-height: 1em;
+}
+
+/*
+---------------------------------------------
+Rounded corners without images, but a bit of
+non-semantic html. (Spiffy corners technique)
+---------------------------------------------
+*/
+
+.container{display:block}
+.container *{
+  display:block;
+  height:1px;
+  overflow:hidden;
+  font-size:.01em;
+  background:#ffffff}
+.container1{
+  margin-left:3px;
+  margin-right:3px;
+  padding-left:1px;
+  padding-right:1px;
+  border-left:1px solid #dcebfb;
+  border-right:1px solid #dcebfb;
+  background:#eff6fd}
+.container2{
+  margin-left:1px;
+  margin-right:1px;
+  padding-right:1px;
+  padding-left:1px;
+  border-left:1px solid #c8e0f9;
+  border-right:1px solid #c8e0f9;
+  background:#f3f8fd}
+.container3{
+  margin-left:1px;
+  margin-right:1px;
+  border-left:1px solid #f3f8fd;
+  border-right:1px solid #f3f8fd;}
+.container4{
+  border-left:1px solid #dcebfb;
+  border-right:1px solid #dcebfb}
+.container5{
+  border-left:1px solid #eff6fd;
+  border-right:1px solid #eff6fd}
+.containerfg{
+  background:#ffffff}
+
+

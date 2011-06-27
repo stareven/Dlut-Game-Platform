@@ -1,4 +1,0 @@
-
-*-build-desktop/*
-!*-build-desktop/Makefile
-*/*.pro.user
