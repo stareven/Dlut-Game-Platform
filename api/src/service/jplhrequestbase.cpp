@@ -46,10 +46,11 @@ bool JPlhRequestBase::waitForPlh(int msecs )const
 void JPlhRequestBase::setSocket(JPlhSocketBase* socket)
 {
 	m_socket=socket;
+	connect(m_socket,SIGNAL(rcvPassLoginHash(bool)),SLOT(on_socket_rcvPassLoginHash(bool)));
 	JRequestBase::setSocket(socket);
 }
 
-void JPlhRequestBase::on_socekt_rcvPassLoginHash(bool plh)
+void JPlhRequestBase::on_socket_rcvPassLoginHash(bool plh)
 {
 	if(plh)
 	{

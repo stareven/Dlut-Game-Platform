@@ -12,7 +12,7 @@ JCode JLoginHash::add(JID userid,const QByteArray& extra)
 	QCryptographicHash ch(QCryptographicHash::Md5);
 	ch.addData(extra);
 	ch.addData(QTime::currentTime().toString().toAscii());
-	s_data.insert(userid,ch.result());
+	s_data.insert(userid,ch.result().left(8));
 	return 0;
 }
 

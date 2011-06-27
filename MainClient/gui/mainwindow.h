@@ -10,6 +10,8 @@ namespace Ui {
 }
 
 class JRequestGameInfo;
+class JRequestUserInfo;
+class JRequestPort;
 class QListWidgetItem;
 
 class MainWindow : public QMainWindow {
@@ -35,6 +37,8 @@ private slots:
     void on_gameinfosrv_gameInfoReady(JID gameid);
 private:
     JRequestGameInfo* m_gis;
+	JRequestUserInfo* m_requserinfo;
+	JRequestPort* m_reqport;
 	JID m_currentId;
 };
 

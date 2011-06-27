@@ -21,6 +21,14 @@ MainWindow::MainWindow(QWidget *parent) :
     m_gis->setObjectName(tr("gameinfosrv"));
 	m_currentId=-1;
     ui->setupUi(this);
+	m_reqport=new JRequestPort(this);
+	SHost hostuserinfo=m_reqport->rqsServerPort(EST_USERINFO);
+	m_requserinfo=new JRequestUserInfo(this);
+	m_requserinfo->connectToHost(hostuserinfo.m_address,hostuserinfo.m_port);
+	m_requserinfo->waitForConnected(1000);
+	JCryproRecorder cr;
+	m_requserinfo->sendCrypro(cr.getUserId(),cr.getCrypro());
+	m_requserinfo->waitForPlh(1000);
 }
 
 MainWindow::~MainWindow()
@@ -80,15 +88,15 @@ void MainWindow::on_list_game_itemClicked(QListWidgetItem* item)
 void MainWindow::on_gameinfosrv_gameInfoReady(JID gameid)
 {
 	SubServer::SGameInfo2 gi=m_gis->getGameInfo(gameid);
-	JRequestUserInfo requserinfo;
-	JRequestPort reqpt;
-	SHost hostuserinfo=reqpt.rqsServerPort(EST_USERINFO);
-	requserinfo.connectToHost(hostuserinfo.m_address,hostuserinfo.m_port);
-	requserinfo.waitForConnected(1000);
-	JCryproRecorder cr;
-	requserinfo.sendCrypro(cr.getUserId(),cr.getCrypro());
-	requserinfo.waitForPlh(1000);
-	UserInfo::SUserInfo author=requserinfo.rqsUserInfo(gi.m_author);
+//	JRequestUserInfo requserinfo;
+//	JRequestPort reqpt;
+//	SHost hostuserinfo=reqpt.rqsServerPort(EST_USERINFO);
+//	requserinfo.connectToHost(hostuserinfo.m_address,hostuserinfo.m_port);
+//	requserinfo.waitForConnected(1000);
+//	JCryproRecorder cr;
+//	requserinfo.sendCrypro(cr.getUserId(),cr.getCrypro());
+//	requserinfo.waitForPlh(1000);
+	UserInfo::SUserInfo author=m_requserinfo->rqsUserInfo(gi.m_author);
     ui->tb_game->setText(tr("<font color=red>name</font> : %1 <br>"
 							"<font color=red>author</font> : %2 %3 %4<br>"
 							"<font color=red>version</font> : %5 <br>"

@@ -21,7 +21,7 @@ public:
 	bool waitForPlh(int msecs = 30000 )const;
 	void setSocket(JPlhSocketBase*);
 private slots:
-	void on_socekt_rcvPassLoginHash(bool);
+	void on_socket_rcvPassLoginHash(bool);
 private:
 	JPlhSocketBase* m_socket;
 	EPlhState m_state;
