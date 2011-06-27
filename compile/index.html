@@ -1,0 +1,29 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>如何下载“地瓜皮”项目源代码</title>
+</head>
+<body>
+<h4>安装编译环境</h4>
+DGP的核心部分使用C++语言及Qt库。请先确保您的系统中有以下工具：</br>
+<div style="text-indent:2em">g++</div>
+<div style="text-indent:2em">make</div>
+<div style="text-indent:2em">qmake</div>
+<div style="text-indent:2em">moc-qt4</div>
+<div style="text-indent:2em">uic-qt4</div>
+安装方法（以ubuntu linux 10.10为例，其它操作系统请自行研究）</br>
+打开终端，输入：</br>
+<code>$ sudo apt-get install build-essential qt-sdk</code></br>
+回车即可。
+<h4>编译DGP</h4>
+1、打开终端。</br>
+2、进入DGP目录</br>
+3、输入：</br>
+<code>$ find . -path '*-build-desktop' -exec make -C {} \;</code></br>
+回车即可。等待约5分钟，编译完成。</br>
+</br>
+</br>
+</br>
+<a href="../">回到首页</a>
+</body>
+</html>
