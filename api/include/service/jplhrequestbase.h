@@ -20,6 +20,8 @@ public:
 	EPlhState getPlhState()const;
 	bool waitForPlh(int msecs = 30000 )const;
 	void setSocket(JPlhSocketBase*);
+signals:
+	void plhResult(bool);
 private slots:
 	void on_socket_rcvPassLoginHash(bool);
 private:

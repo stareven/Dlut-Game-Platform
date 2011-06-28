@@ -29,7 +29,10 @@ HEADERS += main/jargumentanalyse.h \
 	../api/include/network/jsendgsinfosocket.h \
 	../api/include/service/jsendgsinfo.h \
     ../api/include/service/jsubserverstartup.h \
-    ../api/include/global/magicnumber.h
+    ../api/include/global/magicnumber.h \
+    ../api/include/service/jrequestbase.h \
+    ../api/include/service/jplhrequestbase.h \
+    ../api/include/network/jplhsocketbase.h
 SOURCES += main/jargumentanalyse.cpp \
 	main/main.cpp \
 	../api/src/network/jrequestloginsocket.cpp \
@@ -42,4 +45,7 @@ SOURCES += main/jargumentanalyse.cpp \
 	../api/src/service/jsendgsinfo.cpp \
 	../api/src/global/ssubserver.cpp \
 	../api/src/global/jversion.cpp \
-    ../api/src/service/jsubserverstartup.cpp
+    ../api/src/service/jsubserverstartup.cpp \
+    ../api/src/service/jrequestbase.cpp \
+    ../api/src/service/jplhrequestbase.cpp \
+    ../api/src/network/jplhsocketbase.cpp

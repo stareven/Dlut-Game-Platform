@@ -1,46 +1,36 @@
 #ifndef JREQUESTLOGIN_H
 #define JREQUESTLOGIN_H
 
-#include <QObject>
+#include "jrequestbase.h"
+#include "global/elogin.h"
 
-#include "global/jglobal.h"
-
-class QHostAddress;
 class JRequestLoginSocket;
 
-class JRequestLogin : public QObject
+class JRequestLogin : public JRequestBase
 {
     Q_OBJECT
 public:
-    explicit JRequestLogin(QObject *parent = 0);
-    void connectToHost(const QHostAddress& address,
-                       quint16 port);
+	explicit JRequestLogin(QObject *parent = 0);
     void login(const QString& loginname,
                const QString& passwd,
                const JID& role);
-    enum EState{
-        ES_Close,
-        ES_Connecting,
-        ES_Connected,
-        ES_Logining,
-        ES_Logined,
-        ES_Error
+	enum ELoginState{
+		ELS_Init,
+		ELS_Sending,
+		ELS_Success,
+		ELS_Failed,
     };
-    EState state()const;
-	bool waitForConnected( int msecs = 30000 )const;
+	ELoginState getLoginState()const;
     bool waitForLogined(int msecs=30000);
-    const QString& error()const;
+	const QString& getLoginError()const;
 signals:
-    void connected();
-    void disconnected();
-    void error(const QString&);
+	void loginResult(bool);
 protected slots:
-    void on_socket_loginCode(JCode);
-	void on_socket_SocketCode(JCode);
+	void on_socket_loginCode(JCode);
 private:
-    EState m_state;
+	ELoginState m_state;
+	ELogin m_loginError;
 	JRequestLoginSocket *m_socket;
-    int m_error;
 };
 
 #endif // JREQUESTLOGIN_H

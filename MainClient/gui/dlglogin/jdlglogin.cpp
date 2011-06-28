@@ -85,7 +85,7 @@ void JDlgLogin::accept()
 	ui->lab_message->setText(tr("connecting to server"));
 	if(!m_rqslogin->waitForConnected(1000))
 	{
-		ui->lab_message->setText(tr("connect failed : %1").arg(m_rqslogin->error()));
+		ui->lab_message->setText(tr("connect failed : %1").arg(m_rqslogin->getConnectError()));
 		return;
 	}
 	m_rqslogin->login(ui->edt_username->text(),
@@ -94,7 +94,7 @@ void JDlgLogin::accept()
 	ui->lab_message->setText(tr("begin to login"));
 	if(!m_rqslogin->waitForLogined(1000))
 	{
-		ui->lab_message->setText(tr("login failed : ").arg(m_rqslogin->error()));
+		ui->lab_message->setText(tr("login failed : ").arg(m_rqslogin->getLoginError()));
 		return;
 	}
 	done(QDialog::Accepted);

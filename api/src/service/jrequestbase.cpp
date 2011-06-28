@@ -48,7 +48,7 @@ bool JRequestBase::waitForConnected(int msecs)const
 	return getConnectState()==ECS_Connected;
 }
 
-const QString& JRequestBase::error()const
+const QString& JRequestBase::getConnectError()const
 {
 	return *m_error;
 }
@@ -66,6 +66,7 @@ void JRequestBase::on_socket_SocketCode(JCode code)
 	case EN_CONNECTED:
 		m_state=ECS_Connected;
 		m_error=&error_no;
+		emit connectResult(true);
 		break;
 	case EN_DISCONNECTED:
 		m_state=ECS_Connected;
@@ -73,6 +74,8 @@ void JRequestBase::on_socket_SocketCode(JCode code)
 			const static QString error_disconnected="disconnected";
 			m_error=&error_disconnected;
 		}
+		emit connectResult(false);
+		emit error();
 		break;
 	}
 }

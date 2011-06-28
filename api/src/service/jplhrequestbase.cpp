@@ -58,4 +58,5 @@ void JPlhRequestBase::on_socket_rcvPassLoginHash(bool plh)
 	}else{
 		m_state=EPS_Failed;
 	}
+	emit plhResult(plh);
 }

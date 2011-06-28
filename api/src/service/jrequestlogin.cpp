@@ -8,47 +8,26 @@
 #include "global/jelapsedtimer.h"
 
 JRequestLogin::JRequestLogin(QObject *parent) :
-    QObject(parent)
+	JRequestBase(parent)
 {
     m_socket=new JRequestLoginSocket(this);
-    m_state=ES_Close;
-    m_error=0;
+	setSocket(m_socket);
+	m_state=ELS_Init;
+	m_loginError=EL_SUCCESS;
     connect(m_socket,SIGNAL(loginCode(JCode)),SLOT(on_socket_loginCode(JCode)));
-	connect(m_socket,SIGNAL(SocketCode(JCode)),SLOT(on_socket_SocketCode(JCode)));
-}
-
-void JRequestLogin::connectToHost(const QHostAddress& address,quint16 port)
-{
-    m_state=ES_Connecting;
-    m_socket->connectToHost(address,port);
 }
 
 void JRequestLogin::login(const QString& loginname,
            const QString& passwd,
            const JID& role)
 {
-    m_state=ES_Logining;
+	m_state=ELS_Sending;
     m_socket->login(loginname,passwd,role);
 }
 
-JRequestLogin::EState JRequestLogin::state()const
+JRequestLogin::ELoginState JRequestLogin::getLoginState()const
 {
     return m_state;
-}
-
-bool JRequestLogin::waitForConnected( int msecs)const
-{
-    JElapsedTimer timer;
-    timer.start();
-    while(timer.elapsed()<msecs)
-    {
-        if(state()!=ES_Connecting)
-        {
-            break;
-        }
-        QCoreApplication::processEvents();
-    }
-    return state()==ES_Connected;
 }
 
 bool JRequestLogin::waitForLogined(int msecs)
@@ -57,20 +36,20 @@ bool JRequestLogin::waitForLogined(int msecs)
     timer.start();
     while(timer.elapsed()<msecs)
     {
-        if(state()!=ES_Logining)
+		if(getLoginState()!=ELS_Sending)
         {
             break;
         }
         QCoreApplication::processEvents();
     }
-    return state()==ES_Logined;
+	return getLoginState()==ELS_Success;
 }
 
-const QString& JRequestLogin::error()const
+const QString& JRequestLogin::getLoginError()const
 {
     static QString noerror="no error";
-	if(EL_SUCCESS==m_error) return noerror;
-    return loginMsg[m_error];
+	if(EL_SUCCESS==m_loginError) return noerror;
+	return loginMsg[m_loginError];
 }
 
 void JRequestLogin::on_socket_loginCode(JCode code)
@@ -78,30 +57,32 @@ void JRequestLogin::on_socket_loginCode(JCode code)
     switch(code)
 	{
     case EL_SUCCESS:
-        m_state=ES_Logined;
+		m_state=ELS_Success;
         {
             JCryproRecorder cr;
             cr.set(m_socket->getCrypro(),m_socket->getUserId());
         }
+		emit loginResult(true);
         break;
     default:
-        m_state=ES_Error;
-        m_error=code;
+		m_state=ELS_Failed;
+		m_loginError=(ELogin)code;
+		emit loginResult(false);
         break;
     }
 }
 
-void JRequestLogin::on_socket_SocketCode(JCode code)
-{
-	switch((ENet)code)
-	{
-	case EN_CONNECTED:
-		m_state=ES_Connected;
-		m_error=EL_SUCCESS;
-		break;
-	case EN_DISCONNECTED:
-		m_state=ES_Error;
-		m_error=EL_SOCKET_DISCONNECTED;
-		break;
-	}
-}
+//void JRequestLogin::on_socket_SocketCode(JCode code)
+//{
+//	switch((ENet)code)
+//	{
+//	case EN_CONNECTED:
+//		m_state=ES_Connected;
+//		m_error=EL_SUCCESS;
+//		break;
+//	case EN_DISCONNECTED:
+//		m_state=ES_Error;
+//		m_error=EL_SOCKET_DISCONNECTED;
+//		break;
+//	}
+//}

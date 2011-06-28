@@ -22,8 +22,12 @@ public:
 	};
 	EConnectState getConnectState()const;
 	bool waitForConnected(int msecs=30000)const;
-	const QString& error()const;
+	const QString& getConnectError()const;
+protected:
 	void setSocket(JSocketBase* socket);
+signals:
+	void connectResult(bool);
+	void error();
 private:
 	JSocketBase* m_socket;
 	EConnectState m_state;

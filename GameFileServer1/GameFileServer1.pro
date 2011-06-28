@@ -33,7 +33,10 @@ SOURCES += \
 	../api/src/global/ssubserver.cpp \
 	../api/src/global/jversion.cpp \
     ../api/src/service/jsubserverstartup.cpp \
-    service/jgamefilemanager.cpp
+    service/jgamefilemanager.cpp \
+    ../api/src/service/jrequestbase.cpp \
+    ../api/src/service/jplhrequestbase.cpp \
+    ../api/src/network/jplhsocketbase.cpp
 
 HEADERS += \
     ../api/include/network/jserverbase.h \
@@ -55,4 +58,7 @@ HEADERS += \
 	../api/include/service/jsendgsinfo.h \
     ../api/include/service/jsubserverstartup.h \
     service/jgamefilemanager.h \
-    ../api/include/global/magicnumber.h
+    ../api/include/global/magicnumber.h \
+    ../api/include/service/jrequestbase.h \
+    ../api/include/service/jplhrequestbase.h \
+    ../api/include/network/jplhsocketbase.h

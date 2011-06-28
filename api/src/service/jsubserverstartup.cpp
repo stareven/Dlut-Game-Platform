@@ -16,18 +16,17 @@ JSubServerStartup::ERuturnValue JSubServerStartup::startup()const
 {
 //	JPortService ps;
 	m_ps->setServerPort(EST_FREEPORT,m_host);
-//	JLoginService2 login;
 	SHost loginHost=m_ps->rqsServerPort(EST_LOGIN);
 	m_login->connectToHost(loginHost.m_address,loginHost.m_port);
 	if(!m_login->waitForConnected(1000))
 	{
-		qDebug()<<"connect failed . error :"<<m_login->error();
+		qDebug()<<"connect failed . error :"<<m_login->getConnectError();
 		return ERV_ConnectFailed;
 	}
 	m_login->login(m_loginname,m_passwd,m_role);
 	if(!m_login->waitForLogined(1000))
 	{
-		qDebug()<<"Login failed . error :"<<m_login->error();
+		qDebug()<<"Login failed . error :"<<m_login->getLoginError();
 		return ERV_LoginFailed;
 	}
 //	JGsInfoService gis;
