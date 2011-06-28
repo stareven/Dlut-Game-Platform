@@ -1,0 +1,39 @@
+/*
+-----------------------------
+Screen Stylesheet
+Author: @oppih28
+-----------------------------
+*/
+
+body {
+  font-family: "Lucida Sans", "Lucida Grande", verdana, arial, helvetica, sans-serif;
+  font-size:   14px;
+  line-height: 1.5em;
+  background-color: #c2ddf9;
+  color: #333;
+}
+
+h1.title {
+  text-transform:uppercase;
+  text-shadow: 1px 2px 1px #356aa0;
+  text-align: center;
+}
+
+h2.title {
+  text-transform:uppercase;
+  text-shadow: 1px 2px 1px #356aa0;
+  text-align: center;
+}
+
+a.link { 
+  color: #356aa0;
+}
+
+a.link:hover {
+  color: #e81f20;
+}
+
+#content {
+  width: 960px;
+  margin: auto;
+}
