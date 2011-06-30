@@ -4,26 +4,24 @@
 #include <QObject>
 
 #include "global/eportsrv.h"
+#include "network/jserverbase.h"
 
-class QTcpServer;
-class QByteArray;
-class QTcpSocket;
-class JConnectionBase;
-
-class JServerType : public QObject
+class JServerType : public JServerBase
 {
 Q_OBJECT
 public:
     explicit JServerType(EServerType,QObject *parent = 0);
-    virtual quint16 run(quint16 port);
-    quint16 serverPort()const;
+//    virtual quint16 run(quint16 port);
+//    quint16 serverPort()const;
     EServerType serverType()const;
 
 protected:
-    QTcpServer *m_server;
-    const EServerType m_servertype;
-protected slots:
-    void on_server_newConnection();
+//    QTcpServer *m_server;
+	const EServerType m_servertype;
+//protected slots:
+//    void on_server_newConnection();
+protected:
+	JConnectionBase* getConnection(QTcpSocket* socket,QObject* parent)const;
 };
 
 #endif // JSERVERTYPE_H

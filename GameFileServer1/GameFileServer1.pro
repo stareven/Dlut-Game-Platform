@@ -36,7 +36,8 @@ SOURCES += \
     service/jgamefilemanager.cpp \
     ../api/src/service/jrequestbase.cpp \
     ../api/src/service/jplhrequestbase.cpp \
-    ../api/src/network/jplhsocketbase.cpp
+    ../api/src/network/jplhsocketbase.cpp \
+    network/jgfsserver.cpp
 
 HEADERS += \
     ../api/include/network/jserverbase.h \
@@ -61,4 +62,5 @@ HEADERS += \
     ../api/include/global/magicnumber.h \
     ../api/include/service/jrequestbase.h \
     ../api/include/service/jplhrequestbase.h \
-    ../api/include/network/jplhsocketbase.h
+    ../api/include/network/jplhsocketbase.h \
+    network/jgfsserver.h

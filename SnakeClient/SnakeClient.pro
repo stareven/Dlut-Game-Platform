@@ -14,15 +14,18 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     ../SnakeCommon/jsnake.cpp \
     jsnakewidget.cpp \
-    ../SnakeCommon/jsnakegame.cpp
+    ../SnakeCommon/jsnakegame.cpp \
+    jhallwidget.cpp
 
 HEADERS  += mainwindow.h \
     ../SnakeCommon/jsnake.h \
     jsnakewidget.h \
-    ../SnakeCommon/jsnakegame.h
+    ../SnakeCommon/jsnakegame.h \
+    jhallwidget.h
 
 FORMS    += mainwindow.ui \
-    jsnakewidget.ui
+    jsnakewidget.ui \
+    jhallwidget.ui
 
 RESOURCES += \
     res.qrc

@@ -2,14 +2,14 @@
 
 #include <QDebug>
 
-#include "network/jserverbase.h"
+#include "network/jgfsserver.h"
 #include "service/jsubserverstartup.h"
 #include "global/elogin.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
-	JServerBase server;
+	JGfsServer server;
 	quint16 port=server.run(50123);
 	qDebug()<<"GameFileServer1 startup :"<<port;
 	JSubServerStartup sssu;

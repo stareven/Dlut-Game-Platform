@@ -20,6 +20,8 @@ protected:
 	QTcpServer *m_server;
 protected slots:
     void on_server_newConnection();
+protected:
+	virtual JConnectionBase* getConnection(QTcpSocket* socket,QObject* parent)const=0;
 };
 
 #endif // JSERVERBASE_H

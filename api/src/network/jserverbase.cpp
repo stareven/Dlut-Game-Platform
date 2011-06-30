@@ -3,8 +3,6 @@
 #include <QTcpServer>
 #include <QCoreApplication>
 
-#include "network/jgfsconnection.h"
-
 JServerBase::JServerBase(QObject *parent) :
 	QObject(parent)
 {
@@ -37,7 +35,8 @@ void JServerBase::on_server_newConnection()
     while(m_server->hasPendingConnections())
     {
 		QTcpSocket* socket=m_server->nextPendingConnection();
-		JConnectionBase *cnct=new JGfsConnection(socket,this);
+//		JConnectionBase *cnct=new JGfsConnection(socket,this);
+		JConnectionBase *cnct=getConnection(socket,this);
 		if(cnct==NULL)
 		{
 			qDebug()<<"create connection failed";

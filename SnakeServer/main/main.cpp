@@ -3,25 +3,17 @@
 #include "jargumentanalyse.h"
 #include "service/jsubserverstartup.h"
 #include "global/elogin.h"
-//#include "service/jportservice.h"
-//#include "service/jloginservice2.h"
-//#include "service/jgsinfoservice.h"
-//#include "service/jcryprorecorder.h"
 
-//#include "ssubserver.h"
-
-//enum ERuturnValue{
-//    ERV_Success,
-//    ERV_ConnectFailed,
-//    ERV_LoginFailed,
-//    ERV_PlhFailed,
-//    ERV_SendFailed,
-//};
+#include "network/jsnakeserver.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
     JArgumentAnalyse aa(argc,argv);
+	JSnakeServer server;
+	server.run(60373);
+	quint16 port=server.serverPort();
+	qDebug()<<"snake server :"<<port;
 	JSubServerStartup sssu;
 	sssu.m_host.m_address=aa.getAddress();
 	sssu.m_host.m_port=aa.getPort();
@@ -36,7 +28,7 @@ int main(int argc, char *argv[])
 	sssu.m_serverinfo.m_serverId=53379;
 	sssu.m_serverinfo.m_name="sample game server";
 	sssu.m_serverinfo.m_address=QHostAddress::LocalHost;
-	sssu.m_serverinfo.m_port=60373;
+	sssu.m_serverinfo.m_port=port;
 	sssu.m_serverinfo.m_type=SubServer::SSubServer::ET_GameServer;
 	JSubServerStartup::ERuturnValue ret=sssu.startup();
 	if(ret!=JSubServerStartup::ERV_Success)

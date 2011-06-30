@@ -8,10 +8,11 @@ QT       += network
 
 QT       -= gui
 
-TARGET = SampleServer
+TARGET = SnakeServer
 CONFIG   += console
 CONFIG   -= app_bundle
-INCLUDEPATH += ../api/include
+INCLUDEPATH += ../api/include \
+				../SnakeCommon/
 
 # Input
 HEADERS += main/jargumentanalyse.h \
@@ -32,7 +33,15 @@ HEADERS += main/jargumentanalyse.h \
     ../api/include/global/magicnumber.h \
     ../api/include/service/jrequestbase.h \
     ../api/include/service/jplhrequestbase.h \
-    ../api/include/network/jplhsocketbase.h
+	../api/include/network/jplhsocketbase.h \
+	../api/include/network/jserverbase.h \
+	../api/include/network/jconnectionbase.h \
+    network/jsnakeserver.h \
+    network/jsnakeconnection.h \
+    ../SnakeCommon/jsnakeglobal.h \
+    ../SnakeCommon/jsnakegame.h \
+    ../SnakeCommon/jsnake.h \
+    service/juserlistmanager.h
 SOURCES += main/jargumentanalyse.cpp \
 	main/main.cpp \
 	../api/src/network/jrequestloginsocket.cpp \
@@ -48,4 +57,11 @@ SOURCES += main/jargumentanalyse.cpp \
     ../api/src/service/jsubserverstartup.cpp \
     ../api/src/service/jrequestbase.cpp \
     ../api/src/service/jplhrequestbase.cpp \
-    ../api/src/network/jplhsocketbase.cpp
+	../api/src/network/jplhsocketbase.cpp \
+	../api/src/network/jserverbase.cpp \
+	../api/src/network/jconnectionbase.cpp \
+    network/jsnakeserver.cpp \
+    network/jsnakeconnection.cpp \
+    ../SnakeCommon/jsnakegame.cpp \
+    ../SnakeCommon/jsnake.cpp \
+    service/juserlistmanager.cpp

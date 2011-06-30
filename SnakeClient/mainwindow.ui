@@ -13,14 +13,14 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="JSnakeWidget" name="centralWidget"/>
+  <widget class="QStackedWidget" name="centralWidget"/>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>25</height>
+     <height>27</height>
     </rect>
    </property>
   </widget>
@@ -35,14 +35,6 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>JSnakeWidget</class>
-   <extends>QWidget</extends>
-   <header>jsnakewidget.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
