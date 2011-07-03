@@ -10,22 +10,22 @@ TARGET = SnakeClient
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
+SOURCES += main/main.cpp\
+        gui/mainwindow.cpp \
     ../SnakeCommon/jsnake.cpp \
-    jsnakewidget.cpp \
+    gui/jsnakewidget.cpp \
     ../SnakeCommon/jsnakegame.cpp \
-    jhallwidget.cpp
+    gui/jhallwidget.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += gui/mainwindow.h \
     ../SnakeCommon/jsnake.h \
-    jsnakewidget.h \
+    gui/jsnakewidget.h \
     ../SnakeCommon/jsnakegame.h \
-    jhallwidget.h
+    gui/jhallwidget.h
 
-FORMS    += mainwindow.ui \
-    jsnakewidget.ui \
-    jhallwidget.ui
+FORMS    += gui/mainwindow.ui \
+    gui/jsnakewidget.ui \
+    gui/jhallwidget.ui
 
 RESOURCES += \
-    res.qrc
+    res/res.qrc
