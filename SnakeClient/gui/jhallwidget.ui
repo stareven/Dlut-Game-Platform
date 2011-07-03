@@ -63,7 +63,7 @@ Product by JDMD studio .</string>
     <string>create room</string>
    </property>
   </widget>
-  <widget class="QListView" name="listView_player">
+  <widget class="QListWidget" name="lst_player">
    <property name="geometry">
     <rect>
      <x>470</x>
