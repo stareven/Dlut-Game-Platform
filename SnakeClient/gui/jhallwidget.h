@@ -23,6 +23,7 @@ private:
 	JSnakeSocket *m_socket;
 private slots:
 	void on_btn_refresh_clicked();
+	void on_socket_SocketCode(JCode code);
 	void on_socket_rcvHello(JCode code);
 	void on_socket_rcvUserlist(JID roomId,const QList<JID>& userlist);
 };

@@ -19,7 +19,8 @@ SOURCES += main/main.cpp\
     ../SnakeCommon/jsnakegame.cpp \
 	gui/jhallwidget.cpp \
 	../api/src/network/jsocketbase.cpp \
-    network/jsnakesocket.cpp
+    network/jsnakesocket.cpp \
+    service/jglobalsettings.cpp
 
 HEADERS  += gui/mainwindow.h \
     ../SnakeCommon/jsnake.h \
@@ -30,7 +31,9 @@ HEADERS  += gui/mainwindow.h \
 	../api/include/global/jglobal.h \
 	../api/include/global/magicnumber.h \
     network/jsnakesocket.h \
-    ../SnakeCommon/jsnakeglobal.h
+    ../SnakeCommon/jsnakeglobal.h \
+    service/jglobalsettings.h \
+    ../api/include/global/eportsrv.h
 
 FORMS    += gui/mainwindow.ui \
     gui/jsnakewidget.ui \
