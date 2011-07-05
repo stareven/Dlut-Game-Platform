@@ -7,6 +7,7 @@
 #include <QFileInfo>
 
 #include "network/jdownloadgamefilesocket.h"
+#include "service/jcryprorecorder.h"
 
 JDownloadRun::JDownloadRun()
 {
@@ -43,12 +44,17 @@ void JDownloadRun::setGame(const QString& gamename,
 	m_version=version;
 }
 
-void JDownloadRun::setHost(const QHostAddress& address,
-			 quint16 port)
+void JDownloadRun::setHost(EHostType hostType,const SHost& host)
 {
-	m_address=address;
-	m_port=port;
+	m_hosts[hostType]=host;
 }
+
+//void JDownloadRun::setHost(const QHostAddress& address,
+//			 quint16 port)
+//{
+//	m_address=address;
+//	m_port=port;
+//}
 
 void JDownloadRun::setParent(QObject* parent)
 {
@@ -74,7 +80,7 @@ bool JDownloadRun::download()
 		return true;
 	}
 	JDownloadGameFileSocket dgfs;
-	dgfs.connectToHost(m_address,m_port);
+	dgfs.connectToHost(m_hosts[EHT_Download].m_address,m_hosts[EHT_Download].m_port);
 	if(!dgfs.waitForConnected(1000))
 	{
 		qDebug()<<"connect failed.";
@@ -86,19 +92,28 @@ bool JDownloadRun::download()
 
 bool JDownloadRun::run()
 {
-//	qDebug()<<"zan shi bu xiang run.";
-//	return false;
 	QString path=getPath();
 	QProcess *process=new QProcess(m_parent);
 	qDebug()<<"run:"<<path;
-	process->setProcessChannelMode(QProcess::MergedChannels);
-	process->start(path);
-	process->waitForFinished();
-	qDebug()<<process->errorString();
+	process->setProcessChannelMode(QProcess::ForwardedChannels);
+	process->start(path,getArguments());
 	return true;
 }
 
 QString JDownloadRun::getPath()const
 {
 	return QString("./%1%2").arg(m_gamename).arg(m_version.getData()).replace(' ','_');
+}
+
+QStringList JDownloadRun::getArguments()const
+{
+	QStringList ret;
+	JCryproRecorder cr;
+	ret<<QString::number(cr.getUserId());
+	ret<<cr.getCrypro().toHex().toUpper();
+	ret<<m_hosts[EHT_MainServer].m_address.toString();
+	ret<<QString::number(m_hosts[EHT_MainServer].m_port);
+	ret<<m_hosts[EHT_GameServer].m_address.toString();
+	ret<<QString::number(m_hosts[EHT_GameServer].m_port);
+	return ret;
 }

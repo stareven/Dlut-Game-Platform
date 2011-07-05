@@ -1,12 +1,10 @@
 #ifndef JDOWNLOADRUN_H
 #define JDOWNLOADRUN_H
 
-#include <QtGlobal>
-
 #include <QString>
-#include <QHostAddress>
 
 #include "global/jversion.h"
+#include "global/shost.h"
 
 class QObject;
 
@@ -16,8 +14,9 @@ public:
     JDownloadRun();
 	void setGame(const QString& gamename,
 				 const JVersion& version);
-	void setHost(const QHostAddress& address,
-				 quint16 port);
+	enum EHostType{EHT_Download,EHT_MainServer,EHT_GameServer,EHT_Max};
+	void setHost(EHostType hostType,const SHost&);
+//	void setHost(const QHostAddress& address,quint16 port);
 	void setParent(QObject* parent);
 	bool needDownload()const;
 	bool download();
@@ -29,12 +28,13 @@ public:
 //			   quint16 port);
 private:
 	QString getPath()const;
+	QStringList getArguments()const;
 
 	QString m_gamename;
 	JVersion m_version;
 	QObject* m_parent;
-	QHostAddress m_address;
-	quint16 m_port;
+
+	SHost m_hosts[EHT_Max];
 };
 
 #endif // JDOWNLOADRUN_H

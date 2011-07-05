@@ -89,6 +89,14 @@ Waiting for translation to English for this article
 	PlhRequest
 		sendPlh
 		waitForPlh// init . sending . success . failed .
+16、MainClient调用GameClient参数传递格式：
+	0 ： 程序名
+	1 ： userId
+	2 ： crypro
+	3 ： MainServer address
+	4 ： MainServer port
+	5 ： GameServer address
+	6 ： GameServer port
 
 JDMD studio , Dalian University of Technology , China
 E-mail : elephant_liu@mail.dlut.edu.cn

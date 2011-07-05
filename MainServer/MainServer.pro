@@ -57,4 +57,5 @@ SOURCES += main/main.cpp \
 	../api/src/global/userinfo.cpp \
     network/juserinfoconnection.cpp \
     database/juserinfodb.cpp \
-    ../api/src/network/jserverbase.cpp
+    ../api/src/network/jserverbase.cpp \
+    ../api/src/global/shost.cpp

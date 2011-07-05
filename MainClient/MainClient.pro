@@ -31,7 +31,8 @@ SOURCES += main/main.cpp \
     ../api/src/network/jrequestuserinfosocket.cpp \
     ../api/src/global/userinfo.cpp \
     ../api/src/service/jrequestuserinfo.cpp \
-    gui/jdlgselectserver.cpp
+    gui/jdlgselectserver.cpp \
+    ../api/src/global/shost.cpp
 HEADERS += gui/mainwindow.h \
     gui/dlglogin/jcomboselectserver.h \
     gui/dlglogin/jdlglogin.h \
@@ -62,7 +63,8 @@ HEADERS += gui/mainwindow.h \
     ../api/include/network/jrequestuserinfosocket.h \
     ../api/include/global/userinfo.h \
     ../api/include/service/jrequestuserinfo.h \
-    gui/jdlgselectserver.h
+    gui/jdlgselectserver.h \
+    ../api/include/global/shost.h
 FORMS += gui/mainwindow.ui \
     gui/dlglogin/jdlglogin.ui \
     gui/dlglogin/jdlgnewserver.ui \

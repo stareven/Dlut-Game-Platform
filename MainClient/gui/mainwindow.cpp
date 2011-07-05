@@ -138,7 +138,14 @@ void MainWindow::on_gameinfosrv_gameInfoReady(JID gameid)
 
 void MainWindow::on_btn_start_game_clicked()
 {
-	//
+	if(m_currentId<0)
+	{
+		QMessageBox::warning(this,
+							 tr("no game selected!"),
+							 tr("please select a game.")
+							 );
+		return;
+	}
 	JDownloadRun dr;
 	SubServer::SGameInfo2 gi=m_gis->getGameInfo(m_currentId);
 	dr.setGame(gi.m_name,gi.m_version);
@@ -160,6 +167,9 @@ void MainWindow::on_btn_start_game_clicked()
 				if( SubServer::SSubServer::ET_GameFileServer ==si.m_type)
 				{
 					dlg.addServer(si);
+				}else if(SubServer::SSubServer::ET_GameServer ==si.m_type){
+					qDebug()<<"game server::";
+					dr.setHost(JDownloadRun::EHT_GameServer,si);
 				}
 			}
 			if(QDialog::Rejected==dlg.exec())
@@ -167,8 +177,7 @@ void MainWindow::on_btn_start_game_clicked()
 				return;
 			}else{
 				SubServer::SSubServer si=m_gis->getServerInfo(dlg.getSelectedServer());
-				dr.setHost(si.m_address,si.m_port);
-
+				dr.setHost(JDownloadRun::EHT_Download,si);
 				if(!dr.download())
 				{
 					qDebug()<<"download failed";
@@ -181,6 +190,7 @@ void MainWindow::on_btn_start_game_clicked()
 		}
 	}
 	dr.setParent(this);
+	dr.setHost(JDownloadRun::EHT_MainServer,m_reqport->getServerPort(EST_FREEPORT));
 	if(!dr.run())
 	{
 		qDebug()<<"run failed";

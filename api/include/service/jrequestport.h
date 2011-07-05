@@ -5,6 +5,7 @@
 #include <QMap>
 
 #include "global/eportsrv.h"
+#include "global/shost.h"
 
 class JRequestPortSocket;
 

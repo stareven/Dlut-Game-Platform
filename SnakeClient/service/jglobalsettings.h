@@ -19,8 +19,10 @@ namespace GlobalSettings
 	};
 
 	extern JID g_userId;
-	extern SHost g_gameServer;
+	extern QByteArray g_crypro;
 	extern SHost g_mainServer;
+	extern SHost g_gameServer;
+
 }
 
 #endif // JGLOBALSETTINGS_H

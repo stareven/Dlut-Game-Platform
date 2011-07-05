@@ -6,6 +6,7 @@
 #include <QList>
 
 #include "jversion.h"
+#include "shost.h"
 
 namespace SubServer{
 	struct SGameInfo0 {
@@ -20,11 +21,9 @@ namespace SubServer{
 		JID m_author;
 		QString m_introduction;
 	};
-	struct SSubServer{
+	struct SSubServer : public SHost{
 		JID m_serverId;
 		QString m_name;
-		QHostAddress m_address;//地址
-		quint16 m_port;//主端口
 		enum EType{ET_GameServer,ET_GameFileServer} m_type;
 	};
 	struct SGameInfo3 : public SGameInfo2{

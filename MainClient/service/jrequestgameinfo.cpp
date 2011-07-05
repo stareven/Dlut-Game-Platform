@@ -156,7 +156,7 @@ void JRequestGameInfo::on_socket_rcvGameList(const QList<SubServer::SGameInfo2>&
 
 void JRequestGameInfo::on_socket_rcvServers(JID gameId,const JVersion& version,const QSet<JID>& servers)
 {
-//	qDebug()<<gameId<<version.getData()<<servers;
+	qDebug()<<gameId<<version.getData()<<servers;
 	SubServer::SGameInfo2 gi=getGameInfo(gameId);
 	if(version!=gi.m_version)
 	{

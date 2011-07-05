@@ -37,7 +37,8 @@ SOURCES += \
     ../api/src/service/jrequestbase.cpp \
     ../api/src/service/jplhrequestbase.cpp \
     ../api/src/network/jplhsocketbase.cpp \
-    network/jgfsserver.cpp
+    network/jgfsserver.cpp \
+    ../api/src/global/shost.cpp
 
 HEADERS += \
     ../api/include/network/jserverbase.h \
