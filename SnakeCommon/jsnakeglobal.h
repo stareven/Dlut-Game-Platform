@@ -7,6 +7,7 @@ namespace Snake{
 	const int Max_Players=4;
 	struct JRoom{
 		JID m_roomId;
+		QString m_roomName;
 		int m_nPlayers;
 	};
 }

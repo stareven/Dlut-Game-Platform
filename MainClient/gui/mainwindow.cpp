@@ -187,6 +187,7 @@ void MainWindow::on_btn_start_game_clicked()
 			}
 		}else{
 			qDebug()<<"not download";
+			return;
 		}
 	}
 	dr.setParent(this);
