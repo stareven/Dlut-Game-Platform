@@ -9,6 +9,8 @@ namespace Ui {
 
 #include "global/jglobal.h"
 class JSnakeSocket;
+class JRequestUserInfo;
+class JRequestPort;
 
 class JHallWidget : public QWidget
 {
@@ -21,6 +23,8 @@ public:
 private:
     Ui::JHallWidget *ui;
 	JSnakeSocket *m_socket;
+	JRequestUserInfo *m_reqUserInfo;
+	JRequestPort *m_reqPort;
 private slots:
 	void on_btn_refresh_clicked();
 	void on_socket_SocketCode(JCode code);

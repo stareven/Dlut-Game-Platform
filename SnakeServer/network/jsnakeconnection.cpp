@@ -63,3 +63,9 @@ void JSnakeConnection::dataProcess(const QByteArray& data)
 		break;
 	}
 }
+
+void JSnakeConnection::on_socket_disconnected()
+{
+	JUserlistManager ulm;
+	ulm.removeUser(getUserId());
+}

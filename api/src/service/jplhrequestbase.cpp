@@ -19,6 +19,11 @@ void JPlhRequestBase::sendCrypro(JID id,const QByteArray& crypro)
 		qDebug()<<"JRequestBase: socket is NULL";
 		return;
 	}
+	if(EPS_Success==m_state)
+	{
+		qDebug()<<"already plh";
+		return;
+	}
 	m_socket->sendCrypro(id,crypro);
 	m_state=EPS_Sending;
 }

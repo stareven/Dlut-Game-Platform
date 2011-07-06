@@ -32,3 +32,13 @@ JCode JUserlistManager::moveUser(JID userId,JID roomId)
 	s_user2room[userId]=roomId;
 	return 0;
 }
+
+JCode JUserlistManager::removeUser(JID userId)
+{
+	if(!s_user2room.contains(userId))
+	{
+		return 1;
+	}
+	s_user2room.remove(userId);
+	return 0;
+}

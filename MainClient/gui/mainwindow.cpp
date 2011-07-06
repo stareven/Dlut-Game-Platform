@@ -190,6 +190,16 @@ void MainWindow::on_btn_start_game_clicked()
 		}
 	}
 	dr.setParent(this);
+	QSet<JID> servers=m_gis->getServerListOnGame(gi.m_gameId);
+	foreach(JID serverId,servers)
+	{
+		SubServer::SSubServer si=m_gis->getServerInfo(serverId);
+		if(SubServer::SSubServer::ET_GameServer ==si.m_type){
+			qDebug()<<"game server::";
+			dr.setHost(JDownloadRun::EHT_GameServer,si);
+			break;
+		}
+	}
 	dr.setHost(JDownloadRun::EHT_MainServer,m_reqport->getServerPort(EST_FREEPORT));
 	if(!dr.run())
 	{

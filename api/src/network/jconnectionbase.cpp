@@ -39,7 +39,7 @@ void JConnectionBase::on_socket_readyRead()
 
 void JConnectionBase::on_socket_disconnected()
 {
-	qDebug()<<"JConnectionBase::on_socket_disconnected";
+	qDebug()<<"JConnectionBase::on_socket_disconnected"<<metaObject()->className();
 //    JLoginHash::JDelete del;
 //    JUserIsOnline uio;
 //    del.del(m_userid);

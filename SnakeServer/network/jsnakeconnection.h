@@ -10,6 +10,7 @@ public:
 	explicit JSnakeConnection(QTcpSocket* socket,QObject *parent = 0);
 protected:
 	void dataProcess(const QByteArray&);
+	void on_socket_disconnected();
 private:
 	MagicNumber::JMagicNumber getMagicNumber()const
 	{

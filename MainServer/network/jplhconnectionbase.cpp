@@ -31,7 +31,11 @@ void JPlhConnectionBase::dataProcess(const QByteArray& data)
 		outstream<<m_plh;
 		qDebug()<<"plh: send";
 		sendData(outdata);
-		if(!m_plh) closeConnect();
+		if(!m_plh)
+		{
+			qDebug()<<"plh failed.close connect.";
+			closeConnect();
+		}
 		setUserId(userid);
 	}
 }

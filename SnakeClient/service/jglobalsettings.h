@@ -17,9 +17,6 @@ namespace GlobalSettings
 		QHostAddress m_address;
 		quint16 m_port;
 	};
-
-	extern JID g_userId;
-	extern QByteArray g_crypro;
 	extern SHost g_mainServer;
 	extern SHost g_gameServer;
 

@@ -13,6 +13,7 @@ public:
 	QList<JID> getUserlistInRoom(JID roomId)const;
 	JCode addUser(JID userId,JID roomId);
 	JCode moveUser(JID userId,JID roomId);
+	JCode removeUser(JID userId);
 private:
 	static QMap<JID,JID> s_user2room;
 };

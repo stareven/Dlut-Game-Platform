@@ -24,6 +24,11 @@ void JRequestBase::connectToHost(const QHostAddress& address,quint16 port)
 		m_error=&error_socket_null;
 		return;
 	}
+	if(m_state==ECS_Connected)
+	{
+		qDebug()<<"already connected.";
+		return;
+	}
 	m_socket->connectToHost(address,port);
 	m_state=ECS_Connecting;
 }

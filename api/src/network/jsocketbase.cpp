@@ -57,7 +57,7 @@ void JSocketBase::on_socket_readyRead()
 		{
 			QByteArray readdata=m_socket->read(m_size-m_data.size());
 			m_data+=readdata;
-			qDebug()<<"size="<<m_size<<"read data size="<<m_data.size();
+			qDebug()<<"size="<<m_size<<"read data size="<<m_data.size()<<metaObject()->className();
 			if(m_data.size()==m_size)
 			{
 				dataProcess(m_data);
@@ -104,7 +104,7 @@ void JSocketBase::sendData(const QByteArray& data)
 //    }
     if(m_socket->state()!=QAbstractSocket::ConnectedState)
     {
-        qDebug()<<"JSocketBase::sendData : socket not connected .";
+		qDebug()<<"JSocketBase::sendData : socket not connected ."<<metaObject()->className()<<m_socket->state();
     }
     int size=data.size();
     QDataStream outsocketstream(m_socket);
