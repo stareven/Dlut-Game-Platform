@@ -18,10 +18,12 @@ public:
 	void sendHello(JID userId);
 	void sendRqsUserlist();
 	void sendAddRoom(const Snake::JRoom&);
+	void sendEnterRoom(JID roomId);
 signals:
 	void rcvHello(JCode code);
 	void rcvUserlist(JID roomId,const QList<JID>& userlist);
 	void rcvAddRoom(const Snake::JRoom&);
+	void rcvEnterRoom(JID roomId,JID userId,JCode code);
 protected:
 	void dataProcess(const QByteArray&);
 private:

@@ -19,7 +19,7 @@ JCode JRoomManager::updateRoom(const Snake::JRoom& room)
 	return 0;
 }
 
-JCode JRoomManager::addRoom(const Snake::JRoom& room)
+JCode JRoomManager::addRoom(Snake::JRoom& room)
 {
 	if(m_rooms.contains(room.m_roomId))
 	{
@@ -32,11 +32,9 @@ JCode JRoomManager::addRoom(const Snake::JRoom& room)
 		{
 			if(!m_rooms.contains(i))
 			{
-				Snake::JRoom room2;
-				room2.m_roomId=i;
-				room2.m_roomName=room.m_roomName;
-				m_rooms.insert(room2.m_roomId,room2);
-				emit roomAdded(room2.m_roomId);
+				room.m_roomId=i;
+				m_rooms.insert(room.m_roomId,room);
+				emit roomAdded(room.m_roomId);
 				return 0;
 			}
 		}

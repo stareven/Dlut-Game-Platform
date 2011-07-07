@@ -43,6 +43,16 @@ void JSnakeSocket::sendAddRoom(const Snake::JRoom& room)
 	sendData(outdata);
 }
 
+void JSnakeSocket::sendEnterRoom(JID roomId)
+{
+	using namespace SnakeProtocol;
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<SP_RoomEnter;
+	outstream<<roomId;
+	sendData(outdata);
+}
+
 void JSnakeSocket::dataProcess(const QByteArray& data)
 {
 	using namespace SnakeProtocol;
@@ -71,11 +81,11 @@ void JSnakeSocket::dataProcess(const QByteArray& data)
 		break;
 	case SP_RoominfoDelete :
 		break;
-	case SP_Roomact :
+	case SP_RoomAct :
 		break;
-	case SP_Roomenter :
+	case SP_RoomEnter :
 		break;
-	case SP_Roomescape :
+	case SP_RoomEscape :
 		break;
 	case SP_Userlist :
 		{

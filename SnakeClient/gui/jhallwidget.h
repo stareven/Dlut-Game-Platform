@@ -32,6 +32,7 @@ private:
 	JRequestPort *m_reqPort;
 	JRoomListModel *m_roomlistmodel;
 private slots:
+	void on_btn_enter_room_clicked();
 	void on_btn_create_room_clicked();
 	void on_btn_refresh_userlist_clicked();
 	void on_socket_SocketCode(JCode code);

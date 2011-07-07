@@ -123,3 +123,8 @@ void JHallWidget::on_socket_rcvAddRoom(const Snake::JRoom& room)
 {
 	qDebug()<<room.m_roomId<<room.m_roomName;
 }
+
+void JHallWidget::on_btn_enter_room_clicked()
+{
+	m_socket->sendEnterRoom(this->m_roomlistmodel->data(ui->listView_room->currentIndex(),Qt::EditRole).toInt());
+}

@@ -34,14 +34,14 @@ namespace SnakeProtocol{
 	const JProtocol SP_RoominfoDelete = ( SP_Roomlist | 0x0300 );
 		// S -> C : SP_RoominfoDelete , <JID>roomid ,
 		// C -> S : SP_RoominfoDelete , <JID>roomid ,
-	const JProtocol SP_Roomact = 0x3000;
-	const JProtocol SP_Roomenter = ( SP_Roomact | 0x0100 );
+	const JProtocol SP_RoomAct = 0x3000;
+	const JProtocol SP_RoomEnter = ( SP_RoomAct | 0x0100 );
 		// C -> S : SP_Roomenter , <JID>roomid ,
-		// S -> C : SP_Roomenter , <JID>roomid , <JCode>result ,
+		// S -> C : SP_Roomenter , <JID>roomid , <JID>userid , <JCode>result ,
 			//这个得发给所有人，因为m_nPlayer被删掉。
-	const JProtocol SP_Roomescape = ( SP_Roomact | 0x0200 );
+	const JProtocol SP_RoomEscape = ( SP_RoomAct | 0x0200 );
 		// C -> S : SP_Roomescape
-		// C -> S : SP_Roomescape , <JID>fromroomid , <JCode>result ,
+		// C -> S : SP_Roomescape , <JID>fromroomid , <JID>userid , <JCode>result ,
 			//这个得发给所有人，因为m_nPlayer被删掉。
 	const JProtocol SP_Userlist = 0x4000;
 		// C -> S : SP_Userlist ,

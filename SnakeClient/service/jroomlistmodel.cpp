@@ -19,15 +19,18 @@ QVariant JRoomListModel::data(const QModelIndex &index, int role) const
 	if (!index.isValid())
 		return QVariant();
 
-	 if (index.row() >= rowCount())
+	if (index.row() >= rowCount())
 		return QVariant();
 
-	 if (role == Qt::DisplayRole)
-	 {
+	if (role == Qt::DisplayRole)
+	{
 		JID roomId=m_index2Id.at(index.row());
 		Snake::JRoom room=m_rooms.value(roomId);
 		return QString("%1 %2").arg(room.m_roomId).arg(room.m_roomName);
 		//return stringList.at(index.row());
+	}else if(role == Qt::EditRole){
+		JID roomId=m_index2Id.at(index.row());
+		return roomId;
 	}
 	 else
 		return QVariant();

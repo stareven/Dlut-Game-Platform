@@ -17,7 +17,7 @@ private:
 public:
 	static JRoomManager& getInstance();
 	JCode updateRoom(const Snake::JRoom&);
-	JCode addRoom(const Snake::JRoom&);
+	JCode addRoom(Snake::JRoom&);
 	JCode removeRoom(JID roomId);
 	Snake::JRoom getRoomInfo(JID roomId)const;
 	QList<JID> getIdList()const;
