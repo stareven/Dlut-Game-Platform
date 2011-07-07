@@ -25,6 +25,23 @@ JCode JRoomManager::addRoom(const Snake::JRoom& room)
 	{
 		return 1;
 	}
+	if(room.m_roomId<0)
+	{
+		JID i;
+		for(i=0;i<MAX_ROOM;++i)
+		{
+			if(!m_rooms.contains(i))
+			{
+				Snake::JRoom room2;
+				room2.m_roomId=i;
+				room2.m_roomName=room.m_roomName;
+				m_rooms.insert(room2.m_roomId,room2);
+				emit roomAdded(room2.m_roomId);
+				return 0;
+			}
+		}
+		return 2;
+	}
 	m_rooms.insert(room.m_roomId,room);
 	emit roomAdded(room.m_roomId);
 	return 0;

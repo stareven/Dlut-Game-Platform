@@ -6,6 +6,7 @@
 
 #include "jsnakeglobal.h"
 
+const JID MAX_ROOM=65535;
 
 class JRoomManager : public QObject
 {

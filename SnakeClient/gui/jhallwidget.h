@@ -11,6 +11,7 @@ namespace Ui {
 class JSnakeSocket;
 class JRequestUserInfo;
 class JRequestPort;
+class JRoomListModel;
 namespace Snake
 {
 	class JRoom;
@@ -29,6 +30,7 @@ private:
 	JSnakeSocket *m_socket;
 	JRequestUserInfo *m_reqUserInfo;
 	JRequestPort *m_reqPort;
+	JRoomListModel *m_roomlistmodel;
 private slots:
 	void on_btn_create_room_clicked();
 	void on_btn_refresh_userlist_clicked();

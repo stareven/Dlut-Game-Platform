@@ -6,21 +6,24 @@
 #include "service/jrequestuserinfo.h"
 #include "service/jrequestport.h"
 #include "service/jcryprorecorder.h"
+#include "service/jroomlistmodel.h"
 
 JHallWidget::JHallWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::JHallWidget)
 {
 	m_socket=&JSnakeSocket::getInstance();
-	m_socket->setParent(this);
+//	m_socket->setParent(this);
 	m_socket->setObjectName("socket");
 	m_reqUserInfo=new JRequestUserInfo(this);
 	m_reqPort=new JRequestPort(this);
-//	connect(m_socket,SIGNAL(SocketCode(JCode)),SLOT(on_socket_SocketCode(JCode)));
-//	connect(m_socket,SIGNAL(rcvHello(JCode)),SLOT(on_socket_rcvHello(JCode)));
-//	connect(m_socket,SIGNAL(rcvUserlist(JID,QList<JID>)),SLOT(on_socket_rcvUserlist(JID,QList<JID>)));
-//	connect(m_socket,SIGNAL(rcvAddRoom(Snake::JRoom)),SLOT(on_socket_rcvAddRoom(Snake::JRoom)));
+	connect(m_socket,SIGNAL(SocketCode(JCode)),SLOT(on_socket_SocketCode(JCode)));
+	connect(m_socket,SIGNAL(rcvHello(JCode)),SLOT(on_socket_rcvHello(JCode)));
+	connect(m_socket,SIGNAL(rcvUserlist(JID,QList<JID>)),SLOT(on_socket_rcvUserlist(JID,QList<JID>)));
+	connect(m_socket,SIGNAL(rcvAddRoom(Snake::JRoom)),SLOT(on_socket_rcvAddRoom(Snake::JRoom)));
 	ui->setupUi(this);
+	m_roomlistmodel=new JRoomListModel(this);
+	ui->listView_room->setModel(m_roomlistmodel);
 	m_reqPort->setServerPort(EST_FREEPORT,SHost(GlobalSettings::g_mainServer.m_address,GlobalSettings::g_mainServer.m_port));
 	m_socket->connectToHost(GlobalSettings::g_gameServer.m_address,GlobalSettings::g_gameServer.m_port);
 }

@@ -31,7 +31,8 @@ SOURCES += main/main.cpp\
     ../api/src/network/jrequestportsocket.cpp \
     ../api/src/global/shost.cpp \
     ../api/src/service/jcryprorecorder.cpp \
-    ../SnakeCommon/jsnakestream.cpp
+    ../SnakeCommon/jsnakestream.cpp \
+    service/jroomlistmodel.cpp
     
 HEADERS  += gui/mainwindow.h \
     ../SnakeCommon/jsnake.h \
@@ -53,7 +54,8 @@ HEADERS  += gui/mainwindow.h \
     ../api/include/global/userinfo.h \
     ../api/include/service/jrequestport.h \
     ../api/include/network/jrequestportsocket.h \
-    ../api/include/service/jcryprorecorder.h
+    ../api/include/service/jcryprorecorder.h \
+    service/jroomlistmodel.h
     
 FORMS    += gui/mainwindow.ui \
     gui/jsnakewidget.ui \
