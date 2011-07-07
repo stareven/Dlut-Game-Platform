@@ -64,7 +64,7 @@ HEADERS += gui/mainwindow.h \
     ../api/include/global/userinfo.h \
     ../api/include/service/jrequestuserinfo.h \
     gui/jdlgselectserver.h \
-    ../api/include/global/shost.h
+	../api/include/global/shost.h
 FORMS += gui/mainwindow.ui \
     gui/dlglogin/jdlglogin.ui \
     gui/dlglogin/jdlgnewserver.ui \

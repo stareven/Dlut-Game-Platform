@@ -4,10 +4,15 @@
 
 #include "jsnakeglobal.h"
 #include "service/juserlistmanager.h"
+#include "service/jroommanager.h"
 
 JSnakeConnection::JSnakeConnection(QTcpSocket* socket,QObject *parent) :
 	JConnectionBase(socket,parent)
 {
+	m_roomMng=&JRoomManager::getInstance();
+	connect(m_roomMng,SIGNAL(roomAdded(JID)),SLOT(sendRoominfoAdd(JID)));
+	connect(m_roomMng,SIGNAL(roomRemoved(JID)),SLOT(sendRoominfoDelete(JID)));
+	connect(m_roomMng,SIGNAL(roomUpdated(JID)),SLOT(sendRoominfoUpdate(JID)));
 }
 
 void JSnakeConnection::dataProcess(const QByteArray& data)
@@ -34,12 +39,41 @@ void JSnakeConnection::dataProcess(const QByteArray& data)
 		}
 		break;
 	case SP_Roomlist :
+		{
+			QList<Snake::JRoom> roomlist;
+			roomlist=m_roomMng->getRoomList();
+			QByteArray outdata;
+			QDataStream outstream(&outdata,QIODevice::WriteOnly);
+			outstream<<SP_Roomlist;
+			outstream<<roomlist;
+			sendData(outdata);
+		}
 		break;
 	case SP_RoominfoUpdate :
+		{
+			JID roomId;
+			stream>>roomId;
+			sendRoominfoUpdate(roomId);
+		}
 		break;
 	case SP_RoominfoAdd :
+		{
+			Snake::JRoom roominfo;
+			stream>>roominfo;
+			m_roomMng->addRoom(roominfo);
+			/*{
+				sendRoominfoAdd(roominfo.m_roomId);
+			}
+			signal has connected to the slot , so it can send roominfo add automatically.
+			*/
+		}
 		break;
 	case SP_RoominfoDelete :
+		{
+			JID roomId;
+			stream>>roomId;
+			m_roomMng->removeRoom(roomId);
+		}
 		break;
 	case SP_Roomact :
 		break;
@@ -68,4 +102,34 @@ void JSnakeConnection::on_socket_disconnected()
 {
 	JUserlistManager ulm;
 	ulm.removeUser(getUserId());
+}
+
+void JSnakeConnection::sendRoominfoUpdate(JID roomId)
+{
+	using namespace SnakeProtocol;
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<SP_RoominfoUpdate;
+	outstream<<m_roomMng->getRoomInfo(roomId);
+	sendData(outdata);
+}
+
+void JSnakeConnection::sendRoominfoAdd(JID roomId)
+{
+	using namespace SnakeProtocol;
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<SP_RoominfoAdd;
+	outstream<<m_roomMng->getRoomInfo(roomId);
+	sendData(outdata);
+}
+
+void JSnakeConnection::sendRoominfoDelete(JID roomId)
+{
+	using namespace SnakeProtocol;
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<SP_RoominfoDelete;
+	outstream<<roomId;
+	sendData(outdata);
 }

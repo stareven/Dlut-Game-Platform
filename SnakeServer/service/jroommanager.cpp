@@ -2,7 +2,8 @@
 
 JRoomManager JRoomManager::s_object;
 
-JRoomManager::JRoomManager()
+JRoomManager::JRoomManager(QObject* parent)
+	:QObject(parent)
 {
 }
 
@@ -29,14 +30,14 @@ JCode JRoomManager::addRoom(const Snake::JRoom& room)
 	return 0;
 }
 
-JCode JRoomManager::removeRoom(const Snake::JRoom& room)
+JCode JRoomManager::removeRoom(JID roomId)
 {
-	if(!m_rooms.contains(room.m_roomId))
+	if(!m_rooms.contains(roomId))
 	{
 		return 1;
 	}
-	m_rooms.remove(room.m_roomId);
-	emit roomRemoved(room.m_roomId);
+	m_rooms.remove(roomId);
+	emit roomRemoved(roomId);
 	return 0;
 }
 

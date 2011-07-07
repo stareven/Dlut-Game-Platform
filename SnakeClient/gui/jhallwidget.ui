@@ -37,7 +37,7 @@ Product by JDMD studio .</string>
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="btn_refresh">
+  <widget class="QPushButton" name="btn_refresh_room">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -47,10 +47,10 @@ Product by JDMD studio .</string>
     </rect>
    </property>
    <property name="text">
-    <string>refresh</string>
+    <string>refresh room</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="btn_create">
+  <widget class="QPushButton" name="btn_create_room">
    <property name="geometry">
     <rect>
      <x>180</x>
@@ -73,7 +73,7 @@ Product by JDMD studio .</string>
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="btn_enter">
+  <widget class="QPushButton" name="btn_enter_room">
    <property name="geometry">
     <rect>
      <x>320</x>
@@ -110,6 +110,19 @@ Product by JDMD studio .</string>
    </property>
    <property name="text">
     <string>roomlist</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_refresh_userlist">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>380</y>
+     <width>106</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>refresh userlist</string>
    </property>
   </widget>
  </widget>

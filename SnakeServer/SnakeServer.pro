@@ -67,4 +67,5 @@ SOURCES += main/jargumentanalyse.cpp \
     ../SnakeCommon/jsnake.cpp \
     service/juserlistmanager.cpp \
     ../api/src/global/shost.cpp \
-    service/jroommanager.cpp
+    service/jroommanager.cpp \
+    ../SnakeCommon/jsnakestream.cpp

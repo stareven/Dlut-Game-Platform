@@ -30,7 +30,8 @@ SOURCES += main/main.cpp\
     ../api/src/service/jrequestport.cpp \
     ../api/src/network/jrequestportsocket.cpp \
     ../api/src/global/shost.cpp \
-    ../api/src/service/jcryprorecorder.cpp
+    ../api/src/service/jcryprorecorder.cpp \
+    ../SnakeCommon/jsnakestream.cpp
     
 HEADERS  += gui/mainwindow.h \
     ../SnakeCommon/jsnake.h \

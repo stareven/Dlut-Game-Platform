@@ -11,22 +11,26 @@ JHallWidget::JHallWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::JHallWidget)
 {
-	m_socket=new JSnakeSocket(this);
+	m_socket=&JSnakeSocket::getInstance();
+	m_socket->setParent(this);
 	m_socket->setObjectName("socket");
 	m_reqUserInfo=new JRequestUserInfo(this);
 	m_reqPort=new JRequestPort(this);
-    ui->setupUi(this);
+//	connect(m_socket,SIGNAL(SocketCode(JCode)),SLOT(on_socket_SocketCode(JCode)));
+//	connect(m_socket,SIGNAL(rcvHello(JCode)),SLOT(on_socket_rcvHello(JCode)));
+//	connect(m_socket,SIGNAL(rcvUserlist(JID,QList<JID>)),SLOT(on_socket_rcvUserlist(JID,QList<JID>)));
+//	connect(m_socket,SIGNAL(rcvAddRoom(Snake::JRoom)),SLOT(on_socket_rcvAddRoom(Snake::JRoom)));
+	ui->setupUi(this);
 	m_reqPort->setServerPort(EST_FREEPORT,SHost(GlobalSettings::g_mainServer.m_address,GlobalSettings::g_mainServer.m_port));
 	m_socket->connectToHost(GlobalSettings::g_gameServer.m_address,GlobalSettings::g_gameServer.m_port);
-
 }
 
 JHallWidget::~JHallWidget()
 {
-    delete ui;
+	delete ui;
 }
 
-void JHallWidget::on_btn_refresh_clicked()
+void JHallWidget::on_btn_refresh_userlist_clicked()
 {
 	ui->lst_player->clear();
 	m_socket->sendRqsUserlist();
@@ -92,4 +96,27 @@ void JHallWidget::on_socket_rcvUserlist(JID roomId,const QList<JID>& userlist)
 			ui->lst_player->addItem(tr("%1").arg(userId));
 		}
 	}
+}
+
+#include <QInputDialog>
+
+#include "jsnakeglobal.h"
+
+void JHallWidget::on_btn_create_room_clicked()
+{
+	Snake::JRoom room;
+	room.m_roomName=QInputDialog::getText(this,
+										  tr("input room name"),
+										  tr("please input the name of the room"));
+	if(room.m_roomName.isNull() || room.m_roomName.isEmpty())
+	{
+		return;
+	}
+	room.m_roomId=-1;
+	m_socket->sendAddRoom(room);
+}
+
+void JHallWidget::on_socket_rcvAddRoom(const Snake::JRoom& room)
+{
+	qDebug()<<room.m_roomId<<room.m_roomName;
 }

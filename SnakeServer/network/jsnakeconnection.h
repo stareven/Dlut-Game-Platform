@@ -3,6 +3,8 @@
 
 #include "network/jconnectionbase.h"
 
+class JRoomManager;
+
 class JSnakeConnection : public JConnectionBase
 {
     Q_OBJECT
@@ -16,6 +18,12 @@ private:
 	{
 		return MagicNumber::EMN_UserNumber+1;
 	}
+private:
+	JRoomManager* m_roomMng;
+private slots:
+	void sendRoominfoUpdate(JID roomId);
+	void sendRoominfoAdd(JID roomId);
+	void sendRoominfoDelete(JID roomId);
 };
 
 #endif // JSNAKECONNECTION_H

@@ -11,6 +11,10 @@ namespace Ui {
 class JSnakeSocket;
 class JRequestUserInfo;
 class JRequestPort;
+namespace Snake
+{
+	class JRoom;
+}
 
 class JHallWidget : public QWidget
 {
@@ -26,10 +30,12 @@ private:
 	JRequestUserInfo *m_reqUserInfo;
 	JRequestPort *m_reqPort;
 private slots:
-	void on_btn_refresh_clicked();
+	void on_btn_create_room_clicked();
+	void on_btn_refresh_userlist_clicked();
 	void on_socket_SocketCode(JCode code);
 	void on_socket_rcvHello(JCode code);
 	void on_socket_rcvUserlist(JID roomId,const QList<JID>& userlist);
+	void on_socket_rcvAddRoom(const Snake::JRoom&);
 };
 
 #endif // JHALLWIDGET_H

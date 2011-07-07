@@ -2,9 +2,16 @@
 
 #include "jsnakeglobal.h"
 
+JSnakeSocket JSnakeSocket::s_socket;
+
 JSnakeSocket::JSnakeSocket(QObject *parent) :
     JSocketBase(parent)
 {
+}
+
+JSnakeSocket& JSnakeSocket::getInstance()
+{
+	return s_socket;
 }
 
 void JSnakeSocket::sendHello(JID userId)
@@ -23,6 +30,16 @@ void JSnakeSocket::sendRqsUserlist()
 	QByteArray outdata;
 	QDataStream outstream(&outdata,QIODevice::WriteOnly);
 	outstream<<SP_Userlist;
+	sendData(outdata);
+}
+
+void JSnakeSocket::sendAddRoom(const Snake::JRoom& room)
+{
+	using namespace SnakeProtocol;
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<SP_RoominfoAdd;
+	outstream<<room;
 	sendData(outdata);
 }
 
@@ -46,6 +63,11 @@ void JSnakeSocket::dataProcess(const QByteArray& data)
 	case SP_RoominfoUpdate :
 		break;
 	case SP_RoominfoAdd :
+		{
+			Snake::JRoom room;
+			stream>>room;
+			emit rcvAddRoom(room);
+		}
 		break;
 	case SP_RoominfoDelete :
 		break;
