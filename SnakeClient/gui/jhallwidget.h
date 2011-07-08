@@ -35,10 +35,13 @@ private slots:
 	void on_btn_enter_room_clicked();
 	void on_btn_create_room_clicked();
 	void on_btn_refresh_userlist_clicked();
-	void on_socket_SocketCode(JCode code);
-	void on_socket_rcvHello(JCode code);
-	void on_socket_rcvUserlist(JID roomId,const QList<JID>& userlist);
-	void on_socket_rcvAddRoom(const Snake::JRoom&);
+	void om_socket_SocketCode(JCode code);
+	void om_socket_rcvHello(JCode code);
+	void om_socket_rcvUserlist(JID roomId,const QList<JID>& userlist);
+	void om_socket_rcvAddRoom(const Snake::JRoom&);
+	void om_socket_rcvEnterRoom(JID roomId,JID userId,JCode code);
+signals:
+	void enterGame(int);
 };
 
 #endif // JHALLWIDGET_H

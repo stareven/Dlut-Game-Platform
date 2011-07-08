@@ -1,6 +1,8 @@
 #ifndef JSNAKEGLOBAL_H
 #define JSNAKEGLOBAL_H
 
+#include <QSet>
+
 #include "global/jglobal.h"
 
 class QDataStream;
@@ -9,6 +11,7 @@ namespace Snake{
 	struct JRoom{
 		JID m_roomId;
 		QString m_roomName;
+		QSet<JID> m_players;
 	};
 }
 QDataStream& operator>>(QDataStream& ,Snake::JRoom&);
@@ -37,7 +40,7 @@ namespace SnakeProtocol{
 	const JProtocol SP_RoomAct = 0x3000;
 	const JProtocol SP_RoomEnter = ( SP_RoomAct | 0x0100 );
 		// C -> S : SP_Roomenter , <JID>roomid ,
-		// S -> C : SP_Roomenter , <JID>roomid , <JID>userid , <JCode>result ,
+		// S -> C : SP_Roomenter , <JID>roomid , <JID>userid ,
 			//这个得发给所有人，因为m_nPlayer被删掉。
 	const JProtocol SP_RoomEscape = ( SP_RoomAct | 0x0200 );
 		// C -> S : SP_Roomescape

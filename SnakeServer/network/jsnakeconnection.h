@@ -24,7 +24,9 @@ private slots:
 	void sendRoominfoUpdate(JID roomId);
 	void sendRoominfoAdd(JID roomId);
 	void sendRoominfoDelete(JID roomId);
-	void sendRoomEnter(JID roomId);
+	void sendRoomEnter(JID roomId,JID userId);
+private:
+	void processEnterRoom(JID roomId);
 };
 
 #endif // JSNAKECONNECTION_H

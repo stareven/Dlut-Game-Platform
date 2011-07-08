@@ -84,6 +84,13 @@ void JSnakeSocket::dataProcess(const QByteArray& data)
 	case SP_RoomAct :
 		break;
 	case SP_RoomEnter :
+		{
+			JID roomId,userId;
+			JCode code;
+			stream>>roomId>>userId>>code;
+			qDebug()<<"SP_RoomEnter"<<roomId<<userId<<code;
+			emit rcvEnterRoom(roomId,userId,code);
+		}
 		break;
 	case SP_RoomEscape :
 		break;

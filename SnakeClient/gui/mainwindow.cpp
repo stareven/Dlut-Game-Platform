@@ -4,6 +4,7 @@
 #include <QKeyEvent>
 
 #include "jhallwidget.h"
+#include "jsnakewidget.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -13,6 +14,9 @@ MainWindow::MainWindow(QWidget *parent) :
 //    ui->centralWidget->setFocus();
 	JHallWidget *hall=new JHallWidget(this);
 	ui->centralWidget->addWidget(hall);
+	JSnakeWidget *snake=new JSnakeWidget(this);
+	ui->centralWidget->addWidget(snake);
+	connect(hall,SIGNAL(enterGame(int)),ui->centralWidget,SLOT(setCurrentIndex(int)));
 }
 
 MainWindow::~MainWindow()

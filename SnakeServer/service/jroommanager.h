@@ -19,6 +19,7 @@ public:
 	JCode updateRoom(const Snake::JRoom&);
 	JCode addRoom(Snake::JRoom&);
 	JCode removeRoom(JID roomId);
+	JCode enterRoom(JID roomId,JID userId);
 	Snake::JRoom getRoomInfo(JID roomId)const;
 	QList<JID> getIdList()const;
 	QList<Snake::JRoom> getRoomList()const;
@@ -26,6 +27,7 @@ signals:
 	void roomUpdated(JID roomId);
 	void roomAdded(JID roomId);
 	void roomRemoved(JID roomId);
+	void roomEnter(JID roomId,JID userId);
 private:
 	QMap<JID,Snake::JRoom> m_rooms;
 };
