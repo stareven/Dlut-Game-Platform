@@ -50,8 +50,7 @@ void MainWindow::changeEvent(QEvent *e)
 
 void MainWindow::showEvent ( QShowEvent * event)
 {
-    QMainWindow::showEvent(event);
-    //qDebug()<<"MainWindow::showEvent";
+	QMainWindow::showEvent(event);
     on_btn_refresh_list_clicked();
 }
 
@@ -168,7 +167,6 @@ void MainWindow::on_btn_start_game_clicked()
 				{
 					dlg.addServer(si);
 				}else if(SubServer::SSubServer::ET_GameServer ==si.m_type){
-					qDebug()<<"game server::";
 					dr.setHost(JDownloadRun::EHT_GameServer,si);
 				}
 			}
@@ -196,7 +194,6 @@ void MainWindow::on_btn_start_game_clicked()
 	{
 		SubServer::SSubServer si=m_gis->getServerInfo(serverId);
 		if(SubServer::SSubServer::ET_GameServer ==si.m_type){
-			qDebug()<<"game server::";
 			dr.setHost(JDownloadRun::EHT_GameServer,si);
 			break;
 		}

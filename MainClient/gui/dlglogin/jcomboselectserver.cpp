@@ -18,7 +18,6 @@ const SHallServer& JComboSelectServer::getServer()const
 
 void JComboSelectServer::setServerName(const QString& name)
 {
-    //qDebug()<<name;
     if(currentIndex()<m_servers.size())
     {
         m_servers[(currentIndex())].setName(name);

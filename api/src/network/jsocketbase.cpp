@@ -57,7 +57,7 @@ void JSocketBase::on_socket_readyRead()
 		{
 			QByteArray readdata=m_socket->read(m_size-m_data.size());
 			m_data+=readdata;
-			qDebug()<<"size="<<m_size<<"read data size="<<m_data.size()<<metaObject()->className();
+			//qDebug()<<"size="<<m_size<<"read data size="<<m_data.size()<<metaObject()->className();
 			if(m_data.size()==m_size)
 			{
 				dataProcess(m_data);

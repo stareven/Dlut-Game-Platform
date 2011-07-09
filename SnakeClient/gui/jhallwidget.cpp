@@ -17,7 +17,6 @@ JHallWidget::JHallWidget(QWidget *parent) :
 //	m_socket->setObjectName("socket");
 	m_reqUserInfo=new JRequestUserInfo(this);
 	m_reqPort=new JRequestPort(this);
-	connect(m_socket,SIGNAL(SocketCode(JCode)),SLOT(om_socket_SocketCode(JCode)));
 	connect(m_socket,SIGNAL(rcvHello(JCode)),SLOT(om_socket_rcvHello(JCode)));
 	connect(m_socket,SIGNAL(rcvUserlist(JID,QList<JID>)),SLOT(om_socket_rcvUserlist(JID,QList<JID>)));
 	connect(m_socket,SIGNAL(rcvAddRoom(Snake::JRoom)),SLOT(om_socket_rcvAddRoom(Snake::JRoom)));
@@ -58,7 +57,6 @@ void JHallWidget::on_btn_refresh_userlist_clicked()
 
 void JHallWidget::om_socket_rcvHello(JCode code)
 {
-	qDebug()<<"JHallWidget::on_socket_rcvHello:"<<code;
 	if(0==code)
 	{
 		m_socket->sendRqsUserlist();
@@ -67,7 +65,6 @@ void JHallWidget::om_socket_rcvHello(JCode code)
 
 void JHallWidget::om_socket_rcvUserlist(JID roomId,const QList<JID>& userlist)
 {
-	qDebug()<<"JHallWidget::on_socket_rcvUserlist:"<<roomId;
 	SHost hostuserinfo=m_reqPort->rqsServerPort(EST_USERINFO);
 	m_reqUserInfo->connectToHost(hostuserinfo.m_address,hostuserinfo.m_port);
 	qDebug()<<"user info begin to connect";
@@ -127,7 +124,6 @@ void JHallWidget::om_socket_rcvAddRoom(const Snake::JRoom& room)
 
 void JHallWidget::om_socket_rcvEnterRoom(JID roomId,JID userId)
 {
-	qDebug()<<"JHallWidget::om_socket_rcvEnterRoom"<<roomId<<userId;
 	if(roomId>0 && userId==JCryproRecorder().getUserId())
 	{
 		emit enterGame(1);
@@ -138,7 +134,6 @@ void JHallWidget::on_btn_enter_room_clicked()
 {
 	JID roomId;
 	roomId=m_roomlistmodel->data(ui->listView_room->currentIndex(),Qt::EditRole).toInt();
-	qDebug()<<"roomId";
 	m_socket->sendEnterRoom(roomId);
 }
 

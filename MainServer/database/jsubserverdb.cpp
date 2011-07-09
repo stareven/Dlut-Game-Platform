@@ -22,7 +22,7 @@ JSubServerDb::JSubServerDb()
 	if(s_subservers.isEmpty ())
 	{
 		SSubServerCheck sscs[]={
-			{53379,"sample game server",SubServer::SSubServer::ET_GameServer},
+			{53379,"Multi Snake server",SubServer::SSubServer::ET_GameServer},
 			{53380,"game file server 1",SubServer::SSubServer::ET_GameFileServer},
 		};
 		int NUM_SERVERS=sizeof(sscs)/sizeof(SSubServerCheck);

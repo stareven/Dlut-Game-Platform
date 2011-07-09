@@ -131,7 +131,6 @@ bool JRequestGameInfo::passLoginHash()
 
 void JRequestGameInfo::on_socket_rcvPassLoginHash(bool plh)
 {
-	qDebug()<<"JRequestGameInfo::on_socket_rcvPassLoginHash : "<<plh;
     m_plh=plh;
 }
 
@@ -144,8 +143,6 @@ void JRequestGameInfo::on_socket_rcvPassLoginHash(bool plh)
 
 void JRequestGameInfo::on_socket_rcvGameList(const QList<SubServer::SGameInfo2>& gamelist)
 {
-	qDebug()<<"JRequestGameInfo::on_socket_rcvGameList : "<<gamelist.size();
-//	m_gameList=gamelist;
 	foreach(SubServer::SGameInfo2 gi,gamelist)
 	{
 		m_games.insert (gi.m_gameId,gi);

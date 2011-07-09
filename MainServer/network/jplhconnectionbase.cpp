@@ -22,14 +22,11 @@ void JPlhConnectionBase::dataProcess(const QByteArray& data)
 		QByteArray crypro;
 		JLoginHash lh;
 		stream>>userid>>crypro;
-		qDebug()<<"plh:"<<userid<<crypro.toHex().toUpper();
 		JCode plhCode=lh.check (userid,crypro);
 		m_plh=(0==plhCode);
-		qDebug()<<"plh:"<<m_plh;
 		QByteArray outdata;
 		QDataStream outstream(&outdata,QIODevice::WriteOnly);
 		outstream<<m_plh;
-		qDebug()<<"plh: send";
 		sendData(outdata);
 		if(!m_plh)
 		{

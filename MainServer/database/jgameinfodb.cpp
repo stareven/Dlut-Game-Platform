@@ -25,7 +25,7 @@ JGameInfoDb::JGameInfoDb()
 	if(s_gameinfo.isEmpty ())
 	{
 		SGameInfoCheck gis[]={
-			{109,"sample game",901/*sampledesigner*/},
+			{109,"Multi Snake",901/*sampledesigner*/},
 		};
 		int NUM_GAME=sizeof(gis)/sizeof(SGameInfoCheck);
 		for(int i=0;i<NUM_GAME;++i)

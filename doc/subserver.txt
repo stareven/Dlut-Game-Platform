@@ -123,12 +123,12 @@ struct SSubServer{
 		bool checkBaseInfo(const SGameInfo&);
 10、Sample：
 		gameId : 109
-		name : sample game
+		name : Multi Snake
 		designer : 901
 		writable : 902
 	SampleGS
 		serverId : 53379
-		name : sample game server
+		name : Multi Snake server
 		runnerId : 902
 11、SubServer启动所需信息
 	SHost
