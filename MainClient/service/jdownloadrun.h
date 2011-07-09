@@ -7,6 +7,7 @@
 #include "global/shost.h"
 
 class QObject;
+class QProcess;
 
 class JDownloadRun
 {
@@ -35,6 +36,8 @@ private:
 	QObject* m_parent;
 
 	SHost m_hosts[EHT_Max];
+
+	static QProcess* s_process;
 };
 
 #endif // JDOWNLOADRUN_H

@@ -21,6 +21,7 @@ private:
 private:
 	JRoomManager* m_roomMng;
 private slots:
+	void sendUserlist();
 	void sendRoominfoUpdate(JID roomId);
 	void sendRoominfoAdd(JID roomId);
 	void sendRoominfoDelete(JID roomId);

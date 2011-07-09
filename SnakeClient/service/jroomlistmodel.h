@@ -23,6 +23,7 @@ private:
 	JSnakeSocket* m_socket;
 private slots:
 	void on_socket_rcvAddRoom(const Snake::JRoom&);
+	void on_socket_rcvRoomList(const QList<Snake::JRoom>& roomlist);
 };
 
 #endif // JROOMLISTMODEL_H

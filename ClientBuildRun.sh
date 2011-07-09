@@ -1,3 +1,3 @@
 #!/bin/bash -e
-rm MainClient-build-desktop/sample_game1
+make -C SnakeClient-build-desktop
 ./Build_Run.sh MainClient

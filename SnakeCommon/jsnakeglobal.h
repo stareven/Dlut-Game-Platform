@@ -49,5 +49,6 @@ namespace SnakeProtocol{
 	const JProtocol SP_Userlist = 0x4000;
 		// C -> S : SP_Userlist ,
 		// S -> C : SP_Userlist , <JID>roomid , <QList<JID> >userlist ,
+	const JProtocol SP_GameAct = 0x5000;
 }
 #endif // JSNAKEGLOBAL_H

@@ -3,6 +3,8 @@
 
 #include "service/jglobalsettings.h"
 #include "service/jcryprorecorder.h"
+#include "network/jsnakesocket.h"
+#include "global/jelapsedtimer.h"
 
 void processArgument()
 {
@@ -23,6 +25,24 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 	processArgument();
+	JSnakeSocket *socket=&JSnakeSocket::getInstance();
+	socket->connectToHost(GlobalSettings::g_gameServer.m_address,GlobalSettings::g_gameServer.m_port);
+	JElapsedTimer timer;
+	timer.start();
+	int msecs=1000;
+	while(timer.elapsed()<msecs)
+	{
+		if(socket->isConnected())
+		{
+			break;
+		}
+		QCoreApplication::processEvents();
+	}
+	if(!socket->isConnected())
+	{
+		qDebug()<<"snake socket connect failed.";
+		return 1;
+	}
     MainWindow w;
     w.show();
     return a.exec();

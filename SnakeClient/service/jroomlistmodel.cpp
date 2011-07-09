@@ -7,6 +7,8 @@ JRoomListModel::JRoomListModel(QObject *parent) :
 {
 	m_socket=&JSnakeSocket::getInstance();
 	connect(m_socket,SIGNAL(rcvAddRoom(Snake::JRoom)),SLOT(on_socket_rcvAddRoom(Snake::JRoom)));
+	connect(m_socket,SIGNAL(rcvRoomlist(QList<Snake::JRoom>)),SLOT(on_socket_rcvRoomList(QList<Snake::JRoom>)));
+	m_socket->sendRqsRoomlist();
 }
 
 int JRoomListModel::rowCount(const QModelIndex&) const
@@ -55,4 +57,12 @@ void JRoomListModel::on_socket_rcvAddRoom(const Snake::JRoom& room)
 	m_rooms.insert(room.m_roomId,room);
 	int row=m_index2Id.size()-1;
 	emit dataChanged(index(row),index(row));
+}
+
+void JRoomListModel::on_socket_rcvRoomList(const QList<Snake::JRoom>& roomlist)
+{
+	foreach(Snake::JRoom room,roomlist)
+	{
+		on_socket_rcvAddRoom(room);
+	}
 }

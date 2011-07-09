@@ -84,22 +84,16 @@ void JSnakeConnection::dataProcess(const QByteArray& data)
 	case SP_RoomAct :
 		break;
 	case SP_RoomEnter :
+		{
+			JID roomId;
+			stream>>roomId;
+			processEnterRoom(roomId);
+		}
 		break;
 	case SP_RoomEscape :
 		break;
 	case SP_Userlist :
-		{
-			JUserlistManager ulm;
-			JID roomId;
-			roomId=ulm.getRoomByUser(getUserId());
-			QList<JID> userlist=ulm.getUserlistInRoom(roomId);
-			QByteArray outdata;
-			QDataStream outstream(&outdata,QIODevice::WriteOnly);
-			outstream<<SP_Userlist;
-			outstream<<roomId;
-			outstream<<userlist;
-			sendData(outdata);
-		}
+		sendUserlist();
 		break;
 	}
 }
@@ -108,6 +102,21 @@ void JSnakeConnection::on_socket_disconnected()
 {
 	JUserlistManager ulm;
 	ulm.removeUser(getUserId());
+}
+
+void JSnakeConnection::sendUserlist()
+{
+	using namespace SnakeProtocol;
+	JUserlistManager ulm;
+	JID roomId;
+	roomId=ulm.getRoomByUser(getUserId());
+	QList<JID> userlist=ulm.getUserlistInRoom(roomId);
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<SP_Userlist;
+	outstream<<roomId;
+	outstream<<userlist;
+	sendData(outdata);
 }
 
 void JSnakeConnection::sendRoominfoUpdate(JID roomId)
@@ -160,4 +169,5 @@ void JSnakeConnection::processEnterRoom(JID roomId)
 	if(formerRoomId!=0) return;
 	Q_ASSERT(0==ulm.moveUser(userId,roomId));
 	Q_ASSERT(0==m_roomMng->enterRoom(roomId,userId));
+	sendUserlist();
 }

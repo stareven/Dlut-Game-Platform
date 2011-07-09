@@ -13,6 +13,9 @@
 #include <QLabel>
 #include <QLCDNumber>
 
+#include "network/jsnakesocket.h"
+#include "service/jcryprorecorder.h"
+
 const int INITX=20;
 const int INITY=30;
 const int SQUARE_SIZE=18;
@@ -23,28 +26,38 @@ JSnakeWidget::JSnakeWidget(QWidget *parent) :
 {
     m_game=new JSnakeGame;
     ui->setupUi(this);
-    QWidget *gridLayoutWidget;
-    QGridLayout *gridLayout;
-    gridLayoutWidget = new QWidget(this);
-    gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
-    gridLayoutWidget->setGeometry(QRect(MAXX*SQUARE_SIZE+INITX+10, 70, 200, 135));
-    gridLayout = new QGridLayout(gridLayoutWidget);
-    gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-    gridLayout->setContentsMargins(0, 0, 0, 0);
-    gridLayout->addWidget(new QLabel(tr("life"),this),0,1,1,1);
-    gridLayout->addWidget(new QLabel(tr("score"),this),0,2,1,1);
+	m_roomId=-1;
+//    QWidget *gridLayoutWidget;
+//    QGridLayout *gridLayout;
+//    gridLayoutWidget = new QWidget(this);
+//    gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
+//    gridLayoutWidget->setGeometry(QRect(MAXX*SQUARE_SIZE+INITX+10, 70, 200, 135));
+//    gridLayout = new QGridLayout(gridLayoutWidget);
+//    gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+//    gridLayout->setContentsMargins(0, 0, 0, 0);
+	ui->gridLayout->addWidget(new QLabel(tr("life"),this),0,1,1,1);
+	ui->gridLayout->addWidget(new QLabel(tr("score"),this),0,2,1,1);
     for(int i=0;i<NUM_SNAKE;++i)
     {
-        gridLayout->addWidget(new QLabel(tr("snake%1").arg(i),this),i+1,0,1,1);
+		ui->gridLayout->addWidget(new QLabel(tr("snake%1")
+											 .arg(i),this)
+								  ,i+1,0,1,1);
         for(int j=0;j<2;++j)
         {
             m_lcds[i][j]=new QLCDNumber(this);
-            gridLayout->addWidget(m_lcds[i][j],i+1,j+1,1,1);
+			ui->gridLayout->addWidget(m_lcds[i][j],i+1,j+1,1,1);
         }
     }
-    QTimer *timer=new QTimer(this);
-    connect(timer,SIGNAL(timeout()),SLOT(moveOn()));
-    timer->start(250);
+	m_socket=&JSnakeSocket::getInstance();
+	connect(m_socket,
+			SIGNAL(rcvEnterRoom(JID,JID)),
+			SLOT(om_socket_rcvEnterRoom(JID,JID)));
+	connect(m_socket,
+			SIGNAL(rcvUserlist(JID,QList<JID>)),
+			SLOT(om_socket_rcvUserlist(JID,QList<JID>)));
+//    QTimer *timer=new QTimer(this);
+//    connect(timer,SIGNAL(timeout()),SLOT(moveOn()));
+//    timer->start(250);
 }
 
 JSnakeWidget::~JSnakeWidget()
@@ -122,4 +135,33 @@ void JSnakeWidget::moveOn()
         m_lcds[i][1]->display(m_game->getScore(i));;
     }
     update();
+}
+
+void JSnakeWidget::om_socket_rcvEnterRoom(JID roomId,JID userId)
+{
+	if(m_roomId<0)
+	{
+		if(roomId>0 && userId==JCryproRecorder().getUserId())
+		{
+			m_roomId=roomId;
+			ui->list_players->addItem(QString::number(userId));
+		}
+	}else{
+		if(roomId==m_roomId)
+		{
+			ui->list_players->addItem(QString::number(userId));
+		}
+	}
+}
+
+void JSnakeWidget::om_socket_rcvUserlist(JID roomId,const QList<JID>& userlist)
+{
+	if(roomId==m_roomId)
+	{
+		ui->list_players->clear();
+		foreach(JID user,userlist)
+		{
+			ui->list_players->addItem(QString::number(user));
+		}
+	}
 }

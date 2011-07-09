@@ -7,12 +7,33 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>300</height>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <widget class="QListWidget" name="list_players">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>270</y>
+     <width>200</width>
+     <height>200</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>70</y>
+     <width>200</width>
+     <height>135</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout"/>
+  </widget>
  </widget>
  <resources/>
  <connections/>
