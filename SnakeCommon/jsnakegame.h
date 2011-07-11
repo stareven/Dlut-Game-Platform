@@ -19,9 +19,25 @@ private:
     JSnake m_snakes[NUM_SNAKE];
     QPoint m_bean;
 public:
-    void moveOn();
+
+	// 0bit ~ (NUM_SNAKE-1)bit snake collision
+	// (NUM_SNAKE)bit bean collision
+	// (NUM_SNAKE+1)bit ~ (NUM_SNAKE+2)bit bean collision snake number
+	qint16 getMoveOnCollision()const;
+
+	void moveOn(int num);
+
+	static bool isSnakeCollision(int num,qint16 bit);
+	static bool isBeanCollision(qint16 bit);
+	static int getBeanCollitionSnakeNumber(qint16 bit);
+
+	void setBean(const QPoint&);
+
+	// decrease and clear;
+	void decreaseLife(int num);
+	void increaseScore(int num);
 protected:
-    void createBean(const QPoint& pt=QPoint());
+//    void createBean(const QPoint& pt=QPoint());
 // life ans score
 private:
     int m_life[NUM_SNAKE];

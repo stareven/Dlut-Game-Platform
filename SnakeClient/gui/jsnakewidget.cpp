@@ -24,7 +24,7 @@ JSnakeWidget::JSnakeWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::JSnakeWidget)
 {
-    m_game=new JSnakeGame;
+//    m_game=new JSnakeGame;
     ui->setupUi(this);
 	m_roomId=-1;
 //    QWidget *gridLayoutWidget;
@@ -126,16 +126,16 @@ void JSnakeWidget::keyPressEvent(QKeyEvent *key)
     }
 }
 
-void JSnakeWidget::moveOn()
-{
-    m_game->moveOn();
-    for(int i=0;i<4;++i)
-    {
-        m_lcds[i][0]->display(m_game->getLife(i));;
-        m_lcds[i][1]->display(m_game->getScore(i));;
-    }
-    update();
-}
+//void JSnakeWidget::moveOn()
+//{
+//    m_game->moveOn();
+//    for(int i=0;i<4;++i)
+//    {
+//        m_lcds[i][0]->display(m_game->getLife(i));;
+//        m_lcds[i][1]->display(m_game->getScore(i));;
+//    }
+//    update();
+//}
 
 void JSnakeWidget::om_socket_rcvEnterRoom(JID roomId,JID userId)
 {

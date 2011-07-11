@@ -27,11 +27,11 @@ protected:
 private:
     Ui::JSnakeWidget *ui;
     QLCDNumber *m_lcds[4][2];
-    JSnakeGame* m_game;
+	JSnakeGame* m_game;
 	JSnakeSocket* m_socket;
 	JID m_roomId;
 protected slots:
-    void moveOn();
+//    void moveOn();
 private slots:
 	void om_socket_rcvEnterRoom(JID roomId,JID userId);
 	void om_socket_rcvUserlist(JID roomId,const QList<JID>& userlist);
