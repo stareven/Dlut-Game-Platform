@@ -142,6 +142,47 @@ void JSnakeGame::moveOn(int num)
 	}
 }
 
+bool JSnakeGame::isSnakeCollision(int num,qint16 bit)
+{
+	return (bit & (1<<num));
+}
+
+bool JSnakeGame::isBeanCollision(qint16 bit)
+{
+	return (bit & (1<<NUM_SNAKE));
+}
+
+int JSnakeGame::getBeanCollitionSnakeNumber(qint16 bit)
+{
+	return (bit>>(NUM_SNAKE+1))%NUM_SNAKE;
+}
+
+void JSnakeGame::setBean(const QPoint& pt)
+{
+	m_bean=pt;
+}
+
+// decrease and clear;
+void JSnakeGame::decreaseLife(int num)
+{
+	if(num>=0 && num<NUM_SNAKE)
+	{
+		--m_life[num];
+		if(m_life[num]<=0)
+		{
+			m_snakes[num].clear();
+		}
+	}
+}
+
+void JSnakeGame::increaseScore(int num)
+{
+	if(num>=0 && num<NUM_SNAKE)
+	{
+		++m_score[num];
+	}
+}
+
 //void JSnakeGame::moveOn()
 //{
 //    int i,j;

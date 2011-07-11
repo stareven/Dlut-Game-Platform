@@ -42,7 +42,9 @@ HEADERS += main/jargumentanalyse.h \
     ../SnakeCommon/jsnakegame.h \
     ../SnakeCommon/jsnake.h \
     service/juserlistmanager.h \
-    service/jroommanager.h
+    service/jroommanager.h \
+    service/jsnakegameonserver.h \
+    ../api/include/global/jelapsedtimer.h
 SOURCES += main/jargumentanalyse.cpp \
 	main/main.cpp \
 	../api/src/network/jrequestloginsocket.cpp \
@@ -68,4 +70,5 @@ SOURCES += main/jargumentanalyse.cpp \
     service/juserlistmanager.cpp \
     ../api/src/global/shost.cpp \
     service/jroommanager.cpp \
-    ../SnakeCommon/jsnakestream.cpp
+    ../SnakeCommon/jsnakestream.cpp \
+    service/jsnakegameonserver.cpp

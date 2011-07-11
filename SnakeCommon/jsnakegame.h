@@ -10,7 +10,7 @@ const int MAXY=20;
 class JSnakeGame
 {
 public:
-    explicit JSnakeGame();
+	JSnakeGame();
     void reset(int num=-1);
     void turn(JSnake::EDire dire,int num);
     const JSnake& getSnakes(int num)const;
