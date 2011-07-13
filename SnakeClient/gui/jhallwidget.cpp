@@ -65,6 +65,7 @@ void JHallWidget::om_socket_rcvHello(JCode code)
 
 void JHallWidget::om_socket_rcvUserlist(JID roomId,const QList<JID>& userlist)
 {
+	if(roomId!=0) return;
 	SHost hostuserinfo=m_reqPort->rqsServerPort(EST_USERINFO);
 	m_reqUserInfo->connectToHost(hostuserinfo.m_address,hostuserinfo.m_port);
 	qDebug()<<"user info begin to connect";
@@ -105,21 +106,20 @@ void JHallWidget::om_socket_rcvUserlist(JID roomId,const QList<JID>& userlist)
 
 void JHallWidget::on_btn_create_room_clicked()
 {
-	Snake::JRoom room;
-	room.m_roomName=QInputDialog::getText(this,
+	Snake::JRoom room (QInputDialog::getText(this,
 										  tr("input room name"),
-										  tr("please input the name of the room"));
-	if(room.m_roomName.isNull() || room.m_roomName.isEmpty())
+										  tr("please input the name of the room")));
+	if(room.getRoomName().isNull() || room.getRoomName().isEmpty())
 	{
 		return;
 	}
-	room.m_roomId=-1;
+//	room.m_roomId=-1;
 	m_socket->sendAddRoom(room);
 }
 
 void JHallWidget::om_socket_rcvAddRoom(const Snake::JRoom& room)
 {
-	qDebug()<<room.m_roomId<<room.m_roomName;
+	qDebug()<<room.getRoomId()<<room.getRoomName();
 }
 
 void JHallWidget::om_socket_rcvEnterRoom(JID roomId,JID userId)

@@ -1,28 +1,108 @@
 #ifndef JSNAKEGLOBAL_H
 #define JSNAKEGLOBAL_H
 
-#include <QSet>
+#include <QList>
 
 #include "global/jglobal.h"
 
 class QDataStream;
 namespace Snake{
-	const int Max_Players=4;
-	struct JRoom{
-		JID m_roomId;
-		QString m_roomName;
-		QSet<JID> m_players;
-	};
-	class JRoomId2Num
-	{
-	public:
-		JRoomId2Num(const JRoom& room);
-		JID getIdByNum(int num);
-		int getNumById(JID Id);
-	};
+	class JRoom;
 }
 QDataStream& operator>>(QDataStream& ,Snake::JRoom&);
 QDataStream& operator<<(QDataStream& ,const Snake::JRoom&);
+namespace Snake{
+	const int Max_Players=4;
+	class JRoom{
+	public:
+		JRoom(const QString& roomName=QString(),JID roomId=-1)
+		{
+			m_roomName=roomName;
+			m_roomId=roomId;
+			for(int i=0;i<Max_Players;++i)
+			{
+				m_players[i]=-1;
+			}
+		}
+		JID getRoomId()const
+		{
+			return m_roomId;
+		}
+		void setRoomId(JID roomId)
+		{
+			m_roomId=roomId;
+		}
+		const QString& getRoomName()const
+		{
+			return m_roomName;
+		}
+		int getPlayersCount()const
+		{
+			int ret=0;
+			for(int i=0;i<Max_Players;++i)
+			{
+				if(m_players[i]>=0) ++ret;
+			}
+			return ret;
+		}
+		bool isEmpty()const
+		{
+			return getPlayersCount()<=0;
+		}
+		bool isFull()const
+		{
+			return getPlayersCount()>=Max_Players;
+		}
+		bool enterRoom(JID userId)
+		{
+			for(int i=0;i<Max_Players;++i)
+			{
+				if(m_players[i]<0)
+				{
+					m_players[i]=userId;
+					return true;
+				}
+			}
+			return false;
+		}
+		bool leaveRoom(JID userId)
+		{
+			for(int i=0;i<Max_Players;++i)
+			{
+				if(m_players[i]==userId)
+				{
+					m_players[i]=-1;
+					return true;
+				}
+			}
+			return false;
+		}
+		JID getPlayer(int num)const
+		{
+			if(num<0 || num>=Max_Players)
+				return -1;
+			return m_players[num];
+		}
+		int getPositionById(JID userId)const
+		{
+			for(int i=0;i<Max_Players;++i)
+			{
+				if(m_players[i]==userId)
+				{
+					return i;
+				}
+			}
+			return -1;
+		}
+	private:
+		JID m_roomId;
+		QString m_roomName;
+		JID m_players[Max_Players];
+	public:
+		friend QDataStream& ::operator>>(QDataStream& ,JRoom&);
+		friend QDataStream& ::operator<<(QDataStream& ,const JRoom&);
+	};
+}
 
 namespace SnakeProtocol{
 	typedef quint16 JProtocol;

@@ -65,7 +65,7 @@ void JSnakeConnection::dataProcess(const QByteArray& data)
 			if(0==code)
 			{
 //				sendRoomEnter(roominfo.m_roomId);
-				processEnterRoom(roominfo.m_roomId);
+				processEnterRoom(roominfo.getRoomId());
 			}
 			/*{
 				sendRoominfoAdd(roominfo.m_roomId);

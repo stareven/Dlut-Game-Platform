@@ -28,7 +28,7 @@ QVariant JRoomListModel::data(const QModelIndex &index, int role) const
 	{
 		JID roomId=m_index2Id.at(index.row());
 		Snake::JRoom room=m_rooms.value(roomId);
-		return QString("%1 %2").arg(room.m_roomId).arg(room.m_roomName);
+		return QString("%1 %2").arg(room.getRoomId()).arg(room.getRoomName());
 		//return stringList.at(index.row());
 	}else if(role == Qt::EditRole){
 		JID roomId=m_index2Id.at(index.row());
@@ -36,7 +36,6 @@ QVariant JRoomListModel::data(const QModelIndex &index, int role) const
 	}
 	 else
 		return QVariant();
-
 }
 
 QVariant JRoomListModel::headerData(int section, Qt::Orientation orientation,
@@ -53,8 +52,8 @@ QVariant JRoomListModel::headerData(int section, Qt::Orientation orientation,
 
 void JRoomListModel::on_socket_rcvAddRoom(const Snake::JRoom& room)
 {
-	m_index2Id.push_back(room.m_roomId);
-	m_rooms.insert(room.m_roomId,room);
+	m_index2Id.push_back(room.getRoomId());
+	m_rooms.insert(room.getRoomId(),room);
 	int row=m_index2Id.size()-1;
 	emit dataChanged(index(row),index(row));
 }

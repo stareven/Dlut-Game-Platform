@@ -14,34 +14,34 @@ JRoomManager& JRoomManager::getInstance()
 
 JCode JRoomManager::updateRoom(const Snake::JRoom& room)
 {
-	m_rooms[room.m_roomId]=room;
-	emit roomUpdated(room.m_roomId);
+	m_rooms[room.getRoomId()]=room;
+	emit roomUpdated(room.getRoomId());
 	return 0;
 }
 
 JCode JRoomManager::addRoom(Snake::JRoom& room)
 {
-	if(m_rooms.contains(room.m_roomId))
+	if(m_rooms.contains(room.getRoomId()))
 	{
 		return 1;
 	}
-	if(room.m_roomId<0)
+	if(room.getRoomId()<0)
 	{
 		JID i;
 		for(i=1;i<MAX_ROOM;++i)
 		{
 			if(!m_rooms.contains(i))
 			{
-				room.m_roomId=i;
-				m_rooms.insert(room.m_roomId,room);
-				emit roomAdded(room.m_roomId);
+				room.setRoomId(i);
+				m_rooms.insert(room.getRoomId(),room);
+				emit roomAdded(room.getRoomId());
 				return 0;
 			}
 		}
 		return 2;
 	}
-	m_rooms.insert(room.m_roomId,room);
-	emit roomAdded(room.m_roomId);
+	m_rooms.insert(room.getRoomId(),room);
+	emit roomAdded(room.getRoomId());
 	return 0;
 }
 
@@ -62,11 +62,11 @@ JCode JRoomManager::enterRoom(JID roomId,JID userId)
 	{
 		return 1;
 	}
-	if(m_rooms[roomId].m_players.size()>=Snake::Max_Players)
+	if(m_rooms[roomId].isFull())
 	{
 		return 2;
 	}
-	m_rooms[roomId].m_players.insert(userId);
+	m_rooms[roomId].enterRoom(userId);
 	emit roomEnter(roomId,userId);
 	return 0;
 }
