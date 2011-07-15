@@ -34,9 +34,15 @@ private:
 	JID m_roomId;
 protected slots:
 //    void moveOn();
+signals:
+	void escape(int a);
 private slots:
+	void on_btn_escape_clicked();
+	void on_btn_ready_clicked(bool ready);
 	void om_socket_rcvEnterRoom(JID roomId,JID userId);
+	void om_socket_rcvEscapeRoom(JID roomId,JID userId);
 	void om_socket_rcvUserlist(JID roomId,const QList<JID>& userlist);
+	void om_socket_rcvGA_Ready(bool ready,int num);
 };
 
 #endif // JSNAKEWIDGET_H

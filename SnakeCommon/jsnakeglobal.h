@@ -129,7 +129,7 @@ namespace SnakeProtocol{
 		// S -> C : SP_Roomenter , <JID>roomid , <JID>userid ,
 	const JProtocol SP_RoomEscape = ( SP_RoomAct | 0x0200 );
 		// C -> S : SP_Roomescape
-		// C -> S : SP_Roomescape , <JID>fromroomid , <JID>userid , <JCode>result ,
+		// C -> S : SP_Roomescape , <JID>fromroomid , <JID>userid
 	const JProtocol SP_Userlist = 0x4000;
 		// C -> S : SP_Userlist ,
 		// S -> C : SP_Userlist , <JID>roomid , <QList<JID> >userlist ,

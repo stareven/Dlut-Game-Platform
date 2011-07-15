@@ -19,13 +19,18 @@ public:
 	void sendRqsUserlist();
 	void sendAddRoom(const Snake::JRoom&);
 	void sendEnterRoom(JID roomId);
+	void sendEscapeRoom();
 	void sendRqsRoomlist();
+	void sendGA_Ready(bool ready);
 signals:
 	void rcvHello(JCode code);
 	void rcvUserlist(JID roomId,const QList<JID>& userlist);
 	void rcvAddRoom(const Snake::JRoom&);
+	void rcvDeleteRoom(JID roomId);
 	void rcvEnterRoom(JID roomId,JID userId);
+	void rcvEscapeRoom(JID roomId,JID userId);
 	void rcvRoomlist(const QList<Snake::JRoom>& roomlist);
+	void rcvGA_Ready(bool ready,int num);
 protected:
 	void dataProcess(const QByteArray&);
 private:

@@ -21,6 +21,9 @@ JHallWidget::JHallWidget(QWidget *parent) :
 	connect(m_socket,SIGNAL(rcvUserlist(JID,QList<JID>)),SLOT(om_socket_rcvUserlist(JID,QList<JID>)));
 	connect(m_socket,SIGNAL(rcvAddRoom(Snake::JRoom)),SLOT(om_socket_rcvAddRoom(Snake::JRoom)));
 	connect(m_socket,SIGNAL(rcvEnterRoom(JID,JID)),SLOT(om_socket_rcvEnterRoom(JID,JID)));
+	connect(m_socket,
+			SIGNAL(rcvEscapeRoom(JID,JID)),
+			SLOT(om_socket_rcvEscapeRoom(JID,JID)));
 	ui->setupUi(this);
 	m_roomlistmodel=new JRoomListModel(this);
 	ui->listView_room->setModel(m_roomlistmodel);
@@ -85,6 +88,7 @@ void JHallWidget::om_socket_rcvUserlist(JID roomId,const QList<JID>& userlist)
 	}else{
 		qDebug()<<"user info plh success.";
 	}
+	ui->lst_player->clear();
 	foreach(JID userId,userlist)
 	{
 		UserInfo::SUserInfo userinfo=m_reqUserInfo->rqsUserInfo(userId);
@@ -127,6 +131,18 @@ void JHallWidget::om_socket_rcvEnterRoom(JID roomId,JID userId)
 	if(roomId>0 && userId==JCryproRecorder().getUserId())
 	{
 		emit enterGame(1);
+	}
+}
+
+void JHallWidget::om_socket_rcvEscapeRoom(JID roomId,JID userId)
+{
+	if(0==roomId)
+	{
+		QList<QListWidgetItem *> items=ui->lst_player->findItems(tr("%1:").arg(userId),Qt::MatchStartsWith);
+		foreach(QListWidgetItem* item,items)
+		{
+			ui->lst_player->removeItemWidget(item);
+		}
 	}
 }
 

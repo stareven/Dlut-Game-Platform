@@ -40,6 +40,7 @@ private slots:
 	void om_socket_rcvUserlist(JID roomId,const QList<JID>& userlist);
 	void om_socket_rcvAddRoom(const Snake::JRoom&);
 	void om_socket_rcvEnterRoom(JID roomId,JID userId);
+	void om_socket_rcvEscapeRoom(JID roomId,JID userId);
 signals:
 	void enterGame(int);
 };

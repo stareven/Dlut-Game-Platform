@@ -28,6 +28,7 @@ private slots:
 	void sendRoominfoAdd(JID roomId);
 	void sendRoominfoDelete(JID roomId);
 	void sendRoomEnter(JID roomId,JID userId);
+	void sendRoomEscape(JID roomId,JID userId);
 
 	void sendGameAct_getReady(bool ready,int num);
 	void sendGameAct_countDown(int sec);

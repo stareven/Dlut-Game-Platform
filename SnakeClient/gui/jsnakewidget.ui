@@ -34,6 +34,35 @@
    </property>
    <layout class="QGridLayout" name="gridLayout"/>
   </widget>
+  <widget class="QPushButton" name="btn_ready">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>220</y>
+     <width>98</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ready</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_escape">
+   <property name="geometry">
+    <rect>
+     <x>680</x>
+     <y>220</y>
+     <width>98</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>escape</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

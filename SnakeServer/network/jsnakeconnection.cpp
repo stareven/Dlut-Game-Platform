@@ -16,6 +16,7 @@ JSnakeConnection::JSnakeConnection(QTcpSocket* socket,QObject *parent) :
 	connect(m_roomMng,SIGNAL(roomRemoved(JID)),SLOT(sendRoominfoDelete(JID)));
 	connect(m_roomMng,SIGNAL(roomUpdated(JID)),SLOT(sendRoominfoUpdate(JID)));
 	connect(m_roomMng,SIGNAL(roomEnter(JID,JID)),SLOT(sendRoomEnter(JID,JID)));
+	connect(m_roomMng,SIGNAL(roomEscape(JID,JID)),SLOT(sendRoomEscape(JID,JID)));
 }
 
 void JSnakeConnection::dataProcess(const QByteArray& data)
@@ -208,7 +209,17 @@ void JSnakeConnection::sendRoomEnter(JID roomId,JID userId)
 	outstream<<SP_RoomEnter;
 	outstream<<roomId;
 	outstream<<userId;
-	outstream<<(JCode)0;
+	sendData(outdata);
+}
+
+void JSnakeConnection::sendRoomEscape(JID roomId,JID userId)
+{
+    using namespace SnakeProtocol;
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<SP_RoomEscape;
+	outstream<<roomId;
+	outstream<<userId;
 	sendData(outdata);
 }
 
@@ -324,8 +335,9 @@ void JSnakeConnection::processEscapeRoom()
 	Q_ASSERT(0==ulm.moveUser(userId,0));
 	Q_ASSERT(0==m_roomMng->escapeRoom(formerRoomId,userId));
 	JSnakeGameOnServer *game=m_roomMng->getGame(formerRoomId);
-	game->disconnect(this);
+	if(game!=NULL)
+	{
+		game->disconnect(this);
+	}
 	sendUserlist();
 }
-
-

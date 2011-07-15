@@ -8,6 +8,9 @@ JRoomListModel::JRoomListModel(QObject *parent) :
 	m_socket=&JSnakeSocket::getInstance();
 	connect(m_socket,SIGNAL(rcvAddRoom(Snake::JRoom)),SLOT(on_socket_rcvAddRoom(Snake::JRoom)));
 	connect(m_socket,SIGNAL(rcvRoomlist(QList<Snake::JRoom>)),SLOT(on_socket_rcvRoomList(QList<Snake::JRoom>)));
+	connect(m_socket,
+			SIGNAL(rcvDeleteRoom(JID)),
+			SLOT(on_socket_rcvDeleteRoom(JID)));
 	m_socket->sendRqsRoomlist();
 }
 
@@ -60,8 +63,21 @@ void JRoomListModel::on_socket_rcvAddRoom(const Snake::JRoom& room)
 
 void JRoomListModel::on_socket_rcvRoomList(const QList<Snake::JRoom>& roomlist)
 {
+	m_rooms.clear();
+	m_index2Id.clear();
 	foreach(Snake::JRoom room,roomlist)
 	{
 		on_socket_rcvAddRoom(room);
+	}
+}
+
+void JRoomListModel::on_socket_rcvDeleteRoom(JID roomId)
+{
+	int i=m_index2Id.indexOf(roomId);
+	if(-1 != i)
+	{
+		m_index2Id.removeAt(i);
+		m_rooms.remove(roomId);
+		emit dataChanged(index(i),index(m_rooms.size()+1));
 	}
 }

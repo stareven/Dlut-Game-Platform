@@ -53,12 +53,31 @@ void JSnakeSocket::sendEnterRoom(JID roomId)
 	sendData(outdata);
 }
 
+void JSnakeSocket::sendEscapeRoom()
+{
+	using namespace SnakeProtocol;
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<SP_RoomEscape;
+	sendData(outdata);
+}
+
 void JSnakeSocket::sendRqsRoomlist()
 {
 	using namespace SnakeProtocol;
 	QByteArray outdata;
 	QDataStream outstream(&outdata,QIODevice::WriteOnly);
 	outstream<<SP_Roomlist;
+	sendData(outdata);
+}
+
+void JSnakeSocket::sendGA_Ready(bool ready)
+{
+	using namespace SnakeProtocol;
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<SP_GA_Ready;
+	outstream<<ready;
 	sendData(outdata);
 }
 
@@ -94,6 +113,11 @@ void JSnakeSocket::dataProcess(const QByteArray& data)
 		}
 		break;
 	case SP_RoominfoDelete :
+		{
+			JID roomId;
+			stream>>roomId;
+			emit rcvDeleteRoom(roomId);
+		}
 		break;
 	case SP_RoomAct :
 		break;
@@ -105,6 +129,11 @@ void JSnakeSocket::dataProcess(const QByteArray& data)
 		}
 		break;
 	case SP_RoomEscape :
+		{
+			JID roomId,userId;
+			stream>>roomId>>userId;
+			emit rcvEscapeRoom(roomId,userId);
+		}
 		break;
 	case SP_Userlist :
 		{
@@ -113,6 +142,15 @@ void JSnakeSocket::dataProcess(const QByteArray& data)
 			stream>>roomId;
 			stream>>userlist;
 			emit rcvUserlist(roomId,userlist);
+		}
+		break;
+	case SP_GA_Ready:
+		{
+			bool ready;
+			int num;
+			stream>>ready;
+			stream>>num;
+			emit rcvGA_Ready(ready,num);
 		}
 		break;
 	}

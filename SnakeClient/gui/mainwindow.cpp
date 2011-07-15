@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	JSnakeWidget *snake=new JSnakeWidget(this);
 	ui->centralWidget->addWidget(snake);
 	connect(hall,SIGNAL(enterGame(int)),ui->centralWidget,SLOT(setCurrentIndex(int)));
+	connect(snake,SIGNAL(escape(int)),ui->centralWidget,SLOT(setCurrentIndex(int)));
 }
 
 MainWindow::~MainWindow()

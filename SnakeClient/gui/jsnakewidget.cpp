@@ -56,8 +56,14 @@ JSnakeWidget::JSnakeWidget(QWidget *parent) :
 			SIGNAL(rcvEnterRoom(JID,JID)),
 			SLOT(om_socket_rcvEnterRoom(JID,JID)));
 	connect(m_socket,
+			SIGNAL(rcvEscapeRoom(JID,JID)),
+			SLOT(om_socket_rcvEscapeRoom(JID,JID)));
+	connect(m_socket,
 			SIGNAL(rcvUserlist(JID,QList<JID>)),
 			SLOT(om_socket_rcvUserlist(JID,QList<JID>)));
+	connect(m_socket,
+			SIGNAL(rcvGA_Ready(bool,int)),
+			SLOT(om_socket_rcvGA_Ready(bool,int)));
 //    QTimer *timer=new QTimer(this);
 //    connect(timer,SIGNAL(timeout()),SLOT(moveOn()));
 //    timer->start(250);
@@ -158,6 +164,18 @@ void JSnakeWidget::om_socket_rcvEnterRoom(JID roomId,JID userId)
 	}
 }
 
+void JSnakeWidget::om_socket_rcvEscapeRoom(JID roomId,JID userId)
+{
+	if(roomId==m_roomId)
+	{
+		if(userId==JCryproRecorder().getUserId())
+		{
+			emit escape(0);
+		}
+	}
+	qDebug()<<"JSnakeWidget::om_socket_rcvEscapeRoom unfinished.";
+}
+
 void JSnakeWidget::om_socket_rcvUserlist(JID roomId,const QList<JID>& userlist)
 {
 	if(roomId==m_roomId)
@@ -168,4 +186,33 @@ void JSnakeWidget::om_socket_rcvUserlist(JID roomId,const QList<JID>& userlist)
 			ui->list_players->addItem(QString::number(user));
 		}
 	}
+}
+
+void JSnakeWidget::on_btn_ready_clicked(bool ready)
+{
+	m_socket->sendGA_Ready(ready);
+	if(ready)
+	{
+		ui->btn_ready->setText(tr("cancel ready"));
+	}else{
+		ui->btn_ready->setText(tr("ready"));
+	}
+}
+
+void JSnakeWidget::om_socket_rcvGA_Ready(bool ready,int num)
+{
+	if(num>=0 && num<NUM_SNAKE)
+	{
+		if(ready)
+		{
+			m_lab_ready[num]->setText(tr("ready"));
+		}else{
+			m_lab_ready[num]->setText(tr("not ready"));
+		}
+	}
+}
+
+void JSnakeWidget::on_btn_escape_clicked()
+{
+	m_socket->sendEscapeRoom();
 }
