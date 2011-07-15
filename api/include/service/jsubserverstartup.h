@@ -20,14 +20,14 @@ public:
 	SubServer::SSubServer m_serverinfo;
 
     JSubServerStartup();
-	enum ERuturnValue{
+	enum EReturnValue{
 		ERV_Success,
 		ERV_ConnectFailed,
 		ERV_LoginFailed,
 		ERV_PlhFailed,
 		ERV_SendFailed,
 	};
-	ERuturnValue startup()const;
+	EReturnValue startup()const;
 private:
 	JRequestPort* m_ps;
 	JRequestLogin* m_login;

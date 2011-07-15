@@ -7,6 +7,8 @@ const int NUM_SNAKE=4;
 const int MAXX=30;
 const int MAXY=20;
 
+const int Elapse=250;
+
 class JSnakeGame
 {
 public:

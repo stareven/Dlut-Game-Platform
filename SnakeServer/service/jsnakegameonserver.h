@@ -14,25 +14,34 @@ class JSnakeGameOnServer : public QObject
 public:
 	explicit JSnakeGameOnServer(QObject *parent = 0);
 	virtual ~JSnakeGameOnServer();
+	void enter(int num);
+	void escape(int num);
+	void ready(bool ready,int num);
 	void start(int msec);
 	void setTurn(JSnake::EDire dire,int num);
 private:
 	JSnakeGame* m_game;
 signals:
-	void countDown(int n);
+	void getReady(bool ready,int num);
+	void countDown(int sec);
 	void getCommand();
 	void turn(JSnake::EDire dire,int num);
 	void collision(int num);
 	void createBean(const QPoint& pt);
-	void increaseScore(int num);
+	void increase(int num);
 	void moveOn(int num);
 private:
 	QTimer* m_timer;
 	int m_interval_msec;
 	int m_countDown;
 	JSnake::EDire m_dires[NUM_SNAKE];
+	bool m_sit[NUM_SNAKE];
+	bool m_ready[NUM_SNAKE];
+	bool m_hasStarted;
 private slots:
 	void on_timer_timeout();
+protected:
+	bool canStart();
 };
 
 #endif // JSNAKEGAMEONSERVER_H

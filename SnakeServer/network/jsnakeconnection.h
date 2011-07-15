@@ -2,8 +2,10 @@
 #define JSNAKECONNECTION_H
 
 #include "network/jconnectionbase.h"
+#include "jsnake.h"
 
 class JRoomManager;
+class QPoint;
 
 class JSnakeConnection : public JConnectionBase
 {
@@ -26,8 +28,18 @@ private slots:
 	void sendRoominfoAdd(JID roomId);
 	void sendRoominfoDelete(JID roomId);
 	void sendRoomEnter(JID roomId,JID userId);
+
+	void sendGameAct_getReady(bool ready,int num);
+	void sendGameAct_countDown(int sec);
+	void sendGameAct_getCommand();
+	void sendGameAct_turn(JSnake::EDire dire,int num);
+	void sendGameAct_collision(int num);
+	void sendGameAct_createBean(const QPoint& pt);
+	void sendGameAct_increase(int num);
+	void sendGameAct_moveOn(int num);
 private:
 	void processEnterRoom(JID roomId);
+	void processEscapeRoom();
 };
 
 #endif // JSNAKECONNECTION_H

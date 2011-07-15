@@ -1,10 +1,12 @@
 #include "jsnakeconnection.h"
 
 #include <QDataStream>
+#include <QDebug>
 
 #include "jsnakeglobal.h"
 #include "service/juserlistmanager.h"
 #include "service/jroommanager.h"
+#include "service/jsnakegameonserver.h"
 
 JSnakeConnection::JSnakeConnection(QTcpSocket* socket,QObject *parent) :
 	JConnectionBase(socket,parent)
@@ -75,13 +77,11 @@ void JSnakeConnection::dataProcess(const QByteArray& data)
 		}
 		break;
 	case SP_RoominfoDelete :
-		{
-			JID roomId;
-			stream>>roomId;
-			m_roomMng->removeRoom(roomId);
-		}
+		// 客户端不应该有删除房间的权力。
+		qDebug()<<"SP_RoominfoDelete : clinet will never send this .";
 		break;
 	case SP_RoomAct :
+		qDebug()<<"SP_RoomAct : clinet will never send this .";
 		break;
 	case SP_RoomEnter :
 		{
@@ -91,9 +91,59 @@ void JSnakeConnection::dataProcess(const QByteArray& data)
 		}
 		break;
 	case SP_RoomEscape :
+		{
+			processEscapeRoom();
+		}
 		break;
 	case SP_Userlist :
 		sendUserlist();
+		break;
+	case SP_GameAct:
+		qDebug()<<"SP_GameAct : clinet will never send this .";
+		break;
+	case SP_GA_Ready:
+		{
+			bool ready;
+			stream>>ready;
+			JUserlistManager ulm;
+			JID roomId;
+			roomId=ulm.getRoomByUser(getUserId());
+			JSnakeGameOnServer *game=m_roomMng->getGame(roomId);
+			Q_ASSERT(game!=NULL);
+			Snake::JRoom room=m_roomMng->getRoomInfo(roomId);
+			game->ready(ready,room.getPositionById(getUserId()));
+		}
+		break;
+	case SP_GA_CountDown:
+		qDebug()<<"SP_GA_CountDown : clinet will never send this .";
+		break;
+	case SP_GA_GetCommand:
+		qDebug()<<"SP_GA_GetCommand : clinet will never send this .";
+		break;
+	case SP_GA_Turn:
+		{
+			qint16 dire;
+			stream>>dire;
+			JUserlistManager ulm;
+			JID roomId;
+			roomId=ulm.getRoomByUser(getUserId());
+			JSnakeGameOnServer *game=m_roomMng->getGame(roomId);
+			Q_ASSERT(game!=NULL);
+			Snake::JRoom room=m_roomMng->getRoomInfo(roomId);
+			game->setTurn((JSnake::EDire)dire,room.getPositionById(getUserId()));
+		}
+		break;
+	case SP_GA_Collision:
+		qDebug()<<"SP_GA_Collision : clinet will never send this .";
+		break;
+	case SP_GA_CreateBean:
+		qDebug()<<"SP_GA_CreateBean : clinet will never send this .";
+		break;
+	case SP_GA_Increase:
+		qDebug()<<"SP_GA_Increase : clinet will never send this .";
+		break;
+	case SP_GA_MoveOn:
+		qDebug()<<"SP_GA_MoveOn : clinet will never send this .";
 		break;
 	}
 }
@@ -161,6 +211,87 @@ void JSnakeConnection::sendRoomEnter(JID roomId,JID userId)
 	sendData(outdata);
 }
 
+void JSnakeConnection::sendGameAct_getReady(bool ready,int num)
+{
+	using namespace SnakeProtocol;
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<SP_GA_Ready;
+	outstream<<ready;
+	outstream<<num;
+	sendData(outdata);
+}
+
+void JSnakeConnection::sendGameAct_countDown(int sec)
+{
+	using namespace SnakeProtocol;
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<SP_GA_CountDown;
+	outstream<<sec;
+	sendData(outdata);
+}
+
+void JSnakeConnection::sendGameAct_getCommand()
+{
+	using namespace SnakeProtocol;
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<SP_GA_GetCommand;
+	sendData(outdata);
+}
+
+void JSnakeConnection::sendGameAct_turn(JSnake::EDire dire,int num)
+{
+	using namespace SnakeProtocol;
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<SP_GA_Turn;
+	outstream<<(qint16)dire;
+	outstream<<num;
+	sendData(outdata);
+}
+
+void JSnakeConnection::sendGameAct_collision(int num)
+{
+	using namespace SnakeProtocol;
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<SP_GA_Collision;
+	outstream<<num;
+	sendData(outdata);
+}
+
+void JSnakeConnection::sendGameAct_createBean(const QPoint& pt)
+{
+	using namespace SnakeProtocol;
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<SP_GA_CreateBean;
+	outstream<<pt;
+	sendData(outdata);
+}
+
+void JSnakeConnection::sendGameAct_increase(int num)
+{
+	using namespace SnakeProtocol;
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<SP_GA_Increase;
+	outstream<<num;
+	sendData(outdata);
+}
+
+void JSnakeConnection::sendGameAct_moveOn(int num)
+{
+	using namespace SnakeProtocol;
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<SP_GA_MoveOn;
+	outstream<<num;
+	sendData(outdata);
+}
+
 void JSnakeConnection::processEnterRoom(JID roomId)
 {
 	JID userId=getUserId();
@@ -169,5 +300,29 @@ void JSnakeConnection::processEnterRoom(JID roomId)
 	if(formerRoomId!=0) return;
 	Q_ASSERT(0==ulm.moveUser(userId,roomId));
 	Q_ASSERT(0==m_roomMng->enterRoom(roomId,userId));
+	JSnakeGameOnServer *game=m_roomMng->getGame(roomId);
+	connect(game,SIGNAL(getReady(bool,int)),SLOT(sendGameAct_getReady(bool,int)));
+	connect(game,SIGNAL(countDown(int)),SLOT(sendGameAct_countDown(int)));
+	connect(game,SIGNAL(getCommand()),SLOT(sendGameAct_getCommand()));
+	connect(game,SIGNAL(turn(JSnake::EDire,int)),SLOT(sendGameAct_turn(JSnake::EDire,int)));
+	connect(game,SIGNAL(collision(int)),SLOT(sendGameAct_collision(int)));
+	connect(game,SIGNAL(createBean(const QPoint&)),SLOT(sendGameAct_createBean(const QPoint&)));
+	connect(game,SIGNAL(increase(int)),SLOT(sendGameAct_increase(int)));
+	connect(game,SIGNAL(moveOn(int)),SLOT(sendGameAct_moveOn(int)));
 	sendUserlist();
 }
+
+void JSnakeConnection::processEscapeRoom()
+{
+	JID userId=getUserId();
+	JUserlistManager ulm;
+	JID formerRoomId=ulm.getRoomByUser(userId);
+	if(formerRoomId==0) return;
+	Q_ASSERT(0==ulm.moveUser(userId,0));
+	Q_ASSERT(0==m_roomMng->escapeRoom(formerRoomId,userId));
+	JSnakeGameOnServer *game=m_roomMng->getGame(formerRoomId);
+	game->disconnect(this);
+	sendUserlist();
+}
+
+

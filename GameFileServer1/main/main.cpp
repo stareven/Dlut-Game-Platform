@@ -25,10 +25,6 @@ int main(int argc, char *argv[])
 	sssu.m_serverinfo.m_address=QHostAddress::LocalHost;
 	sssu.m_serverinfo.m_port=port;
 	sssu.m_serverinfo.m_type=SubServer::SSubServer::ET_GameFileServer;
-	JSubServerStartup::ERuturnValue ret=sssu.startup();
-	if(ret!=JSubServerStartup::ERV_Success)
-	{
-		return ret;
-	}
+	sssu.startup();
     return a.exec();
 }

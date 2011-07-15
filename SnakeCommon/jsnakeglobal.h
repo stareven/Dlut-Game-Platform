@@ -98,7 +98,6 @@ namespace Snake{
 		JID m_roomId;
 		QString m_roomName;
 		JID m_players[Max_Players];
-	public:
 		friend QDataStream& ::operator>>(QDataStream& ,JRoom&);
 		friend QDataStream& ::operator<<(QDataStream& ,const JRoom&);
 	};
@@ -123,42 +122,36 @@ namespace SnakeProtocol{
 		// S -> C : SP_RoominfoAdd , <JRoom>roominfo ,
 	const JProtocol SP_RoominfoDelete = ( SP_Roomlist | 0x0300 );
 		// S -> C : SP_RoominfoDelete , <JID>roomid ,
-		// C -> S : SP_RoominfoDelete , <JID>roomid ,
+			// 客户端不应该有删除房间的权力。
 	const JProtocol SP_RoomAct = 0x3000;
 	const JProtocol SP_RoomEnter = ( SP_RoomAct | 0x0100 );
 		// C -> S : SP_Roomenter , <JID>roomid ,
 		// S -> C : SP_Roomenter , <JID>roomid , <JID>userid ,
-			//这个得发给所有人，因为m_nPlayer被删掉。
 	const JProtocol SP_RoomEscape = ( SP_RoomAct | 0x0200 );
 		// C -> S : SP_Roomescape
 		// C -> S : SP_Roomescape , <JID>fromroomid , <JID>userid , <JCode>result ,
-			//这个得发给所有人，因为m_nPlayer被删掉。
 	const JProtocol SP_Userlist = 0x4000;
 		// C -> S : SP_Userlist ,
 		// S -> C : SP_Userlist , <JID>roomid , <QList<JID> >userlist ,
-	const JProtocol SP_GameInfo = 0x5000;
-	const JProtocol SP_GI_UseridList = ( SP_GameInfo | 0x0100 );
-		// C -> S : SP_GI_UseridList
-		// S -> C : SP_GI_UseridList , <QList<JID> >useridlist
-	const JProtocol SP_GI_Ready = ( SP_GameInfo | 0x0200 );
-		// C -> S : SP_GI_Ready , <bool>ready
-			// true : ready ; false : cancel ready
-		// C -> S : SP_GI_Ready , <bool>ready , <JID>userid
 	const JProtocol SP_GameAct = 0x6000;
-	const JProtocol SP_GA_CountDown = ( SP_GameAct | 0x0100 );
-		// S -> C : SP_GA_CountDown , <int>n
-	const JProtocol SP_GA_GetCommand = ( SP_GameAct | 0x0200 );
+	const JProtocol SP_GA_Ready = ( SP_GameAct | 0x0100 );
+		// C -> S : SP_GA_Ready , <bool>ready
+			// true : ready ; false : cancel ready
+		// C -> S : SP_GA_Ready , <bool>ready , <int>num
+	const JProtocol SP_GA_CountDown = ( SP_GameAct | 0x0200 );
+		// S -> C : SP_GA_CountDown , <int>sec
+	const JProtocol SP_GA_GetCommand = ( SP_GameAct | 0x0300 );
 		// S -> C : SP_GA_GetCommand
-	const JProtocol SP_GA_Turn = ( SP_GameAct | 0x0300 );
-		// C -> S : SP_GA_Turn , <JSnake::EDire>dire
-		// S -> C : SP_GA_Turn , <JSnake::EDire>dire , <JID>userid
-	const JProtocol SP_GA_Collision = ( SP_GameAct | 0x0400 );
-		// S -> C : SP_GA_Collision , <JID>userid
-	const JProtocol SP_GA_CreateBean = ( SP_GameAct | 0x0500 );
+	const JProtocol SP_GA_Turn = ( SP_GameAct | 0x0400 );
+		// C -> S : SP_GA_Turn , <qint16>dire
+		// S -> C : SP_GA_Turn , <qint16>dire , <int>num
+	const JProtocol SP_GA_Collision = ( SP_GameAct | 0x0500 );
+		// S -> C : SP_GA_Collision , <int>num
+	const JProtocol SP_GA_CreateBean = ( SP_GameAct | 0x0600 );
 		// S -> C : SP_GA_CreateBean , <QPoint>pt
-	const JProtocol SP_GA_IncreaseScore = ( SP_GameAct | 0x0600 );
-		// S -> C : SP_GA_IncreaseScore , <JID>userid
-	const JProtocol SP_GA_MoveOn = ( SP_GameAct | 0x0700 );
-		// S -> C : SP_GA_MoveOn , <JID>userid
+	const JProtocol SP_GA_Increase = ( SP_GameAct | 0x0700 );
+		// S -> C : SP_GA_Increase , <int>num
+	const JProtocol SP_GA_MoveOn = ( SP_GameAct | 0x0800 );
+		// S -> C : SP_GA_MoveOn , <int>num
 }
 #endif // JSNAKEGLOBAL_H

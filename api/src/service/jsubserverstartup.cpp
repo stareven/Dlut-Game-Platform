@@ -12,9 +12,10 @@ JSubServerStartup::JSubServerStartup()
 	m_gis=new JSendGsInfo;
 }
 
-JSubServerStartup::ERuturnValue JSubServerStartup::startup()const
+JSubServerStartup::EReturnValue JSubServerStartup::startup()const
 {
 //	JPortService ps;
+	EReturnValue ret=ERV_Success;
 	m_ps->setServerPort(EST_FREEPORT,m_host);
 	SHost loginHost=m_ps->rqsServerPort(EST_LOGIN);
 	m_login->connectToHost(loginHost.m_address,loginHost.m_port);
@@ -62,7 +63,7 @@ JSubServerStartup::ERuturnValue JSubServerStartup::startup()const
 		{
 			qDebug()<<"send game info failed . error :"
 					<<m_gis->error();
-			return ERV_SendFailed;
+			ret=ERV_SendFailed;
 		}else{
 			qDebug()<<"send game info success.";
 		}
@@ -80,7 +81,7 @@ JSubServerStartup::ERuturnValue JSubServerStartup::startup()const
 	{
 		qDebug()<<"send server info failed . error :"
 				<<m_gis->error();
-		return ERV_SendFailed;
+		ret=ERV_SendFailed;
 	}else{
 		qDebug()<<"send server info success.";
 	}
@@ -89,10 +90,10 @@ JSubServerStartup::ERuturnValue JSubServerStartup::startup()const
 	{
 		qDebug()<<"send relation failed . error :"
 				<<m_gis->error();
-		return ERV_SendFailed;
+		ret=ERV_SendFailed;
 	}else{
 		qDebug()<<"send relation success.";
 	}
 	qDebug()<<m_serverinfo.m_name<<"startup success.";
-	return ERV_Success;
+	return ret;
 }

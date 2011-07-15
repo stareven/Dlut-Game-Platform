@@ -14,6 +14,12 @@ JSnakeGameOnServer::JSnakeGameOnServer(QObject *parent) :
 			SIGNAL(timeout()),
 			SLOT(on_timer_timeout()));
 	qsrand(QTime::currentTime().msecsTo(QTime()));
+	for(int i=0;i<NUM_SNAKE;++i)
+	{
+		m_sit[i]=false;
+		m_ready[i]=false;
+	}
+	m_hasStarted=false;
 }
 
 JSnakeGameOnServer::~JSnakeGameOnServer()
@@ -22,8 +28,38 @@ JSnakeGameOnServer::~JSnakeGameOnServer()
 	m_game=NULL;
 }
 
+void JSnakeGameOnServer::enter(int num)
+{
+	if(num>=0 && num<NUM_SNAKE)
+	{
+		m_sit[num]=true;
+	}
+}
+
+void JSnakeGameOnServer::escape(int num)
+{
+	if(num>=0 && num<NUM_SNAKE)
+	{
+		m_sit[num]=false;
+	}
+}
+
+void JSnakeGameOnServer::ready(bool ready,int num)
+{
+	if(num>=0 && num<NUM_SNAKE)
+	{
+		m_ready[num]=ready;
+		emit getReady(ready,num);
+		if(canStart())
+		{
+			start(Elapse);
+		}
+	}
+}
+
 void JSnakeGameOnServer::start(int msec)
 {
+	m_hasStarted=true;
 	m_interval_msec=msec;
 	m_countDown=4;
 	m_timer->start(1000);
@@ -85,7 +121,25 @@ void JSnakeGameOnServer::on_timer_timeout()
 			emit createBean(pt);
 			int num=m_game->getBeanCollitionSnakeNumber(bit);
 			m_game->increaseScore(num);
-			emit increaseScore(num);
+			emit increase(num);
 		}
 	}
+}
+
+bool JSnakeGameOnServer::canStart()
+{
+	int nPlayers=0;
+	for(int i=0;i<NUM_SNAKE;++i)
+	{
+		if(m_sit[i])
+		{
+			++nPlayers;
+			if(!m_ready[i])
+			{
+				return false;
+			}
+		}
+	}
+	if(nPlayers>1) return true;
+	else return false;
 }

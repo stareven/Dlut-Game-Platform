@@ -24,7 +24,7 @@ JSnakeWidget::JSnakeWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::JSnakeWidget)
 {
-//    m_game=new JSnakeGame;
+	m_game=new JSnakeGame;
     ui->setupUi(this);
 	m_roomId=-1;
 //    QWidget *gridLayoutWidget;
