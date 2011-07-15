@@ -28,7 +28,7 @@ QVariant JRoomListModel::data(const QModelIndex &index, int role) const
 	{
 		JID roomId=m_index2Id.at(index.row());
 		Snake::JRoom room=m_rooms.value(roomId);
-		return QString("%1 %2").arg(room.getRoomId()).arg(room.getRoomName());
+		return QString("%1 %2 %3").arg(room.getRoomId()).arg(room.getRoomName()).arg(room.getPlayersCount());
 		//return stringList.at(index.row());
 	}else if(role == Qt::EditRole){
 		JID roomId=m_index2Id.at(index.row());

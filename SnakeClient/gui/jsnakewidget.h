@@ -11,6 +11,7 @@ namespace Ui {
 
 class JSnakeGame;
 class QLCDNumber;
+class QLabel;
 class JSnakeSocket;
 
 class JSnakeWidget : public QWidget
@@ -26,6 +27,7 @@ protected:
     void keyPressEvent(QKeyEvent *);
 private:
     Ui::JSnakeWidget *ui;
+	QLabel *m_lab_ready[4];
     QLCDNumber *m_lcds[4][2];
 	JSnakeGame* m_game;
 	JSnakeSocket* m_socket;

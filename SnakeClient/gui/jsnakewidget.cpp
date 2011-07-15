@@ -1,7 +1,7 @@
 #include "jsnakewidget.h"
 #include "ui_jsnakewidget.h"
 
-#include "../SnakeCommon/jsnakegame.h"
+#include "jsnakegame.h"
 
 #include <QPainter>
 //#include <QTime>
@@ -35,17 +35,20 @@ JSnakeWidget::JSnakeWidget(QWidget *parent) :
 //    gridLayout = new QGridLayout(gridLayoutWidget);
 //    gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
 //    gridLayout->setContentsMargins(0, 0, 0, 0);
-	ui->gridLayout->addWidget(new QLabel(tr("life"),this),0,1,1,1);
-	ui->gridLayout->addWidget(new QLabel(tr("score"),this),0,2,1,1);
+	ui->gridLayout->addWidget(new QLabel(tr("ready"),this),0,1,1,1);
+	ui->gridLayout->addWidget(new QLabel(tr("life"),this),0,2,1,1);
+	ui->gridLayout->addWidget(new QLabel(tr("score"),this),0,3,1,1);
     for(int i=0;i<NUM_SNAKE;++i)
     {
 		ui->gridLayout->addWidget(new QLabel(tr("snake%1")
 											 .arg(i),this)
 								  ,i+1,0,1,1);
+		m_lab_ready[i]=new QLabel("not ready",this);
+		ui->gridLayout->addWidget(m_lab_ready[i],i+1,1,1,1);
         for(int j=0;j<2;++j)
         {
             m_lcds[i][j]=new QLCDNumber(this);
-			ui->gridLayout->addWidget(m_lcds[i][j],i+1,j+1,1,1);
+			ui->gridLayout->addWidget(m_lcds[i][j],i+1,j+2,1,1);
         }
     }
 	m_socket=&JSnakeSocket::getInstance();
@@ -63,6 +66,7 @@ JSnakeWidget::JSnakeWidget(QWidget *parent) :
 JSnakeWidget::~JSnakeWidget()
 {
     delete ui;
+	delete m_game;
 }
 
 void JSnakeWidget::paintEvent(QPaintEvent * )

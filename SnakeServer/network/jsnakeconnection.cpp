@@ -150,6 +150,7 @@ void JSnakeConnection::dataProcess(const QByteArray& data)
 
 void JSnakeConnection::on_socket_disconnected()
 {
+	processEscapeRoom();
 	JUserlistManager ulm;
 	ulm.removeUser(getUserId());
 }
@@ -298,18 +299,20 @@ void JSnakeConnection::processEnterRoom(JID roomId)
 	JUserlistManager ulm;
 	JID formerRoomId=ulm.getRoomByUser(userId);
 	if(formerRoomId!=0) return;
-	Q_ASSERT(0==ulm.moveUser(userId,roomId));
-	Q_ASSERT(0==m_roomMng->enterRoom(roomId,userId));
-	JSnakeGameOnServer *game=m_roomMng->getGame(roomId);
-	connect(game,SIGNAL(getReady(bool,int)),SLOT(sendGameAct_getReady(bool,int)));
-	connect(game,SIGNAL(countDown(int)),SLOT(sendGameAct_countDown(int)));
-	connect(game,SIGNAL(getCommand()),SLOT(sendGameAct_getCommand()));
-	connect(game,SIGNAL(turn(JSnake::EDire,int)),SLOT(sendGameAct_turn(JSnake::EDire,int)));
-	connect(game,SIGNAL(collision(int)),SLOT(sendGameAct_collision(int)));
-	connect(game,SIGNAL(createBean(const QPoint&)),SLOT(sendGameAct_createBean(const QPoint&)));
-	connect(game,SIGNAL(increase(int)),SLOT(sendGameAct_increase(int)));
-	connect(game,SIGNAL(moveOn(int)),SLOT(sendGameAct_moveOn(int)));
-	sendUserlist();
+	if(0==m_roomMng->enterRoom(roomId,userId))
+	{
+		Q_ASSERT(0==ulm.moveUser(userId,roomId));
+		JSnakeGameOnServer *game=m_roomMng->getGame(roomId);
+		connect(game,SIGNAL(getReady(bool,int)),SLOT(sendGameAct_getReady(bool,int)));
+		connect(game,SIGNAL(countDown(int)),SLOT(sendGameAct_countDown(int)));
+		connect(game,SIGNAL(getCommand()),SLOT(sendGameAct_getCommand()));
+		connect(game,SIGNAL(turn(JSnake::EDire,int)),SLOT(sendGameAct_turn(JSnake::EDire,int)));
+		connect(game,SIGNAL(collision(int)),SLOT(sendGameAct_collision(int)));
+		connect(game,SIGNAL(createBean(const QPoint&)),SLOT(sendGameAct_createBean(const QPoint&)));
+		connect(game,SIGNAL(increase(int)),SLOT(sendGameAct_increase(int)));
+		connect(game,SIGNAL(moveOn(int)),SLOT(sendGameAct_moveOn(int)));
+		sendUserlist();
+	}
 }
 
 void JSnakeConnection::processEscapeRoom()
