@@ -24,6 +24,6 @@ void JRequestUserInfoSocket::afterPlh(const QByteArray& data)
 	UserInfo::SUserInfo userinfo;
 	stream>>userId;
 	stream>>userinfo;
-	qDebug()<<"rcv userinfo"<<userinfo.m_userId<<userinfo.m_nickname;
+	qDebug()<<"JRequestUserInfoSocket rcv userinfo"<<userId<<userinfo.m_userId<<userinfo.m_nickname;
 	emit rcvUserInfo(userinfo);
 }

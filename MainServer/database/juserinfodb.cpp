@@ -33,7 +33,7 @@ UserInfo::SUserInfo JUserInfoDb::getUserInfo(JID userId)const
 	{
 		return s_users.value(userId);
 	}else{
-		static const UserInfo::SUserInfo userinfo(userId,"no such user","error");
+		UserInfo::SUserInfo userinfo(userId,"no such user on server database","no such user on server database");
 		return userinfo;
 	}
 }

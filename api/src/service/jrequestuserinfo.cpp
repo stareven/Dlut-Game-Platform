@@ -49,5 +49,3 @@ void JRequestUserInfo::on_socket_rcvUserInfo(const UserInfo::SUserInfo& userinfo
 {
 	s_userinfolist.insert(userinfo.m_userId,userinfo);
 }
-
-static JRequestUserInfo a;

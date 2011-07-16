@@ -98,6 +98,7 @@ void JHallWidget::om_socket_rcvUserlist(JID roomId,const QList<JID>& userlist)
 	ui->lst_player->clear();
 	foreach(JID userId,userlist)
 	{
+		qDebug()<<"JHallWidget::om_socket_rcvUserlist:"<<userId;
 		addUserToList(userId);
 	}
 }
