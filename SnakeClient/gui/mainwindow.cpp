@@ -12,12 +12,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 //    ui->centralWidget->setFocus();
-	JHallWidget *hall=new JHallWidget(this);
-	ui->centralWidget->addWidget(hall);
-	JSnakeWidget *snake=new JSnakeWidget(this);
-	ui->centralWidget->addWidget(snake);
-	connect(hall,SIGNAL(enterGame(int)),ui->centralWidget,SLOT(setCurrentIndex(int)));
-	connect(snake,SIGNAL(escape(int)),ui->centralWidget,SLOT(setCurrentIndex(int)));
+//	JHallWidget *hall=new JHallWidget(ui->centralWidget);
+//	JSnakeWidget *snake=new JSnakeWidget(ui->centralWidget);
+//	ui->centralWidget->addWidget(hall);
+//	ui->centralWidget->addWidget(snake);
+	connect(ui->widget_hall,SIGNAL(enterGame(int)),ui->stackedWidget,SLOT(setCurrentIndex(int)));
+	connect(ui->widget_snake,SIGNAL(escape(int)),ui->stackedWidget,SLOT(setCurrentIndex(int)));
 }
 
 MainWindow::~MainWindow()

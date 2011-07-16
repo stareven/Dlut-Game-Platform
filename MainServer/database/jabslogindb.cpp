@@ -24,6 +24,12 @@ static const SLoginUser loginusers[]={
     {902,"sampleserverrunner","123",(1<<ROLE_GAMESERVERRUNNER)},
     {903,"sampleadmin","123",(1<<ROLE_ADMIN)},
 	{904,"sampleroot","123",(1<<ROLE_ROOT)},
+	{1001,"debug1","1",(1<<ROLE_GAMEPLAYER)},
+	{1002,"debug2","1",(1<<ROLE_GAMEPLAYER)},
+	{1003,"debug3","1",(1<<ROLE_GAMEPLAYER)},
+	{1004,"debug4","1",(1<<ROLE_GAMEPLAYER)},
+	{1005,"debug5","1",(1<<ROLE_GAMEPLAYER)},
+	{1006,"debug6","1",(1<<ROLE_GAMEPLAYER)},
 };
 static const int NUM_USER=sizeof(loginusers)/sizeof(SLoginUser);
 

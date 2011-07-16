@@ -104,6 +104,12 @@ void JSnakeSocket::dataProcess(const QByteArray& data)
 		}
 		break;
 	case SP_RoominfoUpdate :
+		{
+			Snake::JRoom roominfo;
+			stream>>roominfo;
+			qDebug()<<"SP_RoominfoUpdate:"<<roominfo.getRoomId();
+			emit rcvRoominfoUpdate(roominfo);
+		}
 		break;
 	case SP_RoominfoAdd :
 		{
@@ -125,6 +131,7 @@ void JSnakeSocket::dataProcess(const QByteArray& data)
 		{
 			JID roomId,userId;
 			stream>>roomId>>userId;
+			qDebug()<<"SP_RoomEnter:"<<roomId<<userId;
 			emit rcvEnterRoom(roomId,userId);
 		}
 		break;
@@ -132,6 +139,7 @@ void JSnakeSocket::dataProcess(const QByteArray& data)
 		{
 			JID roomId,userId;
 			stream>>roomId>>userId;
+			qDebug()<<"SP_RoomEscape:"<<roomId<<userId;
 			emit rcvEscapeRoom(roomId,userId);
 		}
 		break;

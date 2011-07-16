@@ -171,9 +171,14 @@ void JSnakeWidget::om_socket_rcvEscapeRoom(JID roomId,JID userId)
 		if(userId==JCryproRecorder().getUserId())
 		{
 			emit escape(0);
+		}else{
+			QList<QListWidgetItem *>items=ui->list_players->findItems(QString::number(userId),Qt::MatchStartsWith);
+			foreach(QListWidgetItem *item,items)
+			{
+				ui->list_players->removeItemWidget(item);
+			}
 		}
 	}
-	qDebug()<<"JSnakeWidget::om_socket_rcvEscapeRoom unfinished.";
 }
 
 void JSnakeWidget::om_socket_rcvUserlist(JID roomId,const QList<JID>& userlist)

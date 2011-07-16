@@ -30,6 +30,7 @@ signals:
 	void rcvEnterRoom(JID roomId,JID userId);
 	void rcvEscapeRoom(JID roomId,JID userId);
 	void rcvRoomlist(const QList<Snake::JRoom>& roomlist);
+	void rcvRoominfoUpdate(const Snake::JRoom& roominfo);
 	void rcvGA_Ready(bool ready,int num);
 protected:
 	void dataProcess(const QByteArray&);

@@ -37,6 +37,11 @@ bool JSocketBase::isConnected()const
     return m_socket->state()==QAbstractSocket::ConnectedState;
 }
 
+QAbstractSocket::SocketState JSocketBase::state () const
+{
+	return m_socket->state();
+}
+
 void JSocketBase::on_socket_connected()
 {
     emit SocketCode(EN_CONNECTED);

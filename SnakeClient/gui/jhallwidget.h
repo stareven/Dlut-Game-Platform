@@ -43,6 +43,9 @@ private slots:
 	void om_socket_rcvEscapeRoom(JID roomId,JID userId);
 signals:
 	void enterGame(int);
+protected:
+	void showEvent ( QShowEvent * event );
+	void addUserToList(JID userId);
 };
 
 #endif // JHALLWIDGET_H

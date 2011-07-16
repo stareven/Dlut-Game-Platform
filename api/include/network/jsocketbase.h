@@ -18,6 +18,7 @@ public:
     void connectToHost(const QHostAddress& address,
                        quint16 port);
     bool isConnected()const;
+	QAbstractSocket::SocketState state () const;
 private:
     QTcpSocket *m_socket;
 	int m_size;

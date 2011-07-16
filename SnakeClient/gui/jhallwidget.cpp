@@ -13,22 +13,48 @@ JHallWidget::JHallWidget(QWidget *parent) :
     ui(new Ui::JHallWidget)
 {
 	m_socket=&JSnakeSocket::getInstance();
-//	m_socket->setParent(this);
-//	m_socket->setObjectName("socket");
 	m_reqUserInfo=new JRequestUserInfo(this);
 	m_reqPort=new JRequestPort(this);
-	connect(m_socket,SIGNAL(rcvHello(JCode)),SLOT(om_socket_rcvHello(JCode)));
-	connect(m_socket,SIGNAL(rcvUserlist(JID,QList<JID>)),SLOT(om_socket_rcvUserlist(JID,QList<JID>)));
-	connect(m_socket,SIGNAL(rcvAddRoom(Snake::JRoom)),SLOT(om_socket_rcvAddRoom(Snake::JRoom)));
-	connect(m_socket,SIGNAL(rcvEnterRoom(JID,JID)),SLOT(om_socket_rcvEnterRoom(JID,JID)));
+	connect(m_socket,
+			SIGNAL(rcvHello(JCode)),
+			SLOT(om_socket_rcvHello(JCode)));
+	connect(m_socket,
+			SIGNAL(rcvUserlist(JID,QList<JID>)),
+			SLOT(om_socket_rcvUserlist(JID,QList<JID>)));
+	connect(m_socket,
+			SIGNAL(rcvAddRoom(Snake::JRoom)),
+			SLOT(om_socket_rcvAddRoom(Snake::JRoom)));
+	connect(m_socket,
+			SIGNAL(rcvEnterRoom(JID,JID)),
+			SLOT(om_socket_rcvEnterRoom(JID,JID)));
 	connect(m_socket,
 			SIGNAL(rcvEscapeRoom(JID,JID)),
 			SLOT(om_socket_rcvEscapeRoom(JID,JID)));
-	ui->setupUi(this);
 	m_roomlistmodel=new JRoomListModel(this);
+	ui->setupUi(this);
 	ui->listView_room->setModel(m_roomlistmodel);
 	m_reqPort->setServerPort(EST_FREEPORT,SHost(GlobalSettings::g_mainServer.m_address,GlobalSettings::g_mainServer.m_port));
-	m_socket->sendHello(JCryproRecorder().getUserId());
+	SHost hostuserinfo=m_reqPort->rqsServerPort(EST_USERINFO);
+	m_reqUserInfo->connectToHost(hostuserinfo.m_address,hostuserinfo.m_port);
+	qDebug()<<"user info begin to connect";
+	if(!m_reqUserInfo->waitForConnected(1000))
+	{
+		qDebug()<<"user info connect failed.";
+		return;
+	}else{
+		qDebug()<<"user info connect success.";
+	}
+	JCryproRecorder cr;
+	m_reqUserInfo->sendCrypro(cr.getUserId(),cr.getCrypro());
+	if(!m_reqUserInfo->waitForPlh(1000))
+	{
+		qDebug()<<"user info plh failed.";
+		return;
+	}else{
+		qDebug()<<"user info plh success.";
+	}
+	m_socket->sendHello(cr.getUserId());
+	m_socket->sendRqsRoomlist();
 }
 
 JHallWidget::~JHallWidget()
@@ -69,38 +95,10 @@ void JHallWidget::om_socket_rcvHello(JCode code)
 void JHallWidget::om_socket_rcvUserlist(JID roomId,const QList<JID>& userlist)
 {
 	if(roomId!=0) return;
-	SHost hostuserinfo=m_reqPort->rqsServerPort(EST_USERINFO);
-	m_reqUserInfo->connectToHost(hostuserinfo.m_address,hostuserinfo.m_port);
-	qDebug()<<"user info begin to connect";
-	if(!m_reqUserInfo->waitForConnected(1000))
-	{
-		qDebug()<<"user info connect failed.";
-		return;
-	}else{
-		qDebug()<<"user info connect success.";
-	}
-	JCryproRecorder cr;
-	m_reqUserInfo->sendCrypro(cr.getUserId(),cr.getCrypro());
-	if(!m_reqUserInfo->waitForPlh(1000))
-	{
-		qDebug()<<"user info plh failed.";
-		return;
-	}else{
-		qDebug()<<"user info plh success.";
-	}
 	ui->lst_player->clear();
 	foreach(JID userId,userlist)
 	{
-		UserInfo::SUserInfo userinfo=m_reqUserInfo->rqsUserInfo(userId);
-		if(userinfo.m_userId==userId)
-		{
-			ui->lst_player->addItem(tr("%1:%2:%3")
-									.arg(userinfo.m_userId)
-									.arg(userinfo.m_nickname)
-									.arg(userinfo.m_organization));
-		}else{
-			ui->lst_player->addItem(tr("%1").arg(userId));
-		}
+		addUserToList(userId);
 	}
 }
 
@@ -131,17 +129,24 @@ void JHallWidget::om_socket_rcvEnterRoom(JID roomId,JID userId)
 	if(roomId>0 && userId==JCryproRecorder().getUserId())
 	{
 		emit enterGame(1);
+	}else if(0==roomId){
+		addUserToList(userId);
 	}
 }
 
 void JHallWidget::om_socket_rcvEscapeRoom(JID roomId,JID userId)
 {
+	qDebug()<<"JHallWidget::om_socket_rcvEscapeRoom:"<<roomId<<userId;
 	if(0==roomId)
 	{
 		QList<QListWidgetItem *> items=ui->lst_player->findItems(tr("%1:").arg(userId),Qt::MatchStartsWith);
+		qDebug()<<"JHallWidget::om_socket_rcvEscapeRoom"<<items.size();
 		foreach(QListWidgetItem* item,items)
 		{
-			ui->lst_player->removeItemWidget(item);
+			qDebug()<<"JHallWidget::om_socket_rcvEscapeRoom"<<item->text();
+//			ui->lst_player->removeItemWidget(item);
+			ui->lst_player->takeItem(ui->lst_player->row(item));
+//			delete item;
 		}
 	}
 }
@@ -156,4 +161,30 @@ void JHallWidget::on_btn_enter_room_clicked()
 void JHallWidget::on_btn_refresh_room_clicked()
 {
 	m_socket->sendRqsRoomlist();
+}
+
+void JHallWidget::showEvent ( QShowEvent *event)
+{
+//	QWidget::showEvent(event);
+	qDebug()<<"JHallWidget::showEvent"<<event;
+	static bool first=true;
+	if(first)
+	{
+		first=false;
+
+	}
+}
+
+void JHallWidget::addUserToList(JID userId)
+{
+	UserInfo::SUserInfo userinfo=m_reqUserInfo->rqsUserInfo(userId);
+	if(userinfo.m_userId==userId)
+	{
+		ui->lst_player->addItem(tr("%1:%2:%3")
+								.arg(userinfo.m_userId)
+								.arg(userinfo.m_nickname)
+								.arg(userinfo.m_organization));
+	}else{
+		ui->lst_player->addItem(tr("%1:").arg(userId));
+	}
 }

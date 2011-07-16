@@ -6,12 +6,19 @@ JRoomListModel::JRoomListModel(QObject *parent) :
     QAbstractListModel(parent)
 {
 	m_socket=&JSnakeSocket::getInstance();
-	connect(m_socket,SIGNAL(rcvAddRoom(Snake::JRoom)),SLOT(on_socket_rcvAddRoom(Snake::JRoom)));
-	connect(m_socket,SIGNAL(rcvRoomlist(QList<Snake::JRoom>)),SLOT(on_socket_rcvRoomList(QList<Snake::JRoom>)));
+	connect(m_socket,
+			SIGNAL(rcvAddRoom(Snake::JRoom)),
+			SLOT(on_socket_rcvAddRoom(Snake::JRoom)));
+	connect(m_socket,
+			SIGNAL(rcvRoomlist(QList<Snake::JRoom>)),
+			SLOT(on_socket_rcvRoomList(QList<Snake::JRoom>)));
 	connect(m_socket,
 			SIGNAL(rcvDeleteRoom(JID)),
 			SLOT(on_socket_rcvDeleteRoom(JID)));
-	m_socket->sendRqsRoomlist();
+	connect(m_socket,
+			SIGNAL(rcvRoominfoUpdate(Snake::JRoom)),
+			SLOT(on_socket_rcvRoominfoUpdate(Snake::JRoom)));
+//	m_socket->sendRqsRoomlist();
 }
 
 int JRoomListModel::rowCount(const QModelIndex&) const
@@ -79,5 +86,17 @@ void JRoomListModel::on_socket_rcvDeleteRoom(JID roomId)
 		m_index2Id.removeAt(i);
 		m_rooms.remove(roomId);
 		emit dataChanged(index(i),index(m_rooms.size()+1));
+	}
+}
+
+void JRoomListModel::on_socket_rcvRoominfoUpdate(const Snake::JRoom& roominfo)
+{
+	if(m_rooms.contains(roominfo.getRoomId()))
+	{
+		m_rooms[roominfo.getRoomId()]=roominfo;
+		int i=m_index2Id.indexOf(roominfo.getRoomId());
+		emit dataChanged(index(i),index(i+1));
+	}else{
+		on_socket_rcvAddRoom(roominfo);
 	}
 }

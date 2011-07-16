@@ -81,11 +81,17 @@ JCode JRoomManager::enterRoom(JID roomId,JID userId)
 	Q_ASSERT(game!=NULL);
 	game->enter(room.getPositionById(userId));
 	emit roomEnter(roomId,userId);
+	emit roomUpdated(roomId);
 	return 0;
 }
 
 JCode JRoomManager::escapeRoom(JID roomId,JID userId)
 {
+	if(0==roomId)
+	{
+		emit roomEscape(roomId,userId);
+		return 0;
+	}
 	if(!m_rooms.contains(roomId))
 	{
 		return 1;
@@ -102,7 +108,15 @@ JCode JRoomManager::escapeRoom(JID roomId,JID userId)
 		game->deleteLater();
 		m_games.remove(roomId);
 		emit roomRemoved(roomId);
+	}else{
+		emit roomUpdated(roomId);
 	}
+	return 0;
+}
+
+JCode JRoomManager::enterHall(JID userId)
+{
+	emit roomEnter(0,userId);
 	return 0;
 }
 

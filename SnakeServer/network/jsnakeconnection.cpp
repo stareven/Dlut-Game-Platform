@@ -40,6 +40,7 @@ void JSnakeConnection::dataProcess(const QByteArray& data)
 			outstream<<SP_Hello;
 			outstream<<code;
 			sendData(outdata);
+			m_roomMng->enterHall(userId);
 		}
 		break;
 	case SP_Roomlist :
@@ -68,6 +69,7 @@ void JSnakeConnection::dataProcess(const QByteArray& data)
 			if(0==code)
 			{
 //				sendRoomEnter(roominfo.m_roomId);
+				processEscapeRoom();
 				processEnterRoom(roominfo.getRoomId());
 			}
 			/*{
@@ -151,6 +153,7 @@ void JSnakeConnection::dataProcess(const QByteArray& data)
 
 void JSnakeConnection::on_socket_disconnected()
 {
+	JConnectionBase::on_socket_disconnected();
 	processEscapeRoom();
 	JUserlistManager ulm;
 	ulm.removeUser(getUserId());
@@ -331,7 +334,7 @@ void JSnakeConnection::processEscapeRoom()
 	JID userId=getUserId();
 	JUserlistManager ulm;
 	JID formerRoomId=ulm.getRoomByUser(userId);
-	if(formerRoomId==0) return;
+	if(formerRoomId<0) return;
 	Q_ASSERT(0==ulm.moveUser(userId,0));
 	Q_ASSERT(0==m_roomMng->escapeRoom(formerRoomId,userId));
 	JSnakeGameOnServer *game=m_roomMng->getGame(formerRoomId);

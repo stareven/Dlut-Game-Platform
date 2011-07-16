@@ -25,6 +25,7 @@ private slots:
 	void on_socket_rcvAddRoom(const Snake::JRoom&);
 	void on_socket_rcvRoomList(const QList<Snake::JRoom>& roomlist);
 	void on_socket_rcvDeleteRoom(JID roomId);
+	void on_socket_rcvRoominfoUpdate(const Snake::JRoom& roominfo);
 };
 
 #endif // JROOMLISTMODEL_H

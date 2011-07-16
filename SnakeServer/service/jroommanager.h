@@ -25,6 +25,7 @@ public:
 	JCode removeRoom(JID roomId);
 	JCode enterRoom(JID roomId,JID userId);
 	JCode escapeRoom(JID roomId,JID userId);
+	JCode enterHall(JID userId);
 	Snake::JRoom getRoomInfo(JID roomId)const;
 	JSnakeGameOnServer* getGame(JID roomId)const;
 	QList<JID> getIdList()const;
