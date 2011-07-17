@@ -167,9 +167,16 @@ void JRequestGameInfo::on_socket_rcvServers(JID gameId,const JVersion& version,c
 	m_relations[gameId].unite(servers);
 }
 
-void JRequestGameInfo::on_socket_rcvServerInfo(const SubServer::SSubServer& si)
+void JRequestGameInfo::on_socket_rcvServerInfo(SubServer::SSubServer si)
 {
+	if(si.m_address==QHostAddress::LocalHost)
+	{
+		JRequestPort ps;
+		SHost host=ps.rqsServerPort(EST_FREEPORT);
+		si.m_address=host.m_address;
+	}
 	m_servers.insert(si.m_serverId,si);
+
 }
 
 //void JRequestGameInfo::on_socket_rcvGameInfo(const SGameInfo& gi)

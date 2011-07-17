@@ -35,7 +35,7 @@ protected slots:
 	void on_socket_rcvGameList(const QList<SubServer::SGameInfo2>&);
 //	void on_socket_rcvGameList(const SubServer::SGameInfo2&);
 	void on_socket_rcvServers(JID,const JVersion&,const QSet<JID>&);
-	void on_socket_rcvServerInfo(const SubServer::SSubServer&);
+	void on_socket_rcvServerInfo(SubServer::SSubServer);
 private:
     //pass login hash
     //0 failed

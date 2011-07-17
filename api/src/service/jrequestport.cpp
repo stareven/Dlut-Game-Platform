@@ -73,7 +73,7 @@ SHost JRequestPort::rqsServerPort(EServerType type)
         qDebug()<<"connect time out.";
         return SHost();
     }
-    s_ports.insert(type,SHost(QHostAddress("127.0.0.1"),m_port));
+	s_ports.insert(type,SHost(s_ports.value(EST_FREEPORT).m_address,m_port));
     return s_ports.value(type);
 }
 

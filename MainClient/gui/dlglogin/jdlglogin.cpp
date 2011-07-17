@@ -82,7 +82,7 @@ void JDlgLogin::accept()
     ps.setServerPort(EST_FREEPORT,SHost(ui->cb_server->getServer().getAddress(),ui->cb_server->getServer().getPort()));
     SHost host=ps.rqsServerPort(EST_LOGIN);
 	m_rqslogin->connectToHost(host.m_address,host.m_port);
-	ui->lab_message->setText(tr("connecting to server"));
+	ui->lab_message->setText(tr("connecting to server %1:%2").arg(host.m_address.toString()).arg(host.m_port));
 	if(!m_rqslogin->waitForConnected(1000))
 	{
 		ui->lab_message->setText(tr("connect failed : %1").arg(m_rqslogin->getConnectError()));
