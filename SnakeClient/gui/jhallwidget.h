@@ -44,7 +44,6 @@ private slots:
 signals:
 	void enterGame(int);
 protected:
-	void showEvent ( QShowEvent * event );
 	void addUserToList(JID userId);
 };
 

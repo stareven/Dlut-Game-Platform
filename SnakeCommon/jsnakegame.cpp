@@ -13,8 +13,8 @@ void JSnakeGame::reset(int num)
 {
     const static JSnake snakes[NUM_SNAKE]={
         JSnake(QPoint(MAXX*0.2,MAXY*0.2),JSnake::ED_DOWN),
-		JSnake(QPoint(MAXX*0.8,MAXY*0.8),JSnake::ED_RIGHT),
-		JSnake(QPoint(MAXX*0.2,MAXY*0.8),JSnake::ED_UP),
+		JSnake(QPoint(MAXX*0.8,MAXY*0.8),JSnake::ED_UP),
+		JSnake(QPoint(MAXX*0.2,MAXY*0.8),JSnake::ED_RIGHT),
         JSnake(QPoint(MAXX*0.8,MAXY*0.2),JSnake::ED_LEFT)
     };
     if(num<0 || num>=NUM_SNAKE)
@@ -41,6 +41,14 @@ void JSnakeGame::turn(JSnake::EDire dire,int num)
     {
         m_snakes[num].turn(dire);
     }
+}
+
+void JSnakeGame::growLonger(int num)
+{
+	if(num>=0 && num<NUM_SNAKE)
+	{
+		m_snakes[num].growLonger();
+	}
 }
 
 const JSnake& JSnakeGame::getSnakes(int num)const

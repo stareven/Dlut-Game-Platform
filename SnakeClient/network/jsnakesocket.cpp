@@ -1,5 +1,7 @@
 #include "jsnakesocket.h"
 
+#include <QPoint>
+
 #include "jsnakeglobal.h"
 
 JSnakeSocket JSnakeSocket::s_socket;
@@ -81,6 +83,16 @@ void JSnakeSocket::sendGA_Ready(bool ready)
 	sendData(outdata);
 }
 
+void JSnakeSocket::sendGA_Turn(qint16 dire)
+{
+	using namespace SnakeProtocol;
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<SP_GA_Turn;
+	outstream<<dire;
+	sendData(outdata);
+}
+
 void JSnakeSocket::dataProcess(const QByteArray& data)
 {
 	using namespace SnakeProtocol;
@@ -159,6 +171,60 @@ void JSnakeSocket::dataProcess(const QByteArray& data)
 			stream>>ready;
 			stream>>num;
 			emit rcvGA_Ready(ready,num);
+		}
+		break;
+	case SP_GA_CountDown:
+		{
+			int sec;
+			stream>>sec;
+			qDebug()<<"SP_GA_CountDown:"<<sec;
+			emit rcvGA_CountDown(sec);
+		}
+		break;
+	case SP_GA_GetCommand:
+		qDebug()<<"SP_GA_GetCommand";
+		emit rcvGA_GetCommand();
+		break;
+	case SP_GA_Turn:
+		{
+			qint16 dire;
+			int num;
+			stream>>dire;
+			stream>>num;
+			qDebug()<<"SP_GA_Turn:"<<dire<<num;
+			emit rcvGA_Turn(dire,num);
+		}
+		break;
+	case SP_GA_Collision:
+		{
+			int num;
+			stream>>num;
+			qDebug()<<"SP_GA_Collision:"<<num;
+			emit rcvGA_Collision(num);
+		}
+		break;
+	case SP_GA_CreateBean:
+		{
+			QPoint pt;
+			stream>>pt;
+			qDebug()<<"SP_GA_CreateBean:"<<pt;
+			emit rcvGA_CreateBean(pt);
+		}
+		break;
+	case SP_GA_Increase:
+		{
+			int num;
+			stream>>num;
+			qDebug()<<"SP_GA_Increase:"<<num;
+			emit rcvGA_Increase(num);
+		}
+		break;
+	case SP_GA_MoveOn:
+		{
+			int num;
+			stream>>num;
+			qDebug()<<"SP_GA_MoveOn:"<<num;
+			emit rcvGA_MoveOn(num);
 		}
 		break;
 	}

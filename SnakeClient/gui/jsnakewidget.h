@@ -4,6 +4,7 @@
 #include <QWidget>
 
 #include "global/jglobal.h"
+#include "jsnake.h"
 
 namespace Ui {
     class JSnakeWidget;
@@ -43,6 +44,17 @@ private slots:
 	void om_socket_rcvEscapeRoom(JID roomId,JID userId);
 	void om_socket_rcvUserlist(JID roomId,const QList<JID>& userlist);
 	void om_socket_rcvGA_Ready(bool ready,int num);
+	void om_socket_rcvGA_CountDown(int sec);
+	void om_socket_rcvGA_GetCommand();
+	void om_socket_rcvGA_Turn(qint16 dire,int num);
+	void om_socket_rcvGA_Collision(int num);
+	void om_socket_rcvGA_CreateBean(const QPoint& pt);
+	void om_socket_rcvGA_Increase(int num);
+	void om_socket_rcvGA_MoveOn(int num);
+private:
+	JSnake::EDire m_command;
+private:
+	void updateLifeNScore();
 };
 
 #endif // JSNAKEWIDGET_H

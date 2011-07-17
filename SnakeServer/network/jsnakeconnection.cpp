@@ -90,12 +90,14 @@ void JSnakeConnection::dataProcess(const QByteArray& data)
 		{
 			JID roomId;
 			stream>>roomId;
+			processEscapeRoom();
 			processEnterRoom(roomId);
 		}
 		break;
 	case SP_RoomEscape :
 		{
 			processEscapeRoom();
+			m_roomMng->enterHall(getUserId());
 		}
 		break;
 	case SP_Userlist :
@@ -127,6 +129,7 @@ void JSnakeConnection::dataProcess(const QByteArray& data)
 		{
 			qint16 dire;
 			stream>>dire;
+			if(dire==JSnake::ED_NONE) break;
 			JUserlistManager ulm;
 			JID roomId;
 			roomId=ulm.getRoomByUser(getUserId());
@@ -322,7 +325,7 @@ void JSnakeConnection::processEnterRoom(JID roomId)
 		connect(game,SIGNAL(getCommand()),SLOT(sendGameAct_getCommand()));
 		connect(game,SIGNAL(turn(JSnake::EDire,int)),SLOT(sendGameAct_turn(JSnake::EDire,int)));
 		connect(game,SIGNAL(collision(int)),SLOT(sendGameAct_collision(int)));
-		connect(game,SIGNAL(createBean(const QPoint&)),SLOT(sendGameAct_createBean(const QPoint&)));
+		connect(game,SIGNAL(createBean(QPoint)),SLOT(sendGameAct_createBean(QPoint)));
 		connect(game,SIGNAL(increase(int)),SLOT(sendGameAct_increase(int)));
 		connect(game,SIGNAL(moveOn(int)),SLOT(sendGameAct_moveOn(int)));
 		sendUserlist();

@@ -141,13 +141,12 @@ void JHallWidget::om_socket_rcvEscapeRoom(JID roomId,JID userId)
 	if(0==roomId)
 	{
 		QList<QListWidgetItem *> items=ui->lst_player->findItems(tr("%1:").arg(userId),Qt::MatchStartsWith);
-		qDebug()<<"JHallWidget::om_socket_rcvEscapeRoom"<<items.size();
 		foreach(QListWidgetItem* item,items)
 		{
 			qDebug()<<"JHallWidget::om_socket_rcvEscapeRoom"<<item->text();
-//			ui->lst_player->removeItemWidget(item);
-			ui->lst_player->takeItem(ui->lst_player->row(item));
-//			delete item;
+			ui->lst_player->removeItemWidget(item);
+//			ui->lst_player->takeItem(ui->lst_player->row(item));
+			delete item;
 		}
 	}
 }
@@ -164,28 +163,19 @@ void JHallWidget::on_btn_refresh_room_clicked()
 	m_socket->sendRqsRoomlist();
 }
 
-void JHallWidget::showEvent ( QShowEvent *event)
-{
-//	QWidget::showEvent(event);
-	qDebug()<<"JHallWidget::showEvent"<<event;
-	static bool first=true;
-	if(first)
-	{
-		first=false;
-
-	}
-}
-
 void JHallWidget::addUserToList(JID userId)
 {
-	UserInfo::SUserInfo userinfo=m_reqUserInfo->rqsUserInfo(userId);
-	if(userinfo.m_userId==userId)
+	if(ui->lst_player->findItems(tr("%1:").arg(userId),Qt::MatchStartsWith).isEmpty())
 	{
-		ui->lst_player->addItem(tr("%1:%2:%3")
-								.arg(userinfo.m_userId)
-								.arg(userinfo.m_nickname)
-								.arg(userinfo.m_organization));
-	}else{
-		ui->lst_player->addItem(tr("%1:").arg(userId));
+		UserInfo::SUserInfo userinfo=m_reqUserInfo->rqsUserInfo(userId);
+		if(userinfo.m_userId==userId)
+		{
+			ui->lst_player->addItem(tr("%1:%2:%3")
+									.arg(userinfo.m_userId)
+									.arg(userinfo.m_nickname)
+									.arg(userinfo.m_organization));
+		}else{
+			ui->lst_player->addItem(tr("%1:").arg(userId));
+		}
 	}
 }

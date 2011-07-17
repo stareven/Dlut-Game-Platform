@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>570</x>
-     <y>270</y>
+     <y>290</y>
      <width>200</width>
      <height>200</height>
     </rect>
@@ -61,6 +61,19 @@
    </property>
    <property name="text">
     <string>escape</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lab_gamestate">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>260</y>
+     <width>201</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>enter</string>
    </property>
   </widget>
  </widget>

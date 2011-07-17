@@ -15,6 +15,7 @@ public:
 	JSnakeGame();
     void reset(int num=-1);
     void turn(JSnake::EDire dire,int num);
+	void growLonger(int num);
     const JSnake& getSnakes(int num)const;
     const QPoint& getBean()const;
 private:

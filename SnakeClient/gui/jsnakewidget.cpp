@@ -64,15 +64,48 @@ JSnakeWidget::JSnakeWidget(QWidget *parent) :
 	connect(m_socket,
 			SIGNAL(rcvGA_Ready(bool,int)),
 			SLOT(om_socket_rcvGA_Ready(bool,int)));
+	connect(m_socket,
+			SIGNAL(rcvGA_CountDown(int)),
+			SLOT(om_socket_rcvGA_CountDown(int)));
+	connect(m_socket,
+			SIGNAL(rcvGA_GetCommand()),
+			SLOT(om_socket_rcvGA_GetCommand()));
+	connect(m_socket,
+			SIGNAL(rcvGA_Turn(qint16,int)),
+			SLOT(om_socket_rcvGA_Turn(qint16,int)));
+	connect(m_socket,
+			SIGNAL(rcvGA_Collision(int)),
+			SLOT(om_socket_rcvGA_Collision(int)));
+	connect(m_socket,
+			SIGNAL(rcvGA_CreateBean(QPoint)),
+			SLOT(om_socket_rcvGA_CreateBean(QPoint)));
+	connect(m_socket,
+			SIGNAL(rcvGA_Increase(int)),
+			SLOT(om_socket_rcvGA_Increase(int)));
+	connect(m_socket,
+			SIGNAL(rcvGA_MoveOn(int)),
+			SLOT(om_socket_rcvGA_MoveOn(int)));
 //    QTimer *timer=new QTimer(this);
 //    connect(timer,SIGNAL(timeout()),SLOT(moveOn()));
 //    timer->start(250);
+	setFocus();
+	setFocusPolicy(Qt::StrongFocus);
 }
 
 JSnakeWidget::~JSnakeWidget()
 {
     delete ui;
 	delete m_game;
+	for(int i=0;i<NUM_SNAKE;++i)
+	{
+		delete m_lab_ready[i];
+		m_lab_ready[i]=NULL;
+		for(int j=0;j<2;++j)
+		{
+			delete m_lcds[i][j];
+			m_lcds[i][j]=NULL;
+		}
+	}
 }
 
 void JSnakeWidget::paintEvent(QPaintEvent * )
@@ -105,33 +138,33 @@ void JSnakeWidget::paintEvent(QPaintEvent * )
 
 void JSnakeWidget::keyPressEvent(QKeyEvent *key)
 {
-//    qDebug()<<"JSnakeWidget::keyPressEvent";
+	qDebug()<<"JSnakeWidget::keyPressEvent"<<key->key();
     switch(key->key())
     {
     case Qt::Key_Up:
-        m_game->turn(JSnake::ED_UP,0);
+		m_command=JSnake::ED_UP;
         break;
     case Qt::Key_Down:
-        m_game->turn(JSnake::ED_DOWN,0);
+		m_command=JSnake::ED_DOWN;
         break;
     case Qt::Key_Left:
-        m_game->turn(JSnake::ED_LEFT,0);
+		m_command=JSnake::ED_LEFT;
         break;
     case Qt::Key_Right:
-        m_game->turn(JSnake::ED_RIGHT,0);
-        break;
-    case Qt::Key_W:
-        m_game->turn(JSnake::ED_UP,2);
-        break;
-    case Qt::Key_S:
-        m_game->turn(JSnake::ED_DOWN,2);
-        break;
-    case Qt::Key_A:
-        m_game->turn(JSnake::ED_LEFT,2);
-        break;
-    case Qt::Key_D:
-        m_game->turn(JSnake::ED_RIGHT,2);
-        break;
+		m_command=JSnake::ED_RIGHT;
+		break;
+//    case Qt::Key_W:
+//        m_game->turn(JSnake::ED_UP,2);
+//        break;
+//    case Qt::Key_S:
+//        m_game->turn(JSnake::ED_DOWN,2);
+//        break;
+//    case Qt::Key_A:
+//        m_game->turn(JSnake::ED_LEFT,2);
+//        break;
+//    case Qt::Key_D:
+//        m_game->turn(JSnake::ED_RIGHT,2);
+//        break;
 
     }
 }
@@ -176,6 +209,8 @@ void JSnakeWidget::om_socket_rcvEscapeRoom(JID roomId,JID userId)
 			foreach(QListWidgetItem *item,items)
 			{
 				ui->list_players->removeItemWidget(item);
+				delete item;
+//				ui->list_players->takeItem(ui->list_players->row(item));
 			}
 		}
 	}
@@ -220,4 +255,57 @@ void JSnakeWidget::om_socket_rcvGA_Ready(bool ready,int num)
 void JSnakeWidget::on_btn_escape_clicked()
 {
 	m_socket->sendEscapeRoom();
+}
+
+void JSnakeWidget::om_socket_rcvGA_CountDown(int sec)
+{
+	ui->lab_gamestate->setText(tr("count down : %1").arg(sec));
+	if(sec<=1) updateLifeNScore();
+}
+
+void JSnakeWidget::om_socket_rcvGA_GetCommand()
+{
+	m_socket->sendGA_Turn(m_command);
+	m_command=JSnake::ED_NONE;
+}
+
+void JSnakeWidget::om_socket_rcvGA_Turn(qint16 dire,int num)
+{
+	m_game->turn(JSnake::EDire(dire),num);
+	update();
+}
+
+void JSnakeWidget::om_socket_rcvGA_Collision(int num)
+{
+	m_game->reset(num);
+	m_game->decreaseLife(num);
+	updateLifeNScore();
+}
+
+void JSnakeWidget::om_socket_rcvGA_CreateBean(const QPoint& pt)
+{
+	m_game->setBean(pt);
+	update();
+}
+
+void JSnakeWidget::om_socket_rcvGA_Increase(int num)
+{
+	m_game->increaseScore(num);
+	m_game->growLonger(num);
+	updateLifeNScore();
+}
+
+void JSnakeWidget::om_socket_rcvGA_MoveOn(int num)
+{
+	m_game->moveOn(num);
+	update();
+}
+
+void JSnakeWidget::updateLifeNScore()
+{
+	for(int i=0;i<4;++i)
+	{
+		m_lcds[i][0]->display(m_game->getLife(i));;
+		m_lcds[i][1]->display(m_game->getScore(i));;
+	}
 }

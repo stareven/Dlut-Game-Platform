@@ -42,6 +42,7 @@ private slots:
 	void on_timer_timeout();
 protected:
 	bool canStart();
+	bool canStop();
 };
 
 #endif // JSNAKEGAMEONSERVER_H

@@ -69,7 +69,10 @@ void JSnakeGameOnServer::setTurn(JSnake::EDire dire,int num)
 {
 	if(num>=0 && num<NUM_SNAKE)
 	{
-		m_dires[num]=dire;
+		if(dire!=JSnake::ED_NONE)
+		{
+			m_dires[num]=dire;
+		}
 	}
 }
 
@@ -83,6 +86,11 @@ void JSnakeGameOnServer::on_timer_timeout()
 		{
 			m_timer->stop();
 			m_timer->start(m_interval_msec);
+			QPoint pt;
+			pt.setX(qrand()%MAXX);
+			pt.setY(qrand()%MAXY);
+			emit createBean(pt);
+			m_game->setBean(pt);
 		}
 	}else{
 		int i;
@@ -99,18 +107,27 @@ void JSnakeGameOnServer::on_timer_timeout()
 		}
 		for(i=0;i<NUM_SNAKE;++i)
 		{
-			emit turn(m_dires[i],i);
-			m_game->turn(m_dires[i],i);
+			if(m_dires[i]!=JSnake::ED_NONE)
+			{
+				emit turn(m_dires[i],i);
+				m_game->turn(m_dires[i],i);
+			}
 		}
 		qint16 bit=m_game->getMoveOnCollision();
 		for(i=0;i<NUM_SNAKE;++i)
 		{
 			if(m_game->isSnakeCollision(i,bit))
 			{
-				emit collision(i);
+				m_game->reset(i);
 				m_game->decreaseLife(i);
+				emit collision(i);
+				if(canStop())
+				{
+					m_timer->stop();
+				}
 			}else{
-				moveOn(i);
+				m_game->moveOn(i);
+				emit moveOn(i);
 			}
 		}
 		if(m_game->isBeanCollision(bit))
@@ -119,8 +136,10 @@ void JSnakeGameOnServer::on_timer_timeout()
 			pt.setX(qrand()%MAXX);
 			pt.setY(qrand()%MAXY);
 			emit createBean(pt);
+			m_game->setBean(pt);
 			int num=m_game->getBeanCollitionSnakeNumber(bit);
 			m_game->increaseScore(num);
+			m_game->growLonger(num);
 			emit increase(num);
 		}
 	}
@@ -142,4 +161,16 @@ bool JSnakeGameOnServer::canStart()
 	}
 	if(nPlayers>1) return true;
 	else return false;
+}
+
+bool JSnakeGameOnServer::canStop()
+{
+	for(int i=0;i<NUM_SNAKE;++i)
+	{
+		if(m_sit[i])
+		{
+			if(m_game->getLife(i)>0) return false;
+		}
+	}
+	return true;
 }
