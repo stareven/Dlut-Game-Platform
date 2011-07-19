@@ -32,6 +32,7 @@ void JSnakeGameOnServer::enter(int num)
 	if(num>=0 && num<NUM_SNAKE)
 	{
 		m_sit[num]=true;
+
 	}
 }
 
@@ -40,6 +41,7 @@ void JSnakeGameOnServer::escape(int num)
 	if(num>=0 && num<NUM_SNAKE)
 	{
 		m_sit[num]=false;
+		m_game->clearSnake(num);
 	}
 	stop();
 }
@@ -49,6 +51,8 @@ void JSnakeGameOnServer::ready(bool ready,int num)
 	if(num>=0 && num<NUM_SNAKE)
 	{
 		m_ready[num]=ready;
+		m_game->resetSnake(num);
+		m_game->resetLifeScore(num);
 		emit getReady(ready,num);
 		if(canStart())
 		{
@@ -69,9 +73,12 @@ void JSnakeGameOnServer::setTurn(JSnake::EDire dire,int num)
 {
 	if(num>=0 && num<NUM_SNAKE)
 	{
-		if(dire>=0 && dire<JSnake::ED_NONE)
+		if(m_sit[num])
 		{
-			m_dires[num]=dire;
+			if(dire>=0 && dire<JSnake::ED_NONE)
+			{
+				m_dires[num]=dire;
+			}
 		}
 	}
 }
@@ -123,7 +130,7 @@ void JSnakeGameOnServer::on_timer_timeout()
 		}
 		for(i=0;i<NUM_SNAKE;++i)
 		{
-			if(m_dires[i]!=JSnake::ED_NONE)
+			if(m_sit[i] && m_dires[i]!=JSnake::ED_NONE)
 			{
 				emit turn(m_dires[i],i);
 				m_game->turn(m_dires[i],i);
@@ -132,19 +139,22 @@ void JSnakeGameOnServer::on_timer_timeout()
 		qint16 bit=m_game->getMoveOnCollision();
 		for(i=0;i<NUM_SNAKE;++i)
 		{
-			if(m_game->isSnakeCollision(i,bit))
+			if(m_sit[i])
 			{
-				m_game->reset(i);
-				m_game->decreaseLife(i);
-				emit collision(i);
-				if(canStop())
+				if(m_game->isSnakeCollision(i,bit))
 				{
-					stop();
-					return;
+					m_game->resetSnake(i);
+					m_game->decreaseLife(i);
+					emit collision(i);
+					if(canStop())
+					{
+						stop();
+						return;
+					}
+				}else{
+					m_game->moveOn(i);
+					emit moveOn(i);
 				}
-			}else{
-				m_game->moveOn(i);
-				emit moveOn(i);
 			}
 		}
 		if(m_game->isBeanCollision(bit))
@@ -194,7 +204,8 @@ bool JSnakeGameOnServer::canStop()
 
 void JSnakeGameOnServer::reset()
 {
-	m_game->reset();
+	m_game->resetSnake();
+	m_game->clearLifeScore();
 	for(int i=0;i<NUM_SNAKE;++i)
 	{
 		m_ready[i]=false;

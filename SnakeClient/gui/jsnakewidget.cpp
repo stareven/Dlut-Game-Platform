@@ -94,6 +94,9 @@ JSnakeWidget::JSnakeWidget(QWidget *parent) :
 //    timer->start(250);
 	setFocus();
 	setFocusPolicy(Qt::StrongFocus);
+	m_game->clearSnake();
+	m_game->clearLifeScore();
+	m_game->setBean(QPoint(-1,-1));
 }
 
 JSnakeWidget::~JSnakeWidget()
@@ -135,9 +138,13 @@ void JSnakeWidget::paintEvent(QPaintEvent * )
     }
     const static QBrush beanbrush(Qt::red);
     painter.setBrush(beanbrush);
-    QRect rect(m_game->getBean()*SQUARE_SIZE+QPoint(INITX,INITY),QSize(SQUARE_SIZE,SQUARE_SIZE));
+	const static QRect region(0,0,MAXX,MAXY);
+	if(region.contains(m_game->getBean()))
+	{
+		QRect rect(m_game->getBean()*SQUARE_SIZE+QPoint(INITX,INITY),QSize(SQUARE_SIZE,SQUARE_SIZE));
 //    painter.drawRect(rect);
-    painter.drawPixmap(rect,pixmaps[NUM_SNAKE]);
+		painter.drawPixmap(rect,pixmaps[NUM_SNAKE]);
+	}
 }
 
 void JSnakeWidget::keyPressEvent(QKeyEvent *key)
@@ -252,6 +259,8 @@ void JSnakeWidget::om_socket_rcvGA_Ready(bool ready,int num)
 		if(ready)
 		{
 			m_lab_ready[num]->setText(tr("ready"));
+			m_game->resetSnake(num);
+			m_game->resetLifeScore(num);
 		}else{
 			m_lab_ready[num]->setText(tr("not ready"));
 		}
@@ -268,7 +277,7 @@ void JSnakeWidget::om_socket_rcvGA_CountDown(int sec)
 	ui->lab_gamestate->setText(tr("count down : %1").arg(sec));
 	if(sec<=1) updateLifeNScore();
 	else if(sec>=3){
-		m_game->reset();
+		//m_game->reset();
 		updateLifeNScore();
 		update();
 	}
@@ -291,7 +300,7 @@ void JSnakeWidget::om_socket_rcvGA_Turn(qint16 dire,int num)
 
 void JSnakeWidget::om_socket_rcvGA_Collision(int num)
 {
-	m_game->reset(num);
+	m_game->resetSnake(num);
 	m_game->decreaseLife(num);
 	updateLifeNScore();
 }
@@ -317,9 +326,10 @@ void JSnakeWidget::om_socket_rcvGA_MoveOn(int num)
 
 void JSnakeWidget::om_socket_rcvGA_Stop()
 {
-	m_game->reset();
 	ui->btn_ready->setChecked(false);
 	ui->btn_ready->setText(tr("ready"));
+	m_game->clearSnake();
+	m_game->setBean(QPoint(-1,-1));
 //	updateLifeNScore();
 //	update();
 }

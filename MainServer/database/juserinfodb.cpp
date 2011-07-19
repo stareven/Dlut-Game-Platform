@@ -11,6 +11,12 @@ static const UserInfo::SUserInfo users[]={
 	UserInfo::SUserInfo(902,"sample serverrunner","sample.org"),
 	UserInfo::SUserInfo(903,"sample admin","sample.org"),
 	UserInfo::SUserInfo(904,"sample root","sample.org"),
+	UserInfo::SUserInfo(1001,"debug A","debug.org"),
+	UserInfo::SUserInfo(1002,"debug B","debug.org"),
+	UserInfo::SUserInfo(1003,"debug C","debug.org"),
+	UserInfo::SUserInfo(1004,"debug D","debug.org"),
+	UserInfo::SUserInfo(1005,"debug E","debug.org"),
+	UserInfo::SUserInfo(1006,"debug F","debug.org"),
 };
 
 static QMap<JID,UserInfo::SUserInfo> s_users;

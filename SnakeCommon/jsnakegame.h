@@ -9,11 +9,16 @@ const int MAXY=20;
 
 const int Elapse=250;
 
+const int NUM_FULL_LIFE=5;
+
 class JSnakeGame
 {
 public:
 	JSnakeGame();
-    void reset(int num=-1);
+	void resetSnake(int num=-1);
+	void clearSnake(int num=-1);
+	void resetLifeScore(int num=-1);
+	void clearLifeScore(int num=-1);
     void turn(JSnake::EDire dire,int num);
 	void growLonger(int num);
     const JSnake& getSnakes(int num)const;

@@ -6,10 +6,11 @@
 
 JSnakeGame::JSnakeGame()
 {
-    reset();
+	resetSnake();
+	clearLifeScore();
 }
 
-void JSnakeGame::reset(int num)
+void JSnakeGame::resetSnake(int num)
 {
     const static JSnake snakes[NUM_SNAKE]={
         JSnake(QPoint(MAXX*0.2,MAXY*0.2),JSnake::ED_DOWN),
@@ -21,14 +22,54 @@ void JSnakeGame::reset(int num)
 	{
         for(int i=0;i<NUM_SNAKE;++i)
         {
-            m_snakes[i]=snakes[i];
-            m_life[i]=5;
-            m_score[i]=0;
-        }
-//        createBean();
+			m_snakes[i]=snakes[i];
+		}
 	}else{
         m_snakes[num]=snakes[num];
     }
+}
+
+void JSnakeGame::clearSnake(int num)
+{
+	if(num<0 || num>=NUM_SNAKE)
+	{
+		for(int i=0;i<NUM_SNAKE;++i)
+		{
+			m_snakes[i].clear();
+		}
+	}else{
+		m_snakes[num].clear();
+	}
+}
+
+void JSnakeGame::resetLifeScore(int num)
+{
+	if(num<0 || num>=NUM_SNAKE)
+	{
+		for(int i=0;i<NUM_SNAKE;++i)
+		{
+			m_life[i]=NUM_FULL_LIFE;
+			m_score[i]=0;
+		}
+	}else{
+		m_life[num]=NUM_FULL_LIFE;
+		m_score[num]=0;
+	}
+}
+
+void JSnakeGame::clearLifeScore(int num)
+{
+	if(num<0 || num>=NUM_SNAKE)
+	{
+		for(int i=0;i<NUM_SNAKE;++i)
+		{
+			m_life[i]=0;
+			m_score[i]=0;
+		}
+	}else{
+		m_life[num]=0;
+		m_score[num]=0;
+	}
 }
 
 void JSnakeGame::turn(JSnake::EDire dire,int num)
