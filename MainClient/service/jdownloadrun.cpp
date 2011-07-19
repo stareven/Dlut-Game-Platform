@@ -93,11 +93,21 @@ bool JDownloadRun::download()
 bool JDownloadRun::run()
 {
 	QString path=getPath();
-	QProcess *process=new QProcess(m_parent);
-	qDebug()<<"run:"<<path;
-	process->setProcessChannelMode(QProcess::ForwardedChannels);
-	process->start(path,getArguments());
-	return true;
+	static QProcess *s_process=NULL;
+	if(s_process==NULL)
+	{
+		s_process=new QProcess(m_parent);
+	}
+	if(s_process->state()==QProcess::NotRunning)
+	{
+		qDebug()<<"run:"<<path;
+		s_process->setProcessChannelMode(QProcess::ForwardedChannels);
+		s_process->start(path,getArguments());
+		return true;
+	}else{
+		qDebug()<<"is running.escape";
+		return false;
+	}
 }
 
 QString JDownloadRun::getPath()const

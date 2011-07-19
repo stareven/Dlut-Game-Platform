@@ -17,9 +17,8 @@ JSnakeGameOnServer::JSnakeGameOnServer(QObject *parent) :
 	for(int i=0;i<NUM_SNAKE;++i)
 	{
 		m_sit[i]=false;
-		m_ready[i]=false;
 	}
-	m_hasStarted=false;
+	reset();
 }
 
 JSnakeGameOnServer::~JSnakeGameOnServer()
@@ -42,6 +41,7 @@ void JSnakeGameOnServer::escape(int num)
 	{
 		m_sit[num]=false;
 	}
+	stop();
 }
 
 void JSnakeGameOnServer::ready(bool ready,int num)
@@ -69,11 +69,27 @@ void JSnakeGameOnServer::setTurn(JSnake::EDire dire,int num)
 {
 	if(num>=0 && num<NUM_SNAKE)
 	{
-		if(dire!=JSnake::ED_NONE)
+		if(dire>=0 && dire<JSnake::ED_NONE)
 		{
 			m_dires[num]=dire;
 		}
 	}
+}
+
+void JSnakeGameOnServer::stop()
+{
+	m_timer->stop();
+	reset();
+	emit getStop();
+}
+
+bool JSnakeGameOnServer::isReady(int num)const
+{
+	if(num>=0 && num<NUM_SNAKE)
+	{
+		return m_ready[num];
+	}
+	return false;
 }
 
 void JSnakeGameOnServer::on_timer_timeout()
@@ -123,7 +139,8 @@ void JSnakeGameOnServer::on_timer_timeout()
 				emit collision(i);
 				if(canStop())
 				{
-					m_timer->stop();
+					stop();
+					return;
 				}
 			}else{
 				m_game->moveOn(i);
@@ -173,4 +190,15 @@ bool JSnakeGameOnServer::canStop()
 		}
 	}
 	return true;
+}
+
+void JSnakeGameOnServer::reset()
+{
+	m_game->reset();
+	for(int i=0;i<NUM_SNAKE;++i)
+	{
+		m_ready[i]=false;
+		emit getReady(m_ready[i],i);
+	}
+	m_hasStarted=false;
 }

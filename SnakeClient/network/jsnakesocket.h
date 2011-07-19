@@ -41,6 +41,7 @@ signals:
 	void rcvGA_CreateBean(const QPoint& pt);
 	void rcvGA_Increase(int num);
 	void rcvGA_MoveOn(int num);
+	void rcvGA_Stop();
 protected:
 	void dataProcess(const QByteArray&);
 private:

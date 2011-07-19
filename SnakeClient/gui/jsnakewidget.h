@@ -51,6 +51,7 @@ private slots:
 	void om_socket_rcvGA_CreateBean(const QPoint& pt);
 	void om_socket_rcvGA_Increase(int num);
 	void om_socket_rcvGA_MoveOn(int num);
+	void om_socket_rcvGA_Stop();
 private:
 	JSnake::EDire m_command;
 private:

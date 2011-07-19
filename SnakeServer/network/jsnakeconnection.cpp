@@ -310,6 +310,15 @@ void JSnakeConnection::sendGameAct_moveOn(int num)
 	sendData(outdata);
 }
 
+void JSnakeConnection::sendGameAct_Stop()
+{
+	using namespace SnakeProtocol;
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<SP_GA_Stop;
+	sendData(outdata);
+}
+
 void JSnakeConnection::processEnterRoom(JID roomId)
 {
 	JID userId=getUserId();
@@ -328,7 +337,15 @@ void JSnakeConnection::processEnterRoom(JID roomId)
 		connect(game,SIGNAL(createBean(QPoint)),SLOT(sendGameAct_createBean(QPoint)));
 		connect(game,SIGNAL(increase(int)),SLOT(sendGameAct_increase(int)));
 		connect(game,SIGNAL(moveOn(int)),SLOT(sendGameAct_moveOn(int)));
+		connect(game,SIGNAL(getStop()),SLOT(sendGameAct_Stop()));
 		sendUserlist();
+		for(int i=0;i<NUM_SNAKE;++i)
+		{
+			if(game->isReady(i))
+			{
+				this->sendGameAct_getReady(game->isReady(i),i);
+			}
+		}
 	}
 }
 

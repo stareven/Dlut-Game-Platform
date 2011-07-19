@@ -19,6 +19,8 @@ public:
 	void ready(bool ready,int num);
 	void start(int msec);
 	void setTurn(JSnake::EDire dire,int num);
+	void stop();
+	bool isReady(int num)const;
 private:
 	JSnakeGame* m_game;
 signals:
@@ -30,6 +32,7 @@ signals:
 	void createBean(const QPoint& pt);
 	void increase(int num);
 	void moveOn(int num);
+	void getStop();
 private:
 	QTimer* m_timer;
 	int m_interval_msec;
@@ -43,6 +46,7 @@ private slots:
 protected:
 	bool canStart();
 	bool canStop();
+	void reset();
 };
 
 #endif // JSNAKEGAMEONSERVER_H

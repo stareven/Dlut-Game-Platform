@@ -27,6 +27,7 @@ JSnakeWidget::JSnakeWidget(QWidget *parent) :
 	m_game=new JSnakeGame;
     ui->setupUi(this);
 	m_roomId=-1;
+	m_command=JSnake::ED_NONE;
 //    QWidget *gridLayoutWidget;
 //    QGridLayout *gridLayout;
 //    gridLayoutWidget = new QWidget(this);
@@ -85,6 +86,9 @@ JSnakeWidget::JSnakeWidget(QWidget *parent) :
 	connect(m_socket,
 			SIGNAL(rcvGA_MoveOn(int)),
 			SLOT(om_socket_rcvGA_MoveOn(int)));
+	connect(m_socket,
+			SIGNAL(rcvGA_Stop()),
+			SLOT(om_socket_rcvGA_Stop()));
 //    QTimer *timer=new QTimer(this);
 //    connect(timer,SIGNAL(timeout()),SLOT(moveOn()));
 //    timer->start(250);
@@ -234,6 +238,8 @@ void JSnakeWidget::on_btn_ready_clicked(bool ready)
 	if(ready)
 	{
 		ui->btn_ready->setText(tr("cancel ready"));
+		setFocus();
+		setFocusPolicy(Qt::StrongFocus);
 	}else{
 		ui->btn_ready->setText(tr("ready"));
 	}
@@ -261,11 +267,19 @@ void JSnakeWidget::om_socket_rcvGA_CountDown(int sec)
 {
 	ui->lab_gamestate->setText(tr("count down : %1").arg(sec));
 	if(sec<=1) updateLifeNScore();
+	else if(sec>=3){
+		m_game->reset();
+		updateLifeNScore();
+		update();
+	}
 }
 
 void JSnakeWidget::om_socket_rcvGA_GetCommand()
 {
-	m_socket->sendGA_Turn(m_command);
+	if(m_command>=0 && m_command < JSnake::ED_NONE)
+	{
+		m_socket->sendGA_Turn(m_command);
+	}
 	m_command=JSnake::ED_NONE;
 }
 
@@ -299,6 +313,15 @@ void JSnakeWidget::om_socket_rcvGA_MoveOn(int num)
 {
 	m_game->moveOn(num);
 	update();
+}
+
+void JSnakeWidget::om_socket_rcvGA_Stop()
+{
+	m_game->reset();
+	ui->btn_ready->setChecked(false);
+	ui->btn_ready->setText(tr("ready"));
+//	updateLifeNScore();
+//	update();
 }
 
 void JSnakeWidget::updateLifeNScore()

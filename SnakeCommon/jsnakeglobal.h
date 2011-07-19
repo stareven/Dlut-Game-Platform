@@ -153,5 +153,7 @@ namespace SnakeProtocol{
 		// S -> C : SP_GA_Increase , <int>num
 	const JProtocol SP_GA_MoveOn = ( SP_GameAct | 0x0800 );
 		// S -> C : SP_GA_MoveOn , <int>num
+	const JProtocol SP_GA_Stop = (SP_GameAct | 0x0900 );
+		// S -> C : SP_GA_Stop
 }
 #endif // JSNAKEGLOBAL_H

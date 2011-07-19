@@ -38,6 +38,7 @@ private slots:
 	void sendGameAct_createBean(const QPoint& pt);
 	void sendGameAct_increase(int num);
 	void sendGameAct_moveOn(int num);
+	void sendGameAct_Stop();
 private:
 	void processEnterRoom(JID roomId);
 	void processEscapeRoom();

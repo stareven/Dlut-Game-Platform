@@ -227,5 +227,9 @@ void JSnakeSocket::dataProcess(const QByteArray& data)
 			emit rcvGA_MoveOn(num);
 		}
 		break;
+	case SP_GA_Stop:
+		qDebug()<<"SP_GA_Stop";
+		emit rcvGA_Stop();
+		break;
 	}
 }
