@@ -18,7 +18,7 @@ public:
     void connectToHost(const QHostAddress& address,
                        quint16 port);
     bool isConnected()const;
-	QAbstractSocket::SocketState state () const;
+	QAbstractSocket::SocketState socketState () const;
 private:
     QTcpSocket *m_socket;
 	int m_size;
@@ -26,7 +26,7 @@ private:
 
 signals:
     void SocketCode(JCode code);
-
+	void SocketError(QString);
 protected slots:
     void on_socket_connected();
     void on_socket_disconnected();
@@ -38,8 +38,7 @@ private:
 protected:
     virtual void dataProcess(const QByteArray&)=0;
     void sendData(const QByteArray&);
-    void closeConnect();
-	QAbstractSocket::SocketState socketState()const;
+	void closeConnect();
 };
 
 #endif // JSOCKETBASE_H

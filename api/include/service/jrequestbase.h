@@ -34,6 +34,7 @@ private:
 	const QString* m_error;
 private slots:
 	void on_socket_SocketCode(JCode code);
+	void on_socket_SocketError(const QString&);
 };
 
 #endif // JREQUESTBASE_H

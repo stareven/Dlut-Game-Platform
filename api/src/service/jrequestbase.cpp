@@ -62,6 +62,7 @@ void JRequestBase::setSocket(JSocketBase* socket)
 {
 	m_socket=socket;
 	connect(m_socket,SIGNAL(SocketCode(JCode)),SLOT(on_socket_SocketCode(JCode)));
+	connect(m_socket,SIGNAL(SocketError(QString)),SLOT(on_socket_SocketError(QString)));
 }
 
 void JRequestBase::on_socket_SocketCode(JCode code)
@@ -74,7 +75,7 @@ void JRequestBase::on_socket_SocketCode(JCode code)
 		emit connectResult(true);
 		break;
 	case EN_DISCONNECTED:
-		m_state=ECS_Connected;
+		m_state=ECS_Error;
 		{
 			const static QString error_disconnected="disconnected";
 			m_error=&error_disconnected;
@@ -83,4 +84,14 @@ void JRequestBase::on_socket_SocketCode(JCode code)
 		emit error();
 		break;
 	}
+}
+
+void JRequestBase::on_socket_SocketError(const QString& socketError)
+{
+	static QString saveError;
+	saveError=socketError;
+	m_state=ECS_Error;
+	m_error=&saveError;
+	emit connectResult(false);
+	emit error();
 }

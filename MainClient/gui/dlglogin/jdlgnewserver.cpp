@@ -31,7 +31,9 @@ void JDlgNewServer::accept()
 {
     if(QHostAddress(ui->edt_address->text()).isNull())
     {
-        QMessageBox(QMessageBox::Warning,tr("error"),tr("the address is illegal!"),QMessageBox::Ok,this).exec();
+		QMessageBox::critical(this,
+							  tr("address is illegal"),
+							  tr("the address you input is illegal!"));
         return;
     }
     bool ok;
@@ -39,12 +41,9 @@ void JDlgNewServer::accept()
     port=ui->edt_port->text().toInt(&ok);
     if(!ok || port <0 || port >65535 )
     {
-        QMessageBox(QMessageBox::Warning,tr("error"),tr("the port is illegal!"),QMessageBox::Ok,this).exec();
-        return;
-    }
-    if(ui->edt_name->text().isEmpty())
-    {
-        QMessageBox(QMessageBox::Warning,tr("error"),tr("the name is illegal!"),QMessageBox::Ok,this).exec();
+		QMessageBox::critical(this,
+							 tr("port is illegal"),
+							 tr("the port you input is illegal!"));
         return;
     }
     QDialog::accept();
@@ -52,5 +51,5 @@ void JDlgNewServer::accept()
 
 SHallServer JDlgNewServer::getServer()const
 {
-    return SHallServer(ui->edt_name->text(),QHostAddress(ui->edt_address->text()),ui->edt_port->text().toInt());
+	return SHallServer(QHostAddress(ui->edt_address->text()),ui->edt_port->text().toInt());
 }

@@ -1,13 +1,10 @@
 #include "jdlglogin.h"
 #include "ui_jdlglogin.h"
 
-//#include "jdatacenter.h"
-//#include "norwegianwoodstyle.h"
 
 #include <QMessageBox>
 
 #include "service/jrequestlogin.h"
-//#include "network/jloginsocket.h"
 #include "global/elogin.h"
 #include "service/jrequestport.h"
 
@@ -22,8 +19,7 @@ JDlgLogin::JDlgLogin(QWidget *parent) :
     ui->edt_passwd->setText(m_remember.getPassWord());
     ui->chb_rememberpassword->setChecked(m_remember.getIsRemember());
     ui->chb_autologin->setChecked(m_remember.getIsAutoLogin());
-    connect(this,SIGNAL(autoLogin()),this,SLOT(accept()),Qt::QueuedConnection);
-    //QApplication::setStyle(new NorwegianWoodStyle);
+	connect(this,SIGNAL(autoLogin()),this,SLOT(accept()),Qt::QueuedConnection);
 }
 
 JDlgLogin::~JDlgLogin()
@@ -67,8 +63,7 @@ void JDlgLogin::accept()
                               tr("server is empty"),
                               tr("server can not be empty!")
                               );
-        return;
-        return;
+		return;
     }
     m_remember.setIsRemember(ui->chb_rememberpassword->isChecked());
     m_remember.setIsAutoLogin(ui->chb_autologin->isChecked());
@@ -78,11 +73,13 @@ void JDlgLogin::accept()
     }else{
         m_remember.remove();
 	}
+	SHost freeporthost=ui->cb_server->getServer();
+	ui->lab_message->setText(tr("connecting to server %1:%2").arg(freeporthost.m_address.toString()).arg(freeporthost.m_port));
 	JRequestPort ps;
     ps.setServerPort(EST_FREEPORT,SHost(ui->cb_server->getServer().getAddress(),ui->cb_server->getServer().getPort()));
     SHost host=ps.rqsServerPort(EST_LOGIN);
 	m_rqslogin->connectToHost(host.m_address,host.m_port);
-	ui->lab_message->setText(tr("connecting to server %1:%2").arg(host.m_address.toString()).arg(host.m_port));
+
 	if(!m_rqslogin->waitForConnected(1000))
 	{
 		ui->lab_message->setText(tr("connect failed : %1").arg(m_rqslogin->getConnectError()));
@@ -94,7 +91,7 @@ void JDlgLogin::accept()
 	ui->lab_message->setText(tr("begin to login"));
 	if(!m_rqslogin->waitForLogined(1000))
 	{
-		ui->lab_message->setText(tr("login failed : ").arg(m_rqslogin->getLoginError()));
+		ui->lab_message->setText(tr("login failed : %1").arg(m_rqslogin->getLoginError()));
 		return;
 	}
 	done(QDialog::Accepted);

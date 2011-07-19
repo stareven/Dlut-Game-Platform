@@ -4,19 +4,22 @@
 #include <QString>
 #include <QHostAddress>
 
+#include "global/shost.h"
+
 class SHallServer
 {
 public:
     SHallServer();
-    SHallServer(const QString&,const QHostAddress&,quint16);
+	SHallServer(const QHostAddress&,quint16);
     const QString& toString()const;
     const QHostAddress& getAddress()const;
     quint16 getPort()const;
-    const QString& getName()const;
-    void setName(const QString&);
+	operator SHost()const;
+//    const QString& getName()const;
+//    void setName(const QString&);
     bool isEmpty()const;
 private:
-    QString m_name;
+//    QString m_name;
     QHostAddress m_address;
     quint16 m_port;
     QString m_string;

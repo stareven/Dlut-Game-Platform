@@ -33,11 +33,10 @@ void JSocketBase::connectToHost(const QHostAddress& address,
 
 bool JSocketBase::isConnected()const
 {
-    //qDebug()<<m_socket->state();
     return m_socket->state()==QAbstractSocket::ConnectedState;
 }
 
-QAbstractSocket::SocketState JSocketBase::state () const
+QAbstractSocket::SocketState JSocketBase::socketState () const
 {
 	return m_socket->state();
 }
@@ -54,8 +53,6 @@ void JSocketBase::on_socket_disconnected()
 
 void JSocketBase::on_socket_readyRead()
 {
-    //qDebug()<<"JSocketBase::on_socket_readyRead";
-//    static int size=0;
     while(m_socket->bytesAvailable()>0)
     {
 		if(m_size>0)
@@ -84,29 +81,12 @@ void JSocketBase::on_socket_readyRead()
 
 void JSocketBase::on_socket_error ( QAbstractSocket::SocketError socketError )
 {
-    qDebug()<<"JSocketBase::on_socket_error : "<<socketError;
+	qDebug()<<"JSocketBase::on_socket_error : "<<metaObject()->className()<<socketError;
+	emit SocketError(m_socket->errorString());
 }
 
 void JSocketBase::sendData(const QByteArray& data)
 {
-//    QElapsedTimer t;
-//    t.start();
-//    bool connected=false;
-//    int elapse=1000;
-//    while(t.elapsed()<elapse)
-//    {
-//        if(m_socket->state()==QAbstractSocket::ConnectedState)
-//        {
-//            connected=true;
-//            break;
-//        }
-//        QCoreApplication::processEvents();
-//    }
-//    if(!connected)
-//    {
-//        qDebug()<<"JSocketBase::sendData : socket not connected wait for "<<elapse<<" msec .";
-//        return;
-//    }
     if(m_socket->state()!=QAbstractSocket::ConnectedState)
     {
 		qDebug()<<"JSocketBase::sendData : socket not connected ."<<metaObject()->className()<<m_socket->state();
@@ -116,9 +96,4 @@ void JSocketBase::sendData(const QByteArray& data)
 	outsocketstream<<getMagicNumber();
     outsocketstream<<size;
     m_socket->write(data);
-}
-
-QAbstractSocket::SocketState JSocketBase::socketState()const
-{
-	return m_socket->state();
 }

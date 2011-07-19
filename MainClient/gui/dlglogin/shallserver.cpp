@@ -5,8 +5,8 @@ SHallServer::SHallServer()
     updateString();
 }
 
-SHallServer::SHallServer(const QString& name,const QHostAddress& address,quint16 port)
-    :m_name(name),m_address(address),m_port(port)
+SHallServer::SHallServer(const QHostAddress& address,quint16 port)
+	:m_address(address),m_port(port)
 {
     updateString();
 }
@@ -26,16 +26,21 @@ quint16 SHallServer::getPort()const
     return m_port;
 }
 
-const QString& SHallServer::getName()const
+SHallServer::operator SHost()const
 {
-    return m_name;
+	return SHost(getAddress(),getPort());
 }
 
-void SHallServer::setName(const QString& name)
-{
-    m_name=name;
-    updateString();
-}
+//const QString& SHallServer::getName()const
+//{
+//    return m_name;
+//}
+
+//void SHallServer::setName(const QString& name)
+//{
+//    m_name=name;
+//    updateString();
+//}
 
 bool SHallServer::isEmpty()const
 {
@@ -45,5 +50,5 @@ bool SHallServer::isEmpty()const
 
 void SHallServer::updateString()
 {
-    m_string=QString("%1 : %2:%3").arg(m_name).arg(m_address.toString()).arg(m_port);
+	m_string=QString("%1:%2").arg(m_address.toString()).arg(m_port);
 }

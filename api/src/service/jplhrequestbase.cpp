@@ -24,8 +24,8 @@ void JPlhRequestBase::sendCrypro(JID id,const QByteArray& crypro)
 		qDebug()<<"already plh";
 		return;
 	}
-	m_socket->sendCrypro(id,crypro);
 	m_state=EPS_Sending;
+	m_socket->sendCrypro(id,crypro);
 }
 
 JPlhRequestBase::EPlhState JPlhRequestBase::getPlhState()const
