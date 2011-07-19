@@ -19,6 +19,7 @@ JDlgLogin::JDlgLogin(QWidget *parent) :
     ui->edt_passwd->setText(m_remember.getPassWord());
     ui->chb_rememberpassword->setChecked(m_remember.getIsRemember());
     ui->chb_autologin->setChecked(m_remember.getIsAutoLogin());
+	ui->cb_role->setCurrentIndex(m_remember.getRole());
 	connect(this,SIGNAL(autoLogin()),this,SLOT(accept()),Qt::QueuedConnection);
 }
 
@@ -71,6 +72,7 @@ void JDlgLogin::accept()
     {
         m_remember.remember();
     }else{
+		m_remember.remember();
         m_remember.remove();
 	}
 	SHost freeporthost=ui->cb_server->getServer();
@@ -78,6 +80,11 @@ void JDlgLogin::accept()
 	JRequestPort ps;
     ps.setServerPort(EST_FREEPORT,SHost(ui->cb_server->getServer().getAddress(),ui->cb_server->getServer().getPort()));
     SHost host=ps.rqsServerPort(EST_LOGIN);
+	if(host.isNull())
+	{
+		ui->lab_message->setText(tr("request port failed:%1").arg(ps.getError()));
+		return;
+	}
 	m_rqslogin->connectToHost(host.m_address,host.m_port);
 
 	if(!m_rqslogin->waitForConnected(1000))
@@ -178,3 +185,8 @@ void JDlgLogin::on_edt_passwd_editingFinished()
 //    QString strmsg=tr(msg);
 //    ui->lab_message->setText(strmsg);
 //}
+
+void JDlgLogin::on_cb_role_currentIndexChanged(int index)
+{
+	m_remember.setRole(index);
+}

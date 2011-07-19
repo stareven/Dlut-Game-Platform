@@ -17,11 +17,13 @@ public:
     void setServerPort(EServerType,const SHost&);
     SHost rqsServerPort(EServerType);
     SHost getServerPort(EServerType)const;
+	const QString& getError()const;
 protected:
 	bool passLoginHash(JRequestPortSocket&);
 protected slots:
     void on_socket_rcvPassLoginHash(bool);
     void on_socket_rcvServerPort(quint16);
+	void on_socket_SocketError(const QString&);
 private:
     //pass login hash
     //0 failed
@@ -30,6 +32,7 @@ private:
     //-2 rqs ing
     int m_plh;
     quint16 m_port;
+	QString m_error;
 private:
     static QMap<EServerType,SHost> s_ports;
 };

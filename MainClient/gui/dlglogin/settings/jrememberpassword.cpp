@@ -16,12 +16,18 @@ const QString& JRememberPassword::getPassWord()const
     return m_password;
 }
 
+int JRememberPassword::getRole()const
+{
+	return m_role;
+}
+
 void JRememberPassword::changeUserName(const QString& username)
 {
     if(m_username!=username)
     {
         m_username=username;
         updatePassWord();
+		updateRole();
     }
 }
 
@@ -30,10 +36,16 @@ void JRememberPassword::setPassWord(const QString& pswd)
     m_password=pswd;
 }
 
+void JRememberPassword::setRole(int role)
+{
+	m_role=role;
+}
+
 void JRememberPassword::remember()
 {
     writeDefaultUserName();
     writePassWord();
+	writeRole();
 }
 
 void JRememberPassword::remove()
@@ -46,15 +58,26 @@ void JRememberPassword::updatePassWord()
     readPassWord();
 }
 
+void JRememberPassword::updateRole()
+{
+	readRole();
+}
+
 void JRememberPassword::readDefaultUserName()
 {
     m_username=m_setting.value("default/username").toString();
     updatePassWord();
+	updateRole();
 }
 
 void JRememberPassword::readPassWord()
 {
     m_password=m_setting.value(QString("%1/password").arg(m_username)).toString();
+}
+
+void JRememberPassword::readRole()
+{
+	m_role=m_setting.value(QString("%1/role").arg(m_username)).toInt();
 }
 
 void JRememberPassword::writeDefaultUserName()
@@ -65,6 +88,11 @@ void JRememberPassword::writeDefaultUserName()
 void JRememberPassword::writePassWord()
 {
     m_setting.setValue(QString("%1/password").arg(m_username),m_password);
+}
+
+void JRememberPassword::writeRole()
+{
+	m_setting.setValue(QString("%1/role").arg(m_username),m_role);
 }
 
 const QString& JRememberPassword::getfileName()const

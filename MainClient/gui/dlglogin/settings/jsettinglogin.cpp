@@ -7,7 +7,7 @@ JSettingLogin::JSettingLogin()
 
 const QString& JSettingLogin::getfileName()const
 {
-    static QString fn="login.ini";
+	static QString fn="login1.ini";
     return fn;
 }
 

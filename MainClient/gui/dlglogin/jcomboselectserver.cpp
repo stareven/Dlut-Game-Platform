@@ -1,11 +1,13 @@
 #include "jcomboselectserver.h"
 
+#include <QSettings>
+
 JComboSelectServer::JComboSelectServer(QWidget *parent) :
     QComboBox(parent)
 {
     readServers();
     updateServers();
-    connect(this,SIGNAL(activated(int)),this,SLOT(selectedServer(int)));
+	connect(this,SIGNAL(activated(int)),SLOT(selectedServer(int)));
 }
 
 const SHallServer& JComboSelectServer::getServer()const
@@ -30,8 +32,10 @@ void JComboSelectServer::selectedServer(int index)
     if(index==m_servers.count())
     {
         addNewServer();
-    }
-    //emit selectUpdate();
+	}else{
+		QSettings settings(getFileName(), QSettings::IniFormat,this);
+		settings.setValue(tr("select/current"),index);
+	}
 }
 
 #include "jdlgnewserver.h"
@@ -43,36 +47,39 @@ void JComboSelectServer::addNewServer()
     {
         m_servers.append(dlg.getServer());
         updateServers();
-        this->setCurrentIndex(m_servers.count()-1);
+		saveServers();
+		setCurrentIndex(m_servers.count()-1);
     }
 }
-
-#include <QSettings>
 
 void JComboSelectServer::readServers()
 {
     QSettings settings(getFileName(), QSettings::IniFormat,this);
-    QStringList list=settings.childGroups();
-    foreach(QString str,list)
-    {
+	int size = settings.beginReadArray("servers");
+	for(int i=0;i<size;++i)
+	{
+		settings.setArrayIndex(i);
 		QString address;
-        quint16 port;
-        address=settings.value(QString("%1/%2").arg(str).arg("address")).toString();
-        port=settings.value(QString("%1/%2").arg(str).arg("port")).toInt();
+		quint16 port;
+		address=settings.value("address").toString();
+		port=settings.value("port").toInt();
+		if(QHostAddress(address).isNull()) continue;
 		m_servers.append(SHallServer(QHostAddress(address),port));
-    }
-	return;
+	}
+	settings.endArray();
 }
 
 void JComboSelectServer::saveServers()
 {
     QSettings settings(getFileName(), QSettings::IniFormat,this);
-    settings.clear();
-    foreach(SHallServer server,m_servers)
+	settings.beginWriteArray("servers");
+	for(int i=0;i<m_servers.size();++i)
 	{
-		settings.setValue(QString("%1/%2").arg(server.getAddress().toString()).arg("address"),server.getAddress().toString());
-		settings.setValue(QString("%1/%2").arg(server.getAddress().toString()).arg("port"),server.getPort());
-    }
+		settings.setArrayIndex(i);
+		settings.setValue("address",m_servers[i].getAddress().toString());
+		settings.setValue("port",m_servers[i].getPort());
+	}
+	settings.endArray();
 }
 
 const QString& JComboSelectServer::getFileName()const
@@ -84,10 +91,12 @@ const QString& JComboSelectServer::getFileName()const
 void JComboSelectServer::updateServers()
 {
 	clear();
+	QSettings settings(getFileName(), QSettings::IniFormat,this);
+	int select=settings.value(tr("select/current"),0).toInt();
     foreach(SHallServer server,m_servers)
     {
 		addItem(server.toString());
     }
 	addItem("new server");
-    saveServers();
+	setCurrentIndex(select);
 }

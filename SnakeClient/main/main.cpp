@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 	}
 	if(!socket->isConnected())
 	{
-		qDebug()<<"snake socket connect failed."<<socket->state();
+		qDebug()<<"snake socket connect failed."<<socket->socketState();
 		return 1;
 	}
     MainWindow w;
