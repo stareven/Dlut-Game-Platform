@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>MultiSnake Game Hall</string>
   </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Welcom to Multy Snake .
+    <string>Welcom to Multi Snake .
 Product by JDMD studio .</string>
    </property>
   </widget>
