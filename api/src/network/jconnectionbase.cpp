@@ -2,9 +2,6 @@
 
 #include <QTcpSocket>
 
-//#include "service/jloginhash.h"
-//#include "service/juserisonline.h"
-
 JConnectionBase::JConnectionBase(QTcpSocket* socket,QObject *parent) :
     QObject(parent),
     m_socket(socket)
@@ -24,7 +21,7 @@ void JConnectionBase::on_socket_readyRead()
 			QByteArray data=m_socket->read(size);
 			size=0;
 			dataProcess(data);
-        }else if(m_socket->bytesAvailable()>=sizeof(int)){//size==0
+        }else if(m_socket->bytesAvailable()>=sizeof(int)){
             QDataStream stream(m_socket);
 			MagicNumber::JMagicNumber mn;
 			stream>>mn;
@@ -40,10 +37,6 @@ void JConnectionBase::on_socket_readyRead()
 void JConnectionBase::on_socket_disconnected()
 {
 	qDebug()<<"JConnectionBase::on_socket_disconnected"<<metaObject()->className();
-//    JLoginHash::JDelete del;
-//    JUserIsOnline uio;
-//    del.del(m_userid);
-//    uio.userGetOff(m_userid);
 }
 
 void JConnectionBase::dataProcess(const QByteArray& data)

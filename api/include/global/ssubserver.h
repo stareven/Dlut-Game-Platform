@@ -17,7 +17,6 @@ namespace SubServer{
 		JVersion m_version;
 	};
 	struct SGameInfo2 : public SGameInfo1{
-//		QString m_author;
 		JID m_author;
 		QString m_introduction;
 	};
@@ -27,14 +26,10 @@ namespace SubServer{
 		enum EType{ET_GameServer,ET_GameFileServer} m_type;
 	};
 	struct SGameInfo3 : public SGameInfo2{
-		// MainServer端内部记录Game对应的Server
 		JID m_gameServerId;
 		JID m_gameFileServerId;
 	};
 	struct SGameInfo4 : public SGameInfo2{
-		// 发送给Client的GameInfo
-//		SSubServer m_gameServer;
-//		SSubServer m_gameFileServer;
 		QMap<JVersion,SSubServer> m_gameServer;
 		QMap<JVersion,SSubServer> m_gameFileServer;
 	};
@@ -44,16 +39,10 @@ namespace SubServer{
 	struct SGameFileServerInfo0 : public SSubServer{
 		QList<SGameInfo1> m_games;
 	};
-//	struct SSubServerInfo0 : public SSubServer{
-//		QList<SGameInfo1> m_games;
-//	};
 	struct SGameInfo_ID_VSN{
 		JID m_gameId;
 		JVersion m_version;
 	};
-//	struct SSubServerInfo1 : public SSubServer{
-//		QList<SGameInfo_ID_VSN> m_games;
-//	};
 	enum ESubServerProtocol{
 		ESP_ServerInfo,
 		ESP_GameInfo,

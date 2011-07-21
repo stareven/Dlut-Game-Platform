@@ -11,7 +11,6 @@ Q_OBJECT
 public:
     explicit JComboSelectServer(QWidget *parent = 0);
     const SHallServer& getServer()const;
-//	void setServerName(const QString&);
 private slots:
     void selectedServer(int);
 private:

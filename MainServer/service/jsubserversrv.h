@@ -2,7 +2,6 @@
 #define JSUBSERVERSRV_H
 
 #include <QList>
-//#include "ssubserver.h"
 #include <QMap>
 #include "global/jglobal.h"
 namespace SubServer

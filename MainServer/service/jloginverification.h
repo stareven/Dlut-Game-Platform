@@ -18,13 +18,8 @@ public:
 
     /// return userid if succeed , -1 if failed
     JID getUserId()const;
-
-	// return crypto if succeed , QByteArray() if failed
-//    QByteArray getCrypro()const;
-
 private:
     JID m_userid;
-//    QByteArray m_crypro;
 };
 
 #endif // JLOGINVERIFICATION_H

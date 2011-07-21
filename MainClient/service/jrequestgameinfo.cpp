@@ -14,9 +14,6 @@ JRequestGameInfo::JRequestGameInfo(QObject *parent) :
 {
     m_socket=new JRequestGameInfoSocket(this);
     connect(m_socket,SIGNAL(rcvPassLoginHash(bool)),SLOT(on_socket_rcvPassLoginHash(bool)));
-//    connect(m_socket,SIGNAL(rcvIdList(QList<JID>)),SLOT(on_socket_rcvIdList(QList<JID>)));
-//    connect(m_socket,SIGNAL(rcvNameList(QList<SGameName>)),SLOT(on_socket_rcvNameList(QList<SGameName>)));
-//    connect(m_socket,SIGNAL(rcvGameInfo(SGameInfo)),SLOT(on_socket_rcvGameInfo(SGameInfo)));
 	connect(m_socket,SIGNAL(rcvGameList(QList<SubServer::SGameInfo2>)),SLOT(on_socket_rcvGameList(QList<SubServer::SGameInfo2>)));
 	connect(m_socket,SIGNAL(rcvServers(JID,JVersion,QSet<JID>)),SLOT(on_socket_rcvServers(JID,JVersion,QSet<JID>)));
 	connect(m_socket,SIGNAL(rcvServerInfo(SubServer::SSubServer)),SLOT(on_socket_rcvServerInfo(SubServer::SSubServer)));
@@ -26,58 +23,14 @@ JRequestGameInfo::JRequestGameInfo(QObject *parent) :
     m_socket->connectToHost(host.m_address,host.m_port);
 }
 
-//void JRequestGameInfo::rqsIdList()
-//{
-////    JCryproRecorder cr;
-////    if(cr.getUserId()==-1 || cr.getCrypro().isEmpty())
-////    {
-////        qDebug()<<"JRequestGameInfo::rqsIdList : have not record the login hash . can not request id list!";
-////        return ;
-////    }else{
-////        int i;
-////        m_socket->sendCrypro(cr.getUserId(),cr.getCrypro());
-////        for(i=0;i<50;++i)
-////        {
-////            if(m_plh!=-1)
-////            {
-////                break;
-////            }
-////        }
-////        if(50==i)
-////        {
-////            qDebug()<<"pass login hash time out .";
-////            return;
-////        }
-////        if(m_plh==0)
-////        {
-////            qDebug()<<"pass login hash failed .";
-////            return;
-////        }
-////    }
-//    if(!passLoginHash()) return;
-//    m_socket->rqsIdList();
-//}
-
 void JRequestGameInfo::rqsGameList()
 {
-//    JCryproRecorder cr;
-//    if(cr.getUserId()==-1 || cr.getCrypro().isEmpty())
-//    {
-//        qDebug()<<"JRequestGameInfo::rqsIdList : have not record the login hash . can not request id list!";
-//    }
 	if(!passLoginHash()) return;
 	m_socket->rqsGameList();
 }
 
 void JRequestGameInfo::rqsGameInfo(JID id)
 {
-//    JCryproRecorder cr;
-//    if(cr.getUserId()==-1 || cr.getCrypro().isEmpty())
-//    {
-//        qDebug()<<"JRequestGameInfo::rqsIdList : have not record the login hash . can not request id list!";
-//    }
-//    if(!passLoginHash()) return;
-//    m_socket->rqsGameInfo(id);
 	emit gameInfoReady(id);
 }
 
@@ -134,13 +87,6 @@ void JRequestGameInfo::on_socket_rcvPassLoginHash(bool plh)
     m_plh=plh;
 }
 
-//void JRequestGameInfo::on_socket_rcvIdList(const QList<JID>& idlist)
-//{
-////    qDebug()<<"JRequestGameInfo::on_socket_rcvIdList : "<<idlist.size();
-//    m_idList=idlist;
-//    emit idListReady();
-//}
-
 void JRequestGameInfo::on_socket_rcvGameList(const QList<SubServer::SGameInfo2>& gamelist)
 {
 	foreach(SubServer::SGameInfo2 gi,gamelist)
@@ -178,18 +124,6 @@ void JRequestGameInfo::on_socket_rcvServerInfo(SubServer::SSubServer si)
 	m_servers.insert(si.m_serverId,si);
 
 }
-
-//void JRequestGameInfo::on_socket_rcvGameInfo(const SGameInfo& gi)
-//{
-////    qDebug()<<"JRequestGameInfo::on_socket_rcvGameInfo : "<<gi.m_gameId;
-//    m_gameInfos.insert(gi.m_gameId,gi);
-//    emit gameInfoReady(gi.m_gameId);
-//}
-
-//const QList<JID>& JRequestGameInfo::getIdList()const
-//{
-//    return m_idList;
-//}
 
 const QMap<JID,SubServer::SGameInfo2>& JRequestGameInfo::getGames()const
 {

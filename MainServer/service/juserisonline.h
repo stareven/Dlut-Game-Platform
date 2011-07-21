@@ -8,7 +8,6 @@
 class JUserIsOnline
 {
 private:
-//	static QSet<JID> g_onlineUsers;
 	static QMap<JID,quint16> s_onlineUsers;
 public:
 	void getOn(JID);

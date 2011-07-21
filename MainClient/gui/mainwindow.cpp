@@ -77,7 +77,6 @@ void MainWindow::on_list_game_itemClicked(QListWidgetItem* item)
         if(item->text()==gn.m_name)
         {
 			m_currentId=gn.m_gameId;
-			//m_gis->rqsGameInfo(gn.m_gameId);
             break;
         }
     }
@@ -87,14 +86,6 @@ void MainWindow::on_list_game_itemClicked(QListWidgetItem* item)
 void MainWindow::on_gameinfosrv_gameInfoReady(JID gameid)
 {
 	SubServer::SGameInfo2 gi=m_gis->getGameInfo(gameid);
-//	JRequestUserInfo requserinfo;
-//	JRequestPort reqpt;
-//	SHost hostuserinfo=reqpt.rqsServerPort(EST_USERINFO);
-//	requserinfo.connectToHost(hostuserinfo.m_address,hostuserinfo.m_port);
-//	requserinfo.waitForConnected(1000);
-//	JCryproRecorder cr;
-//	requserinfo.sendCrypro(cr.getUserId(),cr.getCrypro());
-//	requserinfo.waitForPlh(1000);
 	UserInfo::SUserInfo author=m_requserinfo->rqsUserInfo(gi.m_author);
     ui->tb_game->setText(tr("<font color=red>name</font> : %1 <br>"
 							"<font color=red>author</font> : %2 %3 %4<br>"
@@ -105,35 +96,9 @@ void MainWindow::on_gameinfosrv_gameInfoReady(JID gameid)
 						 .arg(author.m_nickname)
 						 .arg(author.m_organization)
 						 .arg(gi.m_version.getData())
-//                         .arg(gi.m_localVersion.getData())
                          .arg(gi.m_introduction));
 	m_gis->rqsServerList(m_currentId,m_gis->getGameInfo(m_currentId).m_version);
 }
-
-//void MainWindow::on_btn_get_servers_clicked()
-//{
-//	m_gis->rqsServerList(m_currentId,m_gis->getGameInfo(m_currentId).m_version);
-//}
-
-//void MainWindow::on_btn_download_run_clicked()
-//{
-//	JDownloadRun dr;
-//	SubServer::SGameInfo2 gi=m_gis->getGameInfo(m_currentId);
-//	QSet<JID> servers=m_gis->getServerListOnGame(gi.m_gameId);
-//	if(servers.empty())
-//	{
-//		qDebug()<<"server list on game"<<gi.m_gameId<<"is empty.";
-//		return;
-//	}
-//	foreach(JID serverId,servers)
-//	{
-//		SubServer::SSubServer si=m_gis->getServerInfo(serverId);
-//		if( SubServer::SSubServer::ET_GameFileServer ==si.m_type)
-//		{
-//			dr.start(gi.m_name,gi.m_version,this,si.m_address,si.m_port);
-//		}
-//	}
-//}
 
 void MainWindow::on_btn_start_game_clicked()
 {

@@ -68,19 +68,13 @@ void JSnakeConnection::dataProcess(const QByteArray& data)
 			JCode code=m_roomMng->addRoom(roominfo);
 			if(0==code)
 			{
-//				sendRoomEnter(roominfo.m_roomId);
 				processEscapeRoom();
 				processEnterRoom(roominfo.getRoomId());
 			}
-			/*{
-				sendRoominfoAdd(roominfo.m_roomId);
-			}
-			signal has connected to the slot , so it can send roominfo add automatically.
-			*/
+//			signal has connected to the slot , so it can send roominfo add automatically.
 		}
 		break;
 	case SP_RoominfoDelete :
-		// 客户端不应该有删除房间的权力。
 		qDebug()<<"SP_RoominfoDelete : clinet will never send this .";
 		break;
 	case SP_RoomAct :

@@ -2,7 +2,6 @@
 
 #include <QRect>
 #include <QSet>
-//#include <QTime>
 
 JSnakeGame::JSnakeGame()
 {
@@ -125,8 +124,6 @@ qint16 JSnakeGame::getMoveOnCollision()const
 		{
 			if(m_snakes[i].getHeadNext()==m_snakes[j].getHeadNext())
 			{
-				//needReset[i]=true;
-				//needReset[j]=true;
 				ret |= (1<<i) | (1<<j);
 			}
 		}
@@ -151,34 +148,20 @@ qint16 JSnakeGame::getMoveOnCollision()const
 				)
 			)
 		{
-			//needReset[i]=true;
 			ret |= (1<<i);
 		}
 	}
 	for(i=0;i<NUM_SNAKE;++i)
 	{
 		if(m_life[i]<=0) continue;
-		//if( !needReset[i] )
 		if( ! ( ret & (1<<i)))
 		{
 			if(m_snakes[i].getHeadNext()==m_bean)
 			{
-//				m_snakes[i].growLonger();
-//				++m_score[i];
-//				createBean();
 				ret |= ( 1<<NUM_SNAKE);
 				ret |= ( i<<(NUM_SNAKE+1));
 			}
 		}
-//		else{
-//			--m_life[i];
-//			if(m_life[i]<=0)
-//			{
-//				m_snakes[i].clear();
-//			}else{
-//				reset(i);
-//			}
-//		}
 	}
 	return ret;
 }
@@ -231,90 +214,6 @@ void JSnakeGame::increaseScore(int num)
 		++m_score[num];
 	}
 }
-
-//void JSnakeGame::moveOn()
-//{
-//    int i,j;
-//    bool needReset[NUM_SNAKE];
-//    for(i=0;i<NUM_SNAKE;++i)
-//    {
-//        needReset[i]=false;
-//    }
-//    for(i=0;i<NUM_SNAKE;++i)
-//    {
-//        if(m_life[i]<=0) continue;
-//        for(j=0;j<i;++j)
-//        {
-//            if(m_snakes[i].getHeadNext()==m_snakes[j].getHeadNext())
-//            {
-//                needReset[i]=true;
-//                needReset[j]=true;
-//            }
-//        }
-//    }
-//    QSet<QPoint> ptset;
-//    for(i=0;i<NUM_SNAKE;++i)
-//    {
-//        if(m_life[i]<=0) continue;
-//        JSnake::const_iterator it;
-//        for(it=m_snakes[i].begin();it != m_snakes[i].end();++it)
-//        {
-//            ptset.insert(it.getPoint());
-//        }
-//    }
-//    for(i=0;i<NUM_SNAKE;++i)
-//    {
-//        if(m_life[i]<=0) continue;
-//        const static QRect region(0,0,MAXX,MAXY);
-//        if( !needReset[i]
-//            && (ptset.contains(m_snakes[i].getHeadNext())
-//                || !region.contains(m_snakes[i].getHeadNext())
-//                )
-//            )
-//        {
-//            needReset[i]=true;
-//        }
-//    }
-//    for(i=0;i<NUM_SNAKE;++i)
-//    {
-//        if(m_life[i]<=0) continue;
-//        if( !needReset[i] )
-//        {
-//            if(m_snakes[i].getHeadNext()==m_bean)
-//            {
-//                m_snakes[i].growLonger();
-//                ++m_score[i];
-//                createBean();
-//            }else{
-//                m_snakes[i].moveOn();
-//            }
-//        }else{
-//            --m_life[i];
-//            if(m_life[i]<=0)
-//            {
-//                m_snakes[i].clear();
-//            }else{
-//                reset(i);
-//            }
-//        }
-//	}
-//}
-
-//void JSnakeGame::createBean(const QPoint& pt)
-//{
-//    static bool first=true;
-//    if(first){
-//        first=false;
-//        qsrand(QTime::currentTime().msecsTo(QTime()));
-//    }
-//    if(pt.isNull())
-//    {
-//        m_bean.setX(qrand()%MAXX);
-//        m_bean.setY(qrand()%MAXY);
-//    }else{
-//        m_bean=pt;
-//    }
-//}
 
 int JSnakeGame::getLife(int num)const
 {

@@ -16,7 +16,6 @@ class JSendGsInfoSocket : public JSocketBase
 public:
     explicit JSendGsInfoSocket(QObject *parent = 0);
     void sendCrypro(JID,const QByteArray&);
-//    void sendGsInfo(const SGameInfo&);
 	void sendServerInfo(const SubServer::SSubServer&);
 	void sendGameInfo(const SubServer::SGameInfo2&);
 	void sendRelation(JID serverId,JID gameId,const JVersion& gameVersion);

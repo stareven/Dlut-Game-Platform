@@ -44,9 +44,6 @@ public:
 	// decrease and clear;
 	void decreaseLife(int num);
 	void increaseScore(int num);
-protected:
-//    void createBean(const QPoint& pt=QPoint());
-// life ans score
 private:
     int m_life[NUM_SNAKE];
     int m_score[NUM_SNAKE];

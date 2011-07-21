@@ -1,7 +1,5 @@
 #include "juserisonline.h"
 
-//QSet<JID> JUserIsOnline::g_onlineUsers;
-
 QMap<JID,quint16> JUserIsOnline::s_onlineUsers;
 
 void JUserIsOnline::getOn(JID id)

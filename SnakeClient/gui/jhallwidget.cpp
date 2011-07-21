@@ -1,6 +1,9 @@
 #include "jhallwidget.h"
 #include "ui_jhallwidget.h"
 
+#include <QInputDialog>
+
+#include "jsnakeglobal.h"
 #include "network/jsnakesocket.h"
 #include "service/jglobalsettings.h"
 #include "service/jrequestuserinfo.h"
@@ -68,22 +71,6 @@ void JHallWidget::on_btn_refresh_userlist_clicked()
 	m_socket->sendRqsUserlist();
 }
 
-//void JHallWidget::om_socket_SocketCode(JCode code)
-//{
-//	switch((ENet)code)
-//	{
-//	case EN_CONNECTED:
-//		{
-//			JCryproRecorder cr;
-//			m_socket->sendHello(cr.getUserId());
-//		}
-//		break;
-//	case EN_DISCONNECTED:
-//		qDebug()<<"socket disconnected";
-//		break;
-//	}
-//}
-
 void JHallWidget::om_socket_rcvHello(JCode code)
 {
 	if(0==code)
@@ -103,10 +90,6 @@ void JHallWidget::om_socket_rcvUserlist(JID roomId,const QList<JID>& userlist)
 	}
 }
 
-#include <QInputDialog>
-
-#include "jsnakeglobal.h"
-
 void JHallWidget::on_btn_create_room_clicked()
 {
 	Snake::JRoom room (QInputDialog::getText(this,
@@ -116,7 +99,6 @@ void JHallWidget::on_btn_create_room_clicked()
 	{
 		return;
 	}
-//	room.m_roomId=-1;
 	m_socket->sendAddRoom(room);
 }
 
@@ -145,7 +127,6 @@ void JHallWidget::om_socket_rcvEscapeRoom(JID roomId,JID userId)
 		{
 			qDebug()<<"JHallWidget::om_socket_rcvEscapeRoom"<<item->text();
 			ui->lst_player->removeItemWidget(item);
-//			ui->lst_player->takeItem(ui->lst_player->row(item));
 			delete item;
 		}
 	}

@@ -31,17 +31,6 @@ SHallServer::operator SHost()const
 	return SHost(getAddress(),getPort());
 }
 
-//const QString& SHallServer::getName()const
-//{
-//    return m_name;
-//}
-
-//void SHallServer::setName(const QString& name)
-//{
-//    m_name=name;
-//    updateString();
-//}
-
 bool SHallServer::isEmpty()const
 {
     if(m_address.isNull() || m_port==0) return true;

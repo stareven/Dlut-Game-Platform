@@ -23,15 +23,14 @@ public:
     void connectToHost(const QHostAddress& address,
                        quint16 port);
     void sendCrypro(JID,const QByteArray&);
-//    void sendGsInfo(const SGameInfo&);
 	void sendServerInfo(const SubServer::SSubServer&);
 	void sendGameInfo(const SubServer::SGameInfo2&);
 	void sendRelation(JID serverId,JID gameId,const JVersion& gameVersion);
     enum EState{
-        ES_Close,//0
-        ES_Connecting,//1
-        ES_Connected,//2
-        ES_SendingPlh,//3
+		ES_Close,//0
+		ES_Connecting,//1
+		ES_Connected,//2
+		ES_SendingPlh,//3
 		ES_PlhSuccess,//4
 		ES_Sending,//5
 		ES_SendSuccess,//6

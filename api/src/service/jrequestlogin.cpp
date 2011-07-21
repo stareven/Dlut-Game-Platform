@@ -72,17 +72,3 @@ void JRequestLogin::on_socket_loginCode(JCode code)
     }
 }
 
-//void JRequestLogin::on_socket_SocketCode(JCode code)
-//{
-//	switch((ENet)code)
-//	{
-//	case EN_CONNECTED:
-//		m_state=ES_Connected;
-//		m_error=EL_SUCCESS;
-//		break;
-//	case EN_DISCONNECTED:
-//		m_state=ES_Error;
-//		m_error=EL_SOCKET_DISCONNECTED;
-//		break;
-//	}
-//}

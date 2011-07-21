@@ -124,7 +124,6 @@ bool JRequestPort::passLoginHash(JRequestPortSocket& socket)
 
 void JRequestPort::on_socket_rcvPassLoginHash(bool plh)
 {
-//    qDebug()<<"JRequestPort::on_socket_rcvPassLoginHash : "<<plh;
     m_plh=plh;
 }
 

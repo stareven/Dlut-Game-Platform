@@ -30,8 +30,6 @@ JConnectionBase* JConnectionFactory::createConnection(EServerType st,QTcpSocket*
 		return new JUserInfoConnection(socket,parent);
     case EST_MAX:
 		return NULL;
-//		return new JConnectionBase(socket,parent);
-    }
-//		return new JConnectionBase(socket,parent);
+    }	
 	return NULL;
 }

@@ -20,7 +20,6 @@ class JRequestGameInfoSocket : public JSocketBase
 public:
     explicit JRequestGameInfoSocket(QObject *parent = 0);
     void sendCrypro(JID,const QByteArray&);
-//    void rqsIdList();
 	void rqsGameList();
 	void rqsServers(JID gameId,const JVersion&);
 	void rqsServerInfo(JID serverId);
@@ -31,30 +30,11 @@ signals:
 	void rcvGameList(const QList<SubServer::SGameInfo2>&);
 	void rcvServers(JID,const JVersion&,const QSet<JID>&);
 	void rcvServerInfo(const SubServer::SSubServer&);
-//    void rcvGameInfo(const SGameInfo&);
-//private:
-//    bool m_passLoginHash;
-//    QList<JID> m_idlist;
-//    QList<SGameName> m_namelist;
-//    SGameInfo m_gameinfo;
-//public:
-//    bool isPLH()const;//pass login hash
-//    const QList<JID>& getIdList()const;
-//    const QList<SGameName>& getNameList()const;
-//    const SGameInfo& getGameInfo()const;
 private:
 	MagicNumber::JMagicNumber getMagicNumber()const
 	{
 		return MagicNumber::EMN_GetGameInfo;
 	}
 };
-
-//class QDataStream;
-
-//QDataStream& operator>>(QDataStream& stream,SGameName&);
-
-//QDataStream& operator>>(QDataStream& stream,SGameInfo&);
-
-//QDataStream& operator>>(QDataStream& stream,JVersion& ver);
 
 #endif // JREQUESTGAMEINFOSOCKET_H

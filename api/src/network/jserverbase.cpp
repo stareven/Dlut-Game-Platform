@@ -35,7 +35,6 @@ void JServerBase::on_server_newConnection()
     while(m_server->hasPendingConnections())
     {
 		QTcpSocket* socket=m_server->nextPendingConnection();
-//		JConnectionBase *cnct=new JGfsConnection(socket,this);
 		JConnectionBase *cnct=getConnection(socket,this);
 		if(cnct==NULL)
 		{

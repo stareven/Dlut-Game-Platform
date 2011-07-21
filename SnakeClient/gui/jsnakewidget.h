@@ -33,8 +33,6 @@ private:
 	JSnakeGame* m_game;
 	JSnakeSocket* m_socket;
 	JID m_roomId;
-protected slots:
-//    void moveOn();
 signals:
 	void escape(int a);
 private slots:

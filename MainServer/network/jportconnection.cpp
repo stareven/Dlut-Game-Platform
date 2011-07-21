@@ -28,7 +28,6 @@ void JPortConnection::dataProcess(const QByteArray& data)
 			JLoginHash lh;
             stream>>userid>>crypro;
 			m_passLoginHash=(0==lh.check(userid,crypro));
-            //qDebug()<<"JGameInfoConnection::dataProcess : EGP_LOGINHASH : "<<m_passLoginHash;
             QByteArray outdata;
             QDataStream outstream(&outdata,QIODevice::WriteOnly);
             outstream<<(JID)EPP_LOGINHASH;

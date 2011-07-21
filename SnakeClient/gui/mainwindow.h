@@ -17,8 +17,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
-protected:
-//    void keyPressEvent(QKeyEvent *);
 };
 
 #endif // MAINWINDOW_H

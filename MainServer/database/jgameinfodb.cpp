@@ -18,8 +18,6 @@ static QMap<JID,SGameInfoCheck> s_gameinfo;
 
 JGameInfoDb::JGameInfoDb()
 {
-	//runner id : 902 : sampleserverrunner
-	//game id : 53379 : sample
 	static bool first=true;
 	if(first)
 	{

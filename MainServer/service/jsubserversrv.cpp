@@ -44,11 +44,6 @@ QList<SubServer::SGameInfo2> SubServer::JSubServerData::getGameList()const
 	return s_games.values ();
 }
 
-//QMap<JVersion,QSet<JID> > SubServer::JSubServerData::getServersByGameid(JID gameId)const
-//{
-//	return s_relations.value (gameId);
-//}
-
 QSet<JID> SubServer::JSubServerData::getServers(JID gameId,JVersion version)const
 {
 	qDebug()<<s_servers.keys();
@@ -72,8 +67,6 @@ SubServer::SSubServer SubServer::JSubServerData::getServerInfo(JID serverId)cons
 SubServer::JSubServerData::JSubServerData()
 {
 }
-
-////////////////////////////////////////////////////////////////////
 
 JCode SubServer::JSubServerSrv::addSubServer(const SubServer::SSubServer &server)
 {
@@ -127,17 +120,10 @@ SubServer::JSubServerSrv::JSubServerSrv(JID runner)
 	m_runner=runner;
 }
 
-////////////////////////////////////////////////////////////////////
-
 QList<SubServer::SGameInfo2> SubServer::JGameInfoSrv::getGameList()const
 {
 	return m_data.getGameList ();
 }
-
-//QMap<JVersion,QSet<JID> > SubServer::JGameInfoSrv::getServersByGameid(JID gameid)const
-//{
-//	return m_data.getServersByGameid (gameid);
-//}
 
 QSet<JID> SubServer::JGameInfoSrv::getServers(JID gameId,JVersion version)const
 {
@@ -148,3 +134,4 @@ SubServer::SSubServer SubServer::JGameInfoSrv::getServerInfo(JID serverId)const
 {
 	return m_data.getServerInfo(serverId);
 }
+

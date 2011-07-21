@@ -2,6 +2,8 @@
 
 #include <QSettings>
 
+#include "jdlgnewserver.h"
+
 JComboSelectServer::JComboSelectServer(QWidget *parent) :
     QComboBox(parent)
 {
@@ -18,15 +20,6 @@ const SHallServer& JComboSelectServer::getServer()const
     return noserver;
 }
 
-//void JComboSelectServer::setServerName(const QString& name)
-//{
-//    if(currentIndex()<m_servers.size())
-//    {
-//        m_servers[(currentIndex())].setName(name);
-//        this->updateServers();
-//    }
-//}
-
 void JComboSelectServer::selectedServer(int index)
 {
     if(index==m_servers.count())
@@ -37,8 +30,6 @@ void JComboSelectServer::selectedServer(int index)
 		settings.setValue(tr("select/current"),index);
 	}
 }
-
-#include "jdlgnewserver.h"
 
 void JComboSelectServer::addNewServer()
 {

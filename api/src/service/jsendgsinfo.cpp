@@ -30,12 +30,6 @@ void JSendGsInfo::sendCrypro(JID id,const QByteArray& data)
     m_socket->sendCrypro(id,data);
 }
 
-//void JSendGsInfo::sendGsInfo(const SGameInfo& gi)
-//{
-//    m_state=ES_SendingGi;
-//    m_socket->sendGsInfo(gi);
-//}
-
 void JSendGsInfo::sendServerInfo(const SubServer::SSubServer& ss)
 {
 	m_state=ES_Sending;
@@ -120,7 +114,6 @@ const QString& JSendGsInfo::error()const
 
 void JSendGsInfo::on_socket_rcvPassLoginHash(bool plh)
 {
-//    qDebug()<<"JSendGsInfo::on_socket_rcvPassLoginHash"<<plh;
     if(plh)
     {
         m_state=ES_PlhSuccess;
@@ -145,14 +138,6 @@ void JSendGsInfo::on_socket_rcvSendCode(JID protocol,JCode code)
 		m_state=ES_Error;
 		m_error=4;
 	}
-//    qDebug()<<"JSendGsInfo::on_socket_rcvGsInfo";
-//    if(id<0)
-//    {
-//        m_state=ES_Error;
-//        m_error=4;
-//    }else{
-//        m_state=ES_SendGiSuccess;
-//    }
 }
 
 void JSendGsInfo::on_socket_SocketCode(JCode code)

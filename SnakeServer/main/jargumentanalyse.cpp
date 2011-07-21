@@ -59,16 +59,6 @@ void JArgumentAnalyse::Analyse()
             }
         }
     }
-//    foreach(QString arg,m_argv)
-//    {
-//        if(arg.startsWith(preOption))
-//        {
-//            arg.remove(0,preOption.length());
-//            switch(arg.at(0))
-//            {
-//            case 'a':
-//        }
-//    }
 }
 
 const QHostAddress& JArgumentAnalyse::getAddress()const

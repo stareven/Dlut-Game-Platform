@@ -14,7 +14,6 @@ JSubServerStartup::JSubServerStartup()
 
 JSubServerStartup::EReturnValue JSubServerStartup::startup()const
 {
-//	JPortService ps;
 	EReturnValue ret=ERV_Success;
 	m_ps->setServerPort(EST_FREEPORT,m_host);
 	SHost loginHost=m_ps->rqsServerPort(EST_LOGIN);
@@ -30,7 +29,6 @@ JSubServerStartup::EReturnValue JSubServerStartup::startup()const
 		qDebug()<<"Login failed . error :"<<m_login->getLoginError();
 		return ERV_LoginFailed;
 	}
-//	JGsInfoService gis;
 	SHost gsiHost=m_ps->rqsServerPort(EST_SUBSERVER);
 	m_gis->connectToHost(gsiHost.m_address,gsiHost.m_port);
 	if(!m_gis->waitForConnected(1000))
@@ -48,14 +46,6 @@ JSubServerStartup::EReturnValue JSubServerStartup::startup()const
 				<<m_gis->error();
 		return ERV_PlhFailed;
 	}
-//	SubServer::SGameInfo2 gi;
-//	{
-//		gi.m_gameId=109;
-//		gi.m_name="sample game";
-//		gi.m_author=901;
-//		gi.m_version=JVersion(1);
-//		gi.m_introduction="this is just a sample.";
-//	}
 	if(m_gameinfo.m_gameId>0 && !m_gameinfo.m_name.isEmpty())
 	{
 		m_gis->sendGameInfo(m_gameinfo);
@@ -68,14 +58,6 @@ JSubServerStartup::EReturnValue JSubServerStartup::startup()const
 			qDebug()<<"send game info success.";
 		}
 	}
-//	SubServer::SSubServer ss;
-//	{
-//		ss.m_serverId=53379;
-//		ss.m_name="sample game server";
-//		ss.m_address=QHostAddress::LocalHost;
-//		ss.m_port=60373;
-//		ss.m_type=SubServer::SSubServer::ET_GameServer;
-//	}
 	m_gis->sendServerInfo(m_serverinfo);
 	if(!m_gis->waitForSend(1000))
 	{

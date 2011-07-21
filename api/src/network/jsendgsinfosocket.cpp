@@ -16,15 +16,6 @@ void JSendGsInfoSocket::sendCrypro(JID id,const QByteArray& crypro)
     sendData(outdata);
 }
 
-//void JSendGsInfoSocket::sendGsInfo(const SGameInfo& gi)
-//{
-//    QByteArray outdata;
-//    QDataStream outstream(&outdata,QIODevice::WriteOnly);
-//    outstream<<(JID)GameServer::EP_GameServer;
-//    outstream<<gi;
-//    sendData(outdata);
-//}
-
 void JSendGsInfoSocket::sendServerInfo(const SubServer::SSubServer& ss)
 {
 	QByteArray outdata;
@@ -82,15 +73,5 @@ void JSendGsInfoSocket::dataProcess(const QByteArray& data)
 			qDebug()<<"JSubServerConnection::dataProcess : undefined protocol.";
 		}
 		break;
-//    case GameServer::EP_LoginHash:
-//        bool plh;//pass login hash
-//        stream>>plh;
-//        emit rcvPassLoginHash(plh);
-//        break;
-//    case GameServer::EP_GameServer:
-//        JID gameid;
-//        stream>>gameid;
-//        emit rcvGsInfo(gameid);
-//        break;
     }
 }

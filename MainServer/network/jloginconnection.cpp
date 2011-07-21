@@ -2,7 +2,6 @@
 
 #include <QByteArray>
 #include <QDataStream>
-//#include <QDebug>
 
 #include "service/jloginverification.h"
 #include "service/juserisonline.h"
@@ -20,8 +19,6 @@ void JLoginConnection::dataProcess(const QByteArray& data)
     JID role;
     stream>>loginname>>passwd;
     stream>>role;
-    //send back : id , logincrypto ,
-    //qDebug()<<loginname<<passwd<<role;
     QByteArray outdata;
     QDataStream outstream(&outdata,QIODevice::WriteOnly);
     JLoginVerification loginvrfc;
@@ -39,11 +36,6 @@ void JLoginConnection::dataProcess(const QByteArray& data)
 		uio.getOn(loginvrfc.getUserId());
     }
     sendData(outdata);
-//    int size=outdata.size();
-//    QDataStream outsocketstream(socket);
-//    outsocketstream<<size;
-//    //socket->write(QByteArray::number(size));
-//    socket->write(outdata);
 }
 
 void JLoginConnection::on_socket_disconnected()

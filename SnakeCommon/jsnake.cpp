@@ -46,12 +46,10 @@ void JSnake::reset(const QPoint& head,EDire dire)
 {
     m_head=head;
     m_moveDire=dire;
-//    turn(dire);
     m_body.clear();
     int n=3;
     while(n--)
     {
-//        m_body.push_back(getOppsiteDire(dire));
         m_body.push_back(JSnake::ED_NONE);
     }
     m_body.push_back(JSnake::ED_NONE);
@@ -72,7 +70,7 @@ void JSnake::turn(EDire dire)
         && ( m_body.empty()
              || dire != m_body.front()
              )
-        )//dire!=getOppsiteDire(m_moveDire))
+        )
     {
         m_moveDire=dire;
         updateHeadNext();

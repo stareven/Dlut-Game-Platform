@@ -23,7 +23,7 @@ private:
     EDire m_moveDire;
     QLinkedList<EDire> m_body;
 
-    //temp
+    //buffer
     QPoint m_headNext;
     void updateHeadNext();
 public:

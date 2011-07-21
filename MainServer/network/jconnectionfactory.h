@@ -11,7 +11,6 @@ class JConnectionFactory
 {
 public:
     JConnectionFactory();
-//    enum EServerType{EST_LOGIN,EST_GAMEINFO,EST_FREEPORT,EST_SECRETPORT,EST_MAX};
     JConnectionBase* createConnection(EServerType,QTcpSocket* socket,QObject* parent);
 };
 

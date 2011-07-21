@@ -29,20 +29,14 @@ protected:
 private:
     Ui::JDlgLogin *ui;
     JSettingLogin m_remember;
-
-    //bool is_accepted;
 	JRequestLogin *m_rqslogin;
 
 private slots:
 	void on_cb_role_currentIndexChanged(int index);
 	void on_edt_passwd_editingFinished();
     void on_edt_username_editingFinished();
-//    void on_cb_server_selectUpdate();
-//    void on_loginsrv_loginMsg(JCode);
 signals:
     void autoLogin();
-private:
-//    void outputLoginMsg(const char*);
 };
 
 #endif // JDLGLOGIN_H

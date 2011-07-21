@@ -102,23 +102,6 @@ void JDlgLogin::accept()
 		return;
 	}
 	done(QDialog::Accepted);
-//	m_rqsloginsrv->login(ui->edt_username->text(),
-//		      ui->edt_passwd->text(),
-//		      ui->cb_role->currentIndex(),
-//                      host.m_address,
-//                      host.m_port);
-//    JLoginService loginsvc(this);
-//    JCode code;
-//    if((code=loginsvc.login(ui->edt_username->text(),
-//		      ui->edt_passwd->text(),
-//		      ui->cb_role->currentIndex())))
-//    {
-//	ui->lab_message->setText(tr("login succeed"));
-//	done(1);
-//    }else{
-//	ui->lab_message->setText(tr("login failed . code :%1").arg(code));
-//	return;
-//    }
 }
 
 void JDlgLogin::error(QAbstractSocket::SocketError e)
@@ -137,54 +120,6 @@ void JDlgLogin::on_edt_passwd_editingFinished()
 {
     m_remember.setPassWord(ui->edt_passwd->text());
 }
-
-//void JDlgLogin::on_cb_server_selectUpdate()
-//{
-//    ui->lab_message->setText(tr("connecting to server %1").arg(ui->cb_server->getServer().toString()));
-//}
-
-//void JDlgLogin::on_loginsrv_loginMsg(JCode code)
-//{
-//    ui->lab_message->setText(loginMsg[code]);
-//    if(code==EL_SUCCESS) done(QDialog::Accepted);
-////    switch(code)
-////    {
-////    case 0:
-////	outputLoginMsg("login success");
-////	this->done(QDialog::Accepted);
-////	break;
-////    case 1:
-////	outputLoginMsg("no such user");
-////	break;
-////    case 2:
-////	outputLoginMsg("password wrong");
-////	break;
-////    case 3:
-////	outputLoginMsg("no such role");
-////	break;
-////    case LC_CONNECTED:
-////	outputLoginMsg("connected");
-////	break;
-////    case LC_UNWRITABLE:
-////	outputLoginMsg("socket can not write");
-////	break;
-////    case LC_DISCONNECTED:
-////	outputLoginMsg("socket disconnected");
-////	break;
-////    case JLoginService::LM_BEGIN_TO_LOGIN:
-////	outputLoginMsg("begin to login");
-////	break;
-////	case 0x40:
-////	outputLoginMsg("has already logined.");
-////	break;
-////    }
-//}
-
-//void JDlgLogin::outputLoginMsg(const char* msg)
-//{
-//    QString strmsg=tr(msg);
-//    ui->lab_message->setText(strmsg);
-//}
 
 void JDlgLogin::on_cb_role_currentIndexChanged(int index)
 {

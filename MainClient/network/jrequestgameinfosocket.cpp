@@ -19,14 +19,6 @@ void JRequestGameInfoSocket::sendCrypro(JID id,const QByteArray& crypro)
     sendData(outdata);
 }
 
-//void JRequestGameInfoSocket::rqsIdList()
-//{
-//    QByteArray outdata;
-//    QDataStream outstream(&outdata,QIODevice::WriteOnly);
-//    outstream<<(JID)EGP_IDLIST;
-//    sendData(outdata);
-//}
-
 void JRequestGameInfoSocket::rqsGameList()
 {
     QByteArray outdata;

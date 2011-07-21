@@ -4,10 +4,8 @@
 #include "jsnakegame.h"
 
 #include <QPainter>
-//#include <QTime>
 #include <QTimer>
 #include <QKeyEvent>
-//#include <QDebug>
 #include <QPixmap>
 #include <QtGui/QGridLayout>
 #include <QLabel>
@@ -28,14 +26,6 @@ JSnakeWidget::JSnakeWidget(QWidget *parent) :
     ui->setupUi(this);
 	m_roomId=-1;
 	m_command=JSnake::ED_NONE;
-//    QWidget *gridLayoutWidget;
-//    QGridLayout *gridLayout;
-//    gridLayoutWidget = new QWidget(this);
-//    gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
-//    gridLayoutWidget->setGeometry(QRect(MAXX*SQUARE_SIZE+INITX+10, 70, 200, 135));
-//    gridLayout = new QGridLayout(gridLayoutWidget);
-//    gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-//    gridLayout->setContentsMargins(0, 0, 0, 0);
 	ui->gridLayout->addWidget(new QLabel(tr("ready"),this),0,1,1,1);
 	ui->gridLayout->addWidget(new QLabel(tr("life"),this),0,2,1,1);
 	ui->gridLayout->addWidget(new QLabel(tr("score"),this),0,3,1,1);
@@ -89,9 +79,6 @@ JSnakeWidget::JSnakeWidget(QWidget *parent) :
 	connect(m_socket,
 			SIGNAL(rcvGA_Stop()),
 			SLOT(om_socket_rcvGA_Stop()));
-//    QTimer *timer=new QTimer(this);
-//    connect(timer,SIGNAL(timeout()),SLOT(moveOn()));
-//    timer->start(250);
 	setFocus();
 	setFocusPolicy(Qt::StrongFocus);
 	m_game->clearSnake();
@@ -132,7 +119,6 @@ void JSnakeWidget::paintEvent(QPaintEvent * )
         for(it=m_game->getSnakes(i).begin();it != m_game->getSnakes(i).end();++it)
         {
             QRect rect(it.getPoint()*SQUARE_SIZE+QPoint(INITX,INITY),QSize(SQUARE_SIZE,SQUARE_SIZE));
-            //painter.drawRect(rect);
             painter.drawPixmap(rect,pixmaps[i]);
         }
     }
@@ -142,7 +128,6 @@ void JSnakeWidget::paintEvent(QPaintEvent * )
 	if(region.contains(m_game->getBean()))
 	{
 		QRect rect(m_game->getBean()*SQUARE_SIZE+QPoint(INITX,INITY),QSize(SQUARE_SIZE,SQUARE_SIZE));
-//    painter.drawRect(rect);
 		painter.drawPixmap(rect,pixmaps[NUM_SNAKE]);
 	}
 }
@@ -164,32 +149,8 @@ void JSnakeWidget::keyPressEvent(QKeyEvent *key)
     case Qt::Key_Right:
 		m_command=JSnake::ED_RIGHT;
 		break;
-//    case Qt::Key_W:
-//        m_game->turn(JSnake::ED_UP,2);
-//        break;
-//    case Qt::Key_S:
-//        m_game->turn(JSnake::ED_DOWN,2);
-//        break;
-//    case Qt::Key_A:
-//        m_game->turn(JSnake::ED_LEFT,2);
-//        break;
-//    case Qt::Key_D:
-//        m_game->turn(JSnake::ED_RIGHT,2);
-//        break;
-
     }
 }
-
-//void JSnakeWidget::moveOn()
-//{
-//    m_game->moveOn();
-//    for(int i=0;i<4;++i)
-//    {
-//        m_lcds[i][0]->display(m_game->getLife(i));;
-//        m_lcds[i][1]->display(m_game->getScore(i));;
-//    }
-//    update();
-//}
 
 void JSnakeWidget::om_socket_rcvEnterRoom(JID roomId,JID userId)
 {
@@ -221,7 +182,6 @@ void JSnakeWidget::om_socket_rcvEscapeRoom(JID roomId,JID userId)
 			{
 				ui->list_players->removeItemWidget(item);
 				delete item;
-//				ui->list_players->takeItem(ui->list_players->row(item));
 			}
 		}
 	}
@@ -277,7 +237,6 @@ void JSnakeWidget::om_socket_rcvGA_CountDown(int sec)
 	ui->lab_gamestate->setText(tr("count down : %1").arg(sec));
 	if(sec<=1) updateLifeNScore();
 	else if(sec>=3){
-		//m_game->reset();
 		updateLifeNScore();
 		update();
 	}
@@ -330,8 +289,6 @@ void JSnakeWidget::om_socket_rcvGA_Stop()
 	ui->btn_ready->setText(tr("ready"));
 	m_game->clearSnake();
 	m_game->setBean(QPoint(-1,-1));
-//	updateLifeNScore();
-//	update();
 }
 
 void JSnakeWidget::updateLifeNScore()

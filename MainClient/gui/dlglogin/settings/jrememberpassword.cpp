@@ -1,7 +1,7 @@
 #include "jrememberpassword.h"
 
 JRememberPassword::JRememberPassword()
-    :m_setting(getfileName(),getFormat())//*"login.ini",*/QSettings::IniFormat)
+    :m_setting(getfileName(),getFormat())
 {
     readDefaultUserName();
 }
@@ -97,7 +97,7 @@ void JRememberPassword::writeRole()
 
 const QString& JRememberPassword::getfileName()const
 {
-    static QString fn="login.ini";//,QSettings::IniFormat
+    static QString fn="login.ini";
     return fn;
 }
 QSettings::Format JRememberPassword::getFormat()const
