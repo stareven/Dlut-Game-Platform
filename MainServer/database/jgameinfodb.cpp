@@ -2,6 +2,8 @@
 
 #include <QMap>
 #include <QSet>
+#include <QFile>
+#include <QTextStream>
 
 #include "global/ssubserver.h"
 
@@ -18,19 +20,33 @@ JGameInfoDb::JGameInfoDb()
 {
 	//runner id : 902 : sampleserverrunner
 	//game id : 53379 : sample
-	if(s_game_runner.isEmpty ())
+	static bool first=true;
+	if(first)
 	{
-		s_game_runner[109].insert (902);
-	}
-	if(s_gameinfo.isEmpty ())
-	{
-		SGameInfoCheck gis[]={
-			{109,"Multi Snake",901/*sampledesigner*/},
-		};
-		int NUM_GAME=sizeof(gis)/sizeof(SGameInfoCheck);
-		for(int i=0;i<NUM_GAME;++i)
+		first=false;
 		{
-			s_gameinfo.insert (gis[i].m_gameId,gis[i]);
+			QFile file("../database/game_runner");
+			file.open(QIODevice::ReadOnly);
+			QTextStream stream(&file);
+			for(int i=0;i<1000;++i)
+			{
+				if(stream.atEnd()) break;
+				JID gameId,runnerId;
+				stream>>gameId>>runnerId;
+				s_game_runner[gameId].insert(runnerId);
+			}
+		}
+		{
+			QFile file("../database/game_info");
+			file.open(QIODevice::ReadOnly);
+			QTextStream stream(&file);
+			for(int i=0;i<1000;++i)
+			{
+				if(stream.atEnd()) break;
+				SGameInfoCheck gic;
+				stream>>gic.m_gameId>>gic.m_name>>gic.m_authour;
+				s_gameinfo.insert(gic.m_gameId,gic);
+			}
 		}
 	}
 }

@@ -21,12 +21,12 @@ int main(int argc, char *argv[])
 	sssu.m_passwd="123";
 	sssu.m_role=ROLE_GAMESERVERRUNNER;
 	sssu.m_gameinfo.m_gameId=109;
-	sssu.m_gameinfo.m_name="Multi Snake";
+	sssu.m_gameinfo.m_name="Multi_Snake";
 	sssu.m_gameinfo.m_author=901;
 	sssu.m_gameinfo.m_version=JVersion(1);
 	sssu.m_gameinfo.m_introduction="A snake game that multiplayer can play together";
 	sssu.m_serverinfo.m_serverId=53379;
-	sssu.m_serverinfo.m_name="Multi Snake server";
+	sssu.m_serverinfo.m_name="Multi_Snake_server";
 	sssu.m_serverinfo.m_address=QHostAddress::LocalHost;
 	sssu.m_serverinfo.m_port=port;
 	sssu.m_serverinfo.m_type=SubServer::SSubServer::ET_GameServer;

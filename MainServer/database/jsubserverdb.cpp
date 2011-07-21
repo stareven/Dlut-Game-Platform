@@ -1,6 +1,8 @@
 #include "jsubserverdb.h"
 
 #include <QMap>
+#include <QFile>
+#include <QTextStream>
 
 #include "global/ssubserver.h"
 
@@ -14,23 +16,61 @@ static QMap<JID,SSubServerCheck> s_subservers;
 
 JSubServerDb::JSubServerDb()
 {
-	if(s_server_runner.isEmpty ())
+	static bool first=true;
+	if(first)
 	{
-		s_server_runner.insert (53379,902);
-		s_server_runner.insert (53380,902);
-	}
-	if(s_subservers.isEmpty ())
-	{
-		SSubServerCheck sscs[]={
-			{53379,"Multi Snake server",SubServer::SSubServer::ET_GameServer},
-			{53380,"game file server 1",SubServer::SSubServer::ET_GameFileServer},
-		};
-		int NUM_SERVERS=sizeof(sscs)/sizeof(SSubServerCheck);
-		for(int i=0;i<NUM_SERVERS;++i)
+		first=false;
 		{
-			s_subservers.insert (sscs[i].m_serverId,sscs[i]);
+			QFile file("../database/server_runner");
+			file.open(QIODevice::ReadOnly);
+			QTextStream stream(&file);
+			for(int i=0;i<1000;++i)
+			{
+				if(stream.atEnd()) break;
+				JID serverId,runnerId;
+				stream>>serverId>>runnerId;
+				s_server_runner.insert(serverId,runnerId);
+			}
+		}
+		{
+			QFile file("../database/subserver");
+			file.open(QIODevice::ReadOnly);
+			QTextStream stream(&file);
+			for(int i=0;i<1000;++i)
+			{
+				if(stream.atEnd()) break;
+				SSubServerCheck ssc;
+				QString type;
+				stream>>ssc.m_serverId>>ssc.m_name>>type;
+				if(type=="GS")
+				{
+					ssc.m_type=SubServer::SSubServer::ET_GameServer;
+				}else if(type=="GFS"){
+					ssc.m_type=SubServer::SSubServer::ET_GameFileServer;
+				}else{
+					continue;
+				}
+				s_subservers.insert(ssc.m_serverId,ssc);
+			}
 		}
 	}
+//	if(s_server_runner.isEmpty ())
+//	{
+//		s_server_runner.insert (53379,902);
+//		s_server_runner.insert (53380,902);
+//	}
+//	if(s_subservers.isEmpty ())
+//	{
+//		SSubServerCheck sscs[]={
+//			{53379,"Multi Snake server",SubServer::SSubServer::ET_GameServer},
+//			{53380,"game file server 1",SubServer::SSubServer::ET_GameFileServer},
+//		};
+//		int NUM_SERVERS=sizeof(sscs)/sizeof(SSubServerCheck);
+//		for(int i=0;i<NUM_SERVERS;++i)
+//		{
+//			s_subservers.insert (sscs[i].m_serverId,sscs[i]);
+//		}
+//	}
 }
 
 bool JSubServerDb::isControlAble(JID serverId,JID runnerId)

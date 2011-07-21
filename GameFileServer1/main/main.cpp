@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 	sssu.m_gameinfo.m_gameId=109;
 	sssu.m_gameinfo.m_version=JVersion(1);
 	sssu.m_serverinfo.m_serverId=53380;
-	sssu.m_serverinfo.m_name="game file server 1";
+	sssu.m_serverinfo.m_name="game_file_server_1";
 	sssu.m_serverinfo.m_address=QHostAddress::LocalHost;
 	sssu.m_serverinfo.m_port=port;
 	sssu.m_serverinfo.m_type=SubServer::SSubServer::ET_GameFileServer;
