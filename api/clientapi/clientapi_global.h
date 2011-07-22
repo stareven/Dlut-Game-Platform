@@ -1,0 +1,12 @@
+#ifndef CLIENTAPI_GLOBAL_H
+#define CLIENTAPI_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(CLIENTAPI_LIBRARY)
+#  define CLIENTAPISHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define CLIENTAPISHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // CLIENTAPI_GLOBAL_H

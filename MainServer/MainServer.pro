@@ -7,10 +7,10 @@ TARGET = MainServer
 CONFIG += console
 CONFIG -= app_bundle
 TEMPLATE = app
-INCLUDEPATH += ../api/include
+#INCLUDEPATH += ../api/include
 HEADERS += \
     network/jservertype.h \
-    ../api/include/network/jconnectionbase.h \
+#    ../api/include/network/jconnectionbase.h \
     service/jloginverification.h \
     database/jabslogindb.h \
     service/jloginhash.h \
@@ -23,21 +23,21 @@ HEADERS += \
     network/jsubserverconnection.h \
     service/jsubserversrv.h \
 	network/jplhconnectionbase.h \
-	../api/include/global/elogin.h \
-	../api/include/global/jglobal.h \
-	../api/include/global/jversion.h \
-	../api/include/global/eportsrv.h \
-	../api/include/global/ssubserver.h \
+#	../api/include/global/elogin.h \
+#	../api/include/global/jglobal.h \
+#	../api/include/global/jversion.h \
+#	../api/include/global/eportsrv.h \
+#	../api/include/global/ssubserver.h \
     database/jsubserverdb.h \
     database/jgameinfodb.h \
-    ../api/include/global/magicnumber.h \
-    ../api/include/global/userinfo.h \
+#    ../api/include/global/magicnumber.h \
+#    ../api/include/global/userinfo.h \
     network/juserinfoconnection.h \
-    database/juserinfodb.h \
-    ../api/include/network/jserverbase.h
+	database/juserinfodb.h
+#   ../api/include/network/jserverbase.h
 SOURCES += main/main.cpp \
     network/jservertype.cpp \
-    ../api/src/network/jconnectionbase.cpp \
+#    ../api/src/network/jconnectionbase.cpp \
     service/jloginverification.cpp \
     database/jabslogindb.cpp \
     service/jloginhash.cpp \
@@ -47,15 +47,17 @@ SOURCES += main/main.cpp \
     network/jgameinfoconnection.cpp \
     service/jportmanager.cpp \
     network/jportconnection.cpp \
-	../api/src/global/ssubserver.cpp \
+#	../api/src/global/ssubserver.cpp \
     network/jsubserverconnection.cpp \
     service/jsubserversrv.cpp \
 	network/jplhconnectionbase.cpp \
-    ../api/src/global/jversion.cpp \
+#	../api/src/global/jversion.cpp \
     database/jsubserverdb.cpp \
     database/jgameinfodb.cpp \
-	../api/src/global/userinfo.cpp \
+#	../api/src/global/userinfo.cpp \
     network/juserinfoconnection.cpp \
-    database/juserinfodb.cpp \
-    ../api/src/network/jserverbase.cpp \
-    ../api/src/global/shost.cpp
+	database/juserinfodb.cpp
+#    ../api/src/network/jserverbase.cpp \
+#	../api/src/global/shost.cpp
+include(../api/libserverapi.pri)
+include(../api/libglobalapi.pri)

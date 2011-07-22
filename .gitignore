@@ -2,3 +2,6 @@
 *-build-desktop/*
 !*-build-desktop/Makefile
 */*.pro.user
+*/*/*.pro.user
+api/lib*/*
+!api/lib*/Makefile

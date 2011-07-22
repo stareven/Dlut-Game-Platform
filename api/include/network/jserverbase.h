@@ -3,12 +3,14 @@
 
 #include <QObject>
 
+#include "serverapi_global.h"
+
 class QTcpServer;
 class QByteArray;
 class QTcpSocket;
 class JConnectionBase;
 
-class JServerBase : public QObject
+class SERVERAPISHARED_EXPORT JServerBase : public QObject
 {
 Q_OBJECT
 public:

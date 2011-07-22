@@ -1,0 +1,12 @@
+#ifndef GLOBALAPI_GLOBAL_H
+#define GLOBALAPI_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(GLOBALAPI_LIBRARY)
+#  define GLOBALAPISHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define GLOBALAPISHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // GLOBALAPI_GLOBAL_H

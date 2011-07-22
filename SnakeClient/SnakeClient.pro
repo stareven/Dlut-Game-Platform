@@ -4,11 +4,11 @@
 #
 #-------------------------------------------------
 
-QT       += core gui network
+QT       += core gui
 
 TARGET = SnakeClient
 TEMPLATE = app
-INCLUDEPATH += ../api/include \
+INCLUDEPATH += \
 				../SnakeCommon/
 
 
@@ -19,19 +19,8 @@ SOURCES += main/main.cpp\
     ../SnakeCommon/jsnakegame.cpp \
 	gui/jhallwidget.cpp \
     network/jsnakesocket.cpp \
-    service/jglobalsettings.cpp \
-    ../api/src/service/jrequestuserinfo.cpp \
-    ../api/src/service/jplhrequestbase.cpp \
-    ../api/src/service/jrequestbase.cpp \
-    ../api/src/network/jrequestuserinfosocket.cpp \
-    ../api/src/network/jplhsocketbase.cpp \
-    ../api/src/network/jsocketbase.cpp \
-    ../api/src/global/userinfo.cpp \
-    ../api/src/service/jrequestport.cpp \
-    ../api/src/network/jrequestportsocket.cpp \
-    ../api/src/global/shost.cpp \
-    ../api/src/service/jcryprorecorder.cpp \
-    ../SnakeCommon/jsnakestream.cpp \
+	service/jglobalsettings.cpp \
+	../SnakeCommon/jsnakestream.cpp \
     service/jroomlistmodel.cpp
     
 HEADERS  += gui/mainwindow.h \
@@ -44,17 +33,6 @@ HEADERS  += gui/mainwindow.h \
     network/jsnakesocket.h \
     ../SnakeCommon/jsnakeglobal.h \
     service/jglobalsettings.h \
-    ../api/include/global/eportsrv.h \
-    ../api/include/service/jrequestuserinfo.h \
-    ../api/include/service/jplhrequestbase.h \
-    ../api/include/service/jrequestbase.h \
-    ../api/include/network/jrequestuserinfosocket.h \
-    ../api/include/network/jplhsocketbase.h \
-    ../api/include/network/jsocketbase.h \
-    ../api/include/global/userinfo.h \
-    ../api/include/service/jrequestport.h \
-    ../api/include/network/jrequestportsocket.h \
-    ../api/include/service/jcryprorecorder.h \
     service/jroomlistmodel.h
     
 FORMS    += gui/mainwindow.ui \
@@ -63,3 +41,5 @@ FORMS    += gui/mainwindow.ui \
 
 RESOURCES += \
     res/res.qrc
+include(../api/libclientapi.pri)
+include(../api/libglobalapi.pri)

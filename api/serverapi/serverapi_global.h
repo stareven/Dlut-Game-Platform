@@ -1,0 +1,12 @@
+#ifndef SERVERAPI_GLOBAL_H
+#define SERVERAPI_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(SERVERAPI_LIBRARY)
+#  define SERVERAPISHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define SERVERAPISHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // SERVERAPI_GLOBAL_H
