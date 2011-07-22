@@ -27,3 +27,11 @@ SOURCES += \
 		../src/network/jplhsocketbase.cpp \
 		../src/network/jrequestuserinfosocket.cpp \
 		../src/service/jrequestuserinfo.cpp
+HEADERS += \
+		../include/network/jplhsocketbase.h \
+		../include/network/jrequestloginsocket.h \
+		../include/network/jrequestportsocket.h \
+		../include/network/jrequestuserinfosocket.h \
+		../include/network/jsocketbase.h \
+		../include/service/jplhrequestbase.h \
+		../include/service/jrequestbase.h
