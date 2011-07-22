@@ -12,7 +12,6 @@ CONFIG   -= app_bundle
 INCLUDEPATH +=  \
 				../SnakeCommon/
 
-# Input
 HEADERS += main/jargumentanalyse.h \
     network/jsnakeserver.h \
     network/jsnakeconnection.h \

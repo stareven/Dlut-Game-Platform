@@ -11,6 +11,7 @@ We are looking forward to your help to translate this article into english
 全部中间文件：
 	find *-build-desktop \( -not -name 'Makefile' -and -type f \)
 	find . \( -path '*-build-desktop*' -and -not -name 'Makefile' -and -type f \)
+	find . \( \( -path '*-build-desktop/*' -or -path './api/lib*api/*' \) -and -not -name 'Makefile' -and -type f \)
 
 JDMD studio , Dalian University of Technology , China
 E-mail : elephant_liu@mail.dlut.edu.cn
