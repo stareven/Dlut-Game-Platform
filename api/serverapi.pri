@@ -1,3 +1,4 @@
+QT       += network
 INCLUDEPATH += $$PWD/serverapi/ \
 		$$PWD/include/
 HEADERS += \

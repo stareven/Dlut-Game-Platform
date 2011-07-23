@@ -3,11 +3,6 @@
 # Project created by QtCreator 2011-07-22T10:40:24
 #
 #-------------------------------------------------
-
-QT       += network
-
-QT       -= gui
-
 TARGET = clientapi
 TEMPLATE = lib
 
