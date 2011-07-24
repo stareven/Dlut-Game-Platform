@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QDOCINDEX>
+<INDEX url="" title="api document" version="">
+    <namespace access="public" threadsafety="unspecified" status="commendable" name="" href="" location="" module="">
+        <namespace access="public" threadsafety="unspecified" status="commendable" name="UserInfo" href="userinfo.html" location="jrequestuserinfosocket.h" module="">
+            <class access="public" threadsafety="unspecified" status="commendable" name="SUserInfo" fullname="UserInfo::SUserInfo" href="userinfo-suserinfo.html" location="userinfo.h" bases="" module="">
+                <variable access="public" threadsafety="unspecified" status="commendable" name="m_userId" fullname="UserInfo::SUserInfo::m_userId" href="userinfo-suserinfo.html#m_userId-var" location="userinfo.h" type="JID" static="false"/>
+                <variable access="public" threadsafety="unspecified" status="commendable" name="m_nickname" fullname="UserInfo::SUserInfo::m_nickname" href="userinfo-suserinfo.html#m_nickname-var" location="userinfo.h" type="QString" static="false"/>
+                <variable access="public" threadsafety="unspecified" status="commendable" name="m_organization" fullname="UserInfo::SUserInfo::m_organization" href="userinfo-suserinfo.html#m_organization-var" location="userinfo.h" type="QString" static="false"/>
+                <function access="public" threadsafety="unspecified" status="commendable" name="SUserInfo" fullname="UserInfo::SUserInfo::SUserInfo" href="userinfo-suserinfo.html#SUserInfo" location="userinfo.h" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="SUserInfo(JID id, const QString &amp; name, const QString &amp; org)">
+                    <parameter left="JID" right="" name="id" default="-1"/>
+                    <parameter left="const QString &amp;" right="" name="name" default="&quot;no such user&quot;"/>
+                    <parameter left="const QString &amp;" right="" name="org" default="&quot;error&quot;"/>
+                </function>
+            </class>
+        </namespace>
+        <class access="public" threadsafety="unspecified" status="commendable" name="JVersion" href="jversion.html" location="jversion.h" bases="" module="">
+            <function access="public" threadsafety="unspecified" status="commendable" name="JVersion" fullname="JVersion::JVersion" href="jversion.html#JVersion" location="jversion.h" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="JVersion(quint32 data)">
+                <parameter left="quint32" right="" name="data" default="0xFFFFFFFF"/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="isNull" fullname="JVersion::isNull" href="jversion.html#isNull" location="jversion.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="bool" signature="isNull() const"/>
+            <function access="public" threadsafety="unspecified" status="commendable" name="operator&lt;" fullname="JVersion::operator&lt;" href="jversion.html#operator&lt;" location="jversion.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="bool" signature="operator&lt;(const JVersion &amp; b) const">
+                <parameter left="const JVersion &amp;" right="" name="b" default=""/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="operator&gt;" fullname="JVersion::operator&gt;" href="jversion.html#operator&gt;" location="jversion.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="bool" signature="operator&gt;(const JVersion &amp; b) const">
+                <parameter left="const JVersion &amp;" right="" name="b" default=""/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="operator==" fullname="JVersion::operator==" href="jversion.html#operator==" location="jversion.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="bool" signature="operator==(const JVersion &amp; b) const">
+                <parameter left="const JVersion &amp;" right="" name="b" default=""/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="operator!=" fullname="JVersion::operator!=" href="jversion.html#operator!=" location="jversion.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="bool" signature="operator!=(const JVersion &amp; b) const">
+                <parameter left="const JVersion &amp;" right="" name="b" default=""/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="getData" fullname="JVersion::getData" href="jversion.html#getData" location="jversion.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="qint32" signature="getData() const"/>
+        </class>
+        <function access="public" threadsafety="unspecified" status="commendable" name="operator&lt;&lt;" href="jversion.html#operator&lt;&lt;" location="jversion.h" virtual="non" meta="plain" const="false" static="false" overload="false" relates="JVersion" type="QDataStream &amp;" signature="operator&lt;&lt;(QDataStream &amp; stream, const JVersion &amp; ver)">
+            <parameter left="QDataStream &amp;" right="" name="stream" default=""/>
+            <parameter left="const JVersion &amp;" right="" name="ver" default=""/>
+        </function>
+        <function access="public" threadsafety="unspecified" status="commendable" name="operator&gt;&gt;" href="jversion.html#operator&gt;&gt;" location="jversion.h" virtual="non" meta="plain" const="false" static="false" overload="false" relates="JVersion" type="QDataStream &amp;" signature="operator&gt;&gt;(QDataStream &amp; stream, JVersion &amp; ver)">
+            <parameter left="QDataStream &amp;" right="" name="stream" default=""/>
+            <parameter left="JVersion &amp;" right="" name="ver" default=""/>
+        </function>
+        <function access="public" threadsafety="unspecified" status="commendable" name="operator&gt;&gt;" href="userinfo-suserinfo.html#operator&gt;&gt;-2" location="userinfo.h" virtual="non" meta="plain" const="false" static="false" overload="true" overload-number="2" relates="SUserInfo" type="QDataStream &amp;" signature="operator&gt;&gt;(QDataStream &amp; stream, UserInfo::SUserInfo &amp; ui)">
+            <parameter left="QDataStream &amp;" right="" name="stream" default=""/>
+            <parameter left="UserInfo::SUserInfo &amp;" right="" name="ui" default=""/>
+        </function>
+        <function access="public" threadsafety="unspecified" status="commendable" name="operator&lt;&lt;" href="userinfo-suserinfo.html#operator&lt;&lt;-2" location="userinfo.h" virtual="non" meta="plain" const="false" static="false" overload="true" overload-number="2" relates="SUserInfo" type="QDataStream &amp;" signature="operator&lt;&lt;(QDataStream &amp; stream, const UserInfo::SUserInfo &amp; ui)">
+            <parameter left="QDataStream &amp;" right="" name="stream" default=""/>
+            <parameter left="const UserInfo::SUserInfo &amp;" right="" name="ui" default=""/>
+        </function>
+        <class access="public" threadsafety="unspecified" status="commendable" name="SHost" href="shost.html" location="shost.h" bases="" module="">
+            <function access="public" threadsafety="unspecified" status="commendable" name="SHost" fullname="SHost::SHost" href="shost.html#SHost" location="shost.h" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="SHost(const QHostAddress &amp; address, quint16 port)">
+                <parameter left="const QHostAddress &amp;" right="" name="address" default="QHostAddress::Null"/>
+                <parameter left="quint16" right="" name="port" default="0"/>
+            </function>
+            <variable access="public" threadsafety="unspecified" status="commendable" name="m_address" fullname="SHost::m_address" href="shost.html#m_address-var" location="shost.h" type="QHostAddress" static="false"/>
+            <variable access="public" threadsafety="unspecified" status="commendable" name="m_port" fullname="SHost::m_port" href="shost.html#m_port-var" location="shost.h" type="quint16" static="false"/>
+            <function access="public" threadsafety="unspecified" status="commendable" name="isNull" fullname="SHost::isNull" href="shost.html#isNull" location="shost.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="bool" signature="isNull() const"/>
+        </class>
+    </namespace>
+</INDEX>

@@ -1,0 +1,32 @@
+<!DOCTYPE DCF>
+<DCF ref="index.html" icon="api.png" imagedir="../../gif" title="api document">
+<section ref="classes.html" title="Classes">
+    <section ref="jversion.html" title="JVersion Class Reference">
+        <keyword ref="jversion.html">JVersion</keyword>
+        <keyword ref="jversion.html#getData">getData</keyword>
+        <keyword ref="jversion.html#isNull">isNull</keyword>
+        <keyword ref="jversion.html#operator-not-eq">operator!=</keyword>
+        <keyword ref="jversion.html#operator-lt">operator&lt;</keyword>
+        <keyword ref="jversion.html#operator-eq-eq">operator==</keyword>
+        <keyword ref="jversion.html#operator-gt">operator&gt;</keyword>
+        <keyword ref="jversion.html#operator-lt-lt">operator&lt;&lt;</keyword>
+        <keyword ref="jversion.html#operator-gt-gt">operator&gt;&gt;</keyword>
+        <section ref="jversion-members.html" title="List of all members"/>
+    </section>
+    <section ref="shost.html" title="SHost Class Reference">
+        <keyword ref="shost.html">SHost</keyword>
+        <keyword ref="shost.html#isNull">isNull</keyword>
+        <section ref="shost-members.html" title="List of all members"/>
+    </section>
+    <section ref="userinfo-suserinfo.html" title="SUserInfo Class Reference">
+        <keyword ref="userinfo-suserinfo.html">SUserInfo</keyword>
+        <section ref="userinfo-suserinfo-members.html" title="List of all members"/>
+    </section>
+    <section ref="userinfo.html" title="UserInfo Namespace">
+        <keyword ref="userinfo.html">UserInfo</keyword>
+        <keyword ref="userinfo-suserinfo.html">SUserInfo</keyword>
+    </section>
+</section>
+<section ref="overviews.html" title="Overviews"/>
+<section ref="examples.html" title="Tutorial &amp; Examples"/>
+</DCF>

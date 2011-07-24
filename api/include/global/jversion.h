@@ -7,9 +7,8 @@
 class GLOBALAPISHARED_EXPORT JVersion
 {
 public:
-	JVersion();
-	explicit JVersion(qint32 data);
-	bool isNull()const;//-1 is NULL
+	explicit JVersion(quint32 data=0xFFFFFFFF);
+	bool isNull()const;
 	bool operator<(const JVersion&)const;
 	bool operator>(const JVersion&)const;
 	bool operator==(const JVersion&)const;
@@ -20,9 +19,12 @@ private:
 	bool isHigherThan(const JVersion&)const;
 	
 private:
-	qint32 m_data;
+	quint32 m_data;
 	friend QDataStream& operator<<(QDataStream& stream,const JVersion& ver);
 	friend QDataStream& operator>>(QDataStream& stream,JVersion& ver);
 };
+
+QDataStream& operator<<(QDataStream& stream,const JVersion& ver);
+QDataStream& operator>>(QDataStream& stream,JVersion& ver);
 
 #endif
