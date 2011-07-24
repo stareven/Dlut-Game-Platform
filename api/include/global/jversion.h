@@ -1,7 +1,6 @@
 #ifndef JVERSION_H
 #define JVERSION_H
 
-#include "jglobal.h"
 #include "globalapi_global.h"
 
 class GLOBALAPISHARED_EXPORT JVersion
@@ -13,7 +12,7 @@ public:
 	bool operator>(const JVersion&)const;
 	bool operator==(const JVersion&)const;
 	bool operator!=(const JVersion&)const;
-	qint32 getData()const;
+	quint32 getData()const;
 private:
 	bool isLowerThan(const JVersion&)const;
 	bool isHigherThan(const JVersion&)const;

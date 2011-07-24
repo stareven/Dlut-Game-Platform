@@ -7,6 +7,7 @@
 
 #include "jversion.h"
 #include "shost.h"
+#include "jglobal.h"
 
 namespace SubServer{
 	struct SGameInfo0 {
