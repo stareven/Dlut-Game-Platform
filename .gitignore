@@ -3,5 +3,6 @@
 !*-build-desktop/Makefile
 */*.pro.user
 */*/*.pro.user
-api/lib*/*
-!api/lib*/Makefile
+api/*-build-desktop/*
+!api/*-build-desktop/Makefile
+api/lib/*

@@ -30,3 +30,4 @@ HEADERS += \
 		../include/network/jsocketbase.h \
 		../include/service/jplhrequestbase.h \
 		../include/service/jrequestbase.h
+DESTDIR = ../lib

@@ -14,3 +14,4 @@ DEFINES += SERVERAPI_LIBRARY
 SOURCES += \
     ../src/network/jserverbase.cpp \
     ../src/network/jconnectionbase.cpp
+DESTDIR = ../lib

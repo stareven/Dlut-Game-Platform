@@ -1,3 +1,3 @@
 include(serverapi.pri)
-LIBS += -L$$PWD/libserverapi -lserverapi
-QMAKE_RPATHDIR += $$PWD/libserverapi/
+LIBS += -L$$PWD/lib -lserverapi
+QMAKE_RPATHDIR += $$PWD/lib

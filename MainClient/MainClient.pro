@@ -33,4 +33,3 @@ FORMS += gui/mainwindow.ui \
     gui/dlglogin/jdlgnewserver.ui \
     gui/jdlgselectserver.ui
 include(../api/libclientapi.pri)
-include(../api/libglobalapi.pri)

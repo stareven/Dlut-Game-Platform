@@ -2,8 +2,9 @@
 #define JVERSION_H
 
 #include "jglobal.h"
+#include "globalapi_global.h"
 
-class JVersion
+class GLOBALAPISHARED_EXPORT JVersion
 {
 public:
 	JVersion();

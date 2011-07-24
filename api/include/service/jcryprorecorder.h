@@ -5,7 +5,9 @@
 
 #include "global/jglobal.h"
 
-class JCryproRecorder
+#include "clientapi_global.h"
+
+class CLIENTAPISHARED_EXPORT JCryproRecorder
 {
 public:
     JCryproRecorder();

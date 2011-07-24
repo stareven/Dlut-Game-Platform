@@ -5,11 +5,13 @@
 #include "global/jglobal.h"
 #include "global/ssubserver.h"
 
+#include "subserverapi_global.h"
+
 class JRequestPort;
 class JRequestLogin;
 class JSendGsInfo;
 
-class JSubServerStartup
+class SUBSERVERAPISHARED_EXPORT JSubServerStartup
 {
 public:
 	SHost m_host;

@@ -4,3 +4,5 @@ INCLUDEPATH += $$PWD/subserverapi/ \
 HEADERS += \
         $$PWD/subserverapi/subserverapi_global.h \
         $$PWD/include/service/jsubserverstartup.h
+include($$PWD/libglobalapi.pri)
+include($$PWD/libclientapi.pri)

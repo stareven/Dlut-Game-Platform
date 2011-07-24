@@ -1,3 +1,3 @@
 include(clientapi.pri)
-LIBS += -L$$PWD/libclientapi -lclientapi
-QMAKE_RPATHDIR += $$PWD/libclientapi/
+LIBS += -L$$PWD/lib -lclientapi
+QMAKE_RPATHDIR += $$PWD/lib

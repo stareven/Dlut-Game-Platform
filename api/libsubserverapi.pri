@@ -1,3 +1,3 @@
 include(subserverapi.pri)
-LIBS += -L$$PWD/libsubserverapi -lsubserverapi
-QMAKE_RPATHDIR += $$PWD/libsubserverapi/
+LIBS += -L$$PWD/lib -lsubserverapi
+QMAKE_RPATHDIR += $$PWD/lib

@@ -31,7 +31,5 @@ SOURCES += main/jargumentanalyse.cpp \
     service/jroommanager.cpp \
     ../SnakeCommon/jsnakestream.cpp \
     service/jsnakegameonserver.cpp
-include(../api/libclientapi.pri)
-include(../api/libglobalapi.pri)
 include(../api/libserverapi.pri)
 include(../api/libsubserverapi.pri)

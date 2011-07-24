@@ -9,5 +9,6 @@ HEADERS += \
 	$$PWD/include/global/eportsrv.h \
 	$$PWD/include/global/ssubserver.h \
     $$PWD/include/global/magicnumber.h \
-    $$PWD/include/global/userinfo.h
+	$$PWD/include/global/userinfo.h \
+	$$PWD/include/global/shost.h
     

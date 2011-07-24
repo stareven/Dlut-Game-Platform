@@ -42,4 +42,3 @@ FORMS    += gui/mainwindow.ui \
 RESOURCES += \
     res/res.qrc
 include(../api/libclientapi.pri)
-include(../api/libglobalapi.pri)

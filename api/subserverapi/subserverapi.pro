@@ -18,3 +18,4 @@ SOURCES += \
 HEADERS += \
 	../include/service/jsendgsinfo.h \
 	../include/network/jsendgsinfosocket.h
+DESTDIR = ../lib

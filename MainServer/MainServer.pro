@@ -44,4 +44,3 @@ SOURCES += main/main.cpp \
     network/juserinfoconnection.cpp \
 	database/juserinfodb.cpp
 include(../api/libserverapi.pri)
-include(../api/libglobalapi.pri)

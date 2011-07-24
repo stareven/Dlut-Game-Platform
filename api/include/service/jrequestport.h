@@ -7,9 +7,11 @@
 #include "global/eportsrv.h"
 #include "global/shost.h"
 
+#include "clientapi_global.h"
+
 class JRequestPortSocket;
 
-class JRequestPort : public QObject
+class CLIENTAPISHARED_EXPORT JRequestPort : public QObject
 {
     Q_OBJECT
 public:

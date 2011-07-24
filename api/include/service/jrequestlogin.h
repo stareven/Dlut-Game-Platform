@@ -4,9 +4,11 @@
 #include "jrequestbase.h"
 #include "global/elogin.h"
 
+#include "clientapi_global.h"
+
 class JRequestLoginSocket;
 
-class JRequestLogin : public JRequestBase
+class CLIENTAPISHARED_EXPORT JRequestLogin : public JRequestBase
 {
     Q_OBJECT
 public:

@@ -15,3 +15,4 @@ SOURCES += \
 	../src/global/jversion.cpp \
 	../src/global/userinfo.cpp \
 	../src/global/shost.cpp
+DESTDIR = ../lib

@@ -23,8 +23,5 @@ HEADERS += \
     network/jgfsconnection.h \
     service/jgamefilemanager.h \
     network/jgfsserver.h
-
-include(../api/libglobalapi.pri)
-include(../api/libclientapi.pri)
 include(../api/libserverapi.pri)
 include(../api/libsubserverapi.pri)
