@@ -3,7 +3,7 @@
 #include <QCoreApplication>
 
 #include "network/jrequestportsocket.h"
-#include "service/jcryprorecorder.h"
+#include "service/jloginhashcoderecorder.h"
 #include "global/jelapsedtimer.h"
 
 QMap<EServerType,SHost> JRequestPort::s_ports;
@@ -91,7 +91,7 @@ SHost JRequestPort::rqsServerPort(EServerType type)
 bool JRequestPort::passLoginHash(JRequestPortSocket& socket)
 {
     JElapsedTimer t;
-    JCryproRecorder cr;
+    JLoginHashCodeRecorder lhcr;
     t.start();
     m_plh=-1;
     while(t.elapsed()<1000)
@@ -105,12 +105,12 @@ bool JRequestPort::passLoginHash(JRequestPortSocket& socket)
             return false;
             break;
         case -1:
-            if(cr.getUserId()==-1 || cr.getCrypro().isEmpty())
+            if(lhcr.getUserId()==-1 || lhcr.getCode().isEmpty())
             {
                 qDebug()<<"JRequestPort::passLoginHash : have not record the login hash . can not request id list!";
                 return false;
             }
-            socket.sendCrypro(cr.getUserId(),cr.getCrypro());
+            socket.sendCrypro(lhcr.getUserId(),lhcr.getCode());
             m_plh=-2;
             break;
         case -2:

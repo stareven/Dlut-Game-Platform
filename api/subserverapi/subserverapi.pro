@@ -3,6 +3,7 @@
 # Project created by QtCreator 2011-07-22T10:40:24
 #
 #-------------------------------------------------
+QT -= gui
 TARGET = subserverapi
 TEMPLATE = lib
 

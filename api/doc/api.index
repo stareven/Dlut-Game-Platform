@@ -31,7 +31,7 @@
             <function access="public" threadsafety="unspecified" status="commendable" name="operator!=" fullname="JVersion::operator!=" href="jversion.html#operator!=" location="jversion.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="bool" signature="operator!=(const JVersion &amp; b) const">
                 <parameter left="const JVersion &amp;" right="" name="b" default=""/>
             </function>
-            <function access="public" threadsafety="unspecified" status="commendable" name="getData" fullname="JVersion::getData" href="jversion.html#getData" location="jversion.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="qint32" signature="getData() const"/>
+            <function access="public" threadsafety="unspecified" status="commendable" name="getData" fullname="JVersion::getData" href="jversion.html#getData" location="jversion.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="quint32" signature="getData() const"/>
         </class>
         <function access="public" threadsafety="unspecified" status="commendable" name="operator&lt;&lt;" href="jversion.html#operator&lt;&lt;" location="jversion.h" virtual="non" meta="plain" const="false" static="false" overload="false" relates="JVersion" type="QDataStream &amp;" signature="operator&lt;&lt;(QDataStream &amp; stream, const JVersion &amp; ver)">
             <parameter left="QDataStream &amp;" right="" name="stream" default=""/>

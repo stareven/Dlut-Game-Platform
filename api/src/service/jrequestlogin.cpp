@@ -4,7 +4,7 @@
 
 #include "network/jrequestloginsocket.h"
 #include "global/elogin.h"
-#include "service/jcryprorecorder.h"
+#include "service/jloginhashcoderecorder.h"
 #include "global/jelapsedtimer.h"
 
 JRequestLogin::JRequestLogin(QObject *parent) :
@@ -59,8 +59,8 @@ void JRequestLogin::on_socket_loginCode(JCode code)
     case EL_SUCCESS:
 		m_state=ELS_Success;
         {
-            JCryproRecorder cr;
-            cr.set(m_socket->getCrypro(),m_socket->getUserId());
+            JLoginHashCodeRecorder lhcr;
+            lhcr.set(m_socket->getCrypro(),m_socket->getUserId());
         }
 		emit loginResult(true);
         break;

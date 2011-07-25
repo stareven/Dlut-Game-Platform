@@ -97,6 +97,9 @@ Waiting for translation to English for this article
 	4 ： MainServer port
 	5 ： GameServer address
 	6 ： GameServer port
+17、关于login hash的命名：
+	1、登录码：LoginHashCode
+	2、登录码验证：LoginHashConfirm
 
 JDMD studio , Dalian University of Technology , China
 E-mail : elephant_liu@mail.dlut.edu.cn
