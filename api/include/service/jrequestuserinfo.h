@@ -3,14 +3,14 @@
 
 #include <QMap>
 
-#include "jplhrequestbase.h"
+#include "jlhcrequestbase.h"
 #include "global/userinfo.h"
 
 #include "clientapi_global.h"
 
 class JRequestUserInfoSocket;
 
-class CLIENTAPISHARED_EXPORT JRequestUserInfo : public JPlhRequestBase
+class CLIENTAPISHARED_EXPORT JRequestUserInfo : public JLhcRequestBase
 {
     Q_OBJECT
 public:

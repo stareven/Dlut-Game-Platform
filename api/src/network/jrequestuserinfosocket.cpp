@@ -5,7 +5,7 @@
 #include "global/userinfo.h"
 
 JRequestUserInfoSocket::JRequestUserInfoSocket(QObject *parent) :
-    JPlhSocketBase(parent)
+    JLhcSocketBase(parent)
 {
 }
 
@@ -17,7 +17,7 @@ void JRequestUserInfoSocket::rqsUserInfo(JID userId)
 	sendData(outdata);
 }
 
-void JRequestUserInfoSocket::afterPlh(const QByteArray& data)
+void JRequestUserInfoSocket::afterLhc(const QByteArray& data)
 {
 	QDataStream stream(data);
 	JID userId;

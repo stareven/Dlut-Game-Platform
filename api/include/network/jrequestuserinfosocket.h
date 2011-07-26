@@ -1,21 +1,21 @@
 #ifndef JREQUESTUSERINFOSOCKET_H
 #define JREQUESTUSERINFOSOCKET_H
 
-#include "jplhsocketbase.h"
+#include "jlhcsocketbase.h"
 
 namespace UserInfo
 {
 	class SUserInfo;
 }
 
-class JRequestUserInfoSocket : public JPlhSocketBase
+class JRequestUserInfoSocket : public JLhcSocketBase
 {
     Q_OBJECT
 public:
     explicit JRequestUserInfoSocket(QObject *parent = 0);
 	void rqsUserInfo(JID userId);
 protected:
-	void afterPlh(const QByteArray&);
+	void afterLhc(const QByteArray&);
 signals:
 	void rcvUserInfo(const UserInfo::SUserInfo&);
 private:

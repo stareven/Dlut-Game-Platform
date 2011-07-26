@@ -9,7 +9,7 @@
 QMap<JID,UserInfo::SUserInfo> JRequestUserInfo::s_userinfolist;
 
 JRequestUserInfo::JRequestUserInfo(QObject *parent) :
-    JPlhRequestBase(parent)
+    JLhcRequestBase(parent)
 {
 	m_socket=new JRequestUserInfoSocket(this);
 	connect(m_socket,SIGNAL(rcvUserInfo(UserInfo::SUserInfo)),SLOT(on_socket_rcvUserInfo(UserInfo::SUserInfo)));
