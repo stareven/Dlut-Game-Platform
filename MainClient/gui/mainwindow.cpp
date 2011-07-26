@@ -9,7 +9,7 @@
 #include "global/ssubserver.h"
 #include "service/jrequestuserinfo.h"
 #include "service/jrequestport.h"
-#include "service/jcryprorecorder.h"
+#include "service/jloginhashcoderecorder.h"
 
 #include "jdlgselectserver.h"
 
@@ -26,8 +26,8 @@ MainWindow::MainWindow(QWidget *parent) :
 	m_requserinfo=new JRequestUserInfo(this);
 	m_requserinfo->connectToHost(hostuserinfo.m_address,hostuserinfo.m_port);
 	m_requserinfo->waitForConnected(1000);
-	JCryproRecorder cr;
-	m_requserinfo->sendCrypro(cr.getUserId(),cr.getCrypro());
+	JLoginHashCodeRecorder lhcr;
+	m_requserinfo->sendCrypro(lhcr.getUserId(),lhcr.getCode());
 	m_requserinfo->waitForPlh(1000);
 }
 

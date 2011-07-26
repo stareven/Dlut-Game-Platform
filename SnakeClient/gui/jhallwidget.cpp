@@ -8,7 +8,7 @@
 #include "service/jglobalsettings.h"
 #include "service/jrequestuserinfo.h"
 #include "service/jrequestport.h"
-#include "service/jcryprorecorder.h"
+#include "service/jloginhashcoderecorder.h"
 #include "service/jroomlistmodel.h"
 
 JHallWidget::JHallWidget(QWidget *parent) :
@@ -47,8 +47,8 @@ JHallWidget::JHallWidget(QWidget *parent) :
 	}else{
 		qDebug()<<"user info connect success.";
 	}
-	JCryproRecorder cr;
-	m_reqUserInfo->sendCrypro(cr.getUserId(),cr.getCrypro());
+	JLoginHashCodeRecorder cr;
+	m_reqUserInfo->sendCrypro(cr.getUserId(),cr.getCode());
 	if(!m_reqUserInfo->waitForPlh(1000))
 	{
 		qDebug()<<"user info plh failed.";
@@ -109,7 +109,7 @@ void JHallWidget::om_socket_rcvAddRoom(const Snake::JRoom& room)
 
 void JHallWidget::om_socket_rcvEnterRoom(JID roomId,JID userId)
 {
-	if(roomId>0 && userId==JCryproRecorder().getUserId())
+	if(roomId>0 && userId==JLoginHashCodeRecorder().getUserId())
 	{
 		emit enterGame(1);
 	}else if(0==roomId){

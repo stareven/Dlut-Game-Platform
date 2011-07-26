@@ -3,7 +3,7 @@
 #include "service/jrequestport.h"
 #include "service/jrequestlogin.h"
 #include "service/jsendgsinfo.h"
-#include "service/jcryprorecorder.h"
+#include "service/jloginhashcoderecorder.h"
 
 JSubServerStartup::JSubServerStartup()
 {
@@ -37,8 +37,8 @@ JSubServerStartup::EReturnValue JSubServerStartup::startup()const
 				<<m_gis->error();
 		return ERV_ConnectFailed;
 	}
-	JCryproRecorder cr;
-	m_gis->sendCrypro(cr.getUserId(),cr.getCrypro());
+	JLoginHashCodeRecorder lhcr;
+	m_gis->sendCrypro(lhcr.getUserId(),lhcr.getCode());
 	if(!m_gis->waitForPassLoginHash(1000))
 	{
 		qDebug()<<"1 gis pass Login Hash failed . error :"

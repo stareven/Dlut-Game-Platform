@@ -12,7 +12,7 @@
 #include <QLCDNumber>
 
 #include "network/jsnakesocket.h"
-#include "service/jcryprorecorder.h"
+#include "service/jloginhashcoderecorder.h"
 
 const int INITX=20;
 const int INITY=30;
@@ -156,7 +156,7 @@ void JSnakeWidget::om_socket_rcvEnterRoom(JID roomId,JID userId)
 {
 	if(m_roomId<0)
 	{
-		if(roomId>0 && userId==JCryproRecorder().getUserId())
+		if(roomId>0 && userId==JLoginHashCodeRecorder().getUserId())
 		{
 			m_roomId=roomId;
 			ui->list_players->addItem(QString::number(userId));
@@ -173,7 +173,7 @@ void JSnakeWidget::om_socket_rcvEscapeRoom(JID roomId,JID userId)
 {
 	if(roomId==m_roomId)
 	{
-		if(userId==JCryproRecorder().getUserId())
+		if(userId==JLoginHashCodeRecorder().getUserId())
 		{
 			emit escape(0);
 		}else{

@@ -6,7 +6,7 @@
 #include <QHostAddress>
 
 #include "network/jrequestgameinfosocket.h"
-#include "service/jcryprorecorder.h"
+#include "service/jloginhashcoderecorder.h"
 #include "service/jrequestport.h"
 
 JRequestGameInfo::JRequestGameInfo(QObject *parent) :
@@ -49,7 +49,7 @@ void JRequestGameInfo::rqsServerInfo(JID serverId)
 bool JRequestGameInfo::passLoginHash()
 {
     JElapsedTimer t;
-    JCryproRecorder cr;
+    JLoginHashCodeRecorder lhcr;
     t.start();
     while(t.elapsed()<1000)
     {
@@ -62,14 +62,14 @@ bool JRequestGameInfo::passLoginHash()
             return false;
             break;
         case -1:
-            if(cr.getUserId()==-1 || cr.getCrypro().isEmpty())
+            if(lhcr.getUserId()==-1 || lhcr.getCode().isEmpty())
             {
                 qDebug()<<"JRequestGameInfo::rqsIdList : have not record the login hash . can not request id list!";
                 return false;
             }
             if(m_socket->isConnected())
             {
-                m_socket->sendCrypro(cr.getUserId(),cr.getCrypro());
+                m_socket->sendCrypro(lhcr.getUserId(),lhcr.getCode());
                 m_plh=-2;
             }
             break;

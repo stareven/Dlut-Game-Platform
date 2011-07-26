@@ -7,7 +7,7 @@
 #include <QFileInfo>
 
 #include "network/jdownloadgamefilesocket.h"
-#include "service/jcryprorecorder.h"
+#include "service/jloginhashcoderecorder.h"
 
 JDownloadRun::JDownloadRun()
 {
@@ -87,9 +87,9 @@ QString JDownloadRun::getPath()const
 QStringList JDownloadRun::getArguments()const
 {
 	QStringList ret;
-	JCryproRecorder cr;
-	ret<<QString::number(cr.getUserId());
-	ret<<cr.getCrypro().toHex().toUpper();
+	JLoginHashCodeRecorder lhcr;
+	ret<<QString::number(lhcr.getUserId());
+	ret<<lhcr.getCode().toHex().toUpper();
 	ret<<m_hosts[EHT_MainServer].m_address.toString();
 	ret<<QString::number(m_hosts[EHT_MainServer].m_port);
 	ret<<m_hosts[EHT_GameServer].m_address.toString();
