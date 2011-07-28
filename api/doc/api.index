@@ -14,6 +14,31 @@
                 </function>
             </class>
         </namespace>
+        <class access="public" threadsafety="unspecified" status="commendable" name="JLhcRequestBase" href="jlhcrequestbase.html" location="jlhcrequestbase.h" bases="" module="">
+            <function access="public" threadsafety="unspecified" status="commendable" name="JLhcRequestBase" fullname="JLhcRequestBase::JLhcRequestBase" href="jlhcrequestbase.html#JLhcRequestBase" location="jlhcrequestbase.h" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="JLhcRequestBase(QObject * parent)">
+                <parameter left="QObject *" right="" name="parent" default="0"/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="sendLoginHashCode" fullname="JLhcRequestBase::sendLoginHashCode" href="jlhcrequestbase.html#sendLoginHashCode" location="jlhcrequestbase.h" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="sendLoginHashCode(JID userId, const QByteArray &amp; code)">
+                <parameter left="JID" right="" name="userId" default=""/>
+                <parameter left="const QByteArray &amp;" right="" name="code" default=""/>
+            </function>
+            <enum access="public" threadsafety="unspecified" status="commendable" name="ELhcState" fullname="JLhcRequestBase::ELhcState" href="jlhcrequestbase.html#ELhcState-enum" location="jlhcrequestbase.h">
+                <value name="EPS_Init" value="0"/>
+                <value name="EPS_Sending" value="1"/>
+                <value name="EPS_Success" value="2"/>
+                <value name="EPS_Failed" value="3"/>
+            </enum>
+            <function access="public" threadsafety="unspecified" status="commendable" name="getLhcState" fullname="JLhcRequestBase::getLhcState" href="jlhcrequestbase.html#getLhcState" location="jlhcrequestbase.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="ELhcState" signature="getLhcState() const"/>
+            <function access="public" threadsafety="unspecified" status="commendable" name="waitForLhc" fullname="JLhcRequestBase::waitForLhc" href="jlhcrequestbase.html#waitForLhc" location="jlhcrequestbase.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="bool" signature="waitForLhc(int msecs) const">
+                <parameter left="int" right="" name="msecs" default="30000"/>
+            </function>
+            <function access="protected" threadsafety="unspecified" status="commendable" name="setSocket" fullname="JLhcRequestBase::setSocket" href="jlhcrequestbase.html#setSocket" location="jlhcrequestbase.cpp" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="setSocket(JLhcSocketBase * )">
+                <parameter left="JLhcSocketBase *" right="" name="" default=""/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="lhcResult" fullname="JLhcRequestBase::lhcResult" href="jlhcrequestbase.html#lhcResult" location="jlhcrequestbase.h" virtual="non" meta="signal" const="false" static="false" overload="false" type="void" signature="lhcResult(bool result)">
+                <parameter left="bool" right="" name="result" default=""/>
+            </function>
+        </class>
         <class access="public" threadsafety="unspecified" status="commendable" name="JVersion" href="jversion.html" location="jversion.h" bases="" module="">
             <function access="public" threadsafety="unspecified" status="commendable" name="JVersion" fullname="JVersion::JVersion" href="jversion.html#JVersion" location="jversion.h" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="JVersion(quint32 data)">
                 <parameter left="quint32" right="" name="data" default="0xFFFFFFFF"/>
@@ -57,6 +82,20 @@
             <variable access="public" threadsafety="unspecified" status="commendable" name="m_address" fullname="SHost::m_address" href="shost.html#m_address-var" location="shost.h" type="QHostAddress" static="false"/>
             <variable access="public" threadsafety="unspecified" status="commendable" name="m_port" fullname="SHost::m_port" href="shost.html#m_port-var" location="shost.h" type="quint16" static="false"/>
             <function access="public" threadsafety="unspecified" status="commendable" name="isNull" fullname="SHost::isNull" href="shost.html#isNull" location="shost.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="bool" signature="isNull() const"/>
+        </class>
+        <class access="public" threadsafety="unspecified" status="commendable" name="JLoginHashCodeRecorder" href="jloginhashcoderecorder.html" location="jloginhashcoderecorder.h" bases="" module="">
+            <function access="public" threadsafety="unspecified" status="commendable" name="set" fullname="JLoginHashCodeRecorder::set" href="jloginhashcoderecorder.html#set" location="jloginhashcoderecorder.h" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="set(const QByteArray &amp; code, JID userId)">
+                <parameter left="const QByteArray &amp;" right="" name="code" default=""/>
+                <parameter left="JID" right="" name="userId" default=""/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="setCode" fullname="JLoginHashCodeRecorder::setCode" href="jloginhashcoderecorder.html#setCode" location="jloginhashcoderecorder.h" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="setCode(const QByteArray &amp; code)">
+                <parameter left="const QByteArray &amp;" right="" name="code" default=""/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="setUserId" fullname="JLoginHashCodeRecorder::setUserId" href="jloginhashcoderecorder.html#setUserId" location="jloginhashcoderecorder.h" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="setUserId(JID userId)">
+                <parameter left="JID" right="" name="userId" default=""/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="getCode" fullname="JLoginHashCodeRecorder::getCode" href="jloginhashcoderecorder.html#getCode" location="jloginhashcoderecorder.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="const QByteArray &amp;" signature="getCode() const"/>
+            <function access="public" threadsafety="unspecified" status="commendable" name="getUserId" fullname="JLoginHashCodeRecorder::getUserId" href="jloginhashcoderecorder.html#getUserId" location="jloginhashcoderecorder.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="JID" signature="getUserId() const"/>
         </class>
     </namespace>
 </INDEX>

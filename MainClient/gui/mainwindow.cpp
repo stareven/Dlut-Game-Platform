@@ -27,8 +27,8 @@ MainWindow::MainWindow(QWidget *parent) :
 	m_requserinfo->connectToHost(hostuserinfo.m_address,hostuserinfo.m_port);
 	m_requserinfo->waitForConnected(1000);
 	JLoginHashCodeRecorder lhcr;
-	m_requserinfo->sendCrypro(lhcr.getUserId(),lhcr.getCode());
-	m_requserinfo->waitForPlh(1000);
+	m_requserinfo->sendLoginHashCode(lhcr.getUserId(),lhcr.getCode());
+	m_requserinfo->waitForLhc(1000);
 }
 
 MainWindow::~MainWindow()

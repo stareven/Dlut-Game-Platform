@@ -1,6 +1,29 @@
 <!DOCTYPE DCF>
 <DCF ref="index.html" icon="api.png" imagedir="../../gif" title="api document">
 <section ref="classes.html" title="Classes">
+    <section ref="jlhcrequestbase.html" title="JLhcRequestBase Class Reference">
+        <keyword ref="jlhcrequestbase.html">JLhcRequestBase</keyword>
+        <keyword ref="jlhcrequestbase.html#ELhcState-enum">ELhcState</keyword>
+        <keyword ref="jlhcrequestbase.html#ELhcState-enum">JLhcRequestBase::EPS_Success</keyword>
+        <keyword ref="jlhcrequestbase.html#ELhcState-enum">JLhcRequestBase::EPS_Init</keyword>
+        <keyword ref="jlhcrequestbase.html#ELhcState-enum">JLhcRequestBase::EPS_Sending</keyword>
+        <keyword ref="jlhcrequestbase.html#ELhcState-enum">JLhcRequestBase::EPS_Failed</keyword>
+        <keyword ref="jlhcrequestbase.html#getLhcState">getLhcState</keyword>
+        <keyword ref="jlhcrequestbase.html#lhcResult">lhcResult</keyword>
+        <keyword ref="jlhcrequestbase.html#sendLoginHashCode">sendLoginHashCode</keyword>
+        <keyword ref="jlhcrequestbase.html#setSocket">setSocket</keyword>
+        <keyword ref="jlhcrequestbase.html#waitForLhc">waitForLhc</keyword>
+        <section ref="jlhcrequestbase-members.html" title="List of all members"/>
+    </section>
+    <section ref="jloginhashcoderecorder.html" title="JLoginHashCodeRecorder Class Reference">
+        <keyword ref="jloginhashcoderecorder.html">JLoginHashCodeRecorder</keyword>
+        <keyword ref="jloginhashcoderecorder.html#getCode">getCode</keyword>
+        <keyword ref="jloginhashcoderecorder.html#getUserId">getUserId</keyword>
+        <keyword ref="jloginhashcoderecorder.html#set">set</keyword>
+        <keyword ref="jloginhashcoderecorder.html#setCode">setCode</keyword>
+        <keyword ref="jloginhashcoderecorder.html#setUserId">setUserId</keyword>
+        <section ref="jloginhashcoderecorder-members.html" title="List of all members"/>
+    </section>
     <section ref="jversion.html" title="JVersion Class Reference">
         <keyword ref="jversion.html">JVersion</keyword>
         <keyword ref="jversion.html#getData">getData</keyword>

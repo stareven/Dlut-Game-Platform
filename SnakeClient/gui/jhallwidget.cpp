@@ -48,8 +48,8 @@ JHallWidget::JHallWidget(QWidget *parent) :
 		qDebug()<<"user info connect success.";
 	}
 	JLoginHashCodeRecorder cr;
-	m_reqUserInfo->sendCrypro(cr.getUserId(),cr.getCode());
-	if(!m_reqUserInfo->waitForPlh(1000))
+	m_reqUserInfo->sendLoginHashCode(cr.getUserId(),cr.getCode());
+	if(!m_reqUserInfo->waitForLhc(1000))
 	{
 		qDebug()<<"user info plh failed.";
 		return;
