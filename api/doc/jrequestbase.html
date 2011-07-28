@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- jrequestbase.cpp -->
+  <title>JRequestBase Class Reference</title>
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+  <script src="scripts/jquery.js" type="text/javascript"></script>
+  <script src="scripts/functions.js" type="text/javascript"></script>
+</head>
+<body class="offline narrow creator">
+              <li><a href="modules.html">Modules</a></li>              <li>JRequestBase</li>
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-types">Public Types</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#protected-functions">Protected Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<h1 class="title">JRequestBase Class Reference</h1>
+<!-- $$$JRequestBase-brief -->
+<p>&#x5411;&#x670d;&#x52a1;&#x5668;&#x53d1;&#x9001;&#x8bf7;&#x6c42;&#x7684;&#x57fa;&#x7c7b;&#x3002; <a href="#details">More...</a></p>
+<!-- @@@JRequestBase -->
+<pre class="highlightedCode brush: cpp">    #include &lt;JRequestBase&gt;</pre><p>Inherited by <a href="jlhcrequestbase.html">JLhcRequestBase</a> and <a href="jrequestlogin.html">JRequestLogin</a>.</p>
+<ul>
+<li><a href="jrequestbase-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-types"></a>
+<h2>Public Types</h2>
+<table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="jrequestbase.html#EConnectState-enum">EConnectState</a></b> { ECS_Init, ECS_Connecting, ECS_Connected, ECS_Error }</td></tr>
+</table>
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="jrequestbase.html#JRequestBase">JRequestBase</a></b> ( QObject * <i>parent</i> = 0 )</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="jrequestbase.html#connectToHost">connectToHost</a></b> ( const QHostAddress &amp; <i>address</i>, quint16 <i>port</i> )</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QString &amp; </td><td class="memItemRight bottomAlign"><b><a href="jrequestbase.html#getConnectError">getConnectError</a></b> () const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> EConnectState </td><td class="memItemRight bottomAlign"><b><a href="jrequestbase.html#getConnectState">getConnectState</a></b> () const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="jrequestbase.html#waitForConnected">waitForConnected</a></b> ( int <i>msecs</i> = 30000 ) const</td></tr>
+</table>
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="jrequestbase.html#connectResult">connectResult</a></b> ( bool <i>result</i> )</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="jrequestbase.html#error">error</a></b> ()</td></tr>
+</table>
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="jrequestbase.html#setSocket">setSocket</a></b> ( JSocketBase * <i>socket</i> )</td></tr>
+</table>
+<a name="details"></a>
+<!-- $$$JRequestBase-description -->
+<div class="descr">
+<h2>Detailed Description</h2>
+<p>&#x5411;&#x670d;&#x52a1;&#x5668;&#x53d1;&#x9001;&#x8bf7;&#x6c42;&#x7684;&#x57fa;&#x7c7b;&#x3002;</p>
+<p>&#x5ba2;&#x6237;&#x7aef;&#x5411;&#x670d;&#x52a1;&#x5668;&#x53d1;&#x9001;&#x5404;&#x79cd;&#x8bf7;&#x6c42;&#xff0c;&#x9700;&#x8981;&#x5b8c;&#x6210;&#x5404;&#x79cd;&#x529f;&#x80fd;&#x3002; &#x8bf7;&#x6c42;&#x5c06;&#x6570;&#x636e;&#x4e0e;&#x5e95;&#x5c42;&#x7684;&#x5957;&#x63a5;&#x5b57;&#x5206;&#x5f00;&#xff0c;&#x5bf9;&#x5957;&#x63a5;&#x5b57;&#x8fdb;&#x884c;&#x4e86;&#x4e00;&#x5b9a;&#x7684;&#x5c01;&#x88c5;&#x3002; JRequestBase&#x5c01;&#x88c5;&#x4e86;&#x4e00;&#x6b64;&#x5404;&#x79cd;&#x8bf7;&#x6c42;&#x90fd;&#x9700;&#x8981;&#x7528;&#x5230;&#x7684;&#x529f;&#x80fd;&#x3002;</p>
+</div>
+<!-- @@@JRequestBase -->
+<div class="types">
+<h2>Member Type Documentation</h2>
+<!-- $$$EConnectState$$$ECS_Init$$$ECS_Connecting$$$ECS_Connected$$$ECS_Error -->
+<h3 class="fn"><a name="EConnectState-enum"></a>enum JRequestBase::EConnectState</h3>
+<p>&#x8fde;&#x63a5;&#x72b6;&#x6001;&#x3002;</p>
+<table class="valuelist"><tr class="odd"><tr><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td  class="topAlign"><tt>JRequestBase::ECS_Init</tt></td><td class=" topAlign"><tt>0</tt></td><td  class="topAlign">&#x521d;&#x59cb;&#x72b6;&#x6001;</td></tr>
+<tr><td  class="topAlign"><tt>JRequestBase::ECS_Connecting</tt></td><td class=" topAlign"><tt>1</tt></td><td  class="topAlign">&#x5df2;&#x7ecf;&#x5f00;&#x59cb;&#x8fde;&#x63a5;&#x5230;&#x670d;&#x52a1;&#x5668;</td></tr>
+<tr><td  class="topAlign"><tt>JRequestBase::ECS_Connected</tt></td><td class=" topAlign"><tt>2</tt></td><td  class="topAlign">&#x5df2;&#x7ecf;&#x6210;&#x529f;&#x8fde;&#x63a5;&#x5230;&#x670d;&#x52a1;&#x5668;</td></tr>
+<tr><td  class="topAlign"><tt>JRequestBase::ECS_Error</tt></td><td class=" topAlign"><tt>3</tt></td><td  class="topAlign">&#x53d1;&#x751f;&#x9519;&#x8bef;</td></tr>
+</table>
+<!-- @@@EConnectState -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$JRequestBase[overload1]$$$JRequestBaseQObject* -->
+<h3 class="fn"><a name="JRequestBase"></a>JRequestBase::JRequestBase ( QObject * <i>parent</i> = 0 )</h3>
+<p>&#x6784;&#x9020;&#x51fd;&#x6570;&#x3002;</p>
+<!-- @@@JRequestBase -->
+<!-- $$$connectResult[overload1]$$$connectResultbool -->
+<h3 class="fn"><a name="connectResult"></a>void JRequestBase::connectResult ( bool <i>result</i> )<tt> [signal]</tt></h3>
+<p>&#x8fde;&#x63a5;&#x7ed3;&#x679c;&#x3002; <i>result</i> &#x8868;&#x793a;&#x662f;&#x5426;&#x8fde;&#x63a5;&#x6210;&#x529f;&#x3002;</p>
+<!-- @@@connectResult -->
+<!-- $$$connectToHost[overload1]$$$connectToHostconstQHostAddress&quint16 -->
+<h3 class="fn"><a name="connectToHost"></a>void JRequestBase::connectToHost ( const QHostAddress &amp; <i>address</i>, quint16 <i>port</i> )</h3>
+<p>&#x8fde;&#x63a5;&#x5230;&#x5730;&#x5740;&#x4e3a;<i>address</i> &#x7aef;&#x53e3;&#x4e3a;<i>port</i> &#x7684;&#x670d;&#x52a1;&#x5668;&#x3002; &#x82e5;&#x5957;&#x63a5;&#x5b57;&#x4e3a;&#x7a7a;&#xff0c;&#x5219;&#x63d0;&#x793a;&#x9519;&#x8bef;&#x5e76;&#x7acb;&#x5373;&#x8fd4;&#x56de;&#x3002; &#x82e5;&#x5df2;&#x7ecf;&#x8fde;&#x63a5;&#xff0c;&#x5219;&#x7acb;&#x5373;&#x8fd4;&#x56de;&#x3002;</p>
+<!-- @@@connectToHost -->
+<!-- $$$error[overload1]$$$error -->
+<h3 class="fn"><a name="error"></a>void JRequestBase::error ()<tt> [signal]</tt></h3>
+<p>&#x53d1;&#x751f;&#x9519;&#x8bef;&#x3002; &#x53ef;&#x4ee5;&#x901a;&#x8fc7;<a href="jrequestbase.html#getConnectError">getConnectError</a>()&#x51fd;&#x6570;&#x83b7;&#x53d6;&#x9519;&#x8bef;&#x7684;&#x5177;&#x4f53;&#x5185;&#x5bb9;&#x3002;</p>
+<p>See also <a href="jrequestbase.html#getConnectError">getConnectError</a>().</p>
+<!-- @@@error -->
+<!-- $$$getConnectError[overload1]$$$getConnectError -->
+<h3 class="fn"><a name="getConnectError"></a>const QString &amp; JRequestBase::getConnectError () const</h3>
+<p>&#x4ee5;&#x53ef;&#x8bfb;&#x7684;&#x5f62;&#x5f0f;&#x8fd4;&#x56de;&#x8fde;&#x63a5;&#x9519;&#x8bef;&#x3002;</p>
+<!-- @@@getConnectError -->
+<!-- $$$getConnectState[overload1]$$$getConnectState -->
+<h3 class="fn"><a name="getConnectState"></a><a href="jrequestbase.html#EConnectState-enum">EConnectState</a> JRequestBase::getConnectState () const</h3>
+<p>&#x83b7;&#x53d6;&#x5f53;&#x524d;&#x7684;&#x8fde;&#x63a5;&#x72b6;&#x6001;&#x3002;</p>
+<p>See also <a href="jrequestbase.html#EConnectState-enum">EConnectState</a>.</p>
+<!-- @@@getConnectState -->
+<!-- $$$setSocket[overload1]$$$setSocketJSocketBase* -->
+<h3 class="fn"><a name="setSocket"></a>void JRequestBase::setSocket ( JSocketBase * <i>socket</i> )<tt> [protected]</tt></h3>
+<!-- @@@setSocket -->
+<!-- $$$waitForConnected[overload1]$$$waitForConnectedint -->
+<h3 class="fn"><a name="waitForConnected"></a>bool JRequestBase::waitForConnected ( int <i>msecs</i> = 30000 ) const</h3>
+<p>&#x7b49;&#x5f85;<i>msecs</i> &#x6beb;&#x79d2;&#x6216;&#x6536;&#x5230;&#x8fde;&#x63a5;&#x7ed3;&#x679c;&#x3002; &#x8fd4;&#x56de;true &#xff1a; &#x8fde;&#x63a5;&#x6210;&#x529f;&#x3002; &#x8fd4;&#x56de;false &#xff1a; &#x8fde;&#x63a5;&#x5931;&#x8d25;&#x6216;&#x65f6;&#x95f4;&#x8d85;&#x8fc7;<i>msecs</i> &#x6beb;&#x79d2;&#x3002;</p>
+<!-- @@@waitForConnected -->
+</div>
+</body>
+</html>

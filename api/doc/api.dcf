@@ -24,6 +24,50 @@
         <keyword ref="jloginhashcoderecorder.html#setUserId">setUserId</keyword>
         <section ref="jloginhashcoderecorder-members.html" title="List of all members"/>
     </section>
+    <section ref="jrequestbase.html" title="JRequestBase Class Reference">
+        <keyword ref="jrequestbase.html">JRequestBase</keyword>
+        <keyword ref="jrequestbase.html#EConnectState-enum">EConnectState</keyword>
+        <keyword ref="jrequestbase.html#EConnectState-enum">JRequestBase::ECS_Init</keyword>
+        <keyword ref="jrequestbase.html#EConnectState-enum">JRequestBase::ECS_Error</keyword>
+        <keyword ref="jrequestbase.html#EConnectState-enum">JRequestBase::ECS_Connected</keyword>
+        <keyword ref="jrequestbase.html#EConnectState-enum">JRequestBase::ECS_Connecting</keyword>
+        <keyword ref="jrequestbase.html#connectResult">connectResult</keyword>
+        <keyword ref="jrequestbase.html#connectToHost">connectToHost</keyword>
+        <keyword ref="jrequestbase.html#error">error</keyword>
+        <keyword ref="jrequestbase.html#getConnectError">getConnectError</keyword>
+        <keyword ref="jrequestbase.html#getConnectState">getConnectState</keyword>
+        <keyword ref="jrequestbase.html#setSocket">setSocket</keyword>
+        <keyword ref="jrequestbase.html#waitForConnected">waitForConnected</keyword>
+        <section ref="jrequestbase-members.html" title="List of all members"/>
+    </section>
+    <section ref="jrequestlogin.html" title="JRequestLogin Class Reference">
+        <keyword ref="jrequestlogin.html">JRequestLogin</keyword>
+        <keyword ref="jrequestlogin.html#ELoginState-enum">ELoginState</keyword>
+        <keyword ref="jrequestlogin.html#ELoginState-enum">JRequestLogin::ELS_Sending</keyword>
+        <keyword ref="jrequestlogin.html#ELoginState-enum">JRequestLogin::ELS_Failed</keyword>
+        <keyword ref="jrequestlogin.html#ELoginState-enum">JRequestLogin::ELS_Init</keyword>
+        <keyword ref="jrequestlogin.html#ELoginState-enum">JRequestLogin::ELS_Success</keyword>
+        <keyword ref="jrequestlogin.html#getLoginError">getLoginError</keyword>
+        <keyword ref="jrequestlogin.html#getLoginState">getLoginState</keyword>
+        <keyword ref="jrequestlogin.html#login">login</keyword>
+        <keyword ref="jrequestlogin.html#loginResult">loginResult</keyword>
+        <keyword ref="jrequestlogin.html#on_socket_loginCode">on_socket_loginCode</keyword>
+        <keyword ref="jrequestlogin.html#waitForLogined">waitForLogined</keyword>
+        <keyword ref="jrequestlogin.html#ELogin-enum">ELogin</keyword>
+        <keyword ref="jrequestlogin.html#ELogin-enum">EL_ALREADY_LOGIN</keyword>
+        <keyword ref="jrequestlogin.html#ELogin-enum">EL_SUCCESS</keyword>
+        <keyword ref="jrequestlogin.html#ELogin-enum">EL_PASSWD_WRONG</keyword>
+        <keyword ref="jrequestlogin.html#ELogin-enum">EL_NO_SUCH_ROLE</keyword>
+        <keyword ref="jrequestlogin.html#ELogin-enum">EL_SOCKET_DISCONNECTED</keyword>
+        <keyword ref="jrequestlogin.html#ELogin-enum">EL_NO_SUCH_USER</keyword>
+        <keyword ref="jrequestlogin.html#ERole-enum">ERole</keyword>
+        <keyword ref="jrequestlogin.html#ERole-enum">ROLE_GAMEDESIGNER</keyword>
+        <keyword ref="jrequestlogin.html#ERole-enum">ROLE_ROOT</keyword>
+        <keyword ref="jrequestlogin.html#ERole-enum">ROLE_GAMESERVERRUNNER</keyword>
+        <keyword ref="jrequestlogin.html#ERole-enum">ROLE_GAMEPLAYER</keyword>
+        <keyword ref="jrequestlogin.html#ERole-enum">ROLE_ADMIN</keyword>
+        <section ref="jrequestlogin-members.html" title="List of all members"/>
+    </section>
     <section ref="jversion.html" title="JVersion Class Reference">
         <keyword ref="jversion.html">JVersion</keyword>
         <keyword ref="jversion.html#getData">getData</keyword>

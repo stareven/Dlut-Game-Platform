@@ -14,7 +14,7 @@
                 </function>
             </class>
         </namespace>
-        <class access="public" threadsafety="unspecified" status="commendable" name="JLhcRequestBase" href="jlhcrequestbase.html" location="jlhcrequestbase.h" bases="" module="">
+        <class access="public" threadsafety="unspecified" status="commendable" name="JLhcRequestBase" href="jlhcrequestbase.html" location="jlhcrequestbase.h" bases="JRequestBase" module="">
             <function access="public" threadsafety="unspecified" status="commendable" name="JLhcRequestBase" fullname="JLhcRequestBase::JLhcRequestBase" href="jlhcrequestbase.html#JLhcRequestBase" location="jlhcrequestbase.h" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="JLhcRequestBase(QObject * parent)">
                 <parameter left="QObject *" right="" name="parent" default="0"/>
             </function>
@@ -38,6 +38,33 @@
             <function access="public" threadsafety="unspecified" status="commendable" name="lhcResult" fullname="JLhcRequestBase::lhcResult" href="jlhcrequestbase.html#lhcResult" location="jlhcrequestbase.h" virtual="non" meta="signal" const="false" static="false" overload="false" type="void" signature="lhcResult(bool result)">
                 <parameter left="bool" right="" name="result" default=""/>
             </function>
+        </class>
+        <class access="public" threadsafety="unspecified" status="commendable" name="JRequestBase" href="jrequestbase.html" location="jrequestbase.h" bases="" module="">
+            <function access="public" threadsafety="unspecified" status="commendable" name="JRequestBase" fullname="JRequestBase::JRequestBase" href="jrequestbase.html#JRequestBase" location="jrequestbase.h" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="JRequestBase(QObject * parent)">
+                <parameter left="QObject *" right="" name="parent" default="0"/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="connectToHost" fullname="JRequestBase::connectToHost" href="jrequestbase.html#connectToHost" location="jrequestbase.h" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="connectToHost(const QHostAddress &amp; address, quint16 port)">
+                <parameter left="const QHostAddress &amp;" right="" name="address" default=""/>
+                <parameter left="quint16" right="" name="port" default=""/>
+            </function>
+            <enum access="public" threadsafety="unspecified" status="commendable" name="EConnectState" fullname="JRequestBase::EConnectState" href="jrequestbase.html#EConnectState-enum" location="jrequestbase.h">
+                <value name="ECS_Init" value="0"/>
+                <value name="ECS_Connecting" value="1"/>
+                <value name="ECS_Connected" value="2"/>
+                <value name="ECS_Error" value="3"/>
+            </enum>
+            <function access="public" threadsafety="unspecified" status="commendable" name="getConnectState" fullname="JRequestBase::getConnectState" href="jrequestbase.html#getConnectState" location="jrequestbase.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="EConnectState" signature="getConnectState() const"/>
+            <function access="public" threadsafety="unspecified" status="commendable" name="waitForConnected" fullname="JRequestBase::waitForConnected" href="jrequestbase.html#waitForConnected" location="jrequestbase.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="bool" signature="waitForConnected(int msecs) const">
+                <parameter left="int" right="" name="msecs" default="30000"/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="getConnectError" fullname="JRequestBase::getConnectError" href="jrequestbase.html#getConnectError" location="jrequestbase.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="const QString &amp;" signature="getConnectError() const"/>
+            <function access="protected" threadsafety="unspecified" status="commendable" name="setSocket" fullname="JRequestBase::setSocket" href="jrequestbase.html#setSocket" location="jrequestbase.cpp" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="setSocket(JSocketBase * socket)">
+                <parameter left="JSocketBase *" right="" name="socket" default=""/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="connectResult" fullname="JRequestBase::connectResult" href="jrequestbase.html#connectResult" location="jrequestbase.h" virtual="non" meta="signal" const="false" static="false" overload="false" type="void" signature="connectResult(bool result)">
+                <parameter left="bool" right="" name="result" default=""/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="error" fullname="JRequestBase::error" href="jrequestbase.html#error" location="jrequestbase.h" virtual="non" meta="signal" const="false" static="false" overload="false" type="void" signature="error()"/>
         </class>
         <class access="public" threadsafety="unspecified" status="commendable" name="JVersion" href="jversion.html" location="jversion.h" bases="" module="">
             <function access="public" threadsafety="unspecified" status="commendable" name="JVersion" fullname="JVersion::JVersion" href="jversion.html#JVersion" location="jversion.h" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="JVersion(quint32 data)">
@@ -74,6 +101,21 @@
             <parameter left="QDataStream &amp;" right="" name="stream" default=""/>
             <parameter left="const UserInfo::SUserInfo &amp;" right="" name="ui" default=""/>
         </function>
+        <enum access="public" threadsafety="unspecified" status="commendable" name="ERole" href="jrequestlogin.html#ERole-enum" location="elogin.h">
+            <value name="ROLE_GAMEPLAYER" value="0"/>
+            <value name="ROLE_GAMEDESIGNER" value="1"/>
+            <value name="ROLE_GAMESERVERRUNNER" value="2"/>
+            <value name="ROLE_ADMIN" value="3"/>
+            <value name="ROLE_ROOT" value="4"/>
+        </enum>
+        <enum access="public" threadsafety="unspecified" status="commendable" name="ELogin" href="jrequestlogin.html#ELogin-enum" location="elogin.h">
+            <value name="EL_SUCCESS" value="0"/>
+            <value name="EL_NO_SUCH_USER" value="1"/>
+            <value name="EL_PASSWD_WRONG" value="2"/>
+            <value name="EL_NO_SUCH_ROLE" value="3"/>
+            <value name="EL_ALREADY_LOGIN" value="4"/>
+            <value name="EL_SOCKET_DISCONNECTED" value="5"/>
+        </enum>
         <class access="public" threadsafety="unspecified" status="commendable" name="SHost" href="shost.html" location="shost.h" bases="" module="">
             <function access="public" threadsafety="unspecified" status="commendable" name="SHost" fullname="SHost::SHost" href="shost.html#SHost" location="shost.h" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="SHost(const QHostAddress &amp; address, quint16 port)">
                 <parameter left="const QHostAddress &amp;" right="" name="address" default="QHostAddress::Null"/>
@@ -96,6 +138,33 @@
             </function>
             <function access="public" threadsafety="unspecified" status="commendable" name="getCode" fullname="JLoginHashCodeRecorder::getCode" href="jloginhashcoderecorder.html#getCode" location="jloginhashcoderecorder.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="const QByteArray &amp;" signature="getCode() const"/>
             <function access="public" threadsafety="unspecified" status="commendable" name="getUserId" fullname="JLoginHashCodeRecorder::getUserId" href="jloginhashcoderecorder.html#getUserId" location="jloginhashcoderecorder.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="JID" signature="getUserId() const"/>
+        </class>
+        <class access="public" threadsafety="unspecified" status="commendable" name="JRequestLogin" href="jrequestlogin.html" location="jrequestlogin.h" bases="JRequestBase" module="">
+            <function access="public" threadsafety="unspecified" status="commendable" name="JRequestLogin" fullname="JRequestLogin::JRequestLogin" href="jrequestlogin.html#JRequestLogin" location="jrequestlogin.h" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="JRequestLogin(QObject * parent)">
+                <parameter left="QObject *" right="" name="parent" default="0"/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="login" fullname="JRequestLogin::login" href="jrequestlogin.html#login" location="jrequestlogin.h" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="login(const QString &amp; loginname, const QString &amp; passwd, const JID &amp; role)">
+                <parameter left="const QString &amp;" right="" name="loginname" default=""/>
+                <parameter left="const QString &amp;" right="" name="passwd" default=""/>
+                <parameter left="const JID &amp;" right="" name="role" default=""/>
+            </function>
+            <enum access="public" threadsafety="unspecified" status="commendable" name="ELoginState" fullname="JRequestLogin::ELoginState" href="jrequestlogin.html#ELoginState-enum" location="jrequestlogin.h">
+                <value name="ELS_Init" value="0"/>
+                <value name="ELS_Sending" value="1"/>
+                <value name="ELS_Success" value="2"/>
+                <value name="ELS_Failed" value="3"/>
+            </enum>
+            <function access="public" threadsafety="unspecified" status="commendable" name="getLoginState" fullname="JRequestLogin::getLoginState" href="jrequestlogin.html#getLoginState" location="jrequestlogin.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="ELoginState" signature="getLoginState() const"/>
+            <function access="public" threadsafety="unspecified" status="commendable" name="waitForLogined" fullname="JRequestLogin::waitForLogined" href="jrequestlogin.html#waitForLogined" location="jrequestlogin.h" virtual="non" meta="plain" const="false" static="false" overload="false" type="bool" signature="waitForLogined(int msecs)">
+                <parameter left="int" right="" name="msecs" default="30000"/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="getLoginError" fullname="JRequestLogin::getLoginError" href="jrequestlogin.html#getLoginError" location="jrequestlogin.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="const QString &amp;" signature="getLoginError() const"/>
+            <function access="public" threadsafety="unspecified" status="commendable" name="loginResult" fullname="JRequestLogin::loginResult" href="jrequestlogin.html#loginResult" location="jrequestlogin.h" virtual="non" meta="signal" const="false" static="false" overload="false" type="void" signature="loginResult(bool result)">
+                <parameter left="bool" right="" name="result" default=""/>
+            </function>
+            <function access="protected" threadsafety="unspecified" status="commendable" name="on_socket_loginCode" fullname="JRequestLogin::on_socket_loginCode" href="jrequestlogin.html#on_socket_loginCode" location="jrequestlogin.cpp" virtual="non" meta="slot" const="false" static="false" overload="false" type="void" signature="on_socket_loginCode(JCode )">
+                <parameter left="JCode" right="" name="" default=""/>
+            </function>
         </class>
     </namespace>
 </INDEX>

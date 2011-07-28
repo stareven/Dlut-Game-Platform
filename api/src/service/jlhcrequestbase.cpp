@@ -13,7 +13,7 @@
 	当已经连接成功后，需要调用 sendLoginHashCode() 发送Login hash code。
 	之后可以监听lhcResult() 信号或调用waitForLhc() 函数来获得Login hash confirm的结果。
 
-	\sa JLoginHashCodeRecorder JRequestBase
+	\sa JLoginHashCodeRecorder, JRequestBase
 */
 
 /*!
