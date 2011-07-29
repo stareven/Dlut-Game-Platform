@@ -58,6 +58,7 @@
 	\brief 登录结果
 
 	\a result 表示是否登录成功。
+	如果登录成功，在发出这个信号前，JRequestLogin 会自动通过 JLoginHashCodeRecorder 记录 userId 及 Login hash code 。
 */
 
 /*!

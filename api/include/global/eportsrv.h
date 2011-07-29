@@ -1,7 +1,7 @@
 #ifndef EPORTSRV_H
 #define EPORTSRV_H
 
-enum EPSProtocol{EPP_LOGINHASH,EPP_PORT};
+//enum EPSProtocol{EPP_LOGINHASH,EPP_PORT};
 enum EServerType{
     EST_LOGIN,
     EST_GAMEINFO,

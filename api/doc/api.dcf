@@ -68,6 +68,31 @@
         <keyword ref="jrequestlogin.html#ERole-enum">ROLE_ADMIN</keyword>
         <section ref="jrequestlogin-members.html" title="List of all members"/>
     </section>
+    <section ref="jrequestport.html" title="JRequestPort Class Reference">
+        <keyword ref="jrequestport.html">JRequestPort</keyword>
+        <keyword ref="jrequestport.html#getError">getError</keyword>
+        <keyword ref="jrequestport.html#getServerPort">getServerPort</keyword>
+        <keyword ref="jrequestport.html#on_socket_SocketError">on_socket_SocketError</keyword>
+        <keyword ref="jrequestport.html#on_socket_rcvPassLoginHash">on_socket_rcvPassLoginHash</keyword>
+        <keyword ref="jrequestport.html#on_socket_rcvServerPort">on_socket_rcvServerPort</keyword>
+        <keyword ref="jrequestport.html#passLoginHash">passLoginHash</keyword>
+        <keyword ref="jrequestport.html#rqsServerPort">rqsServerPort</keyword>
+        <keyword ref="jrequestport.html#setServerPort">setServerPort</keyword>
+        <keyword ref="jrequestport.html#EServerType-enum">EServerType</keyword>
+        <keyword ref="jrequestport.html#EServerType-enum">EST_GAMEINFO</keyword>
+        <keyword ref="jrequestport.html#EServerType-enum">EST_FREEPORT</keyword>
+        <keyword ref="jrequestport.html#EServerType-enum">EST_MAX</keyword>
+        <keyword ref="jrequestport.html#EServerType-enum">EST_USERINFO</keyword>
+        <keyword ref="jrequestport.html#EServerType-enum">EST_LOGIN</keyword>
+        <keyword ref="jrequestport.html#EServerType-enum">EST_SECRETPORT</keyword>
+        <keyword ref="jrequestport.html#EServerType-enum">EST_SUBSERVER</keyword>
+        <section ref="jrequestport-members.html" title="List of all members"/>
+    </section>
+    <section ref="jrequestuserinfo.html" title="JRequestUserInfo Class Reference">
+        <keyword ref="jrequestuserinfo.html">JRequestUserInfo</keyword>
+        <keyword ref="jrequestuserinfo.html#rqsUserInfo">rqsUserInfo</keyword>
+        <section ref="jrequestuserinfo-members.html" title="List of all members"/>
+    </section>
     <section ref="jversion.html" title="JVersion Class Reference">
         <keyword ref="jversion.html">JVersion</keyword>
         <keyword ref="jversion.html#getData">getData</keyword>

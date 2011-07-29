@@ -7,8 +7,8 @@
 	\brief 玩家信息相关。
 */
 
-/*
-	\class SUserInfo
+/*!
+	\class UserInfo::SUserInfo
 	\brief 记录一名玩家的信息。
 
 	包括玩家的Id，昵称和组织名。

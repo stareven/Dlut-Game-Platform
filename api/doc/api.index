@@ -39,6 +39,34 @@
                 <parameter left="bool" right="" name="result" default=""/>
             </function>
         </class>
+        <class access="public" threadsafety="unspecified" status="commendable" name="JRequestPort" href="jrequestport.html" location="jrequestport.h" bases="" module="">
+            <function access="public" threadsafety="unspecified" status="commendable" name="JRequestPort" fullname="JRequestPort::JRequestPort" href="jrequestport.html#JRequestPort" location="jrequestport.h" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="JRequestPort(QObject * parent)">
+                <parameter left="QObject *" right="" name="parent" default="0"/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="setServerPort" fullname="JRequestPort::setServerPort" href="jrequestport.html#setServerPort" location="jrequestport.h" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="setServerPort(EServerType type, const SHost &amp; host)">
+                <parameter left="EServerType" right="" name="type" default=""/>
+                <parameter left="const SHost &amp;" right="" name="host" default=""/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="rqsServerPort" fullname="JRequestPort::rqsServerPort" href="jrequestport.html#rqsServerPort" location="jrequestport.h" virtual="non" meta="plain" const="false" static="false" overload="false" type="SHost" signature="rqsServerPort(EServerType type)">
+                <parameter left="EServerType" right="" name="type" default=""/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="getError" fullname="JRequestPort::getError" href="jrequestport.html#getError" location="jrequestport.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="const QString &amp;" signature="getError() const"/>
+            <function access="protected" threadsafety="unspecified" status="commendable" name="getServerPort" fullname="JRequestPort::getServerPort" href="jrequestport.html#getServerPort" location="jrequestport.cpp" virtual="non" meta="plain" const="true" static="false" overload="false" type="SHost" signature="getServerPort(EServerType ) const">
+                <parameter left="EServerType" right="" name="" default=""/>
+            </function>
+            <function access="protected" threadsafety="unspecified" status="commendable" name="passLoginHash" fullname="JRequestPort::passLoginHash" href="jrequestport.html#passLoginHash" location="jrequestport.cpp" virtual="non" meta="plain" const="false" static="false" overload="false" type="bool" signature="passLoginHash(JRequestPortSocket &amp; )">
+                <parameter left="JRequestPortSocket &amp;" right="" name="" default=""/>
+            </function>
+            <function access="protected" threadsafety="unspecified" status="commendable" name="on_socket_rcvPassLoginHash" fullname="JRequestPort::on_socket_rcvPassLoginHash" href="jrequestport.html#on_socket_rcvPassLoginHash" location="jrequestport.cpp" virtual="non" meta="slot" const="false" static="false" overload="false" type="void" signature="on_socket_rcvPassLoginHash(bool )">
+                <parameter left="bool" right="" name="" default=""/>
+            </function>
+            <function access="protected" threadsafety="unspecified" status="commendable" name="on_socket_rcvServerPort" fullname="JRequestPort::on_socket_rcvServerPort" href="jrequestport.html#on_socket_rcvServerPort" location="jrequestport.cpp" virtual="non" meta="slot" const="false" static="false" overload="false" type="void" signature="on_socket_rcvServerPort(quint16 )">
+                <parameter left="quint16" right="" name="" default=""/>
+            </function>
+            <function access="protected" threadsafety="unspecified" status="commendable" name="on_socket_SocketError" fullname="JRequestPort::on_socket_SocketError" href="jrequestport.html#on_socket_SocketError" location="jrequestport.cpp" virtual="non" meta="slot" const="false" static="false" overload="false" type="void" signature="on_socket_SocketError(const QString &amp; )">
+                <parameter left="const QString &amp;" right="" name="" default=""/>
+            </function>
+        </class>
         <class access="public" threadsafety="unspecified" status="commendable" name="JRequestBase" href="jrequestbase.html" location="jrequestbase.h" bases="" module="">
             <function access="public" threadsafety="unspecified" status="commendable" name="JRequestBase" fullname="JRequestBase::JRequestBase" href="jrequestbase.html#JRequestBase" location="jrequestbase.h" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="JRequestBase(QObject * parent)">
                 <parameter left="QObject *" right="" name="parent" default="0"/>
@@ -93,6 +121,15 @@
             <parameter left="QDataStream &amp;" right="" name="stream" default=""/>
             <parameter left="JVersion &amp;" right="" name="ver" default=""/>
         </function>
+        <enum access="public" threadsafety="unspecified" status="commendable" name="EServerType" href="jrequestport.html#EServerType-enum" location="eportsrv.h">
+            <value name="EST_LOGIN" value="0"/>
+            <value name="EST_GAMEINFO" value="1"/>
+            <value name="EST_FREEPORT" value="2"/>
+            <value name="EST_SECRETPORT" value="3"/>
+            <value name="EST_SUBSERVER" value="4"/>
+            <value name="EST_USERINFO" value="5"/>
+            <value name="EST_MAX" value="6"/>
+        </enum>
         <function access="public" threadsafety="unspecified" status="commendable" name="operator&gt;&gt;" href="userinfo-suserinfo.html#operator&gt;&gt;-2" location="userinfo.h" virtual="non" meta="plain" const="false" static="false" overload="true" overload-number="2" relates="SUserInfo" type="QDataStream &amp;" signature="operator&gt;&gt;(QDataStream &amp; stream, UserInfo::SUserInfo &amp; ui)">
             <parameter left="QDataStream &amp;" right="" name="stream" default=""/>
             <parameter left="UserInfo::SUserInfo &amp;" right="" name="ui" default=""/>
@@ -124,6 +161,14 @@
             <variable access="public" threadsafety="unspecified" status="commendable" name="m_address" fullname="SHost::m_address" href="shost.html#m_address-var" location="shost.h" type="QHostAddress" static="false"/>
             <variable access="public" threadsafety="unspecified" status="commendable" name="m_port" fullname="SHost::m_port" href="shost.html#m_port-var" location="shost.h" type="quint16" static="false"/>
             <function access="public" threadsafety="unspecified" status="commendable" name="isNull" fullname="SHost::isNull" href="shost.html#isNull" location="shost.h" virtual="non" meta="plain" const="true" static="false" overload="false" type="bool" signature="isNull() const"/>
+        </class>
+        <class access="public" threadsafety="unspecified" status="commendable" name="JRequestUserInfo" href="jrequestuserinfo.html" location="jrequestuserinfo.h" bases="JLhcRequestBase" module="">
+            <function access="public" threadsafety="unspecified" status="commendable" name="JRequestUserInfo" fullname="JRequestUserInfo::JRequestUserInfo" href="jrequestuserinfo.html#JRequestUserInfo" location="jrequestuserinfo.h" virtual="non" meta="constructor" const="false" static="false" overload="false" type="" signature="JRequestUserInfo(QObject * parent)">
+                <parameter left="QObject *" right="" name="parent" default="0"/>
+            </function>
+            <function access="public" threadsafety="unspecified" status="commendable" name="rqsUserInfo" fullname="JRequestUserInfo::rqsUserInfo" href="jrequestuserinfo.html#rqsUserInfo" location="jrequestuserinfo.h" virtual="non" meta="plain" const="false" static="false" overload="false" type="UserInfo::SUserInfo" signature="rqsUserInfo(JID userId)">
+                <parameter left="JID" right="" name="userId" default=""/>
+            </function>
         </class>
         <class access="public" threadsafety="unspecified" status="commendable" name="JLoginHashCodeRecorder" href="jloginhashcoderecorder.html" location="jloginhashcoderecorder.h" bases="" module="">
             <function access="public" threadsafety="unspecified" status="commendable" name="set" fullname="JLoginHashCodeRecorder::set" href="jloginhashcoderecorder.html#set" location="jloginhashcoderecorder.h" virtual="non" meta="plain" const="false" static="false" overload="false" type="void" signature="set(const QByteArray &amp; code, JID userId)">

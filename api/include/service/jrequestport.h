@@ -18,9 +18,9 @@ public:
     explicit JRequestPort(QObject *parent = 0);
     void setServerPort(EServerType,const SHost&);
     SHost rqsServerPort(EServerType);
-    SHost getServerPort(EServerType)const;
 	const QString& getError()const;
 protected:
+	SHost getServerPort(EServerType)const;
 	bool passLoginHash(JRequestPortSocket&);
 protected slots:
     void on_socket_rcvPassLoginHash(bool);
