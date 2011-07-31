@@ -67,3 +67,6 @@ FORMS += gui/mainwindow.ui \
     gui/dlglogin/jdlglogin.ui \
     gui/dlglogin/jdlgnewserver.ui \
     gui/jdlgselectserver.ui
+
+RESOURCES += \
+    sources.qrc

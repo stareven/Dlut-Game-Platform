@@ -11,6 +11,8 @@
 #include "global/elogin.h"
 #include "service/jrequestport.h"
 
+#include <QPalette>
+
 JDlgLogin::JDlgLogin(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::JDlgLogin)
@@ -22,6 +24,17 @@ JDlgLogin::JDlgLogin(QWidget *parent) :
     ui->edt_passwd->setText(m_remember.getPassWord());
     ui->chb_rememberpassword->setChecked(m_remember.getIsRemember());
     ui->chb_autologin->setChecked(m_remember.getIsAutoLogin());
+    QPalette palette;
+    palette.setColor(QPalette::Background, QColor(0,0,0));
+    setPalette(palette);
+     palette.setColor(QPalette::WindowText, QColor(Qt::green));
+    ui->lab_username->setPalette(palette);
+    ui->lab_message->setPalette(palette);
+    ui->lab_passwd->setPalette(palette);
+    ui->lab_role->setPalette(palette);
+    ui->lab_server->setPalette(palette);
+    ui->chb_autologin->setPalette(palette);
+    ui->chb_rememberpassword->setPalette(palette);
     connect(this,SIGNAL(autoLogin()),this,SLOT(accept()),Qt::QueuedConnection);
     //QApplication::setStyle(new NorwegianWoodStyle);
 }
