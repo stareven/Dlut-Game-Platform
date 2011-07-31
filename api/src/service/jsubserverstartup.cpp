@@ -12,6 +12,24 @@ JSubServerStartup::JSubServerStartup()
 	m_gis=new JSendGsInfo;
 }
 
+JSubServerStartup::~JSubServerStartup()
+{
+	delete m_ps;
+	m_ps=NULL;
+	delete m_login;
+	m_login=NULL;
+	delete m_gis;
+	m_gis=NULL;
+}
+
+/**
+	\brief 整个启动过程。
+
+	包括：\n
+	1、获取port列表。\n
+	2、登录。\n
+	3、上传SubServer及相关游戏相信。\n
+*/
 JSubServerStartup::EReturnValue JSubServerStartup::startup()const
 {
 	EReturnValue ret=ERV_Success;
@@ -34,16 +52,16 @@ JSubServerStartup::EReturnValue JSubServerStartup::startup()const
 	if(!m_gis->waitForConnected(1000))
 	{
 		qDebug()<<"game server connect failed . error :"
-				<<m_gis->error();
+				<<m_gis->sendGsInfoError();
 		return ERV_ConnectFailed;
 	}
 	JLoginHashCodeRecorder lhcr;
-	m_gis->sendCrypro(lhcr.getUserId(),lhcr.getCode());
-	if(!m_gis->waitForPassLoginHash(1000))
+	m_gis->sendLoginHashCode(lhcr.getUserId(),lhcr.getCode());
+	if(!m_gis->waitForLhc(1000))
 	{
 		qDebug()<<"1 gis pass Login Hash failed . error :"
-				<<m_gis->state()
-				<<m_gis->error();
+				<<m_gis->sendGsInfoState()
+				<<m_gis->sendGsInfoError();
 		return ERV_PlhFailed;
 	}
 	if(m_gameinfo.m_gameId>0 && !m_gameinfo.m_name.isEmpty())
@@ -52,7 +70,7 @@ JSubServerStartup::EReturnValue JSubServerStartup::startup()const
 		if(!m_gis->waitForSend(1000))
 		{
 			qDebug()<<"send game info failed . error :"
-					<<m_gis->error();
+					<<m_gis->sendGsInfoError();
 			ret=ERV_SendFailed;
 		}else{
 			qDebug()<<"send game info success.";
@@ -62,7 +80,7 @@ JSubServerStartup::EReturnValue JSubServerStartup::startup()const
 	if(!m_gis->waitForSend(1000))
 	{
 		qDebug()<<"send server info failed . error :"
-				<<m_gis->error();
+				<<m_gis->sendGsInfoError();
 		ret=ERV_SendFailed;
 	}else{
 		qDebug()<<"send server info success.";
@@ -71,7 +89,7 @@ JSubServerStartup::EReturnValue JSubServerStartup::startup()const
 	if(!m_gis->waitForSend(1000))
 	{
 		qDebug()<<"send relation failed . error :"
-				<<m_gis->error();
+				<<m_gis->sendGsInfoError();
 		ret=ERV_SendFailed;
 	}else{
 		qDebug()<<"send relation success.";

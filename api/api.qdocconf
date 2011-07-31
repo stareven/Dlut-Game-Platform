@@ -1,6 +1,0 @@
-project = api
-description = api document
-outputdir = doc
-headerdirs = include
-sourcedirs = src
-sourceencoding = UTF-8 

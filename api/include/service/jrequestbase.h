@@ -14,11 +14,11 @@ class JRequestBase : public QObject
 public:
 	JRequestBase(QObject *parent = 0);
 	void connectToHost(const QHostAddress& address,quint16 port);
-	enum EConnectState{
-		ECS_Init,
-		ECS_Connecting,
-		ECS_Connected,
-		ECS_Error,
+	enum EConnectState{///< 连接状态。
+		ECS_Init, ///< 初始状态
+		ECS_Connecting, ///< 开始向服务器发起连接
+		ECS_Connected, ///< 已经成功连接到服务器
+		ECS_Error, ///< 发生错误
 	};
 	EConnectState getConnectState()const;
 	bool waitForConnected(int msecs=30000)const;

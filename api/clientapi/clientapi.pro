@@ -19,16 +19,14 @@ SOURCES += \
 		../src/network/jrequestloginsocket.cpp \
 		../src/network/jrequestportsocket.cpp \
 		../src/service/jrequestbase.cpp \
-                ../src/service/jlhcrequestbase.cpp \
-                ../src/network/jlhcsocketbase.cpp \
+		../src/service/jlhcrequestbase.cpp \
+		../src/network/jlhcsocketbase.cpp \
 		../src/network/jrequestuserinfosocket.cpp \
 		../src/service/jrequestuserinfo.cpp
 HEADERS += \
-                ../include/network/jlhcsocketbase.h \
 		../include/network/jrequestloginsocket.h \
 		../include/network/jrequestportsocket.h \
 		../include/network/jrequestuserinfosocket.h \
-		../include/network/jsocketbase.h \
-                ../include/service/jlhcrequestbase.h \
-		../include/service/jrequestbase.h
+		../include/service/jrequestbase.h \
+		../include/service/jlhcrequestbase.h
 DESTDIR = ../lib

@@ -2,6 +2,14 @@
 
 #include <QDataStream>
 
+/*!
+	\namespace SubServer
+	\brief 定义了SubServer需要用到的一些数据结构。
+
+	我们将GameServer和GameFileServer统一称为SubServer。\n
+	这里定义了SubServer需要用到的一些数据结构。
+*/
+
 QDataStream& operator >> (QDataStream& stream,SubServer::SSubServer& ss)
 {
 	stream>>ss.m_serverId;

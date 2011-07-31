@@ -13,18 +13,25 @@ Waiting for translation to English for this article
 第二部分：Git
 1、Git入门教程
 	http://hi.baidu.com/eehuang/blog/item/37af8d54242d6351564e00b5.html
-2、Git命令使用
-	http://apps.hi.baidu.com/share/detail/32309172
-3、Git中文教程
-	http://www.linuxsir.org/main/doc/git/gittutorcn.htm
-4、看日记学git系列
+2、活灵活现用Git：
+		个人感觉这个讲的很好，一些常用的命令都涉及到了。
+	基础篇：
+	http://phoenixtoday.blogbus.com/logs/33458940.html
+	技巧篇：
+	http://phoenixtoday.blogbus.com/logs/35149540.html
+3、看日记学git系列
+		这个系列比较长，讲的也比较深入。
 	http://roclinux.cn/?cat=72
-4、可以自己先开个项目玩玩，推荐github.com
+4、Git命令使用
+	http://apps.hi.baidu.com/share/detail/32309172
+5、Git中文教程
+	http://www.linuxsir.org/main/doc/git/gittutorcn.htm
+6、可以自己先开个项目玩玩，推荐github.com
 	https://github.com/
-5、太阳神三国杀也是用git托管的：
+7、太阳神三国杀也是用git托管的：
 	介绍：http://baike.baidu.com/view/5112801.htm
 	代码：https://github.com/Moligaloo/QSanguosha
-6、常用git设置
+8、常用git设置
 	git config –global user.name "Your Name"
 	git config –global user.email "you@example.com"
 	git config color.branch "auto"

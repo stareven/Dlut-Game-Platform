@@ -16,11 +16,11 @@ public:
     void login(const QString& loginname,
                const QString& passwd,
                const JID& role);
-	enum ELoginState{
-		ELS_Init,
-		ELS_Sending,
-		ELS_Success,
-		ELS_Failed,
+	enum ELoginState{///< 登录状态
+		ELS_Init, ///< 初始状态
+		ELS_Sending, ///< 正在发送登录请求
+		ELS_Success, ///< 登录成功
+		ELS_Failed, ///< 登录失败
     };
 	ELoginState getLoginState()const;
     bool waitForLogined(int msecs=30000);

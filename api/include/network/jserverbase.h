@@ -17,7 +17,6 @@ public:
 	explicit JServerBase(QObject *parent = 0);
     virtual quint16 run(quint16 port);
     quint16 serverPort()const;
-
 protected:
 	QTcpServer *m_server;
 protected slots:

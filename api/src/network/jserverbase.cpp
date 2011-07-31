@@ -6,8 +6,7 @@
 JServerBase::JServerBase(QObject *parent) :
 	QObject(parent)
 {
-    m_server=new QTcpServer(this);
-    m_server->setObjectName("server");
+	m_server=new QTcpServer(this);
     connect(m_server,SIGNAL(newConnection()),SLOT(on_server_newConnection()));
 }
 

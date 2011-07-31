@@ -14,7 +14,7 @@ DEFINES += SUBSERVERAPI_LIBRARY
 SOURCES += \
     ../src/service/jsubserverstartup.cpp \
     ../src/service/jsendgsinfo.cpp \
-    ../src/network/jsendgsinfosocket.cpp
+	../src/network/jsendgsinfosocket.cpp
     
 HEADERS += \
 	../include/service/jsendgsinfo.h \

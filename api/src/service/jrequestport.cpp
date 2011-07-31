@@ -12,29 +12,16 @@ QMap<EServerType,SHost> JRequestPort::s_ports;
 	\class JRequestPort
 	\brief 获得各个服务的端口
 
-	MainServer上，每个服务单独使用一个端口。
-	此外，提供两个服务查询所有服务的端口列表。
-	其中，没有服务提供FreePort。FreePort只能从平台管理员处人为地获得。并且，通常平台管理员发布的MainServer的端口是它的FreePort服务的端口。
-	请求Login和SecretPort服务不需要Login hash confirm，这两个服务的端口由FreePort服务提供。
-	剩下的服务需要Login hash confirm，由SecretPort服务提供。
+	MainServer上，每个服务单独使用一个端口。\n
+	此外，提供两个服务查询所有服务的端口列表。\n
+	其中，没有服务提供FreePort。FreePort只能从平台管理员处人为地获得。\n
+	并且，通常平台管理员发布的MainServer的端口是它的FreePort服务的端口。\n
+	请求Login和SecretPort服务不需要Login hash confirm，这两个服务的端口由FreePort服务提供。\n
+	剩下的服务需要Login hash confirm，由SecretPort服务提供。\n
 
 	\warning 这个类的代码写的很烂，接口也很混乱。
 
 	\sa JLoginHashCodeRecorder
-*/
-
-/*!
-	\enum EServerType
-	\relates JRequestPort
-	\brief MainServer提供的各项服务
-
-	\value EST_LOGIN 用户登录。
-	\value EST_GAMEINFO 游戏列表及游戏相信。
-	\value EST_FREEPORT 查询Login和SecretPort服务的端口。
-	\value EST_SECRETPORT 查询除FreePort及FreePort包含以外服务的端口。
-	\value EST_SUBSERVER 上传子服务器信息。
-	\value EST_USERINFO 查询用户信息。
-	\value EST_MAX 服务的数目。
 */
 
 /*!
@@ -58,7 +45,8 @@ void JRequestPort::setServerPort(EServerType type,const SHost& host)
 /*!
 	\brief 请求\a type 服务的端口。
 
-	如果曾经请求过，无论是否是在同一个JRequestPort 的实例中，它都会被记录下来。这样当再次请求这个服务的端口的时候，这个函数会直接返回本地保存的该服务的端口，而不会重新向服务器发起连接。
+	如果曾经请求过，无论是否是在同一个JRequestPort 的实例中，它都会被记录下来。\n
+	这样当再次请求这个服务的端口的时候，这个函数会直接返回本地保存的该服务的端口，而不会重新向服务器发起请求。
 */
 SHost JRequestPort::rqsServerPort(EServerType type)
 {

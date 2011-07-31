@@ -17,27 +17,15 @@ const static QString error_no="no error";
 */
 
 /*!
-	\enum JRequestBase::EConnectState
-
-	连接状态。
-
-	\value ECS_Init 初始状态
-	\value ECS_Connecting 已经开始连接到服务器
-	\value ECS_Connected 已经成功连接到服务器
-	\value ECS_Error 发生错误
-*/
-
-/*!
 	\fn JRequestBase::connectResult(bool result)
-
-	连接结果。
+	\brief 连接结果。
 	\a result 表示是否连接成功。
 */
 
 /*!
 	\fn JRequestBase::error();
+	\brief 发生错误。
 
-	发生错误。
 	可以通过getConnectError()函数获取错误的具体内容。
 
 	\sa getConnectError()
@@ -55,9 +43,9 @@ JRequestBase::JRequestBase(QObject *parent)
 }
 
 /*!
-	连接到地址为\a address 端口为\a port 的服务器。
-	若套接字为空，则提示错误并立即返回。
-	若已经连接，则立即返回。
+	连接到地址为\a address 端口为\a port 的服务器。\n
+	若套接字为空，则提示错误并立即返回。\n
+	若已经连接，则立即返回。\n
 */
 void JRequestBase::connectToHost(const QHostAddress& address,quint16 port)
 {

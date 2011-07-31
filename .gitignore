@@ -6,3 +6,4 @@
 api/*-build-desktop/*
 !api/*-build-desktop/Makefile
 api/lib/*
+api/doc_Doxygen/*/*

@@ -3,17 +3,8 @@
 #include "global/ssubserver.h"
 
 JSendGsInfoSocket::JSendGsInfoSocket(QObject *parent) :
-    JSocketBase(parent)
+	JLhcSocketBase(parent)
 {
-}
-
-void JSendGsInfoSocket::sendCrypro(JID id,const QByteArray& crypro)
-{
-    QByteArray outdata;
-	QDataStream outstream(&outdata,QIODevice::WriteOnly);
-    outstream<<id;
-    outstream<<crypro;
-    sendData(outdata);
 }
 
 void JSendGsInfoSocket::sendServerInfo(const SubServer::SSubServer& ss)
@@ -45,17 +36,10 @@ void JSendGsInfoSocket::sendRelation(JID serverId,
 	sendData(outdata);
 }
 
-void JSendGsInfoSocket::dataProcess(const QByteArray& data)
+void JSendGsInfoSocket::afterLhc(const QByteArray& data)
 {
     QDataStream stream(data);
-    JID protocol;
-	static bool plh=false;
-	if(!plh)
-	{
-		stream>>plh;
-		rcvPassLoginHash(plh);
-		return;
-	}
+	JID protocol;
     stream>>protocol;
 	switch((SubServer::ESubServerProtocol)protocol)
     {

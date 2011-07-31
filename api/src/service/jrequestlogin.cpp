@@ -19,41 +19,6 @@
 */
 
 /*!
-	\enum ERole
-	\relates JRequestLogin
-	\brief 登录身份。
-
-	\value ROLE_GAMEPLAYER 游戏玩家
-	\value ROLE_GAMEDESIGNER 游戏开发者
-	\value ROLE_GAMESERVERRUNNER 游戏服务器运营维护员
-	\value ROLE_ADMIN 平台管理员
-	\value ROLE_ROOT 根用户
-*/
-
-/*!
-	\enum ELogin
-	\relates JRequestLogin
-	\brief 登录结果
-
-	\value EL_SUCCESS 登录成功
-	\value EL_NO_SUCH_USER 没有此用户
-	\value EL_PASSWD_WRONG 密码错误
-	\value EL_NO_SUCH_ROLE 没有此身份
-	\value EL_ALREADY_LOGIN 已经登录，不能重复登录
-	\value EL_SOCKET_DISCONNECTED 连接断开
-*/
-
-/*!
-	\enum JRequestLogin::ELoginState
-	\brief 登录状态
-
-	\value ELS_Init 初始状态
-	\value ELS_Sending 正在发送登录请求
-	\value ELS_Success 登录成功
-	\value ELS_Failed 登录失败
-*/
-
-/*!
 	\fn JRequestLogin::loginResult(bool result)
 	\brief 登录结果
 
@@ -102,8 +67,8 @@ JRequestLogin::ELoginState JRequestLogin::getLoginState()const
 
 /*!
 	等待\a msecs 毫秒或收到登录结果。
-	返回true ： 登录成功。
-	返回false ： 登录失败或时间超过\a msecs 毫秒。
+	\retval true ： 登录成功。
+	\retval false ： 登录失败或时间超过\a msecs 毫秒。
 */
 bool JRequestLogin::waitForLogined(int msecs)
 {

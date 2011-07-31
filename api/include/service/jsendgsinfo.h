@@ -1,7 +1,7 @@
 #ifndef JSENDGSINFO_H
 #define JSENDGSINFO_H
 
-#include <QObject>
+#include "service/jlhcrequestbase.h"
 
 #include "global/jglobal.h"
 
@@ -15,47 +15,32 @@ namespace SubServer
 }
 class JVersion;
 
-class JSendGsInfo : public QObject
+class JSendGsInfo : public JLhcRequestBase
 {
     Q_OBJECT
 public:
-    explicit JSendGsInfo(QObject *parent = 0);
-    void connectToHost(const QHostAddress& address,
-                       quint16 port);
-    void sendCrypro(JID,const QByteArray&);
+	explicit JSendGsInfo(QObject *parent = 0);
 	void sendServerInfo(const SubServer::SSubServer&);
 	void sendGameInfo(const SubServer::SGameInfo2&);
 	void sendRelation(JID serverId,JID gameId,const JVersion& gameVersion);
-    enum EState{
-		ES_Close,//0
-		ES_Connecting,//1
-		ES_Connected,//2
-		ES_SendingPlh,//3
-		ES_PlhSuccess,//4
-		ES_Sending,//5
-		ES_SendSuccess,//6
-		ES_Error//7
+	enum ESgiState{///< 发送状态
+		ESS_Init, ///< 初始状态
+		ESS_Sending, ///< 正在发送
+		ESS_SendSuccess, ///< 发送成功
+		ESS_Error ///< 发生错误
     };
-    EState state()const;
-    bool waitForConnected(int msecs=30000);
-    bool waitForPassLoginHash(int msecs=30000);
+	ESgiState sendGsInfoState()const;
     bool waitForSend(int msecs=30000);
-    const QString& error()const;
+	const QString& sendGsInfoError()const;
 signals:
-    void connected();
-    void disconnected();
-    void error(const QString&);
-    void passLoginHash(bool);
+	void error(const QString&);
 	void rcvSendCode(JID protocol,JCode code);
 protected slots:
-    void on_socket_rcvPassLoginHash(bool);
 	void on_socket_rcvSendCode(JID protocol,JCode code);
-    void on_socket_SocketCode(JCode);
 private:
-    EState m_state;
+	ESgiState m_state;
 	JSendGsInfoSocket* m_socket;
-    int m_error;
-    bool m_plh;
+	int m_error;
 };
 
 #endif // JSENDGSINFO_H
