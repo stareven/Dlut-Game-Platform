@@ -33,3 +33,5 @@ FORMS += gui/mainwindow.ui \
     gui/dlglogin/jdlgnewserver.ui \
     gui/jdlgselectserver.ui
 include(../api/libclientapi.pri)
+RESOURCES += \
+    sources.qrc
