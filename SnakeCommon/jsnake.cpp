@@ -15,7 +15,7 @@ JSnake::JSnake()
 
 JSnake::EDire JSnake::getOppsiteDire(EDire dire)
 {
-    EDire ans;
+    EDire ans=ED_NONE;
     switch(dire)
     {
     case ED_UP:

@@ -32,8 +32,8 @@ Waiting for translation to English for this article
 	介绍：http://baike.baidu.com/view/5112801.htm
 	代码：https://github.com/Moligaloo/QSanguosha
 8、常用git设置
-	git config –global user.name "Your Name"
-	git config –global user.email "you@example.com"
+	git config --global user.name "Your Name"
+	git config --global user.email "you@example.com"
 	git config color.branch "auto"
 	git config color.ui "auto"
 	git config color.status "auto"
