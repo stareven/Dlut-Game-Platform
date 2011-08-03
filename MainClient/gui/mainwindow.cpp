@@ -3,6 +3,7 @@
 
 #include <QShowEvent>
 #include <QMessageBox>
+#include <QPalette>
 
 #include "service/jrequestgameinfo.h"
 #include "service/jdownloadrun.h"
@@ -21,6 +22,15 @@ MainWindow::MainWindow(QWidget *parent) :
     m_gis->setObjectName(tr("gameinfosrv"));
 	m_currentId=-1;
     ui->setupUi(this);
+    QPalette palette;
+    palette.setColor(QPalette::Background, QColor(0,0,0));
+    setPalette(palette);
+     palette.setColor(QPalette::Base, QColor(0,0,0));
+    palette.setColor(QPalette::Text, QColor(Qt::green));
+    palette.setColor(QPalette::HighlightedText, QColor(Qt::red));
+    ui->list_game->setPalette(palette);
+    ui->tb_game->setPalette(palette);
+
 	m_reqport=new JRequestPort(this);
 	SHost hostuserinfo=m_reqport->rqsServerPort(EST_USERINFO);
 	m_requserinfo=new JRequestUserInfo(this);

@@ -1,11 +1,23 @@
 #include "jdlgnewserver.h"
 #include "ui_jdlgnewserver.h"
 
+#include <QPalette>
+
 JDlgNewServer::JDlgNewServer(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::JDlgNewServer)
 {
     ui->setupUi(this);
+    QPalette palette;
+    palette.setColor(QPalette::Background, QColor(0,0,0));
+    setPalette(palette);
+    palette.setColor(QPalette::Base, QColor(0,0,0));
+     palette.setColor(QPalette::WindowText, QColor(Qt::green));
+     palette.setColor(QPalette::Text, QColor(Qt::red));
+     ui->edt_address->setPalette(palette);
+     ui->edt_port->setPalette(palette);
+     ui->lab_address->setPalette(palette);
+     ui->lab_port->setPalette(palette);
 }
 
 JDlgNewServer::~JDlgNewServer()

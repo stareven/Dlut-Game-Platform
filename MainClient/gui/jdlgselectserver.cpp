@@ -3,11 +3,18 @@
 
 #include "global/ssubserver.h"
 
+#include <QPalette>
+
 JDlgSelectServer::JDlgSelectServer(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::JDlgSelectServer)
 {
     ui->setupUi(this);
+    QPalette palette;
+    palette.setColor(QPalette::Background, QColor(0,0,0));
+    setPalette(palette);
+     palette.setColor(QPalette::WindowText, QColor(Qt::green));
+     ui->lab_text->setPalette(palette);
 }
 
 JDlgSelectServer::~JDlgSelectServer()
