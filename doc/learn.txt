@@ -34,9 +34,9 @@ Waiting for translation to English for this article
 8、常用git设置
 	git config --global user.name "Your Name"
 	git config --global user.email "you@example.com"
-	git config color.branch "auto"
-	git config color.ui "auto"
-	git config color.status "auto"
+	git config --global color.branch "auto"
+	git config --global color.ui "auto"
+	git config --global color.status "auto"
 
 JDMD studio , Dalian University of Technology , China
 E-mail : elephant_liu@mail.dlut.edu.cn
