@@ -9,6 +9,8 @@ JDownloadGameFileSocket::JDownloadGameFileSocket(QObject *parent) :
     JSocketBase(parent)
 {
 	m_head.m_isReceived=false;
+	m_head.m_nNow=-1;
+	m_head.m_nTotal=0;
 	m_isError=false;
 }
 

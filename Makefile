@@ -35,6 +35,7 @@ MainClient-build-desktop/Makefile  :  MainClient/MainClient.pro
 	qmake CONFIG+=debug -o MainClient-build-desktop/Makefile MainClient/MainClient.pro
 MainServer-build-desktop/Makefile  :  MainServer/MainServer.pro
 	qmake CONFIG+=debug -o MainServer-build-desktop/Makefile MainServer/MainServer.pro
-clean :
+clean-all :
 	find . \( -path '*-build-desktop*' -and -type d \) | xargs rm -rfv
+	find . \( -name '*.pro.user' -and -type f \) | xargs rm -rfv
 	rm -rfv api/lib
