@@ -37,7 +37,7 @@ void JConnectionBase::on_socket_readyRead()
 			QByteArray data=m_socket->read(size);
 			size=0;
 			dataProcess(data);
-		}else if(m_socket->bytesAvailable()>=sizeof(int)+sizeof(MagicNumber::JMagicNumber)){
+		}else if(m_socket->bytesAvailable()>=(qint64)(sizeof(int)+sizeof(MagicNumber::JMagicNumber))){
             QDataStream stream(m_socket);
 			MagicNumber::JMagicNumber mn;
 			stream>>mn;

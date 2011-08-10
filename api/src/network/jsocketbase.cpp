@@ -65,7 +65,7 @@ void JSocketBase::on_socket_readyRead()
 				m_data.clear();
 				m_size=0;
 			}
-        }else if(m_socket->bytesAvailable()>=sizeof(int)){
+		}else if(m_socket->bytesAvailable()>=(qint64)(sizeof(int)+sizeof(MagicNumber::JMagicNumber))){
             QDataStream stream(m_socket);
 			MagicNumber::JMagicNumber mn;
 			stream>>mn;

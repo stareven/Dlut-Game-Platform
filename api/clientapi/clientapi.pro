@@ -28,5 +28,12 @@ HEADERS += \
 		../include/network/jrequestportsocket.h \
 		../include/network/jrequestuserinfosocket.h \
 		../include/service/jrequestbase.h \
-		../include/service/jlhcrequestbase.h
+		../include/service/jlhcrequestbase.h \
+		clientapi_global.h \
+		../include/service/jloginhashcoderecorder.h \
+		../include/service/jrequestlogin.h \
+		../include/service/jrequestport.h \
+		../include/service/jrequestuserinfo.h \
+		../include/network/jsocketbase.h \
+		../include/network/jlhcsocketbase.h
 DESTDIR = ../lib

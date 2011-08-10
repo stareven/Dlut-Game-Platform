@@ -18,5 +18,7 @@ SOURCES += \
     
 HEADERS += \
 	../include/service/jsendgsinfo.h \
-	../include/network/jsendgsinfosocket.h
+	../include/network/jsendgsinfosocket.h \
+	subserverapi_global.h \
+	../include/service/jsubserverstartup.h
 DESTDIR = ../lib

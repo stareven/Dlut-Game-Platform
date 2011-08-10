@@ -16,4 +16,14 @@ SOURCES += \
 	../src/global/jversion.cpp \
 	../src/global/userinfo.cpp \
 	../src/global/shost.cpp
+HEADERS += \
+	globalapi_global.h \
+	../include/global/elogin.h \
+	../include/global/jglobal.h \
+	../include/global/jversion.h \
+	../include/global/eportsrv.h \
+	../include/global/ssubserver.h \
+	../include/global/magicnumber.h \
+	../include/global/userinfo.h \
+	../include/global/shost.h
 DESTDIR = ../lib
