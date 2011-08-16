@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>如何运行“地瓜皮”服务器端</title>
+<link href="../static/style.css" media="screen" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="content">
+	  <b class="container">
+	  <b class="container1"><b></b></b>
+	  <b class="container2"><b></b></b>
+	  <b class="container3"></b>
+	  <b class="container4"></b>
+	  <b class="container5"></b></b>
+	
+	  <div class="containerfg">
+	  	<div id="portfolio">
+	  	  <h1>如何运行“地瓜皮”服务器端</h1>
+<h4>首先，请确定你已经完成DGP的编译</h4>
+<a href="../compile">如何编译“地瓜皮”项目源代码</a>
+<h4>运行主服务器</h4>
+	<ul>
+		<li>在ubuntu linux 10.10下</li>
+			<ul>
+				<li>双击“ServerBuildRun.sh”，选择“在终端中运行”，启动主服务器。</li>
+			</ul>
+		<li>其它操作系统请自行研究。</li>
+	</ul>
+<h4>记录端口号</h4>
+	<ul>
+		<li>记录下“freeport Server : port is ”后面的数字。我的是37373。</li>
+		（如果你的不是37373，后面的SnakeServer和GameFileServer1将会启动失败，暂时我也没有解决办法。）
+		<li>您将您的IP地址及freeport Server的端口提供给游戏玩家，他们就可以登录您的DGP服务器来进行游戏了。</li>
+	</ul>
+<h4>运行SnakeServer与GameFileServer1</h4>
+	<ul>
+		<li>在ubuntu linux 10.10下</li>
+			<ul>
+				<li>双击“SnakeServerBuildRun.sh”，选择“在终端中运行”，启动SnakeServer</li>
+				<li>双击 “GameFileServer1BuildRun.sh”，选择“在终端中运行”，启动GameFileServer1</li>
+			</ul>
+		<li>其它操作系统请自行研究。</li>
+	</ul>
+<h4>让其他玩家登录您的DGP服务器来进行游戏</h4>
+	<ul>
+		<li>首先，您可以打开Dlut-Game-Platform/database/login文件，添加一名用户。</li>
+			第一列是用户ID，请不要与其它用户重复，请选择一个不超过65535的正整数。<br/>
+			第二列是登录名，请不要与其它用户重复并且不能包含空格。<br/>
+			第三列是密码，请不要包含空格。<br/>
+			第四列是这名用户拥有的权限，1是游戏玩家，2是游戏开发者，4是子服务器运营者，8是平台管理员，16是根用户。如果一名用户同时拥有多个权限，则此处应填写这些权限的简单加和。<br/>
+		<li>然后，关闭并重新启动MainServer、SnakeServer与GameFileServer1。</li>
+		<li>最后，将您的IP地址、freeport Server的端口、用户名、密码及权限通知给玩家，他们就可以登录您的服务器进行游戏了。</li>
+	</ul>
+<h4>全部</h4>
+以下内容能够运行在ubuntu linux 10.10下，其它操作系统请自行研究。<br>
+关闭主服务器，关闭主客户端，关闭SnakeServer与GameFileServer1。<br>
+然后双击“AllRun.sh”，选择“在终端中运行”。<br>
+会是什么效果呢？<br>
+<br>
+<br>
+<br>
+<a href="../index.html">回到首页</a>
+</div>
+	  </div>
+	
+	  <b class="container">
+	  <b class="container5"></b>
+	  <b class="container4"></b>
+	  <b class="container3"></b>
+	  <b class="container2"><b></b></b>
+	  <b class="container1"><b></b></b></b>
+	</div>
+</body>
+</html>

@@ -25,16 +25,17 @@ DGP的核心部分使用C++语言及Qt库。请先确保您的系统中有以下
 <li>qmake</li>
 <li>moc-qt4</li>
 <li>uic-qt4</li>
+<li>libQt4(这个要求4.7.0以上版本，不过据说4.6.3已经足够了)</li>
 </ur>
 安装方法（以ubuntu linux 10.10为例，其它操作系统请自行研究）<br>
 打开终端，输入：<br>
 <code>$ sudo apt-get install build-essential qt-sdk</code><br>
 回车即可。
 <h4>编译DGP</h4>
-1、打开终端。<br>
-2、进入DGP目录<br>
-3、输入：<br>
-<code>$ find . -path '*-build-desktop' -exec make -C {} \;</code><br>
+1、打开终端。<br/>
+2、进入DGP所在目录（Dlut-Game-Platform）<br/>
+3、输入：<br/>
+<code>$ make</code><br>
 回车即可。等待约5分钟，编译完成。<br>
 <br>
 <br>

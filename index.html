@@ -36,8 +36,13 @@
             <div id="tabs-1">
                 <h2>项目介绍</h2>
                 <p>
-                大工游戏平台（Dlut Game Platform，简称“DGP”，中文名称“地瓜皮”）是一个由本人发起的，开源的，开放的游戏设计与开发项目，目的在于寻找大连理工大学热爱游戏设计和计算机编程的同学。本项目没有任何实际回报，仅凭借参与者的兴趣和爱好，希望能够锻炼大家的编程能力并增加软件工程项目经验。DGP仅包含一个游戏大厅，并不包含任何游戏。由热爱游戏设计和计算机编程的同学自己设计游戏，编程实现并上传至平台上，提供给同学们玩。<br/>
-                项目目前仍处于开发阶段。
+                	<ul>
+                		<li>大工游戏平台（Dlut Game Platform，简称“DGP”，中文名称“地瓜皮”）是一个由本人发起的，开源的，开放的游戏设计与开发项目。</li>
+                		<li>目的在于寻找大连理工大学热爱游戏设计和计算机编程的同学。</li>
+                		<li>本项目没有任何实际回报，仅凭借参与者的兴趣和爱好，希望能够锻炼大家的编程能力并增加软件工程项目经验。</li>
+                		<li>DGP仅包含一个游戏大厅，并不包含任何游戏。由热爱游戏设计和计算机编程的同学自己设计游戏，编程实现并上传至平台上，提供给同学们玩。</li>
+                		<li>项目目前已经进入测试阶段。</li>
+                	</ul>
                 </p>
 	  	    	  
     		    <h2>技术概述</h2>
@@ -62,11 +67,12 @@
                 <ol>
                     <h3><li>身份</li></h3>
                     <p>
-                    参与本项目的身份有四种：游戏玩家，游戏开发者，平台管理者，平台开发者。<br/>
+                    参与本项目的身份有四种：游戏玩家，游戏开发者，平台管理者，平台运维者，平台开发者。<br/>
                     <ul>
                         <li>游戏玩家：负责玩</li>
                         <li>游戏开发者：由游戏开发者独立自主地进行游戏开发，并上传至平台提供给游戏玩家进行游戏</li>
                         <li>平台管理者：负责宣传，招募游戏开发者，管理游戏开发者。</li>
+                        <li>平台运维者：负责保证平台服务器端正常运行及维护工作。</li>
                         <li>平台开发者：负责开发平台的核心部分并为游戏开发者提供API接口。</li>
                     </ul>
                     每个用户可以同时有多个身份。<br/>
@@ -88,7 +94,7 @@
                     <p>
                     <ul>
                         <li>目前仍处于计划阶段，具体能否实现还有待实践。</li>
-                        <li>DGP的核心部分（MainServer和MainClient）使用的编程语言为C++，使用的图形界面库为Qt4，版本为Qt 4.7.0（Qt相关学习资料请见：doc/learn.txt），但是我们希望游戏开发者在设计游戏时能够随心所欲使用任何程序设计语言。</li>
+                        <li>DGP的核心部分（MainServer和MainClient）使用的编程语言为C++，使用的图形界面库为Qt4，版本为Qt 4.7.0（Qt相关学习资料请见：<a href="learn/">learn</a>），但是我们希望游戏开发者在设计游戏时能够随心所欲使用任何程序设计语言。</li>
                         <li>在我们的计划中，GameClient与GameServer是一个独立的可执行程序，由MainClient与MainServer通过系统调用启动。因此，任何可以编译得到独立可执行程序的程序设计语言都可以用来在DGP中设计游戏。</li>
                     </ul>
                     </p>
@@ -104,16 +110,27 @@
                         <ul>
                             <li><a class="link" href="download_source/">如何下载DGP源码</a></li>
                             <li><a class="link" href="compile/">如何编译DGP</a></li>
-                            <li><a class="link" href="run_dgp/">如何运行DGP</a></li>
+                            <li><a class="link" href="run_server/">如何运行DGP服务器端</a></li>
+                            <li><a class="link" href="run_client/">如何运行DGP客户端</a></li>
+                            <li><a class="link" href="contribute_code/">如何向DGP项目贡献自己的代码</a></li>
                         </ul>
+                    <li>平台运维者</li>
+                    	如果您希望在您自己的电脑上运行DGP的服务器端，以方便其它玩家登录您的DGP服务器进行游戏，您可能关心以下内容：
+                    	<ul>
+                    		<li><a class="link" href="run_server/">如何运行DGP服务器端</a></li>
+                    	</ul>
                     <li>游戏开发者</li>
                         您可以在DGP下独立自主地进行游戏开发，并上传至平台提供给游戏玩家进行游戏。<br/>
                         <ul>
                         	<li><a class="link" href="api_doc">API文档</a></li>
                         </ul>
                     <li>游戏玩家</li>
-                        您可以通过DGP进行游戏。<br/>
-                        平台仍处于开发阶段。感谢您对DGP项目的关注。<br/>
+                        您可以通过DGP进行游戏。你可能关心以下内容：<br/>
+                        <ul>
+                        	<li><a class="link" href="run_server/">如何运行DGP客户端</a></li>
+                        </ul>
+                    <li>发现并提出BUG</li>
+                    	如果您发现DGP平台的任何BUG，都可以与我取得联系。
                 </ul>
             </div>
 
@@ -121,8 +138,15 @@
             <div id="tabs-3">
                 <h2>联系方式</h2>
                 <p>
-        		大连理工大学电子信息与电气工程学部CPF科技协会JDMD工作室<br/>
-                联系方式: <a class="link" href="mailto:elephant_liu@mail.dlut.edu.cn">elephant_liu@mail.dlut.edu.cn</a>
+        		<ul>
+        			<li>大连理工大学电子信息与电气工程学部CPF科技协会JDMD工作室</li>
+        			<li>地瓜皮游戏平台技术讨论群</li>
+        				26927924
+        			<li>本人:elephant_liu</li>
+        				联系方式: <a class="link" href="mailto:elephant_liu@mail.dlut.edu.cn">elephant_liu@mail.dlut.edu.cn</a>
+        			<li>碧海青天Linux&Unix版</li>
+        				<a class="link" href="http://bbs.dlut.edu.cn/bbsdoc.php?board=LinuxUnix">http://bbs.dlut.edu.cn/bbsdoc.php?board=LinuxUnix</a>
+                </ul>
                 </p>
             </div>
 		</div>
