@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
 	qDebug()<<"subserver Server : port is "<<subserverServer.run (0);
 	JServerType userinfoServer(EST_USERINFO);
 	qDebug()<<"userinfo Server : port is "<<userinfoServer.run(0);
+	qDebug()<<"MainServer startup succeed.";
     JPortManager freeps(JPortManager::EPS_FREE);
     freeps.addSubServerPort(loginServer);
     freeps.addSubServerPort(secretportServer);

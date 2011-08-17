@@ -59,9 +59,13 @@ void JDownloadGameFileSocket::dataProcess(const QByteArray &data)
 	if(!m_head.m_isReceived)
 	{
 		stream>>m_head.m_gamename;
+		Q_ASSERT(!stream.atEnd());
 		stream>>m_head.m_version;
+		Q_ASSERT(!stream.atEnd());
 		stream>>m_head.m_size;
+		Q_ASSERT(!stream.atEnd());
 		stream>>m_head.m_pieceSize;
+		Q_ASSERT(!stream.atEnd());
 		stream>>m_head.m_nTotal;
 		m_head.m_isReceived=true;
 		m_head.m_nNow=0;
@@ -80,6 +84,16 @@ void JDownloadGameFileSocket::dataProcess(const QByteArray &data)
 		{
 			qDebug()<<"JDownloadGameFileSocket::dataProcess:sequence error.";
 			qDebug()<<"receive num:"<<i<<"logic:"<<m_head.m_nNow;
+			m_isError=true;
+			return;
+		}
+		if(filedata.size() != m_head.m_pieceSize && m_head.m_nNow!=m_head.m_nTotal-1)
+		{
+			qDebug()<<"JDownloadGameFileSocket::dataProcess : file data receive failed .\n"
+					"reason : the size of filedata is not equal to the size of pieceSize .\n"
+					"I still can not fix this bug.\n"
+					<<"filedata size="<<filedata.size()<<"piecesize="<<m_head.m_pieceSize
+					<<"nNow="<<m_head.m_nNow<<"nTotal="<<m_head.m_nTotal;
 			m_isError=true;
 			return;
 		}
