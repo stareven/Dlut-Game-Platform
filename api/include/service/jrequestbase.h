@@ -4,11 +4,12 @@
 #include <QObject>
 
 #include "global/jglobal.h"
+#include "clientapi_global.h"
 
 class QHostAddress;
 class JSocketBase;
 
-class JRequestBase : public QObject
+class CLIENTAPISHARED_EXPORT JRequestBase : public QObject
 {
 	Q_OBJECT
 public:

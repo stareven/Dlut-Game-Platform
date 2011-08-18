@@ -2,12 +2,13 @@
 #define USERINFO_H
 
 #include "jglobal.h"
+#include "globalapi_global.h"
 
 #include <QString>
 
 namespace UserInfo
 {
-	struct SUserInfo
+	struct GLOBALAPISHARED_EXPORT SUserInfo
 	{
 		JID m_userId; /**< 用户ID */
 		QString m_nickname; /**< 用户昵称 */

@@ -2,8 +2,9 @@
 #define JLHCSOCKETBASE_H
 
 #include "jsocketbase.h"
+#include "clientapi_global.h"
 
-class JLhcSocketBase : public JSocketBase
+class CLIENTAPISHARED_EXPORT JLhcSocketBase : public JSocketBase
 {
     Q_OBJECT
 public:

@@ -2,10 +2,11 @@
 #define JLHCREQUESTBASE_H
 
 #include "service/jrequestbase.h"
+#include "clientapi_global.h"
 
 class JLhcSocketBase;
 
-class JLhcRequestBase : public JRequestBase
+class CLIENTAPISHARED_EXPORT JLhcRequestBase : public JRequestBase
 {
 	Q_OBJECT
 public:

@@ -6,11 +6,12 @@
 
 #include "global/jglobal.h"
 #include "global/magicnumber.h"
+#include "clientapi_global.h"
 
 class QTcpSocket;
 class QHostAddress;
 
-class JSocketBase : public QObject
+class CLIENTAPISHARED_EXPORT JSocketBase : public QObject
 {
     Q_OBJECT
 public:
