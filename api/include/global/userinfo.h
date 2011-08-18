@@ -20,7 +20,7 @@ namespace UserInfo
 }
 
 class QDataStream;
-QDataStream& operator >> (QDataStream&,UserInfo::SUserInfo&);
-QDataStream& operator << (QDataStream&,const UserInfo::SUserInfo&);
+GLOBALAPISHARED_EXPORT QDataStream& operator >> (QDataStream&,UserInfo::SUserInfo&);
+GLOBALAPISHARED_EXPORT QDataStream& operator << (QDataStream&,const UserInfo::SUserInfo&);
 
 #endif // USERINFO_H

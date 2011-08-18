@@ -23,7 +23,7 @@ private:
 	friend QDataStream& operator>>(QDataStream& stream,JVersion& ver);
 };
 
-QDataStream& operator<<(QDataStream& stream,const JVersion& ver);
-QDataStream& operator>>(QDataStream& stream,JVersion& ver);
+GLOBALAPISHARED_EXPORT QDataStream& operator<<(QDataStream& stream,const JVersion& ver);
+GLOBALAPISHARED_EXPORT QDataStream& operator>>(QDataStream& stream,JVersion& ver);
 
 #endif

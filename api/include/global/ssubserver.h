@@ -8,6 +8,7 @@
 #include "jversion.h"
 #include "shost.h"
 #include "jglobal.h"
+#include "globalapi_global.h"
 
 namespace SubServer{
 	struct SGameInfo0 {
@@ -58,9 +59,9 @@ namespace SubServer{
 }
 
 class QDataStream;
-QDataStream& operator >> (QDataStream&,SubServer::SSubServer&);
-QDataStream& operator << (QDataStream&,const SubServer::SSubServer&);
-QDataStream& operator >> (QDataStream&,SubServer::SGameInfo2&);
-QDataStream& operator << (QDataStream&,const SubServer::SGameInfo2&);
+GLOBALAPISHARED_EXPORT QDataStream& operator >> (QDataStream&,SubServer::SSubServer&);
+GLOBALAPISHARED_EXPORT QDataStream& operator << (QDataStream&,const SubServer::SSubServer&);
+GLOBALAPISHARED_EXPORT QDataStream& operator >> (QDataStream&,SubServer::SGameInfo2&);
+GLOBALAPISHARED_EXPORT QDataStream& operator << (QDataStream&,const SubServer::SGameInfo2&);
 
 #endif // SSUBSERVER_H

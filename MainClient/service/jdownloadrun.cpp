@@ -81,7 +81,11 @@ bool JDownloadRun::run()
 
 QString JDownloadRun::getPath()const
 {
+#ifdef Q_OS_WIN32
+	return QString("./%1%2.exe").arg(m_gamename).arg(m_version.getData()).replace(' ','_');
+#else
 	return QString("./%1%2").arg(m_gamename).arg(m_version.getData()).replace(' ','_');
+#endif
 }
 
 QStringList JDownloadRun::getArguments()const
