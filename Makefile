@@ -6,15 +6,17 @@ $(1)-build-desktop/$(1) : $(1)-build-desktop/Makefile
 endef
 define MAKE_SUB_LIB_TARGET
 api/lib/lib$(1)api.so : api/$(1)api-build-desktop/Makefile
-	cd api/$(1)-build-desktop && make
+	cd api/$(1)api-build-desktop && make
 endef
 define MAKE_APP_MAKEFILE
 $(1)-build-desktop/Makefile : $(1)/$(1).pro
-	qmake CONFIG+=debug -o $(1)-build-desktop/Makefile $(1)/$(1).pro
+	mkdir -p $(1)-build-desktop
+	cd $(1)-build-desktop && qmake CONFIG+=debug -o Makefile ../$(1)/$(1).pro
 endef
 define MAKE_LIB_MAKEFILE
 api/$(1)api-build-desktop/Makefile : api/$(1)api/$(1)api.pro
-	qmake CONFIG+=debug -o api/$(1)-build-desktop/Makefile api/$(1)api/$(1)api.pro
+	mkdir -p api/$(1)api-build-desktop
+	cd api/$(1)api-build-desktop && qmake CONFIG+=debug -o Makefile ../$(1)api/$(1)api.pro
 endef
 define MAKE_ALL_TARGET
 all : $(1)-build-desktop/$(1)
