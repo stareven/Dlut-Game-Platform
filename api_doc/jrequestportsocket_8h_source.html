@@ -5,16 +5,27 @@
 <title>DGP_API: jrequestportsocket.h源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javaScript" src="search/search.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
-<!-- 制作者 Doxygen 1.7.1 -->
+<!-- 制作者 Doxygen 1.7.3 -->
 <script type="text/javascript"><!--
 var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 --></script>
-<div class="navigation" id="top">
-  <div class="tabs">
+<div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">DGP_API</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+  <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>首页</span></a></li>
       <li><a href="namespaces.html"><span>名字空间</span></a></li>
@@ -38,7 +49,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
       </li>
     </ul>
   </div>
-  <div class="tabs2">
+  <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>文件列表</span></a></li>
       <li><a href="globals.html"><span>文件成员</span></a></li>
@@ -53,7 +64,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define JREQUESTPORTSOCKET_H</span>
 <a name="l00003"></a>00003 <span class="preprocessor"></span>
 <a name="l00004"></a>00004 <span class="preprocessor">#include &quot;<a class="code" href="jsocketbase_8h.html">jsocketbase.h</a>&quot;</span>
-<a name="l00005"></a>00005 <span class="preprocessor">#include &quot;<a class="code" href="eportsrv_8h.html">global/eportsrv.h</a>&quot;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &quot;global/eportsrv.h&quot;</span>
 <a name="l00006"></a>00006 
 <a name="l00007"></a><a class="code" href="classJRequestPortSocket.html">00007</a> <span class="keyword">class </span><a class="code" href="classJRequestPortSocket.html">JRequestPortSocket</a> : <span class="keyword">public</span> <a class="code" href="classJSocketBase.html">JSocketBase</a>
 <a name="l00008"></a>00008 {
@@ -61,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <a name="l00010"></a>00010 <span class="keyword">public</span>:
 <a name="l00011"></a>00011     <span class="keyword">explicit</span> <a class="code" href="classJRequestPortSocket.html#ab91c3bd8b592daca169810ee148ecfe4">JRequestPortSocket</a>(QObject *parent = 0);
 <a name="l00012"></a>00012     <span class="keywordtype">void</span> <a class="code" href="classJRequestPortSocket.html#a93f2b78bac6c3293e4a2cc63e73d0958">sendCrypro</a>(<a class="code" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a>,<span class="keyword">const</span> QByteArray&amp;);
-<a name="l00013"></a>00013     <span class="keywordtype">void</span> <a class="code" href="classJRequestPortSocket.html#a3a4f5a18e6bdcb674e657d0436a9a3ba">rqsServerPort</a>(<a class="code" href="eportsrv_8h.html#ae69978bf26711447874a37fe0f9e1863" title="MainServer提供的各项服务。.">EServerType</a>);
+<a name="l00013"></a>00013     <span class="keywordtype">void</span> <a class="code" href="classJRequestPortSocket.html#a3a4f5a18e6bdcb674e657d0436a9a3ba">rqsServerPort</a>(<a class="code" href="eportsrv_8h.html#ae69978bf26711447874a37fe0f9e1863" title="MainServer提供的各项服务。">EServerType</a>);
 <a name="l00014"></a>00014 <span class="keyword">protected</span>:
 <a name="l00015"></a>00015     <span class="keywordtype">void</span> <a class="code" href="classJRequestPortSocket.html#ab84f0bcee21d07daf71c59b0cdcaa8ac">dataProcess</a>(<span class="keyword">const</span> QByteArray&amp;);
 <a name="l00016"></a>00016 signals:
@@ -70,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <a name="l00019"></a>00019 <span class="keyword">private</span>:
 <a name="l00020"></a>00020     <a class="code" href="namespaceMagicNumber.html#aee5fa8b6592ee567764415262a7e0ab4">MagicNumber::JMagicNumber</a> getMagicNumber()<span class="keyword">const</span>
 <a name="l00021"></a>00021 <span class="keyword">    </span>{
-<a name="l00022"></a>00022         <span class="keywordflow">return</span> MagicNumber::EMN_GetPort;
+<a name="l00022"></a>00022         <span class="keywordflow">return</span> <a class="code" href="namespaceMagicNumber.html#a68b664f3105828a2f1139d5ce5dd3fa4a95f844bc79e796cdc5abd3a0f4a7cef2">MagicNumber::EMN_GetPort</a>;
 <a name="l00023"></a>00023     }
 <a name="l00024"></a>00024 };
 <a name="l00025"></a>00025 
@@ -82,7 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>友元</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&nbsp;</span>宏定义</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>友元</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -91,8 +102,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated at Sun Jul 31 2011 14:57:37 for DGP_API by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated at 2011年八月22日 星期一 19:12:38 for DGP_API by&#160;
 <a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>
 </html>

@@ -5,16 +5,27 @@
 <title>DGP_API: JRequestUserInfo类参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javaScript" src="search/search.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
-<!-- 制作者 Doxygen 1.7.1 -->
+<!-- 制作者 Doxygen 1.7.3 -->
 <script type="text/javascript"><!--
 var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 --></script>
-<div class="navigation" id="top">
-  <div class="tabs">
+<div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">DGP_API</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+  <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>首页</span></a></li>
       <li><a href="namespaces.html"><span>名字空间</span></a></li>
@@ -38,7 +49,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
       </li>
     </ul>
   </div>
-  <div class="tabs2">
+  <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="annotated.html"><span>组合类型列表</span></a></li>
       <li><a href="classes.html"><span>组合类型索引</span></a></li>
@@ -68,18 +79,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <area href="classJLhcRequestBase.html" alt="JLhcRequestBase" shape="rect" coords="0,56,112,80"/>
 <area href="classJRequestBase.html" alt="JRequestBase" shape="rect" coords="0,0,112,24"/>
 </map>
-</div>
+ </div></div>
 
 <p><a href="classJRequestUserInfo-members.html">所有成员的列表。</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 公有成员</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestUserInfo.html#a7d4e48d29382a624246716df1cbce540">JRequestUserInfo</a> (QObject *parent=0)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structUserInfo_1_1SUserInfo.html">UserInfo::SUserInfo</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestUserInfo.html#aa6f99c8ea2aaacb5cd0a2a0b628c0db6">rqsUserInfo</a> (<a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a> userId)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">获取<em>userId</em> 的用户信息。  <a href="#aa6f99c8ea2aaacb5cd0a2a0b628c0db6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestUserInfo.html#a7d4e48d29382a624246716df1cbce540">JRequestUserInfo</a> (QObject *parent=0)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structUserInfo_1_1SUserInfo.html">UserInfo::SUserInfo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestUserInfo.html#aa6f99c8ea2aaacb5cd0a2a0b628c0db6">rqsUserInfo</a> (<a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a> userId)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获取<em>userId</em> 的用户信息。  <a href="#aa6f99c8ea2aaacb5cd0a2a0b628c0db6"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>详细描述</h2>
-<p>获取用户信息 </p>
+<div class="textblock"><p>获取用户信息 </p>
 <p>JRequestUserInfo对获取用户信息请求提供一个基本的封装。<br/>
  请求的过程：<br/>
  -1、通过 <a class="el" href="classJRequestPort.html" title="获得各个服务的端口">JRequestPort</a> 获得用户信息服务的端口。<br/>
@@ -88,7 +99,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
  -4、调用 <a class="el" href="classJRequestUserInfo.html#aa6f99c8ea2aaacb5cd0a2a0b628c0db6" title="获取userId 的用户信息。">rqsUserInfo()</a> 函数获取用户信息。<br/>
 </p>
 <dl class="see"><dt><b>参见:</b></dt><dd><a class="el" href="structUserInfo_1_1SUserInfo.html" title="记录一名玩家的信息。">UserInfo::SUserInfo</a> </dd></dl>
-<hr/><h2>构造及析构函数文档</h2>
+</div><hr/><h2>构造及析构函数文档</h2>
 <a class="anchor" id="a7d4e48d29382a624246716df1cbce540"></a><!-- doxytag: member="JRequestUserInfo::JRequestUserInfo" ref="a7d4e48d29382a624246716df1cbce540" args="(QObject *parent=0)" -->
 <div class="memitem">
 <div class="memproto">
@@ -96,9 +107,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
         <tr>
           <td class="memname">JRequestUserInfo::JRequestUserInfo </td>
           <td>(</td>
-          <td class="paramtype">QObject *&nbsp;</td>
-          <td class="paramname"> <em>parent</em> = <code>0</code></td>
-          <td>&nbsp;)&nbsp;</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>0</code></td><td>)</td>
           <td><code> [explicit]</code></td>
         </tr>
       </table>
@@ -116,9 +126,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
         <tr>
           <td class="memname"><a class="el" href="structUserInfo_1_1SUserInfo.html">UserInfo::SUserInfo</a> JRequestUserInfo::rqsUserInfo </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a>&nbsp;</td>
-          <td class="paramname"> <em>userId</em></td>
-          <td>&nbsp;)&nbsp;</td>
+          <td class="paramtype"><a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a>&#160;</td>
+          <td class="paramname"><em>userId</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -143,7 +152,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>友元</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&nbsp;</span>宏定义</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>友元</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -152,8 +161,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated at Sun Jul 31 2011 14:57:37 for DGP_API by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated at 2011年八月22日 星期一 19:12:38 for DGP_API by&#160;
 <a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>
 </html>

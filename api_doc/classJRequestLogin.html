@@ -5,16 +5,27 @@
 <title>DGP_API: JRequestLogin类参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javaScript" src="search/search.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
-<!-- 制作者 Doxygen 1.7.1 -->
+<!-- 制作者 Doxygen 1.7.3 -->
 <script type="text/javascript"><!--
 var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 --></script>
-<div class="navigation" id="top">
-  <div class="tabs">
+<div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">DGP_API</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+  <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>首页</span></a></li>
       <li><a href="namespaces.html"><span>名字空间</span></a></li>
@@ -38,7 +49,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
       </li>
     </ul>
   </div>
-  <div class="tabs2">
+  <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="annotated.html"><span>组合类型列表</span></a></li>
       <li><a href="classes.html"><span>组合类型索引</span></a></li>
@@ -70,36 +81,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <map id="JRequestLogin_map" name="JRequestLogin_map">
 <area href="classJRequestBase.html" alt="JRequestBase" shape="rect" coords="0,0,94,24"/>
 </map>
-</div>
+ </div></div>
 
 <p><a href="classJRequestLogin-members.html">所有成员的列表。</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 公有类型</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestLogin.html#a1805c2d7146b8d85b2c684afec796789">ELoginState</a> { <a class="el" href="classJRequestLogin.html#a1805c2d7146b8d85b2c684afec796789a6e427f0c9b0e4db5dc93be3737917452">ELS_Init</a>, 
+<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestLogin.html#a1805c2d7146b8d85b2c684afec796789">ELoginState</a> { <a class="el" href="classJRequestLogin.html#a1805c2d7146b8d85b2c684afec796789a6e427f0c9b0e4db5dc93be3737917452">ELS_Init</a>, 
 <a class="el" href="classJRequestLogin.html#a1805c2d7146b8d85b2c684afec796789a9ccbbb8c0098a306fe18f08644834d19">ELS_Sending</a>, 
 <a class="el" href="classJRequestLogin.html#a1805c2d7146b8d85b2c684afec796789a1d731320731d3bd3dbe0ac8a495807d1">ELS_Success</a>, 
 <a class="el" href="classJRequestLogin.html#a1805c2d7146b8d85b2c684afec796789aaa64add96b3f924cad3cff9864eaeb36">ELS_Failed</a>
  }</td></tr>
 <tr><td colspan="2"><h2><a name="signals"></a>
 信号</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestLogin.html#a5dc0ff342bf1ca6b1be7482ffa2c7d6b">loginResult</a> (bool)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">登录结果  <a href="#a5dc0ff342bf1ca6b1be7482ffa2c7d6b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestLogin.html#a5dc0ff342bf1ca6b1be7482ffa2c7d6b">loginResult</a> (bool)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">登录结果  <a href="#a5dc0ff342bf1ca6b1be7482ffa2c7d6b"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 公有成员</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestLogin.html#a48ffd11273906af892bde7a655ffa3a4">JRequestLogin</a> (QObject *parent=0)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestLogin.html#ab8400d5316413908a8c8d1c0f16247a7">login</a> (const QString &amp;loginname, const QString &amp;passwd, const <a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a> &amp;role)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJRequestLogin.html#a1805c2d7146b8d85b2c684afec796789">ELoginState</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestLogin.html#abaa2a0c4f4d2d6591272f6be71da258e">getLoginState</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestLogin.html#a06ca4483838e5dccd4ed2644f9e00540">waitForLogined</a> (int msecs=30000)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const QString &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestLogin.html#a0a05c03da1c0234ab49ddc892f095108">getLoginError</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestLogin.html#a48ffd11273906af892bde7a655ffa3a4">JRequestLogin</a> (QObject *parent=0)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestLogin.html#ab8400d5316413908a8c8d1c0f16247a7">login</a> (const QString &amp;loginname, const QString &amp;passwd, const <a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a> &amp;role)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJRequestLogin.html#a1805c2d7146b8d85b2c684afec796789">ELoginState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestLogin.html#abaa2a0c4f4d2d6591272f6be71da258e">getLoginState</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestLogin.html#a06ca4483838e5dccd4ed2644f9e00540">waitForLogined</a> (int msecs=30000)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const QString &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestLogin.html#a0a05c03da1c0234ab49ddc892f095108">getLoginError</a> () const </td></tr>
 <tr><td colspan="2"><h2><a name="pro-slots"></a>
 保护槽</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestLogin.html#a2fd7d23434cac1343b4e8f6677658356">on_socket_loginCode</a> (<a class="el" href="jglobal_8h.html#ae81115bbe70c338270c695f96b946ad9">JCode</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestLogin.html#a2fd7d23434cac1343b4e8f6677658356">on_socket_loginCode</a> (<a class="el" href="jglobal_8h.html#ae81115bbe70c338270c695f96b946ad9">JCode</a>)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>详细描述</h2>
-<p>登录请求。 </p>
+<div class="textblock"><p>登录请求。 </p>
 <p>JRequestLogin对登录请求提供一个基本的封装。 登录的过程： 1、通过 <a class="el" href="classJRequestPort.html" title="获得各个服务的端口">JRequestPort</a> 获得登录服务的端口。 2、调用 <a class="el" href="classJRequestBase.html#aa491f8ce54b72039fe474b534da6ab31">connectToHost()</a> 函数连接服务器。 3、调用 <a class="el" href="classJRequestLogin.html#ab8400d5316413908a8c8d1c0f16247a7">login()</a> 函数发送用户名、密码及登录身份。 </p>
-<hr/><h2>成员枚举类型文档</h2>
+</div><hr/><h2>成员枚举类型文档</h2>
 <a class="anchor" id="a1805c2d7146b8d85b2c684afec796789"></a><!-- doxytag: member="JRequestLogin::ELoginState" ref="a1805c2d7146b8d85b2c684afec796789" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -138,9 +149,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
         <tr>
           <td class="memname">JRequestLogin::JRequestLogin </td>
           <td>(</td>
-          <td class="paramtype">QObject *&nbsp;</td>
-          <td class="paramname"> <em>parent</em> = <code>0</code></td>
-          <td>&nbsp;)&nbsp;</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>0</code></td><td>)</td>
           <td><code> [explicit]</code></td>
         </tr>
       </table>
@@ -158,8 +168,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
         <tr>
           <td class="memname">const QString &amp; JRequestLogin::getLoginError </td>
           <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
+          <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -176,8 +185,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
         <tr>
           <td class="memname"><a class="el" href="classJRequestLogin.html#a1805c2d7146b8d85b2c684afec796789">JRequestLogin::ELoginState</a> JRequestLogin::getLoginState </td>
           <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
+          <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -195,25 +203,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
         <tr>
           <td class="memname">void JRequestLogin::login </td>
           <td>(</td>
-          <td class="paramtype">const QString &amp;&nbsp;</td>
-          <td class="paramname"> <em>loginname</em>, </td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>loginname</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const QString &amp;&nbsp;</td>
-          <td class="paramname"> <em>passwd</em>, </td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>passwd</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>role</em></td><td>&nbsp;</td>
+          <td class="paramtype">const <a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a> &amp;&#160;</td>
+          <td class="paramname"><em>role</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td></td>
+          <td></td><td></td>
         </tr>
       </table>
 </div>
@@ -230,9 +238,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
         <tr>
           <td class="memname">JRequestLogin::loginResult </td>
           <td>(</td>
-          <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>result</em></td>
-          <td>&nbsp;)&nbsp;</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
           <td><code> [signal]</code></td>
         </tr>
       </table>
@@ -251,9 +258,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
         <tr>
           <td class="memname">void JRequestLogin::on_socket_loginCode </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="jglobal_8h.html#ae81115bbe70c338270c695f96b946ad9">JCode</a>&nbsp;</td>
-          <td class="paramname"> <em>code</em></td>
-          <td>&nbsp;)&nbsp;</td>
+          <td class="paramtype"><a class="el" href="jglobal_8h.html#ae81115bbe70c338270c695f96b946ad9">JCode</a>&#160;</td>
+          <td class="paramname"><em>code</em></td><td>)</td>
           <td><code> [protected, slot]</code></td>
         </tr>
       </table>
@@ -269,9 +275,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
         <tr>
           <td class="memname">bool JRequestLogin::waitForLogined </td>
           <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>msecs</em> = <code>30000</code></td>
-          <td>&nbsp;)&nbsp;</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>msecs</em> = <code>30000</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -279,9 +284,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="memdoc">
 <p>等待<em>msecs</em> 毫秒或收到登录结果。 </p>
 <dl><dt><b>返回值:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>true</em>&nbsp;</td><td>： 登录成功。 </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>false</em>&nbsp;</td><td>： 登录失败或时间超过<em>msecs</em> 毫秒。 </td></tr>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>： 登录成功。 </td></tr>
+    <tr><td class="paramname">false</td><td>： 登录失败或时间超过<em>msecs</em> 毫秒。 </td></tr>
   </table>
   </dd>
 </dl>
@@ -298,7 +303,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>友元</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&nbsp;</span>宏定义</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>友元</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -307,8 +312,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated at Sun Jul 31 2011 14:57:37 for DGP_API by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated at 2011年八月22日 星期一 19:12:38 for DGP_API by&#160;
 <a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>
 </html>

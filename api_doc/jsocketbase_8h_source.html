@@ -5,16 +5,27 @@
 <title>DGP_API: jsocketbase.h源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javaScript" src="search/search.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
-<!-- 制作者 Doxygen 1.7.1 -->
+<!-- 制作者 Doxygen 1.7.3 -->
 <script type="text/javascript"><!--
 var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 --></script>
-<div class="navigation" id="top">
-  <div class="tabs">
+<div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">DGP_API</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+  <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>首页</span></a></li>
       <li><a href="namespaces.html"><span>名字空间</span></a></li>
@@ -38,7 +49,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
       </li>
     </ul>
   </div>
-  <div class="tabs2">
+  <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>文件列表</span></a></li>
       <li><a href="globals.html"><span>文件成员</span></a></li>
@@ -55,44 +66,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <a name="l00004"></a>00004 <span class="preprocessor">#include &lt;QObject&gt;</span>
 <a name="l00005"></a>00005 <span class="preprocessor">#include &lt;QAbstractSocket&gt;</span>
 <a name="l00006"></a>00006 
-<a name="l00007"></a>00007 <span class="preprocessor">#include &quot;<a class="code" href="jglobal_8h.html">global/jglobal.h</a>&quot;</span>
-<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;<a class="code" href="magicnumber_8h.html">global/magicnumber.h</a>&quot;</span>
-<a name="l00009"></a>00009 
-<a name="l00010"></a>00010 <span class="keyword">class </span>QTcpSocket;
-<a name="l00011"></a>00011 <span class="keyword">class </span>QHostAddress;
-<a name="l00012"></a>00012 
-<a name="l00013"></a><a class="code" href="classJSocketBase.html">00013</a> <span class="keyword">class </span><a class="code" href="classJSocketBase.html">JSocketBase</a> : <span class="keyword">public</span> QObject
-<a name="l00014"></a>00014 {
-<a name="l00015"></a>00015     Q_OBJECT
-<a name="l00016"></a>00016 <span class="keyword">public</span>:
-<a name="l00017"></a>00017     <span class="keyword">explicit</span> <a class="code" href="classJSocketBase.html#a943b961614f36e82f77ebe3ad39b98f5">JSocketBase</a>(QObject *parent = 0);
-<a name="l00018"></a>00018     <span class="keywordtype">void</span> <a class="code" href="classJSocketBase.html#a4cf03de3209fde7959015dfdbcfc1a67">connectToHost</a>(<span class="keyword">const</span> QHostAddress&amp; address,
-<a name="l00019"></a>00019                        quint16 port);
-<a name="l00020"></a>00020     <span class="keywordtype">bool</span> <a class="code" href="classJSocketBase.html#a5a760d157d167e72f069c373d360f421">isConnected</a>()<span class="keyword">const</span>;
-<a name="l00021"></a>00021     QAbstractSocket::SocketState <a class="code" href="classJSocketBase.html#a06d8598e42dd33abe12dff44bd7a02c8">socketState</a> () <span class="keyword">const</span>;
-<a name="l00022"></a>00022 <span class="keyword">private</span>:
-<a name="l00023"></a>00023     QTcpSocket *m_socket;
-<a name="l00024"></a>00024     <span class="keywordtype">int</span> m_size;
-<a name="l00025"></a>00025     QByteArray m_data;
-<a name="l00026"></a>00026 
-<a name="l00027"></a>00027 signals:
-<a name="l00028"></a>00028     <span class="keywordtype">void</span> <a class="code" href="classJSocketBase.html#a5b88d1317f6ff3bbdaa99d63ffed057e">SocketCode</a>(<a class="code" href="jglobal_8h.html#ae81115bbe70c338270c695f96b946ad9">JCode</a> code);
-<a name="l00029"></a>00029     <span class="keywordtype">void</span> <a class="code" href="classJSocketBase.html#acecc36372c09f8666e75c1b4538eeff0">SocketError</a>(QString);
-<a name="l00030"></a>00030 <span class="keyword">protected</span> slots:
-<a name="l00031"></a>00031     <span class="keywordtype">void</span> <a class="code" href="classJSocketBase.html#aa1fe78e5490b55ea757554d5e38a6f50">on_socket_connected</a>();
-<a name="l00032"></a>00032     <span class="keywordtype">void</span> <a class="code" href="classJSocketBase.html#aac0c9999e0fe0ae7cab71338b36a060c">on_socket_disconnected</a>();
-<a name="l00033"></a>00033     <span class="keywordtype">void</span> <a class="code" href="classJSocketBase.html#a53314504b71f3e491ceb328a4ab3ccf0">on_socket_readyRead</a>();
-<a name="l00034"></a>00034     <span class="keywordtype">void</span> <a class="code" href="classJSocketBase.html#acf7c2d3835149efa516f755dee6033c9">on_socket_error</a> ( QAbstractSocket::SocketError socketError );
-<a name="l00035"></a>00035 <span class="keyword">private</span>:
-<a name="l00036"></a>00036     <span class="keyword">virtual</span> <a class="code" href="namespaceMagicNumber.html#aee5fa8b6592ee567764415262a7e0ab4">MagicNumber::JMagicNumber</a> getMagicNumber()<span class="keyword">const</span>=0;
-<a name="l00037"></a>00037 
-<a name="l00038"></a>00038 <span class="keyword">protected</span>:
-<a name="l00039"></a>00039     <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classJSocketBase.html#a57cc15b48ed6e0e9cdd7d9710254543d">dataProcess</a>(<span class="keyword">const</span> QByteArray&amp;)=0;
-<a name="l00040"></a>00040     <span class="keywordtype">void</span> <a class="code" href="classJSocketBase.html#a2758cb001cd0968809f1230710fc432f">sendData</a>(<span class="keyword">const</span> QByteArray&amp;);
-<a name="l00041"></a>00041     <span class="keywordtype">void</span> <a class="code" href="classJSocketBase.html#a08c4c4df93ded4b1ee08703878675b12">closeConnect</a>();
-<a name="l00042"></a>00042 };
-<a name="l00043"></a>00043 
-<a name="l00044"></a>00044 <span class="preprocessor">#endif // JSOCKETBASE_H</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#include &quot;global/jglobal.h&quot;</span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;global/magicnumber.h&quot;</span>
+<a name="l00009"></a>00009 <span class="preprocessor">#include &quot;clientapi_global.h&quot;</span>
+<a name="l00010"></a>00010 
+<a name="l00011"></a>00011 <span class="keyword">class </span>QTcpSocket;
+<a name="l00012"></a>00012 <span class="keyword">class </span>QHostAddress;
+<a name="l00013"></a>00013 
+<a name="l00014"></a><a class="code" href="classJSocketBase.html">00014</a> <span class="keyword">class </span>CLIENTAPISHARED_EXPORT <a class="code" href="classJSocketBase.html">JSocketBase</a> : <span class="keyword">public</span> QObject
+<a name="l00015"></a>00015 {
+<a name="l00016"></a>00016     Q_OBJECT
+<a name="l00017"></a>00017 <span class="keyword">public</span>:
+<a name="l00018"></a>00018     <span class="keyword">explicit</span> <a class="code" href="classJSocketBase.html">JSocketBase</a>(QObject *parent = 0);
+<a name="l00019"></a>00019     <span class="keywordtype">void</span> connectToHost(<span class="keyword">const</span> QHostAddress&amp; address,
+<a name="l00020"></a>00020                        quint16 port);
+<a name="l00021"></a>00021     <span class="keywordtype">bool</span> isConnected()<span class="keyword">const</span>;
+<a name="l00022"></a>00022     QAbstractSocket::SocketState socketState () <span class="keyword">const</span>;
+<a name="l00023"></a>00023 <span class="keyword">private</span>:
+<a name="l00024"></a>00024     QTcpSocket *m_socket;
+<a name="l00025"></a>00025     <span class="keywordtype">int</span> m_size;
+<a name="l00026"></a>00026     QByteArray m_data;
+<a name="l00027"></a>00027 
+<a name="l00028"></a>00028 signals:
+<a name="l00029"></a>00029     <span class="keywordtype">void</span> SocketCode(<a class="code" href="jglobal_8h.html#ae81115bbe70c338270c695f96b946ad9">JCode</a> code);
+<a name="l00030"></a>00030     <span class="keywordtype">void</span> SocketError(QString);
+<a name="l00031"></a>00031 <span class="keyword">protected</span> slots:
+<a name="l00032"></a>00032     <span class="keywordtype">void</span> on_socket_connected();
+<a name="l00033"></a>00033     <span class="keywordtype">void</span> on_socket_disconnected();
+<a name="l00034"></a>00034     <span class="keywordtype">void</span> on_socket_readyRead();
+<a name="l00035"></a>00035     <span class="keywordtype">void</span> on_socket_error ( QAbstractSocket::SocketError socketError );
+<a name="l00036"></a>00036 <span class="keyword">private</span>:
+<a name="l00037"></a>00037     <span class="keyword">virtual</span> <a class="code" href="namespaceMagicNumber.html#aee5fa8b6592ee567764415262a7e0ab4">MagicNumber::JMagicNumber</a> getMagicNumber()<span class="keyword">const</span>=0;
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039 <span class="keyword">protected</span>:
+<a name="l00040"></a>00040     <span class="keyword">virtual</span> <span class="keywordtype">void</span> dataProcess(<span class="keyword">const</span> QByteArray&amp;)=0;
+<a name="l00041"></a>00041     <span class="keywordtype">void</span> sendData(<span class="keyword">const</span> QByteArray&amp;);
+<a name="l00042"></a>00042     <span class="keywordtype">void</span> closeConnect();
+<a name="l00043"></a>00043 };
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045 <span class="preprocessor">#endif // JSOCKETBASE_H</span>
 </pre></div></div>
 </div>
 <!--- window showing the filter options -->
@@ -100,7 +112,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>友元</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&nbsp;</span>宏定义</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>友元</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -109,8 +121,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated at Sun Jul 31 2011 14:57:37 for DGP_API by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated at 2011年八月22日 星期一 19:12:38 for DGP_API by&#160;
 <a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>
 </html>

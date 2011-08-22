@@ -5,16 +5,27 @@
 <title>DGP_API: jsubserverstartup.h源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javaScript" src="search/search.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
-<!-- 制作者 Doxygen 1.7.1 -->
+<!-- 制作者 Doxygen 1.7.3 -->
 <script type="text/javascript"><!--
 var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 --></script>
-<div class="navigation" id="top">
-  <div class="tabs">
+<div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">DGP_API</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+  <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>首页</span></a></li>
       <li><a href="namespaces.html"><span>名字空间</span></a></li>
@@ -38,7 +49,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
       </li>
     </ul>
   </div>
-  <div class="tabs2">
+  <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>文件列表</span></a></li>
       <li><a href="globals.html"><span>文件成员</span></a></li>
@@ -52,40 +63,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <a href="jsubserverstartup_8h.html">浏览该文件的文档。</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef JSUBSERVERSTARTUP_H</span>
 <a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define JSUBSERVERSTARTUP_H</span>
 <a name="l00003"></a>00003 <span class="preprocessor"></span>
-<a name="l00004"></a>00004 <span class="preprocessor">#include &quot;<a class="code" href="eportsrv_8h.html">global/eportsrv.h</a>&quot;</span>
-<a name="l00005"></a>00005 <span class="preprocessor">#include &quot;<a class="code" href="jglobal_8h.html">global/jglobal.h</a>&quot;</span>
-<a name="l00006"></a>00006 <span class="preprocessor">#include &quot;<a class="code" href="ssubserver_8h.html">global/ssubserver.h</a>&quot;</span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &quot;global/eportsrv.h&quot;</span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &quot;global/jglobal.h&quot;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &quot;global/ssubserver.h&quot;</span>
 <a name="l00007"></a>00007 
 <a name="l00008"></a>00008 <span class="preprocessor">#include &quot;subserverapi_global.h&quot;</span>
 <a name="l00009"></a>00009 
 <a name="l00010"></a>00010 <span class="keyword">class </span><a class="code" href="classJRequestPort.html" title="获得各个服务的端口">JRequestPort</a>;
 <a name="l00011"></a>00011 <span class="keyword">class </span><a class="code" href="classJRequestLogin.html" title="登录请求。">JRequestLogin</a>;
-<a name="l00012"></a>00012 <span class="keyword">class </span><a class="code" href="classJSendGsInfo.html" title="SubServer向MainServer发送相关信息。.">JSendGsInfo</a>;
+<a name="l00012"></a>00012 <span class="keyword">class </span><a class="code" href="classJSendGsInfo.html" title="SubServer向MainServer发送相关信息。">JSendGsInfo</a>;
 <a name="l00013"></a>00013 
 <a name="l00019"></a><a class="code" href="classJSubServerStartup.html">00019</a> <span class="keyword">class </span>SUBSERVERAPISHARED_EXPORT <a class="code" href="classJSubServerStartup.html" title="对SubServer的整个登录过程的封装。">JSubServerStartup</a>
 <a name="l00020"></a>00020 {
 <a name="l00021"></a>00021 <span class="keyword">public</span>:
-<a name="l00022"></a><a class="code" href="classJSubServerStartup.html#adef766975c93dc9bd6b4451d1e05a42d">00022</a>     <a class="code" href="structSHost.html" title="记录一个地址和端口。">SHost</a> m_host;
-<a name="l00023"></a><a class="code" href="classJSubServerStartup.html#ad2e032009f7bd77a63652c01561c57a6">00023</a>     QString m_loginname;
-<a name="l00024"></a><a class="code" href="classJSubServerStartup.html#ac82d50a140ca861c4e87cbf2f54db7fc">00024</a>     QString m_passwd;
-<a name="l00025"></a><a class="code" href="classJSubServerStartup.html#a37873c68de06d10074cc1884c9b26a5d">00025</a>     <a class="code" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a> m_role;
-<a name="l00026"></a><a class="code" href="classJSubServerStartup.html#ad7495675bc208af760f6b543488f15f7">00026</a>     <a class="code" href="structSubServer_1_1SGameInfo2.html">SubServer::SGameInfo2</a> m_gameinfo;
-<a name="l00027"></a><a class="code" href="classJSubServerStartup.html#a867e00c0cc668c8ca37f4cbef6c909c4">00027</a>     <a class="code" href="structSubServer_1_1SSubServer.html">SubServer::SSubServer</a> m_serverinfo;
+<a name="l00022"></a><a class="code" href="classJSubServerStartup.html#adef766975c93dc9bd6b4451d1e05a42d">00022</a>     <a class="code" href="structSHost.html" title="记录一个地址和端口。">SHost</a> <a class="code" href="classJSubServerStartup.html#adef766975c93dc9bd6b4451d1e05a42d" title="MainServer的端口及地址">m_host</a>;
+<a name="l00023"></a><a class="code" href="classJSubServerStartup.html#ad2e032009f7bd77a63652c01561c57a6">00023</a>     QString <a class="code" href="classJSubServerStartup.html#ad2e032009f7bd77a63652c01561c57a6" title="登录名">m_loginname</a>;
+<a name="l00024"></a><a class="code" href="classJSubServerStartup.html#ac82d50a140ca861c4e87cbf2f54db7fc">00024</a>     QString <a class="code" href="classJSubServerStartup.html#ac82d50a140ca861c4e87cbf2f54db7fc" title="登录密码">m_passwd</a>;
+<a name="l00025"></a><a class="code" href="classJSubServerStartup.html#a37873c68de06d10074cc1884c9b26a5d">00025</a>     <a class="code" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a> <a class="code" href="classJSubServerStartup.html#a37873c68de06d10074cc1884c9b26a5d" title="登录身份。若想发送SubServer相关信息，需要以ROLE_GAMESERVERRUNNER身份登录。">m_role</a>;
+<a name="l00026"></a><a class="code" href="classJSubServerStartup.html#ad7495675bc208af760f6b543488f15f7">00026</a>     <a class="code" href="structSubServer_1_1SGameInfo2.html">SubServer::SGameInfo2</a> <a class="code" href="classJSubServerStartup.html#ad7495675bc208af760f6b543488f15f7" title="相关游戏信息。">m_gameinfo</a>;
+<a name="l00027"></a><a class="code" href="classJSubServerStartup.html#a867e00c0cc668c8ca37f4cbef6c909c4">00027</a>     <a class="code" href="structSubServer_1_1SSubServer.html">SubServer::SSubServer</a> <a class="code" href="classJSubServerStartup.html#a867e00c0cc668c8ca37f4cbef6c909c4" title="SubServer信息。">m_serverinfo</a>;
 <a name="l00028"></a>00028 
 <a name="l00029"></a>00029     <a class="code" href="classJSubServerStartup.html" title="对SubServer的整个登录过程的封装。">JSubServerStartup</a>();
 <a name="l00030"></a>00030     ~<a class="code" href="classJSubServerStartup.html" title="对SubServer的整个登录过程的封装。">JSubServerStartup</a>();
 <a name="l00031"></a><a class="code" href="classJSubServerStartup.html#ab57962cec1a035b69cccdb661702584a">00031</a>     <span class="keyword">enum</span> <a class="code" href="classJSubServerStartup.html#ab57962cec1a035b69cccdb661702584a">EReturnValue</a>{
-<a name="l00032"></a><a class="code" href="classJSubServerStartup.html#ab57962cec1a035b69cccdb661702584aa5554db32435242fd84f70a2bf3003cf3">00032</a>         ERV_Success,
-<a name="l00033"></a><a class="code" href="classJSubServerStartup.html#ab57962cec1a035b69cccdb661702584aaedfef6f3fa18c3d6d46ee6efb5d9005c">00033</a>         ERV_ConnectFailed,
-<a name="l00034"></a><a class="code" href="classJSubServerStartup.html#ab57962cec1a035b69cccdb661702584aa169d6cc36b77eb7d96d3b03c1bd0e61c">00034</a>         ERV_LoginFailed,
-<a name="l00035"></a><a class="code" href="classJSubServerStartup.html#ab57962cec1a035b69cccdb661702584aa7aaa637b7daa7344fdcc5991e371b360">00035</a>         ERV_PlhFailed,
-<a name="l00036"></a><a class="code" href="classJSubServerStartup.html#ab57962cec1a035b69cccdb661702584aaa1d3c67de7f50685ee70fd01cefa6978">00036</a>         ERV_SendFailed,
+<a name="l00032"></a><a class="code" href="classJSubServerStartup.html#ab57962cec1a035b69cccdb661702584aa5554db32435242fd84f70a2bf3003cf3">00032</a>         <a class="code" href="classJSubServerStartup.html#ab57962cec1a035b69cccdb661702584aa5554db32435242fd84f70a2bf3003cf3">ERV_Success</a>,
+<a name="l00033"></a><a class="code" href="classJSubServerStartup.html#ab57962cec1a035b69cccdb661702584aaedfef6f3fa18c3d6d46ee6efb5d9005c">00033</a>         <a class="code" href="classJSubServerStartup.html#ab57962cec1a035b69cccdb661702584aaedfef6f3fa18c3d6d46ee6efb5d9005c">ERV_ConnectFailed</a>,
+<a name="l00034"></a><a class="code" href="classJSubServerStartup.html#ab57962cec1a035b69cccdb661702584aa169d6cc36b77eb7d96d3b03c1bd0e61c">00034</a>         <a class="code" href="classJSubServerStartup.html#ab57962cec1a035b69cccdb661702584aa169d6cc36b77eb7d96d3b03c1bd0e61c">ERV_LoginFailed</a>,
+<a name="l00035"></a><a class="code" href="classJSubServerStartup.html#ab57962cec1a035b69cccdb661702584aa7aaa637b7daa7344fdcc5991e371b360">00035</a>         <a class="code" href="classJSubServerStartup.html#ab57962cec1a035b69cccdb661702584aa7aaa637b7daa7344fdcc5991e371b360">ERV_PlhFailed</a>,
+<a name="l00036"></a><a class="code" href="classJSubServerStartup.html#ab57962cec1a035b69cccdb661702584aaa1d3c67de7f50685ee70fd01cefa6978">00036</a>         <a class="code" href="classJSubServerStartup.html#ab57962cec1a035b69cccdb661702584aaa1d3c67de7f50685ee70fd01cefa6978">ERV_SendFailed</a>,
 <a name="l00037"></a>00037     };
 <a name="l00038"></a>00038     EReturnValue startup()<span class="keyword">const</span>;
 <a name="l00039"></a>00039 <span class="keyword">private</span>:
 <a name="l00040"></a>00040     <a class="code" href="classJRequestPort.html" title="获得各个服务的端口">JRequestPort</a>* m_ps;
 <a name="l00041"></a>00041     <a class="code" href="classJRequestLogin.html" title="登录请求。">JRequestLogin</a>* m_login;
-<a name="l00042"></a>00042     <a class="code" href="classJSendGsInfo.html" title="SubServer向MainServer发送相关信息。.">JSendGsInfo</a>* m_gis;
+<a name="l00042"></a>00042     <a class="code" href="classJSendGsInfo.html" title="SubServer向MainServer发送相关信息。">JSendGsInfo</a>* m_gis;
 <a name="l00043"></a>00043 };
 <a name="l00044"></a>00044 
 <a name="l00045"></a>00045 <span class="preprocessor">#endif // JSUBSERVERSTARTUP_H</span>
@@ -96,7 +107,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>友元</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&nbsp;</span>宏定义</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>友元</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -105,8 +116,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated at Sun Jul 31 2011 14:57:37 for DGP_API by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated at 2011年八月22日 星期一 19:12:38 for DGP_API by&#160;
 <a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
 </body>
 </html>
