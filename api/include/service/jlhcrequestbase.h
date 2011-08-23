@@ -12,7 +12,9 @@ class CLIENTAPISHARED_EXPORT JLhcRequestBase : public JRequestBase
 public:
 	explicit JLhcRequestBase(QObject *parent = 0);
 	void sendLoginHashCode(JID,const QByteArray&);
-	enum ELhcState{///< Login hash confirm的状态。
+	
+	/// Login hash confirm的状态。
+	enum ELhcState{
 		EPS_Init,///< 初始状态
 		EPS_Sending,///< 已经发送但仍未收到结果
 		EPS_Success,///< 发送成功
