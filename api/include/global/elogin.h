@@ -6,6 +6,7 @@
 
 /*!
 	\file elogin.h
+	\ingroup global
 	\brief 与登录相关的类型定义。
 */
 

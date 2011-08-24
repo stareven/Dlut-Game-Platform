@@ -4,6 +4,7 @@
 
 /*!
 	\namespace UserInfo
+	\ingroup global
 	\brief 玩家信息相关。
 */
 
@@ -15,7 +16,9 @@
 */
 
 /*!
-	构造一个SUserInfo。Id为\a id ，昵称为\a name ，组织名\a org 。
+	\brief 构造一个SUserInfo。
+	
+	Id为\a id ，昵称为\a name ，组织名\a org 。
 */
 UserInfo::SUserInfo::SUserInfo(JID id,
 		  const QString& name,
@@ -28,7 +31,7 @@ UserInfo::SUserInfo::SUserInfo(JID id,
 
 /*!
 	\relates UserInfo::SUserInfo
-	从流\a stream 中读入到\a ui 中。
+	\brief 从流\a stream 中读入到\a ui 中。
 */
 QDataStream& operator >> (QDataStream& stream,UserInfo::SUserInfo& ui)
 {
@@ -40,7 +43,7 @@ QDataStream& operator >> (QDataStream& stream,UserInfo::SUserInfo& ui)
 
 /*!
 	\relates UserInfo::SUserInfo
-	将\a ui 中写入到流\a stream 中。
+	\brief 将\a ui 中写入到流\a stream 中。
 */
 QDataStream& operator << (QDataStream& stream,const UserInfo::SUserInfo& ui)
 {

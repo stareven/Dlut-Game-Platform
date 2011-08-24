@@ -3,8 +3,8 @@
 #include <QDataStream>
 
 /*!
-	\class JVersion
-	\module global
+	\class JVersion jversion.h "global/jversion.h"
+	\ingroup global
 	\brief 管理版本号。
 	
 	一个版本号应包含四部分：<主版本号>.<次版本号>.<发布号>-<开发号>
@@ -12,7 +12,8 @@
 */
 
 /*!
-	以\a data 构造一个版本号。
+	\brief 以\a data 构造一个版本号。
+	
 	默认将构造一个空版本号。
 	\sa isNull()
 */
@@ -22,7 +23,8 @@ JVersion::JVersion(quint32 data)
 }
 
 /*!
-	判断当前版本号是否为空。
+	\brief 判断当前版本号是否为空。
+	
 	如果保存的数据等于0xFFFFFFFF，则为空。
 */
 bool JVersion::isNull()const
@@ -63,7 +65,7 @@ bool JVersion::operator!=(const JVersion& b)const
 }
 
 /*!
-	直接获取内部保存的\c quint32 值。
+	\brief 直接获取内部保存的\c quint32 值。
 */
 quint32 JVersion::getData()const
 {
@@ -72,7 +74,7 @@ quint32 JVersion::getData()const
 
 /*!
 	\relates JVersion
-	将版本号\a ver 输出到\a stream 流中。
+	\brief 将版本号\a ver 输出到\a stream 流中。
 */
 QDataStream& operator<<(QDataStream& stream,const JVersion& ver)
 {
@@ -82,7 +84,7 @@ QDataStream& operator<<(QDataStream& stream,const JVersion& ver)
 
 /*!
 	\relates JVersion
-	从\a stream 流中读出版本号到\a ver 中。
+	\brief 从\a stream 流中读出版本号到\a ver 中。
 */
 QDataStream& operator>>(QDataStream& stream,JVersion& ver)
 {

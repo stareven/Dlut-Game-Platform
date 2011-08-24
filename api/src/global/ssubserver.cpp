@@ -4,6 +4,7 @@
 
 /*!
 	\namespace SubServer
+	\ingroup global
 	\brief 定义了SubServer需要用到的一些数据结构。
 
 	我们将GameServer和GameFileServer统一称为SubServer。\n

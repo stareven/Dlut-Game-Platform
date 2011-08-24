@@ -1,6 +1,12 @@
 #ifndef EPORTSRV_H
 #define EPORTSRV_H
 
+/*!
+	\file eportsrv.h
+	\ingroup global
+	\brief MainServer提供的服务与端口相关的定义。
+*/
+
 enum EPSProtocol{EPP_LOGINHASH,EPP_PORT};
 
 /*!
