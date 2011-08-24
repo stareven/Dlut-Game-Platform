@@ -6,6 +6,11 @@
 
 #include <QString>
 
+/*!
+	\file userinfo.h
+	\brief 定义了 UserInfo 命名空间。
+*/
+
 namespace UserInfo
 {
 	struct GLOBALAPISHARED_EXPORT SUserInfo

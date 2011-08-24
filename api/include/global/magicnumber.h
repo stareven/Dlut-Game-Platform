@@ -14,7 +14,7 @@
 	网络通信需要确定是不是同一个协议。\n
 	在每个数据包的开头是魔数和数据长度，之后才是数据的内容。\n
 
-	\sa JSocketBase::sendData() JSocketBase::on_socket_readyRead()
+	\sa JSocketBase
 */
 namespace MagicNumber
 {

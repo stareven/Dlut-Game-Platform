@@ -28,6 +28,15 @@
 	\sa JLoginHashCodeRecorder
 */
 
+const QString loginMsg[]={
+	QObject::tr("login success"),
+	QObject::tr("no such user"),
+	QObject::tr("password wrong"),
+	QObject::tr("no such role"),
+	QObject::tr("already login"),
+	QObject::tr("socket disconnected"),
+};
+
 /*!
 	\brief 构造函数，没啥可说的吧？
 */

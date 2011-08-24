@@ -9,7 +9,7 @@
 */
 
 /*!
-	\class UserInfo::SUserInfo
+	\class UserInfo::SUserInfo userinfo.h "global/userinfo.h"
 	\brief 记录一名玩家的信息。
 
 	包括玩家的Id，昵称和组织名。

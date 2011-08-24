@@ -1,9 +1,6 @@
 #ifndef ELOGIN_H
 #define ELOGIN_H
 
-#include <QString>
-#include <QObject>
-
 /*!
 	\file elogin.h
 	\ingroup global
@@ -36,18 +33,6 @@ enum ELogin{
 	EL_NO_SUCH_ROLE, /**< 用户不具有此身份 */
 	EL_ALREADY_LOGIN, /**< 已经登录，不能重复登录 */
 	EL_SOCKET_DISCONNECTED, /**< 连接断开 */
-};
-
-/*!
-	\brief 登录错误的字符串
-*/
-const QString loginMsg[]={
-	QObject::tr("login success"),
-	QObject::tr("no such user"),
-	QObject::tr("password wrong"),
-	QObject::tr("no such role"),
-	QObject::tr("already login"),
-	QObject::tr("socket disconnected"),
 };
 
 #endif

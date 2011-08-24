@@ -3,6 +3,11 @@
 
 #include "globalapi_global.h"
 
+/*!
+	\file jversion.h
+	\brief 定义了 JVersion 类。
+*/
+
 class GLOBALAPISHARED_EXPORT JVersion
 {
 public:

@@ -3,6 +3,11 @@
 #include <QTcpServer>
 #include <QCoreApplication>
 
+/*!
+	\file JServerBase.h
+	\brief 定义了JServerBase类
+*/
+
 JServerBase::JServerBase(QObject *parent) :
 	QObject(parent)
 {

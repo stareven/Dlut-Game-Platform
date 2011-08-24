@@ -10,6 +10,11 @@
 #include "jglobal.h"
 #include "globalapi_global.h"
 
+/*!
+	\file ssubserver.h
+	\brief 定义了 SubServer 命名空间。
+*/
+
 namespace SubServer{
 	struct SGameInfo0 {
 		JID m_gameId;

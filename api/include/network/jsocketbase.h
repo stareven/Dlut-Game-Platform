@@ -26,14 +26,14 @@ private:
 	QByteArray m_data;
 
 signals:
-    void SocketCode(JCode code);
+    void SocketCode(ENet netcode);
 	void SocketError(QString);
 protected slots:
     void on_socket_connected();
     void on_socket_disconnected();
     void on_socket_readyRead();
     void on_socket_error ( QAbstractSocket::SocketError socketError );
-private:
+protected:
 	virtual MagicNumber::JMagicNumber getMagicNumber()const=0;
 
 protected:

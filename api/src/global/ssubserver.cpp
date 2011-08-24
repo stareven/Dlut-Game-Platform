@@ -3,7 +3,7 @@
 #include <QDataStream>
 
 /*!
-	\namespace SubServer
+	\namespace SubServer ssubserver.h "global/ssubserver.h"
 	\ingroup global
 	\brief 定义了SubServer需要用到的一些数据结构。
 

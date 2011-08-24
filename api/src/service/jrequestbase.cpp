@@ -109,13 +109,13 @@ const QString& JRequestBase::getConnectError()const
 void JRequestBase::setSocket(JSocketBase* socket)
 {
 	m_socket=socket;
-	connect(m_socket,SIGNAL(SocketCode(JCode)),SLOT(on_socket_SocketCode(JCode)));
+	connect(m_socket,SIGNAL(SocketCode(ENet)),SLOT(on_socket_SocketCode(ENet)));
 	connect(m_socket,SIGNAL(SocketError(QString)),SLOT(on_socket_SocketError(QString)));
 }
 
-void JRequestBase::on_socket_SocketCode(JCode code)
+void JRequestBase::on_socket_SocketCode(ENet netcode)
 {
-	switch((ENet)code)
+	switch(netcode)
 	{
 	case EN_CONNECTED:
 		m_state=ECS_Connected;

@@ -2,6 +2,11 @@
 
 #include <QTcpSocket>
 
+/*!
+	\file jconnectionbase.h
+	\brief 定义了 JConnectionBase 类
+*/
+
 /**
 	\class JConnectionBase
 	\brief 对Server端的基本的网络通信提供一个封装
