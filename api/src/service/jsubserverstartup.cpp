@@ -5,6 +5,13 @@
 #include "service/jsendgsinfo.h"
 #include "service/jloginhashcoderecorder.h"
 
+/**
+	\class JSubServerStartup jsubserverstartup.h "service/jsubserverstartup.h"
+	\brief 对SubServer的整个登录过程的封装。
+
+	\sa startup()
+*/
+
 JSubServerStartup::JSubServerStartup()
 {
 	m_ps=new JRequestPort;
@@ -25,10 +32,10 @@ JSubServerStartup::~JSubServerStartup()
 /**
 	\brief 整个启动过程。
 
-	包括：\n
-	1、获取port列表。\n
-	2、登录。\n
-	3、上传SubServer及相关游戏相信。\n
+	包括：
+	  -# 获取port列表。\n
+	  -# 登录。\n
+	  -# 上传SubServer及相关游戏相信。\n
 */
 JSubServerStartup::EReturnValue JSubServerStartup::startup()const
 {

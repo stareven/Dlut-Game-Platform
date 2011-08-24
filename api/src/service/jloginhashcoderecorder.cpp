@@ -4,7 +4,7 @@ QByteArray JLoginHashCodeRecorder::s_code;
 JID JLoginHashCodeRecorder::s_userId;
 
 /*!
-	\class JLoginHashCodeRecorder
+	\class JLoginHashCodeRecorder jloginhashcoderecorder.h "service/jloginhashcoderecorder.h"
 	\brief 管理登录用户ID及Login hash code。
 	
 	用户登录时，首先客户端向服务器发送用户名和密码，然后服务器对用户名和密码进行验证。\n

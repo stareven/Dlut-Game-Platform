@@ -15,7 +15,8 @@ class CLIENTAPISHARED_EXPORT JRequestBase : public QObject
 public:
 	JRequestBase(QObject *parent = 0);
 	void connectToHost(const QHostAddress& address,quint16 port);
-	enum EConnectState{///< 连接状态。
+	/// 连接状态。
+	enum EConnectState{
 		ECS_Init, ///< 初始状态
 		ECS_Connecting, ///< 开始向服务器发起连接
 		ECS_Connected, ///< 已经成功连接到服务器

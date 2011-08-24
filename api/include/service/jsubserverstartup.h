@@ -11,11 +11,6 @@ class JRequestPort;
 class JRequestLogin;
 class JSendGsInfo;
 
-/**
-	\brief 对SubServer的整个登录过程的封装。
-
-	\sa startup()
-*/
 class SUBSERVERAPISHARED_EXPORT JSubServerStartup
 {
 public:

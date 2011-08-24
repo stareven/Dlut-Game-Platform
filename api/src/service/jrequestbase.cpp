@@ -8,7 +8,7 @@
 const static QString error_no="no error";
 
 /*!
-	\class JRequestBase
+	\class JRequestBase jrequestbase.h "service/jrequestbase.h"
 	\brief 向服务器发送请求的基类。
 
 	客户端向服务器发送各种请求，需要完成各种功能。\n
@@ -26,7 +26,7 @@ const static QString error_no="no error";
 	\fn JRequestBase::error();
 	\brief 发生错误。
 
-	可以通过getConnectError()函数获取错误的具体内容。
+	可以通过getConnectError()函数以可读的字符串获取错误的具体内容。
 
 	\sa getConnectError()
 */
@@ -44,8 +44,9 @@ JRequestBase::JRequestBase(QObject *parent)
 
 /*!
 	连接到地址为\a address 端口为\a port 的服务器。\n
-	若套接字为空，则提示错误并立即返回。\n
-	若已经连接，则立即返回。\n
+	若套接字为空，则发射 error() 信号、从 QDebug 输出错误提示并立即返回。\n
+	若已经连接，则从 QDebug 输出错误提示并立即返回。\n
+	调用此函数后， getConnectState() 将变为 ECS_Connecting 。
 */
 void JRequestBase::connectToHost(const QHostAddress& address,quint16 port)
 {
@@ -79,8 +80,8 @@ JRequestBase::EConnectState JRequestBase::getConnectState()const
 
 /*!
 	等待\a msecs 毫秒或收到连接结果。
-	返回true ： 连接成功。
-	返回false ： 连接失败或时间超过\a msecs 毫秒。
+	\retval true 连接成功。
+	\retval false 连接失败或时间超过\a msecs 毫秒。
 */
 bool JRequestBase::waitForConnected(int msecs)const
 {
@@ -98,7 +99,7 @@ bool JRequestBase::waitForConnected(int msecs)const
 }
 
 /*!
-	以可读的形式返回连接错误。
+	以可读的字符串返回连接错误。
 */
 const QString& JRequestBase::getConnectError()const
 {

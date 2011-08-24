@@ -36,7 +36,10 @@ $(foreach pro,$(SUBAPPTARGET),$(eval $(call MAKE_SUB_APP_TARGET,$(pro))))
 $(foreach pro,$(SUBAPPTARGET),$(eval $(call MAKE_APP_MAKEFILE,$(pro))))
 $(foreach pro,$(SUBLIBTARGET),$(eval $(call MAKE_SUB_LIB_TARGET,$(pro))))
 $(foreach pro,$(SUBLIBTARGET),$(eval $(call MAKE_LIB_MAKEFILE,$(pro))))
+.PHONY : clean-all doc
 clean-all :
 	find . \( -path '*-build-desktop*' -and -type d \) | xargs rm -rfv
 	find . \( -name '*.pro.user' -and -type f \) | xargs rm -rfv
 	rm -rfv api/lib
+doc :
+	cd api && doxygen Doxyfile

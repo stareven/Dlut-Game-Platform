@@ -6,16 +6,25 @@
 #include "global/jelapsedtimer.h"
 
 /**
-	\class JSendGsInfo
+	\class JSendGsInfo jsendgsinfo.h "service/jsendgsinfo.h"
 	\brief SubServer向MainServer发送相关信息。
 
-	SubServer启动后，需要向MainServer发送：\n
-	1、SubServer相关信息。\n
-	2、游戏相关信息。\n
-	3、SubServer与游戏的关联。\n
+	SubServer启动后，需要向MainServer发送：
+	  -# SubServer相关信息。\n
+	  -# 游戏相关信息。\n
+	  -# SubServer与游戏的关联。
+	  .
+	请求的过程：
+	  -# 通过 JRequestPort 获得用户信息服务的端口。\n
+	  -# 调用 connectToHost() 函数连接服务器。\n
+	  -# 调用 sendLoginHashCode() 函数发送Login hash code。\n
+	  -# 调用 send***() 发送相关信息。\n
+	  .
 */
 
-/// 构造函数
+/*!
+	\brief 构造函数
+*/
 JSendGsInfo::JSendGsInfo(QObject *parent) :
 	JLhcRequestBase(parent)
 {
@@ -26,21 +35,32 @@ JSendGsInfo::JSendGsInfo(QObject *parent) :
 	connect(m_socket,SIGNAL(rcvSendCode(JID,JCode)),SLOT(on_socket_rcvSendCode(JID,JCode)));
 }
 
-/// 发送SubServer相关信息。
+/**
+	\brief 发送SubServer相关信息。
+	
+	\sa SubServer::SSubServer
+*/
 void JSendGsInfo::sendServerInfo(const SubServer::SSubServer& ss)
 {
 	m_state=ESS_Sending;
 	m_socket->sendServerInfo (ss);
 }
 
-/// 发送游戏相关信息。
+/**
+	\brief 发送游戏相关信息。
+	
+	\sa SubServer::SGameInfo2
+*/
 void JSendGsInfo::sendGameInfo(const SubServer::SGameInfo2& gi)
 {
 	m_state=ESS_Sending;
 	m_socket->sendGameInfo (gi);
 }
 
-/// SubServer与游戏的关联。
+/**
+	\brief 发送SubServer与游戏的关联。
+	表示\a serverId 是\a gameId 对应的SubServer。
+*/
 void JSendGsInfo::sendRelation(JID serverId,
 								  JID gameId,
 								  const JVersion& gameVersion)
@@ -49,16 +69,21 @@ void JSendGsInfo::sendRelation(JID serverId,
 	m_socket->sendRelation(serverId,gameId,gameVersion);
 }
 
-/// 获取发送状态。
+/**
+	\brief 获取发送状态。
+	
+	\sa ESgiState
+*/
 JSendGsInfo::ESgiState JSendGsInfo::sendGsInfoState()const
 {
     return m_state;
 }
 
 /**
-	等待\a msecs 毫秒或收到登录结果。
-	\retval true ： 登录成功。
-	\retval false ： 登录失败或时间超过\a msecs 毫秒。
+	\brief等待\a msecs 毫秒或收到登录结果。
+	
+	\retval true 登录成功。
+	\retval false 登录失败或时间超过\a msecs 毫秒。
 */
 bool JSendGsInfo::waitForSend(int msecs)
 {
@@ -75,7 +100,9 @@ bool JSendGsInfo::waitForSend(int msecs)
 	return sendGsInfoState()==ESS_SendSuccess;
 }
 
-/// 以可读的文本返回发送错误。
+/**
+	\brief 以可读的文本返回发送错误。
+*/
 const QString& JSendGsInfo::sendGsInfoError()const
 {
     static const QString errors[]={

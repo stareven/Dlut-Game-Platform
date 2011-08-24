@@ -9,22 +9,21 @@
 QMap<JID,UserInfo::SUserInfo> JRequestUserInfo::s_userinfolist;
 
 /*!
-	\class JRequestUserInfo
+	\class JRequestUserInfo jrequestuserinfo.h "service/jrequestuserinfo.h"
 	\brief 获取用户信息
 
 	JRequestUserInfo对获取用户信息请求提供一个基本的封装。\n
 	请求的过程：\n
-	-1、通过 JRequestPort 获得用户信息服务的端口。\n
-	-2、调用 connectToHost() 函数连接服务器。\n
-	-3、调用 sendLoginHashCode() 函数发送Login hash code。\n
-	-4、调用 rqsUserInfo() 函数获取用户信息。\n
-
+	  -# 通过 JRequestPort 获得用户信息服务的端口。\n
+	  -# 调用 connectToHost() 函数连接服务器。\n
+	  -# 调用 sendLoginHashCode() 函数发送Login hash code。\n
+	  -# 调用 rqsUserInfo() 函数获取用户信息。\n
 
 	\sa UserInfo::SUserInfo
 */
 
 /*!
-	构造函数。
+	\brief 构造函数。
 */
 JRequestUserInfo::JRequestUserInfo(QObject *parent) :
     JLhcRequestBase(parent)

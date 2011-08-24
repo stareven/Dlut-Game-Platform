@@ -5,12 +5,17 @@
 #include <QObject>
 
 /*!
-	每名用户能够以多个身份登录。我们按bit记录一个用户拥有的身份的组合。
+	\file elogin.h
+	\brief 与登录相关的类型定义。
+*/
+
+/*!
+	\brief 每名用户能够以多个身份登录。我们按bit记录一个用户拥有的身份的组合。
 */
 typedef qint16 JRole;
 
 /*!
-	\brief 登录身份。
+	\brief 登录身份
 */
 enum ERole{
 	ROLE_GAMEPLAYER,/**< 游戏玩家*/
@@ -32,6 +37,9 @@ enum ELogin{
 	EL_SOCKET_DISCONNECTED, /**< 连接断开 */
 };
 
+/*!
+	\brief 登录错误的字符串
+*/
 const QString loginMsg[]={
 	QObject::tr("login success"),
 	QObject::tr("no such user"),

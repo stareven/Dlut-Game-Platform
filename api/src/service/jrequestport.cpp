@@ -9,15 +9,16 @@
 QMap<EServerType,SHost> JRequestPort::s_ports;
 
 /*!
-	\class JRequestPort
+	\class JRequestPort jrequestport.h "service/jrequestport.h"
 	\brief 获得各个服务的端口
 
 	MainServer上，每个服务单独使用一个端口。\n
 	此外，提供两个服务查询所有服务的端口列表。\n
-	其中，没有服务提供FreePort。FreePort只能从平台管理员处人为地获得。\n
-	并且，通常平台管理员发布的MainServer的端口是它的FreePort服务的端口。\n
+	其中，没有服务提供FreePort。FreePort只能从平台运维者处人为地获得。\n
+	并且，通常平台运维者发布的MainServer的端口是它的FreePort服务的端口。\n
 	请求Login和SecretPort服务不需要Login hash confirm，这两个服务的端口由FreePort服务提供。\n
 	剩下的服务需要Login hash confirm，由SecretPort服务提供。\n
+	关于Login hash confirm和Login hash code，参见 JLoginHashCodeRecorder 的文档。\n
 
 	\warning 这个类的代码写的很烂，接口也很混乱。
 
@@ -25,7 +26,7 @@ QMap<EServerType,SHost> JRequestPort::s_ports;
 */
 
 /*!
-	构造函数。
+	\brief 构造函数。
 */
 JRequestPort::JRequestPort(QObject *parent) :
     QObject(parent)
@@ -119,7 +120,7 @@ SHost JRequestPort::rqsServerPort(EServerType type)
 }
 
 /*!
-	以可读的字符串形式返回错误信息。
+	\brief 以可读的字符串形式返回错误信息。
 */
 const QString& JRequestPort::getError()const
 {

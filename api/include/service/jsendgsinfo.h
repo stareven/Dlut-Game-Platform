@@ -23,7 +23,8 @@ public:
 	void sendServerInfo(const SubServer::SSubServer&);
 	void sendGameInfo(const SubServer::SGameInfo2&);
 	void sendRelation(JID serverId,JID gameId,const JVersion& gameVersion);
-	enum ESgiState{///< 发送状态
+	/// \brief 发送状态
+	enum ESgiState{
 		ESS_Init, ///< 初始状态
 		ESS_Sending, ///< 正在发送
 		ESS_SendSuccess, ///< 发送成功
