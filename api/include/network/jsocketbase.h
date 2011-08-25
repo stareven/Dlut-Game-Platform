@@ -33,7 +33,7 @@ protected slots:
     void on_socket_disconnected();
     void on_socket_readyRead();
     void on_socket_error ( QAbstractSocket::SocketError socketError );
-protected:
+private:
 	virtual MagicNumber::JMagicNumber getMagicNumber()const=0;
 
 protected:

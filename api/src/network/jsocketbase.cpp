@@ -7,13 +7,19 @@
 #include "global/jelapsedtimer.h"
 
 /*!
+	\defgroup client
+	\brief 客户端的各种请求和通信
+*/
+
+/*!
 	\file jsocketbase.h
 	\brief 定义了 JSocketBase 类
 */
 
 /*!
 	\class JSocketBase jsocketbase.h network/jsocketbase.h
-	\brief 客户端向服务器端发起连接请求及基本数据通信的基类。
+	\ingroup client
+	\brief 客户端向服务器端发起连接请求及基本数据通信的基类
 	
 	\section base_protocol 基本通信协议
 	在这个类中，定义了基本的通信协议。
@@ -22,28 +28,28 @@
 	  -# 32位有符号整数，表示data的长度。
 	  -# size个字节，表示数据的内容。数据内容的格式由协议自己制定。
 
-	\sa JRequestBase
+	\sa JRequestBase MagicNumber
 */
 
 /*!
 	\fn JSocketBase::SocketCode(ENet netcode)
-	\brief 当连接状态改变时发射此信号。
+	\brief 当连接状态改变时发射此信号
 	
 	\sa ENet
 */
 
 /*!
 	\fn JSocketBase::SocketError(QString)
-	\brief 以可读的字符串形式返回连接错误
+	\brief 以可读的字符串形式发送连接错误信号
 */
 
 /*!
 	\fn JSocketBase::dataProcess(const QByteArray&)
-	\brief 数据处理函数。
+	\brief 数据处理函数
 	
 	子类需要重写这个函数以处理数据。
 	
-	\sa JSocketBase::on_socket_readyRead()
+	\sa on_socket_readyRead()
 */
 
 /*!
@@ -72,7 +78,7 @@ JSocketBase::JSocketBase(QObject *parent) :
 }
 
 /*!
-	\brief 连接服务器。
+	\brief 连接服务器
 	
 	向地址为\a address 端口为\a port 发起连接。\n
 	如果已经有连接，则断开当前连接，发起新连接。
@@ -94,7 +100,7 @@ void JSocketBase::connectToHost(const QHostAddress& address,
 }
 
 /*!
-	\brief 是否已经连接。
+	\brief 是否已经连接
 */
 bool JSocketBase::isConnected()const
 {
@@ -102,7 +108,7 @@ bool JSocketBase::isConnected()const
 }
 
 /*!
-	\brief 当前的套接字状态。
+	\brief 当前的套接字状态
 	
 	参看 Qt4 的文档中关于 QAbstractSocket::SocketState 的内容。\n
 	\sa QAbstractSocket::SocketState
@@ -123,7 +129,7 @@ void JSocketBase::on_socket_disconnected()
 }
 
 /*!
-	\brief 接收但不处理数据。
+	\brief 接收但不处理数据
 
 	当有数据到来的时候，这个函数处理数据长度与魔数。\n
 	但它并不处理数据的内容而是将内容交给dataProcess()处理。\n
@@ -164,7 +170,7 @@ void JSocketBase::on_socket_error ( QAbstractSocket::SocketError socketError )
 }
 
 /*!
-	\brief 发送数据。
+	\brief 发送数据
 	
 	在数据\a data 前加上魔数和数据长度，之后发送。
 */
