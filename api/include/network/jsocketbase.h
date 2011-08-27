@@ -22,7 +22,7 @@ public:
 	QAbstractSocket::SocketState socketState () const;
 private:
     QTcpSocket *m_socket;
-	int m_size;
+	qint32 m_size;
 	QByteArray m_data;
 
 signals:

@@ -7,7 +7,7 @@
 #include "global/jelapsedtimer.h"
 
 /*!
-	\defgroup client
+	\defgroup client clientapi
 	\brief 客户端的各种请求和通信
 */
 
@@ -23,10 +23,12 @@
 	
 	\section base_protocol 基本通信协议
 	在这个类中，定义了基本的通信协议。
-	通过套接字发送数据的基本格式为：<int32:MagicNumber><int32:size><byte[size]:data>
-	  -# 32位有符号整数，表示“魔数”。（参见： MagicNumber ）
-	  -# 32位有符号整数，表示data的长度。
+	通过套接字发送数据的基本格式为：<MagicNumber::JMagicNumber:MagicNumber><qint32:size><byte[size]:data>
+	  -# MagicNumber::JMagicNumber 类型，表示“魔数”（参见： MagicNumber ）。
+	  -# qint32 类型，表示data的长度。
 	  -# size个字节，表示数据的内容。数据内容的格式由协议自己制定。
+	  
+	关于qint32，请参见：Qt文档中关于qint32的内容：<a href="http://doc.qt.nokia.com/4.7/qtglobal.html#qint32-typedef" target="_blank">qint32-typedef</a>
 
 	\sa JRequestBase MagicNumber
 */
@@ -180,7 +182,7 @@ void JSocketBase::sendData(const QByteArray& data)
     {
 		qDebug()<<"JSocketBase::sendData : socket not connected ."<<metaObject()->className()<<m_socket->state();
     }
-    int size=data.size();
+    qint32 size=data.size();
     QDataStream outsocketstream(m_socket);
 	outsocketstream<<getMagicNumber();
     outsocketstream<<size;

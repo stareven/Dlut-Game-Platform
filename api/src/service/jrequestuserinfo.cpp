@@ -9,6 +9,11 @@
 QMap<JID,UserInfo::SUserInfo> JRequestUserInfo::s_userinfolist;
 
 /*!
+	\file jrequestuserinfo.h
+	\brief 定义了 JRequestUserInfo 类
+*/
+
+/*!
 	\class JRequestUserInfo jrequestuserinfo.h "service/jrequestuserinfo.h"
 	\brief 获取用户信息
 

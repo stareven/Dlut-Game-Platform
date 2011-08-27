@@ -20,13 +20,15 @@
 	查看完整的通信协议，请见\ref base_protocol "基本通信协议" 。\n
 	这是一个有状态的连接。也就是说，在通过\ref LoginHashConfirm 之前和之后的通信协议并不相同。
 	- 之前 ：
-	  - 客户端向服务器端 : <int32:userId> <uint32:size> <byte[size]:code> \n
-	    -# 32位有符号整数，表示客户端用户ID。
-	    -# 32位无符号整数，表示\ref LoginHashCode 的长度。
-	    -# size个字节，表示\ref LoginHashCode 。
-	  - 服务器端向客户端 ： bool
+	  - 客户端向服务器端 : <JID:userId> <QByteArray:code>
+	    -# ::JID 类型，表示客户端用户ID。
+	    -# QByteArray 类型，以Qt QDataStream 的方式序列化为数据流，表示\ref LoginHashCode。
+	  - 服务器端向客户端 ：<bool:result>
 	    -# 表示\ref LoginHashConfirm 的结果。
 	- 之后 ： 由子类定义。
+	
+	关于Qt QDataStream 的序列化格式，请参见Qt文档<a href="http://doc.qt.nokia.com/4.7/datastreamformat.html" target="_blank">Serializing Qt Data Types</a>
+	
 	\sa afterLhc()
 */
 

@@ -5,6 +5,11 @@
 #include "service/jsendgsinfo.h"
 #include "service/jloginhashcoderecorder.h"
 
+/*!
+	\file jsubserverstartup.h
+	\brief 定义了 JSubServerStartup 类
+*/
+
 /**
 	\class JSubServerStartup jsubserverstartup.h "service/jsubserverstartup.h"
 	\brief 对SubServer的整个登录过程的封装。

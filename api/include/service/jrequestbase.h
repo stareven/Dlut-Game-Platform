@@ -35,7 +35,7 @@ private:
 	EConnectState m_state;
 	const QString* m_error;
 private slots:
-	void on_socket_SocketCode(JCode code);
+	void on_socket_SocketCode(ENet netcode);
 	void on_socket_SocketError(const QString&);
 };
 

@@ -4,6 +4,11 @@ QByteArray JLoginHashCodeRecorder::s_code;
 JID JLoginHashCodeRecorder::s_userId;
 
 /*!
+	\file jloginhashcoderecorder.h
+	\brief 定义了 JLoginHashCodeRecorder 类
+*/
+
+/*!
 	\class JLoginHashCodeRecorder jloginhashcoderecorder.h "service/jloginhashcoderecorder.h"
 	\brief 管理登录用户ID及Login hash code。
 	

@@ -9,12 +9,12 @@ class JRequestPortSocket : public JSocketBase
     Q_OBJECT
 public:
     explicit JRequestPortSocket(QObject *parent = 0);
-    void sendCrypro(JID,const QByteArray&);
+    void sendLoginHashCode(JID,const QByteArray&);
     void rqsServerPort(EServerType);
 protected:
     void dataProcess(const QByteArray&);
 signals:
-    void rcvPassLoginHash(bool);
+    void rcvLoginHashConfirm(bool);
     void rcvServerPort(quint16);
 private:
 	MagicNumber::JMagicNumber getMagicNumber()const

@@ -3,7 +3,7 @@
 #include <QTcpSocket>
 
 /*!
-	\defgroup server
+	\defgroup server serverapi
 	\brief 处理服务器端收到的连接和数据处理
 */
 

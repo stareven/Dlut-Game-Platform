@@ -5,6 +5,11 @@
 #include "network/jsendgsinfosocket.h"
 #include "global/jelapsedtimer.h"
 
+/*!
+	\file jsendgsinfo.h
+	\brief 定义了 JSendGsInfo 类
+*/
+
 /**
 	\class JSendGsInfo jsendgsinfo.h "service/jsendgsinfo.h"
 	\brief SubServer向MainServer发送相关信息。

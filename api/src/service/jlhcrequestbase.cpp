@@ -6,6 +6,11 @@
 #include "global/jelapsedtimer.h"
 
 /*!
+	\file jlhcrequestbase.h
+	\brief 定义了 JLhcRequestBase 类
+*/
+
+/*!
 	\class JLhcRequestBase jlhcrequestbase.h "service/jlhcrequestbase.h"
 	\brief 需要Login hash confirm的请求的基类。
 

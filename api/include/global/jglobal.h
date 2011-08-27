@@ -36,7 +36,7 @@ enum ENet{
 };
 
 /*!
-	\defgroup global
+	\defgroup global globalapi
 	\brief 整个项目需要用到的一些数据定义等。
 */
 

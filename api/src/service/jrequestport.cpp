@@ -9,6 +9,11 @@
 QMap<EServerType,SHost> JRequestPort::s_ports;
 
 /*!
+	\file jrequestport.h
+	\brief 定义了 JRequestPort 类
+*/
+
+/*!
 	\class JRequestPort jrequestport.h "service/jrequestport.h"
 	\brief 获得各个服务的端口
 
@@ -149,7 +154,7 @@ bool JRequestPort::passLoginHash(JRequestPortSocket& socket)
                 qDebug()<<"JRequestPort::passLoginHash : have not record the login hash . can not request id list!";
                 return false;
             }
-            socket.sendCrypro(lhcr.getUserId(),lhcr.getCode());
+            socket.sendLoginHashCode(lhcr.getUserId(),lhcr.getCode());
             m_plh=-2;
             break;
         case -2:
