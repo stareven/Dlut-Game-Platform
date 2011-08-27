@@ -5,29 +5,20 @@
 <title>DGP_API: JRequestUserInfoSocket类参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javaScript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
-<!-- 制作者 Doxygen 1.7.3 -->
+<!-- 制作者 Doxygen 1.7.1 -->
 <script type="text/javascript"><!--
 var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 --></script>
-<div id="top">
-<div id="titlearea">
-<table cellspacing="0" cellpadding="0">
- <tbody>
- <tr style="height: 56px;">
-  <td style="padding-left: 0.5em;">
-   <div id="projectname">DGP_API</div>
-  </td>
- </tr>
- </tbody>
-</table>
-</div>
-  <div id="navrow1" class="tabs">
+<div class="navigation" id="top">
+  <div class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
       <li><a href="namespaces.html"><span>名字空间</span></a></li>
       <li class="current"><a href="annotated.html"><span>类</span></a></li>
       <li><a href="files.html"><span>文件</span></a></li>
@@ -49,7 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
       </li>
     </ul>
   </div>
-  <div id="navrow2" class="tabs2">
+  <div class="tabs2">
     <ul class="tablist">
       <li><a href="annotated.html"><span>组合类型列表</span></a></li>
       <li><a href="classes.html"><span>组合类型索引</span></a></li>
@@ -62,13 +53,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div class="summary">
 <a href="#signals">信号</a> &#124;
 <a href="#pub-methods">公有成员</a> &#124;
-<a href="#pro-methods">保护成员</a>  </div>
+<a href="#pro-methods">保护成员</a> &#124;
+<a href="#pri-methods">私有成员</a>  </div>
   <div class="headertitle">
-<h1>JRequestUserInfoSocket类参考</h1>  </div>
+<h1>JRequestUserInfoSocket类参考<br/>
+<small>
+[<a class="el" href="group__client.html">clientapi</a>]</small>
+</h1>  </div>
 </div>
 <div class="contents">
 <!-- doxytag: class="JRequestUserInfoSocket" --><!-- doxytag: inherits="JLhcSocketBase" -->
-<p><code>#include &lt;<a class="el" href="jrequestuserinfosocket_8h_source.html">jrequestuserinfosocket.h</a>&gt;</code></p>
+<p>封装请求用户信息的底层通信  
+<a href="#_details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="jrequestuserinfosocket_8h_source.html">network/jrequestuserinfosocket.h</a>&gt;</code></p>
 <div class="dynheader">
 继承图，类JRequestUserInfoSocket</div>
 <div class="dyncontent">
@@ -78,21 +76,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <area href="classJLhcSocketBase.html" alt="JLhcSocketBase" shape="rect" coords="0,56,148,80"/>
 <area href="classJSocketBase.html" alt="JSocketBase" shape="rect" coords="0,0,148,24"/>
 </map>
- </div></div>
+</div>
 
 <p><a href="classJRequestUserInfoSocket-members.html">所有成员的列表。</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="signals"></a>
 信号</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestUserInfoSocket.html#a6a5c366d6f88b947fbb8563d19dee4f6">rcvUserInfo</a> (const <a class="el" href="structUserInfo_1_1SUserInfo.html">UserInfo::SUserInfo</a> &amp;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestUserInfoSocket.html#a38d36194bd2692c5d1b4a7ba8d9e587c">rcvUserInfo</a> (const <a class="el" href="structUserInfo_1_1SUserInfo.html">UserInfo::SUserInfo</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">收到用户信息  <a href="#a38d36194bd2692c5d1b4a7ba8d9e587c"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 公有成员</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestUserInfoSocket.html#a3dccff8359dc8d775757d10017fab297">JRequestUserInfoSocket</a> (QObject *parent=0)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestUserInfoSocket.html#a0bdc49991ac72d9e8181841760669b41">rqsUserInfo</a> (<a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a> userId)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestUserInfoSocket.html#a3dccff8359dc8d775757d10017fab297">JRequestUserInfoSocket</a> (QObject *parent=0)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">构造函数  <a href="#a3dccff8359dc8d775757d10017fab297"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestUserInfoSocket.html#a0bdc49991ac72d9e8181841760669b41">rqsUserInfo</a> (<a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a> userId)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">请求用户信息  <a href="#a0bdc49991ac72d9e8181841760669b41"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 保护成员</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestUserInfoSocket.html#aabadd2c0c788a913cbf2fbcef72089b6">afterLhc</a> (const QByteArray &amp;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestUserInfoSocket.html#aabadd2c0c788a913cbf2fbcef72089b6">afterLhc</a> (const QByteArray &amp;)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">在通过<a class="el" href="classJLoginHashCodeRecorder.html#LoginHashConfirm">Login hash confirm</a> 后，由这个函数处理数据  <a href="#aabadd2c0c788a913cbf2fbcef72089b6"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pri-methods"></a>
+私有成员</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMagicNumber.html#aee5fa8b6592ee567764415262a7e0ab4">MagicNumber::JMagicNumber</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJRequestUserInfoSocket.html#a5d6a852e47a75c79276e1bb3c08d0a9d">getMagicNumber</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">返回当前协议的“魔数”  <a href="#a5d6a852e47a75c79276e1bb3c08d0a9d"></a><br/></td></tr>
 </table>
+<hr/><a name="_details"></a><h2>详细描述</h2>
+<p>封装请求用户信息的底层通信 </p>
+<p>可以请求任何一名用户的用户信息。</p>
+<dl class="note"><dt><b>注解:</b></dt><dd>DGP API 提供了更加易于使用的 <a class="el" href="classJRequestUserInfo.html" title="获取用户信息">JRequestUserInfo</a> 类来处理登录请求。</dd></dl>
+<h2><a class="anchor" id="userinfo_protocol"></a>
+通信协议</h2>
+<p>首先，这个通信协议只定义了<a class="el" href="classJSocketBase.html#base_protocol">基本通信协议</a> 中data的部分。<br/>
+ 查看完整的通信协议，请见<a class="el" href="classJSocketBase.html#base_protocol">基本通信协议</a> 。<br/>
+</p>
+<ul>
+<li>客户端向服务器端 : &lt;JID:userId&gt;<ol type="a">
+<li><a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16" title="整个项目通用的一个ID类型。">JID</a> 类型，表示请求的用户ID。</li>
+</ol>
+</li>
+<li>服务器端向客户端 ：&lt;JID:userId&gt; &lt;<a class="el" href="structUserInfo_1_1SUserInfo.html" title="记录一名玩家的信息。">UserInfo::SUserInfo</a>:userinfo&gt;<ol type="a">
+<li><a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16" title="整个项目通用的一个ID类型。">JID</a> 类型，表示用户ID。</li>
+<li><a class="el" href="structUserInfo_1_1SUserInfo.html" title="记录一名玩家的信息。">UserInfo::SUserInfo</a> 类型，表示用户信息。格式化方式参见 <a class="el" href="structUserInfo_1_1SUserInfo.html#a8de7b231f89d8a66556801e9612e9c7d" title="从流stream 中读入到ui 中。">operator&gt;&gt;(QDataStream&amp; stream,UserInfo::SUserInfo&amp; ui)</a></li>
+</ol>
+</li>
+</ul>
+<dl class="see"><dt><b>参见:</b></dt><dd><a class="el" href="classJRequestUserInfo.html" title="获取用户信息">JRequestUserInfo</a> </dd></dl>
 <hr/><h2>构造及析构函数文档</h2>
 <a class="anchor" id="a3dccff8359dc8d775757d10017fab297"></a><!-- doxytag: member="JRequestUserInfoSocket::JRequestUserInfoSocket" ref="a3dccff8359dc8d775757d10017fab297" args="(QObject *parent=0)" -->
 <div class="memitem">
@@ -101,13 +128,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
         <tr>
           <td class="memname">JRequestUserInfoSocket::JRequestUserInfoSocket </td>
           <td>(</td>
-          <td class="paramtype">QObject *&#160;</td>
-          <td class="paramname"><em>parent</em> = <code>0</code></td><td>)</td>
+          <td class="paramtype">QObject *&nbsp;</td>
+          <td class="paramname"> <em>parent</em> = <code>0</code></td>
+          <td>&nbsp;)&nbsp;</td>
           <td><code> [explicit]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>构造函数 </p>
+<p>以后没有特殊情况，构造函数我可不可以不写了？ </p>
 
 </div>
 </div>
@@ -119,32 +150,64 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
         <tr>
           <td class="memname">void JRequestUserInfoSocket::afterLhc </td>
           <td>(</td>
-          <td class="paramtype">const QByteArray &amp;&#160;</td>
-          <td class="paramname"><em>data</em></td><td>)</td>
+          <td class="paramtype">const QByteArray &amp;&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
           <td><code> [protected, virtual]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>实现了<a class="el" href="classJLhcSocketBase.html#a7eda5a5bfd117a90740ded8a3c2c9514">JLhcSocketBase</a>。</p>
+<p>在通过<a class="el" href="classJLoginHashCodeRecorder.html#LoginHashConfirm">Login hash confirm</a> 后，由这个函数处理数据 </p>
+<p>子类需要重写这个函数来处理通过<a class="el" href="classJLoginHashCodeRecorder.html#LoginHashConfirm">Login hash confirm</a> 后的数据。 </p>
+
+<p>实现了<a class="el" href="classJLhcSocketBase.html#acdf44c2dbff89c04c09fe5c21ed2beff">JLhcSocketBase</a>。</p>
 
 </div>
 </div>
-<a class="anchor" id="a6a5c366d6f88b947fbb8563d19dee4f6"></a><!-- doxytag: member="JRequestUserInfoSocket::rcvUserInfo" ref="a6a5c366d6f88b947fbb8563d19dee4f6" args="(const UserInfo::SUserInfo &amp;)" -->
+<a class="anchor" id="a5d6a852e47a75c79276e1bb3c08d0a9d"></a><!-- doxytag: member="JRequestUserInfoSocket::getMagicNumber" ref="a5d6a852e47a75c79276e1bb3c08d0a9d" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void JRequestUserInfoSocket::rcvUserInfo </td>
+          <td class="memname"><a class="el" href="namespaceMagicNumber.html#aee5fa8b6592ee567764415262a7e0ab4">MagicNumber::JMagicNumber</a> JRequestUserInfoSocket::getMagicNumber </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structUserInfo_1_1SUserInfo.html">UserInfo::SUserInfo</a> &amp;&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const<code> [inline, private, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>返回当前协议的“魔数” </p>
+<p>子类需要重写这个函数以定义当前协议的“魔数”。</p>
+<dl class="see"><dt><b>参见:</b></dt><dd><a class="el" href="namespaceMagicNumber.html" title="定义网络通信的“魔数”。">MagicNumber</a> </dd></dl>
+
+<p>实现了<a class="el" href="classJSocketBase.html#af7a3e7b8a603fb6a4537662602203316">JSocketBase</a>。</p>
+
+</div>
+</div>
+<a class="anchor" id="a38d36194bd2692c5d1b4a7ba8d9e587c"></a><!-- doxytag: member="JRequestUserInfoSocket::rcvUserInfo" ref="a38d36194bd2692c5d1b4a7ba8d9e587c" args="(const UserInfo::SUserInfo &amp;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">JRequestUserInfoSocket::rcvUserInfo </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structUserInfo_1_1SUserInfo.html">UserInfo::SUserInfo</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>userinfo</em></td>
+          <td>&nbsp;)&nbsp;</td>
           <td><code> [signal]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>收到用户信息 </p>
+<p><em>userinfo</em> 收到的用户信息。</p>
+<dl class="see"><dt><b>参见:</b></dt><dd><a class="el" href="namespaceUserInfo.html" title="玩家信息相关。">UserInfo</a> </dd></dl>
 
 </div>
 </div>
@@ -155,19 +218,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
         <tr>
           <td class="memname">void JRequestUserInfoSocket::rqsUserInfo </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a>&#160;</td>
-          <td class="paramname"><em>userId</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a>&nbsp;</td>
+          <td class="paramname"> <em>userId</em></td>
+          <td>&nbsp;)&nbsp;</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
+<p>请求用户信息 </p>
+<p>请求用户ID为<em>userId</em> 的用户信息。 </p>
+
 </div>
 </div>
 <hr/>该类的文档由以下文件生成：<ul>
 <li><a class="el" href="jrequestuserinfosocket_8h_source.html">jrequestuserinfosocket.h</a></li>
-<li><a class="el" href="jrequestuserinfosocket_8cpp.html">jrequestuserinfosocket.cpp</a></li>
+<li>jrequestuserinfosocket.cpp</li>
 </ul>
 </div>
 <!--- window showing the filter options -->
@@ -175,7 +242,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>友元</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>友元</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -184,8 +251,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated at 2011年八月23日 星期二 08:21:35 for DGP_API by&#160;
+<hr class="footer"/><address class="footer"><small>Generated at Sat Aug 27 2011 20:53:16 for DGP_API by&nbsp;
 <a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
 </html>

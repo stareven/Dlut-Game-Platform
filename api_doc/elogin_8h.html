@@ -5,29 +5,20 @@
 <title>DGP_API: elogin.h文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javaScript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
-<!-- 制作者 Doxygen 1.7.3 -->
+<!-- 制作者 Doxygen 1.7.1 -->
 <script type="text/javascript"><!--
 var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 --></script>
-<div id="top">
-<div id="titlearea">
-<table cellspacing="0" cellpadding="0">
- <tbody>
- <tr style="height: 56px;">
-  <td style="padding-left: 0.5em;">
-   <div id="projectname">DGP_API</div>
-  </td>
- </tr>
- </tbody>
-</table>
-</div>
-  <div id="navrow1" class="tabs">
+<div class="navigation" id="top">
+  <div class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
       <li><a href="namespaces.html"><span>名字空间</span></a></li>
       <li><a href="annotated.html"><span>类</span></a></li>
       <li class="current"><a href="files.html"><span>文件</span></a></li>
@@ -49,7 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
       </li>
     </ul>
   </div>
-  <div id="navrow2" class="tabs2">
+  <div class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>文件列表</span></a></li>
       <li><a href="globals.html"><span>文件成员</span></a></li>
@@ -59,64 +50,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="header">
   <div class="summary">
 <a href="#typedef-members">类型定义</a> &#124;
-<a href="#enum-members">枚举</a> &#124;
-<a href="#var-members">变量</a>  </div>
+<a href="#enum-members">枚举</a>  </div>
   <div class="headertitle">
 <h1>elogin.h文件参考</h1>  </div>
 </div>
 <div class="contents">
-<div class="textblock"><code>#include &lt;QString&gt;</code><br/>
-<code>#include &lt;QObject&gt;</code><br/>
-</div>
+
+<p>与登录相关的类型定义。  
+<a href="#_details">更多...</a></p>
+
 <p><a href="elogin_8h_source.html">浏览该文件的源代码。</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
 类型定义</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef qint16&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elogin_8h.html#ac4ecdff7c00c08d305f89e86f25bdcf6">JRole</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac4ecdff7c00c08d305f89e86f25bdcf6"></a><!-- doxytag: member="elogin.h::JRole" ref="ac4ecdff7c00c08d305f89e86f25bdcf6" args="" -->
+typedef qint16&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="elogin_8h.html#ac4ecdff7c00c08d305f89e86f25bdcf6">JRole</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">每名用户能够以多个身份登录。我们按bit记录一个用户拥有的身份的组合。 <br/></td></tr>
 <tr><td colspan="2"><h2><a name="enum-members"></a>
 枚举</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elogin_8h.html#ab545dcc2f309e9852f48e19b36decec2">ERole</a> { <br/>
-&#160;&#160;<a class="el" href="elogin_8h.html#ab545dcc2f309e9852f48e19b36decec2add598b686030e4c5e1a3652815fa1699">ROLE_GAMEPLAYER</a>, 
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="elogin_8h.html#ab545dcc2f309e9852f48e19b36decec2">ERole</a> { <br/>
+&nbsp;&nbsp;<a class="el" href="elogin_8h.html#ab545dcc2f309e9852f48e19b36decec2add598b686030e4c5e1a3652815fa1699">ROLE_GAMEPLAYER</a>, 
 <a class="el" href="elogin_8h.html#ab545dcc2f309e9852f48e19b36decec2a45628b1c75db5be9130f4b33ea01009f">ROLE_GAMEDESIGNER</a>, 
 <a class="el" href="elogin_8h.html#ab545dcc2f309e9852f48e19b36decec2aea31a4b2865142efa6520fad47975033">ROLE_GAMESERVERRUNNER</a>, 
 <a class="el" href="elogin_8h.html#ab545dcc2f309e9852f48e19b36decec2ae4a86fdf0e228f87fc50f2f846c7ac41">ROLE_ADMIN</a>, 
 <br/>
-&#160;&#160;<a class="el" href="elogin_8h.html#ab545dcc2f309e9852f48e19b36decec2aaad2928df914218ac6bc269fd007dbb6">ROLE_ROOT</a>
+&nbsp;&nbsp;<a class="el" href="elogin_8h.html#ab545dcc2f309e9852f48e19b36decec2aaad2928df914218ac6bc269fd007dbb6">ROLE_ROOT</a>
 <br/>
  }</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>登录身份。 </p>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>登录身份 </p>
  <a href="elogin_8h.html#ab545dcc2f309e9852f48e19b36decec2">更多...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elogin_8h.html#a0551a16fdbae07faf632f41de2bc827b">ELogin</a> { <br/>
-&#160;&#160;<a class="el" href="elogin_8h.html#a0551a16fdbae07faf632f41de2bc827ba5718235e34af8ca101983ed11e1e61fa">EL_SUCCESS</a>, 
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="elogin_8h.html#a0551a16fdbae07faf632f41de2bc827b">ELogin</a> { <br/>
+&nbsp;&nbsp;<a class="el" href="elogin_8h.html#a0551a16fdbae07faf632f41de2bc827ba5718235e34af8ca101983ed11e1e61fa">EL_SUCCESS</a>, 
 <a class="el" href="elogin_8h.html#a0551a16fdbae07faf632f41de2bc827baf7ef76ef11ad74cfa5da46e89d428c68">EL_NO_SUCH_USER</a>, 
 <a class="el" href="elogin_8h.html#a0551a16fdbae07faf632f41de2bc827ba0e6369e88dfb12a874cd31cdf9e7b9c1">EL_PASSWD_WRONG</a>, 
 <a class="el" href="elogin_8h.html#a0551a16fdbae07faf632f41de2bc827baab89a039220f15e1984f90f8750c4fa1">EL_NO_SUCH_ROLE</a>, 
 <br/>
-&#160;&#160;<a class="el" href="elogin_8h.html#a0551a16fdbae07faf632f41de2bc827ba50700d6deb6a874b361e7d130824965e">EL_ALREADY_LOGIN</a>, 
+&nbsp;&nbsp;<a class="el" href="elogin_8h.html#a0551a16fdbae07faf632f41de2bc827ba50700d6deb6a874b361e7d130824965e">EL_ALREADY_LOGIN</a>, 
 <a class="el" href="elogin_8h.html#a0551a16fdbae07faf632f41de2bc827ba273379fe8d7c9af0117aaf7a97fa59fd">EL_SOCKET_DISCONNECTED</a>
 <br/>
  }</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>登录结果 </p>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>登录结果 </p>
  <a href="elogin_8h.html#a0551a16fdbae07faf632f41de2bc827b">更多...</a><br/></td></tr>
-<tr><td colspan="2"><h2><a name="var-members"></a>
-变量</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">const QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elogin_8h.html#a8848363d07a24ccca732c9d2dff48a61">loginMsg</a> []</td></tr>
 </table>
-<hr/><h2>类型定义文档</h2>
-<a class="anchor" id="ac4ecdff7c00c08d305f89e86f25bdcf6"></a><!-- doxytag: member="elogin.h::JRole" ref="ac4ecdff7c00c08d305f89e86f25bdcf6" args="" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef qint16 <a class="el" href="elogin_8h.html#ac4ecdff7c00c08d305f89e86f25bdcf6">JRole</a></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<p>每名用户能够以多个身份登录。我们按bit记录一个用户拥有的身份的组合。 </p>
-
-</div>
-</div>
+<hr/><a name="_details"></a><h2>详细描述</h2>
+<p>与登录相关的类型定义。 </p>
 <hr/><h2>枚举类型文档</h2>
 <a class="anchor" id="a0551a16fdbae07faf632f41de2bc827b"></a><!-- doxytag: member="elogin.h::ELogin" ref="a0551a16fdbae07faf632f41de2bc827b" args="" -->
 <div class="memitem">
@@ -166,7 +143,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div>
 <div class="memdoc">
 
-<p>登录身份。 </p>
+<p>登录身份 </p>
 <dl><dt><b>枚举值: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
 <tr><td valign="top"><em><a class="anchor" id="ab545dcc2f309e9852f48e19b36decec2add598b686030e4c5e1a3652815fa1699"></a><!-- doxytag: member="ROLE_GAMEPLAYER" ref="ab545dcc2f309e9852f48e19b36decec2add598b686030e4c5e1a3652815fa1699" args="" -->ROLE_GAMEPLAYER</em>&nbsp;</td><td>
 <p>游戏玩家 </p>
@@ -189,35 +166,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 
 </div>
 </div>
-<hr/><h2>变量文档</h2>
-<a class="anchor" id="a8848363d07a24ccca732c9d2dff48a61"></a><!-- doxytag: member="elogin.h::loginMsg" ref="a8848363d07a24ccca732c9d2dff48a61" args="[]" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const QString <a class="el" href="elogin_8h.html#a8848363d07a24ccca732c9d2dff48a61">loginMsg</a>[]</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-<b>初始化序列：</b><div class="fragment"><pre class="fragment">{
-    QObject::tr(<span class="stringliteral">&quot;login success&quot;</span>),
-    QObject::tr(<span class="stringliteral">&quot;no such user&quot;</span>),
-    QObject::tr(<span class="stringliteral">&quot;password wrong&quot;</span>),
-    QObject::tr(<span class="stringliteral">&quot;no such role&quot;</span>),
-    QObject::tr(<span class="stringliteral">&quot;already login&quot;</span>),
-    QObject::tr(<span class="stringliteral">&quot;socket disconnected&quot;</span>),
-}
-</pre></div>
-</div>
-</div>
 </div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>友元</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>友元</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -226,8 +181,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated at 2011年八月23日 星期二 08:21:35 for DGP_API by&#160;
+<hr class="footer"/><address class="footer"><small>Generated at Sat Aug 27 2011 20:53:16 for DGP_API by&nbsp;
 <a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
 </html>

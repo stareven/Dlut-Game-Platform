@@ -5,29 +5,20 @@
 <title>DGP_API: DGP大工游戏平台开发手册</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javaScript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload='searchBox.OnSelectItem(0);'>
-<!-- 制作者 Doxygen 1.7.3 -->
+<!-- 制作者 Doxygen 1.7.1 -->
 <script type="text/javascript"><!--
 var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 --></script>
-<div id="top">
-<div id="titlearea">
-<table cellspacing="0" cellpadding="0">
- <tbody>
- <tr style="height: 56px;">
-  <td style="padding-left: 0.5em;">
-   <div id="projectname">DGP_API</div>
-  </td>
- </tr>
- </tbody>
-</table>
-</div>
-  <div id="navrow1" class="tabs">
+<div class="navigation" id="top">
+  <div class="tabs">
     <ul class="tablist">
       <li class="current"><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
       <li><a href="namespaces.html"><span>名字空间</span></a></li>
       <li><a href="annotated.html"><span>类</span></a></li>
       <li><a href="files.html"><span>文件</span></a></li>
@@ -55,7 +46,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <h1>DGP大工游戏平台开发手册 </h1>  </div>
 </div>
 <div class="contents">
-<div class="textblock"><h2><a class="anchor" id="introduction"></a>
+<h2><a class="anchor" id="introduction"></a>
 概述</h2>
 <p>DGP大工游戏平台仅支持CS模式的应用。因此您需要完成一个服务器端和一个客户端。<br/>
  如果您希望与平台的主服务器通信并测试您的游戏是否能在平台上正常运行，您需要向MainServer的运维者索要以下信息：</p>
@@ -77,7 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <ol type="1">
 <li>调用类 <a class="el" href="classJRequestPort.html" title="获得各个服务的端口">JRequestPort</a> 的setServerPort()方法来保存FreePort的地址和端口（就是从MainServer的运维者处得到的地址和端口），之后可以直接调用 rqsServerPort() 方法来获得任何一个服务的端口。</li>
 <li>调用类 <a class="el" href="classJRequestLogin.html" title="登录请求。">JRequestLogin</a> 的 connectToHost()方法连接MainServer的Login服务，然后调用login()方法来登录服务器。</li>
-<li>调用类 <a class="el" href="classJSendGsInfo.html" title="SubServer向MainServer发送相关信息。">JSendGsInfo</a> 的 connectToHost()方法连接MainServer的SubServer服务，调用sendLoginHashCode()方法请求LoginHash验证，然后调用sendGameInfo()、sendServerInfo()、sendRelation()方法来上传游戏信息和服务器信息。<br/>
+<li>调用类 <a class="el" href="classJSendGsInfo.html" title="SubServer向MainServer发送相关信息。.">JSendGsInfo</a> 的 connectToHost()方法连接MainServer的SubServer服务，调用sendLoginHashCode()方法请求LoginHash验证，然后调用sendGameInfo()、sendServerInfo()、sendRelation()方法来上传游戏信息和服务器信息。<br/>
  具体例子可以参见 JSubServerStartUp 类的startup()方法的源码。</li>
 </ol>
 <p>或者更简单的、初始化一个 JSubServerStartUp 类，调用startup()方法完成以上全部过程。<br/>
@@ -99,13 +90,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <li>6:GameServer的端口。<br/>
  参见SnakeClient项目main/main.cpp文件中的processArgument()函数。 </li>
 </ul>
-</div></div>
+</div>
 <!--- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>友元</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&nbsp;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&nbsp;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&nbsp;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&nbsp;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&nbsp;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&nbsp;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&nbsp;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&nbsp;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&nbsp;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&nbsp;</span>友元</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -114,8 +105,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated at 2011年八月23日 星期二 08:21:35 for DGP_API by&#160;
+<hr class="footer"/><address class="footer"><small>Generated at Sat Aug 27 2011 20:53:16 for DGP_API by&nbsp;
 <a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
 </html>
