@@ -15,6 +15,7 @@ QMap<EServerType,SHost> JRequestPort::s_ports;
 
 /*!
 	\class JRequestPort jrequestport.h "service/jrequestport.h"
+	\ingroup client
 	\brief 获得各个服务的端口
 
 	MainServer上，每个服务单独使用一个端口。\n

@@ -10,6 +10,7 @@ JID JLoginHashCodeRecorder::s_userId;
 
 /*!
 	\class JLoginHashCodeRecorder jloginhashcoderecorder.h "service/jloginhashcoderecorder.h"
+	\ingroup client
 	\brief 管理登录用户ID及Login hash code。
 	
 	\section LoginHashCode Login hash code

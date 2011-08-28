@@ -15,6 +15,7 @@ QMap<JID,UserInfo::SUserInfo> JRequestUserInfo::s_userinfolist;
 
 /*!
 	\class JRequestUserInfo jrequestuserinfo.h "service/jrequestuserinfo.h"
+	\ingroup client
 	\brief 获取用户信息
 
 	JRequestUserInfo对获取用户信息请求提供一个基本的封装。\n

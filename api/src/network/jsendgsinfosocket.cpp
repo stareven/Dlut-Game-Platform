@@ -3,6 +3,11 @@
 #include "global/ssubserver.h"
 
 /*!
+	\defgroup subserver subserverapi
+	\brief 处理 SubServer 向 MainServer 发送数据
+*/
+
+/*!
 	\file jsendgsinfosocket.h
 	\brief 定义了 JSendGsInfoSocket 类
 */
@@ -21,16 +26,16 @@
 	查看完整的通信协议，请见\ref lhc_protocol "LoginHashConfirm通信协议" 。\n
 	
 	- 客户端向服务器端发送服务器信息 : <JID:protocol> <SubServer::SSubServer:subserverinfo>
-	  -# ::JID 类型，值为SubServer::ESP_ServerInfo，表示发送协议为发送服务器信息。
+	  -# ::JID 类型，值为 SubServer::ESP_ServerInfo，表示发送协议为发送服务器信息。
 	  -# SubServer::SSubServer ，表示服务器信息。格式化方式参见 ::operator<<(QDataStream& stream,const SubServer::SSubServer& )
 	- 客户端向服务器端发送游戏信息 : <JID:protocol> <SubServer::SGameInfo2:gameinfo>
-	  -# ::JID 类型，值为SubServer::ESP_GameInfo，表示发送协议为发送游戏信息。
+	  -# ::JID 类型，值为 SubServer::ESP_GameInfo，表示发送协议为发送游戏信息。
 	  -# SubServer::SGameInfo2 ，表示游戏信息。格式化方式参见 ::operator<<(QDataStream& stream,const SubServer::SGameInfo2& )
 	- 客户端向服务器端发送服务器信息 : <JID:protocol> <JID:serverId> <JID:gameId> <JVersion:gameVersion>
-	  -# ::JID 类型，值为SubServer::ESP_Relation，表示发送协议为发送关联信息。
+	  -# ::JID 类型，值为 SubServer::ESP_Relation，表示发送协议为发送关联信息。
 	  -# ::JID 类型，表示服务器ID。
 	  -# ::JID 类型，表示游戏ID。
-	  -# ::JVersion 类型，表示游戏版本。格式化方式参见 ::operator<<(QDataStream& stream,const JVersion& )
+	  -# ::JVersion 类型，表示游戏版本。格式化方式参见 operator<<(QDataStream& ,const JVersion& )
 	- 服务器端向客户端 ： <JID:protocol> <JCode:code>
 	  -# ::JID 类型，表示发送协议。
 	  -# ::JCode 类型，0表示发送成功。其它表示各种原因的失败。（有空把这个地方详细写一下。）

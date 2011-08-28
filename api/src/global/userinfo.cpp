@@ -32,6 +32,8 @@ UserInfo::SUserInfo::SUserInfo(JID id,
 /*!
 	\relates UserInfo::SUserInfo
 	\brief 从流\a stream 中读入到\a ui 中。
+	
+	格式： <JID:userId> <QString:nickname> <QString:organization>
 */
 QDataStream& operator >> (QDataStream& stream,UserInfo::SUserInfo& ui)
 {
@@ -44,6 +46,8 @@ QDataStream& operator >> (QDataStream& stream,UserInfo::SUserInfo& ui)
 /*!
 	\relates UserInfo::SUserInfo
 	\brief 将\a ui 中写入到流\a stream 中。
+	
+	格式参见 operator>>(QDataStream& stream,UserInfo::SUserInfo& ui)
 */
 QDataStream& operator << (QDataStream& stream,const UserInfo::SUserInfo& ui)
 {

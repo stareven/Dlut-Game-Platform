@@ -12,6 +12,7 @@
 
 /**
 	\class JSubServerStartup jsubserverstartup.h "service/jsubserverstartup.h"
+	\ingroup subserver
 	\brief 对SubServer的整个登录过程的封装。
 
 	\sa startup()

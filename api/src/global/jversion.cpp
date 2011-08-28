@@ -75,6 +75,8 @@ quint32 JVersion::getData()const
 /*!
 	\relates JVersion
 	\brief 将版本号\a ver 输出到\a stream 流中。
+	
+	格式：32位无符号整数。
 */
 QDataStream& operator<<(QDataStream& stream,const JVersion& ver)
 {
@@ -85,6 +87,8 @@ QDataStream& operator<<(QDataStream& stream,const JVersion& ver)
 /*!
 	\relates JVersion
 	\brief 从\a stream 流中读出版本号到\a ver 中。
+	
+	格式：32位无符号整数。
 */
 QDataStream& operator>>(QDataStream& stream,JVersion& ver)
 {

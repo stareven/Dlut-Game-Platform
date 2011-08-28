@@ -12,6 +12,7 @@
 
 /**
 	\class JSendGsInfo jsendgsinfo.h "service/jsendgsinfo.h"
+	\ingroup subserver
 	\brief SubServer向MainServer发送相关信息。
 
 	SubServer启动后，需要向MainServer发送：

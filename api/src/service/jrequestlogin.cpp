@@ -14,6 +14,7 @@
 
 /*!
 	\class JRequestLogin jrequestlogin.h "service/jrequestlogin.h"
+	\ingroup client
 	\brief 登录请求。
 
 	JRequestLogin对登录请求提供一个基本的封装。\n

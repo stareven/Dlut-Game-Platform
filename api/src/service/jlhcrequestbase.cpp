@@ -12,6 +12,7 @@
 
 /*!
 	\class JLhcRequestBase jlhcrequestbase.h "service/jlhcrequestbase.h"
+	\ingroup client
 	\brief 需要Login hash confirm的请求的基类。
 
 	客户端向服务器发送的部分请求需要通过Login hash confirm。这个类是这类请求的基类，对Login hash confirm的过程提供了封装。\n

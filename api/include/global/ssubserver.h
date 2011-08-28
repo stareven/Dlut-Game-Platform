@@ -50,11 +50,17 @@ namespace SubServer{
 		JID m_gameId;
 		JVersion m_version;
 	};
+	
+	/*!
+		\brief SubServer协议
+	
+		SubServer 向 MainServer发送相关信息的协议。
+	*/
 	enum ESubServerProtocol{
-		ESP_ServerInfo,
-		ESP_GameInfo,
-		ESP_Relation,
-		ESP_Command,
+		ESP_ServerInfo,///< 发送服务器信息
+		ESP_GameInfo,///< 发送游戏信息
+		ESP_Relation,///< 发送关联信息
+		ESP_Command,///< 发送命令
 	};
 	enum EGameInfoProtocol{
 		EGP_GameList,
