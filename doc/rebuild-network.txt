@@ -5,3 +5,10 @@
 	request gameinfo
 	send game info
 	download game client
+NetworkData
+	Information：时间戳系统
+		UserInfo
+		GameInfo
+		ServerInfo
+	Request
+		
