@@ -3,12 +3,18 @@
 ######################################################################
 
 QT += network
-TEMPLATE = lib
+TEMPLATE = app
 TARGET = 
 DEPENDPATH += . src/network
 INCLUDEPATH += . src/network
 
 # Input
 HEADERS += src/network/jnetworkdataprocessorbase.h src/network/jsocketbase.h \
-    src/global/jglobal.h
-SOURCES += src/network/jsocketbase.cpp
+    src/global/jglobal.h \
+    src/network/jclientsocketbase.h \
+    src/network/jserversocketbase.h \
+    src/network/jclientnetworkdataprocessorbase.h
+SOURCES += src/network/jsocketbase.cpp \
+    src/network/jclientsocketbase.cpp \
+    src/network/jserversocketbase.cpp \
+    src/network/jclientnetworkdataprocessorbase.cpp

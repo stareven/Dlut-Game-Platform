@@ -14,7 +14,7 @@ class JNetworkDataProcessorBase;
 class JSocketBase : public QObject{
     Q_OBJECT
 public:
-    explicit JSocketBase(QTcpSocket* socket,QObject* parent=0);
+    explicit JSocketBase(QTcpSocket* const socket,QObject* parent=0);
     JCode registerProcessor(JID type,JNetworkDataProcessorBase*);
     JCode sendData(JID type,const QByteArray&);
     QAbstractSocket::SocketState socketState () const;
@@ -23,7 +23,7 @@ signals:
     void error ( QAbstractSocket::SocketError socketError );
 protected:
     virtual JCode init()=0;
-    QTcpSocket* m_socket;
+    QTcpSocket* const m_socket;
 private slots:
     void on_socket_readyRead();
 private:
