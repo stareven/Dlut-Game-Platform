@@ -22,7 +22,6 @@ signals:
     void disconnected();
     void error ( QAbstractSocket::SocketError socketError );
 protected:
-    virtual JCode init()=0;
     QTcpSocket* const m_socket;
 private slots:
     void on_socket_readyRead();

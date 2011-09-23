@@ -8,8 +8,9 @@ class JClientSocketBase;
 class JClientNetworkDataProcessorBase : public JNetworkDataProcessorBase
 {
     Q_OBJECT
-public:
+protected:
     explicit JClientNetworkDataProcessorBase(QObject *parent = 0);
+public:
     void setSocket(JClientSocketBase*);
     JClientSocketBase* getSocket()const;
 private:
