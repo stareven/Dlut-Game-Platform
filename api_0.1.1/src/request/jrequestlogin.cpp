@@ -36,8 +36,8 @@
 	\sa JLoginHashCodeRecorder
 */
 
-const QString loginMsg[]={
-	QObject::tr("login success"),
+const QString loginErrorString[]={
+    QObject::tr("no error"),
 	QObject::tr("no such user"),
 	QObject::tr("password wrong"),
 	QObject::tr("no such role"),
@@ -52,7 +52,6 @@ JRequestLogin::JRequestLogin(QObject *parent) :
 	JRequestBase(parent)
 {
     m_processor=JClientLoginProcessor::getInstance();
-//	m_state=ELS_Init;
 	m_loginError=EL_SUCCESS;
     connect(m_processor,SIGNAL(loginCode(JCode)),SLOT(on_socket_loginCode(JCode)));
 }
@@ -68,7 +67,7 @@ JRequestLogin::JRequestLogin(QObject *parent) :
 */
 void JRequestLogin::login(const QString& loginname,
            const QString& passwd,
-           const JID& role)
+           const ERole& role)
 {
 	m_state=ELS_Sending;
     m_processor->login(loginname,passwd,role);
@@ -109,9 +108,7 @@ bool JRequestLogin::waitForLogined(int msecs)
 */
 const QString& JRequestLogin::getLoginError()const
 {
-    static QString noerror="no error";
-	if(EL_SUCCESS==m_loginError) return noerror;
-	return loginMsg[m_loginError];
+    return loginErrorString[m_loginError];
 }
 
 void JRequestLogin::on_socket_loginCode(JCode code)

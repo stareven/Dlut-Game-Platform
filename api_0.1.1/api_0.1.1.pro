@@ -26,4 +26,5 @@ SOURCES += src/network/jsocketbase.cpp \
     src/network/jclientloginprocessor.cpp \
     src/request/jrequestlogin.cpp \
     src/request/jrequestbase.cpp \
-    src/global/shost.cpp
+    src/global/shost.cpp \
+    src/test/main.cpp

@@ -17,11 +17,13 @@ JClientLoginProcessor* JClientLoginProcessor::getInstance(){
     return instance;
 }
 
-void JClientLoginProcessor::login(const QString& loginname,const QString& passwd,const JID& role){
+void JClientLoginProcessor::login(const QString& loginname,
+                                  const QString& passwd,
+                                  ERole role){
     QByteArray data;
     QDataStream stream(&data,QIODevice::WriteOnly);
     stream<<loginname<<passwd;
-    stream<<role;
+    stream<<(JID)role;
     JClientSocketBase::getInstance()->sendData(getProcessorId(),data);
 }
 

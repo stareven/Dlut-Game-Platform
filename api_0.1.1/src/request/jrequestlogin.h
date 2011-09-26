@@ -13,8 +13,8 @@ public:
 	explicit JRequestLogin(QObject *parent = 0);
     void login(const QString& loginname,
                const QString& passwd,
-               const JID& role);
-	/// \brief 登录状态           
+               const ERole& role);
+    /// \brief 登录状态
 	enum ELoginState{
 		ELS_Init, ///< 初始状态
 		ELS_Sending, ///< 正在发送登录请求

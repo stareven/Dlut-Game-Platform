@@ -2,6 +2,7 @@
 #define JCLIENTLOGINPROCESSOR_H
 
 #include "jclientnetworkdataprocessorbase.h"
+#include "../global/elogin.h"
 
 class JClientLoginProcessor : public JClientNetworkDataProcessorBase
 {
@@ -10,7 +11,7 @@ private:
     explicit JClientLoginProcessor(QObject *parent = 0);
 public:
     static JClientLoginProcessor* getInstance();
-    void login(const QString& loginname,const QString& passwd,const JID& role);
+    void login(const QString& loginname,const QString& passwd,ERole role);
     JID getUserId()const;
 signals:
     void loginCode(JCode);

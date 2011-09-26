@@ -17,7 +17,18 @@ JCode JSocketBase::registerProcessor(JID type,JNetworkDataProcessorBase* process
     return 0;
 }
 
+/*!
+    \retval 0 成功。
+    \retval 1 socket未连接。
+    \retval 2 socket不可写。
+*/
 JCode JSocketBase::sendData(JID type,const QByteArray& data){
+    if(m_socket->state()!=QAbstractSocket::ConnectedState){
+        return 1;
+    }
+    if(!m_socket->isWritable()){
+        return 2;
+    }
     qint32 size=data.size();
     QDataStream outsocketstream(m_socket);
     outsocketstream<<type;
@@ -51,5 +62,3 @@ void JSocketBase::on_socket_readyRead(){
         }
     }
 }
-
-int main(){}

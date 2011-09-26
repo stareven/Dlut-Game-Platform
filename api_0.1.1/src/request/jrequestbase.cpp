@@ -24,12 +24,6 @@ const static QString error_no="no error";
 */
 
 /*!
-	\fn JRequestBase::connectResult(bool result)
-	\brief 连接结果。
-	\a result 表示是否连接成功。
-*/
-
-/*!
 	\fn JRequestBase::error();
 	\brief 发生错误。
 
@@ -44,9 +38,7 @@ const static QString error_no="no error";
 JRequestBase::JRequestBase(QObject *parent)
 	:QObject(parent)
 {
-//	m_socket=NULL;
-//	m_state=ECS_Init;
-	m_error=&error_no;
+    m_error=error_no;
 }
 
 /*!
@@ -59,10 +51,9 @@ void JRequestBase::connectToHost(const QHostAddress& address,quint16 port)
 {
     if(JClientSocketBase::getInstance()==NULL)
 	{
-		qDebug()<<"JRequestBase: socket is NULL";
-//		m_state=ECS_Error;
+        qDebug()<<"JRequestBase: socket is NULL";
 		const static QString error_socket_null="socket is NULL";
-		m_error=&error_socket_null;
+        m_error=error_socket_null;
 		emit error();
 		return;
 	}
@@ -70,20 +61,9 @@ void JRequestBase::connectToHost(const QHostAddress& address,quint16 port)
 	{
 		qDebug()<<"JRequestBase::connectToHost : already connected.";
 		return;
-	}
-//	m_state=ECS_Connecting;
+    }
     JClientSocketBase::getInstance()->connectToServer(SHost(address,port));
 }
-
-///*!
-//	获取当前的连接状态。
-
-//	\sa EConnectState
-//*/
-//JRequestBase::EConnectState JRequestBase::getConnectState()const
-//{
-//	return m_state;
-//}
 
 /*!
 	等待\a msecs 毫秒或收到连接结果。
@@ -110,43 +90,11 @@ bool JRequestBase::waitForConnected(int msecs)const
 */
 const QString& JRequestBase::getConnectError()const
 {
-	return *m_error;
+    return m_error;
 }
-
-//void JRequestBase::setSocket(JSocketBase* socket)
-//{
-//	m_socket=socket;
-//	connect(m_socket,SIGNAL(SocketCode(ENet)),SLOT(on_socket_SocketCode(ENet)));
-//	connect(m_socket,SIGNAL(SocketError(QString)),SLOT(on_socket_SocketError(QString)));
-//}
-
-//void JRequestBase::on_socket_SocketCode(ENet netcode)
-//{
-//	switch(netcode)
-//	{
-//	case EN_CONNECTED:
-//		m_state=ECS_Connected;
-//		m_error=&error_no;
-//		emit connectResult(true);
-//		break;
-//	case EN_DISCONNECTED:
-//		m_state=ECS_Error;
-//		{
-//			const static QString error_disconnected="disconnected";
-//			m_error=&error_disconnected;
-//		}
-//		emit connectResult(false);
-//		emit error();
-//		break;
-//	}
-//}
 
 void JRequestBase::on_socket_SocketError(const QString& socketError)
 {
-	static QString saveError;
-	saveError=socketError;
-//	m_state=ECS_Error;
-	m_error=&saveError;
-	emit connectResult(false);
+    m_error=socketError;
 	emit error();
 }
