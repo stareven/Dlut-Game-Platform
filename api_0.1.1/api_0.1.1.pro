@@ -18,7 +18,9 @@ HEADERS += src/network/jnetworkdataprocessorbase.h src/network/jsocketbase.h \
     src/request/jrequestlogin.h \
     src/request/jrequestbase.h \
     src/global/elogin.h \
-    src/global/shost.h
+    src/global/shost.h \
+    src/network/jinformation.h \
+    src/network/jclientinformationprocessor.h
 SOURCES += src/network/jsocketbase.cpp \
     src/network/jclientsocketbase.cpp \
     src/network/jserversocketbase.cpp \
@@ -27,4 +29,6 @@ SOURCES += src/network/jsocketbase.cpp \
     src/request/jrequestlogin.cpp \
     src/request/jrequestbase.cpp \
     src/global/shost.cpp \
-    src/test/main.cpp
+    src/test/main.cpp \
+    src/network/jinformation.cpp \
+    src/network/jclientinformationprocessor.cpp
