@@ -26,6 +26,11 @@ typedef qint32 JID;
 typedef qint16 JCode;
 
 /*!
+	\brief 整个项目通用的时间类型。
+*/
+typedef uint JTime_t;
+
+/*!
 	\defgroup global globalapi
 	\brief 整个项目需要用到的一些数据定义等。
 */
