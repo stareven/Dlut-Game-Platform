@@ -14,9 +14,9 @@ public:
     JNetworkDataProcessorBase (QObject *parent = 0)
         :QObject(parent){}
     virtual void process(const QByteArray& data)=0;
-    virtual JID getProcessorId()const=0;
+	virtual JType getProcessorType()const=0;
 
-    enum EProcessorId{
+	enum EProcessorType{
         EPI_LOGIN,
     };
 };

@@ -12,7 +12,7 @@ JClientLoginProcessor* JClientLoginProcessor::getInstance(){
     if(NULL==instance){
         JClientSocketBase* socket=JClientSocketBase::getInstance();
         instance=new JClientLoginProcessor(socket);
-        socket->registerProcessor(instance->getProcessorId(),instance);
+		socket->registerProcessor(instance->getProcessorType(),instance);
     }
     return instance;
 }
@@ -24,7 +24,7 @@ void JClientLoginProcessor::login(const QString& loginname,
     QDataStream stream(&data,QIODevice::WriteOnly);
     stream<<loginname<<passwd;
     stream<<(JID)role;
-    JClientSocketBase::getInstance()->sendData(getProcessorId(),data);
+	JClientSocketBase::getInstance()->sendData(getProcessorType(),data);
 }
 
 void JClientLoginProcessor::process(const QByteArray& data){
@@ -38,6 +38,6 @@ void JClientLoginProcessor::process(const QByteArray& data){
     emit loginCode(code);
 }
 
-JID JClientLoginProcessor::getProcessorId()const{
+JType JClientLoginProcessor::getProcessorType()const{
     return EPI_LOGIN;
 }

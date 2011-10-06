@@ -11,4 +11,5 @@ NetworkData
 		GameInfo
 		ServerInfo
 	Request
-		
+2、JClientInformationProcessor类只负责请求与接收。
+3、直接重载operator<<和operator>>来解释数据，而不再定义相关方法。

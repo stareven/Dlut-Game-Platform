@@ -18,6 +18,11 @@
 typedef qint32 JID;
 
 /*!
+	\brief 整个项目通用的一个type类型。
+*/
+typedef qint8 JType;
+
+/*!
 	\brief 整个项目通用的函数返回值类型。
 	
 	一些函数的返回值代表函数是否执行成功。\n
@@ -27,6 +32,8 @@ typedef qint16 JCode;
 
 /*!
 	\brief 整个项目通用的时间类型。
+
+	单位是秒。
 */
 typedef uint JTime_t;
 

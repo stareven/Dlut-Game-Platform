@@ -12,7 +12,7 @@ JSocketBase::JSocketBase(QTcpSocket* socket,QObject* parent)
     m_size=0;
 }
 
-JCode JSocketBase::registerProcessor(JID type,JNetworkDataProcessorBase* processor){
+JCode JSocketBase::registerProcessor(JType type,JNetworkDataProcessorBase* processor){
     m_processors.insert(type,processor);
     return 0;
 }
@@ -22,7 +22,7 @@ JCode JSocketBase::registerProcessor(JID type,JNetworkDataProcessorBase* process
     \retval 1 socket未连接。
     \retval 2 socket不可写。
 */
-JCode JSocketBase::sendData(JID type,const QByteArray& data){
+JCode JSocketBase::sendData(JType type,const QByteArray& data){
     if(m_socket->state()!=QAbstractSocket::ConnectedState){
         return 1;
     }
@@ -54,6 +54,7 @@ void JSocketBase::on_socket_readyRead(){
                 process->process(m_data);
                 m_data.clear();
                 m_size=0;
+				m_type=-1;
             }
         }else if(m_socket->bytesAvailable()>=(qint64)(sizeof(m_type)+sizeof(m_size))){
             QDataStream stream(m_socket);
