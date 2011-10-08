@@ -21,7 +21,11 @@ HEADERS += src/network/jnetworkdataprocessorbase.h src/network/jsocketbase.h \
     src/global/shost.h \
     src/network/jinformation.h \
     src/network/jclientinformationprocessor.h \
-    src/network/jinformationmanager.h
+    src/network/jinformationmanager.h \
+    src/global/jserializabledata.h \
+    src/request/jrequestuserinfo.h \
+    src/global/juserinfo.h \
+    src/request/jinformationrequestbase.h
 SOURCES += src/network/jsocketbase.cpp \
     src/network/jclientsocketbase.cpp \
     src/network/jserversocketbase.cpp \
@@ -33,4 +37,7 @@ SOURCES += src/network/jsocketbase.cpp \
     src/test/main.cpp \
     src/network/jinformation.cpp \
     src/network/jclientinformationprocessor.cpp \
-    src/network/jinformationmanager.cpp
+    src/network/jinformationmanager.cpp \
+    src/request/jrequestuserinfo.cpp \
+    src/global/juserinfo.cpp \
+    src/request/jinformationrequestbase.cpp

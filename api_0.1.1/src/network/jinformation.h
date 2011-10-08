@@ -12,11 +12,17 @@ namespace NetworkData{
 		quint8 m_meta;
 		qint16 m_category;
 		JID m_id;
+
+		JHead(JID id,JType type=-1,quint8 meta=-1,qint16 category=-1);
 	};
+	enum EInformationType{
+		EIT_UserInfo,
+	};
+
 	class JInformation
 	{
 	public:
-		JInformation();
+		JInformation(const JHead& head);
 		/// update lastModifyTime and lastAccessTime;
 		JCode setLastModifyTime(JTime_t time);
 		/// update data and lastReadTime
