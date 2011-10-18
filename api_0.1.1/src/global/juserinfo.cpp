@@ -28,7 +28,8 @@ JUserInfo::JUserInfo(JID id,
 
 	格式： <JID:userId> <QString:nickname> <QString:organization>
 */
-void JUserInfo::fromByteArray(const QByteArray& data){
+void JUserInfo::fromByteArray(const QByteArray& data)
+{
 	QDataStream stream(data);
 	stream>>m_userId;
 	stream>>m_nickname;
@@ -40,7 +41,8 @@ void JUserInfo::fromByteArray(const QByteArray& data){
 
 	格式参见 JUserInfo::fromByteArray()
 */
-QByteArray JUserInfo::toByteArray()const{
+QByteArray JUserInfo::toByteArray()const
+{
 	QByteArray data;
 	QDataStream stream(&data,QIODevice::WriteOnly);
 	stream<<m_userId;
@@ -49,7 +51,23 @@ QByteArray JUserInfo::toByteArray()const{
 	return data;
 }
 
-NetworkData::JHead JUserInfo::head(JID id)const{
+NetworkData::JHead JUserInfo::head(JID id)const
+{
 	NetworkData::JHead head=NetworkData::JHead(id);
 	return head;
+}
+
+JID JUserInfo::getUserId()const
+{
+	return m_userId;
+}
+
+const QString& JUserInfo::getNickname()const
+{
+	return m_nickname;
+}
+
+const QString& JUserInfo::getOrganization()const
+{
+	return m_organization;
 }

@@ -5,16 +5,9 @@ JRequestUserInfo::JRequestUserInfo(QObject *parent) :
 {
 }
 
-JUserInfo JRequestUserInfo::rqsUserInfo(JID userId,JTime_t oldlimit,int msecs)
+JUserInfo JRequestUserInfo::pullUserInfo(JID userId,int msecs)
 {
-	JUserInfo rtn;
-	NetworkData::JHead head=rtn.head(userId);
-	if(rqsModifyTime(head,oldlimit)){
-		waitForModifyTime(head,msecs/2);
-	}
-	if(rqsInfomationData(head,oldlimit)){
-		waitForInfomationData(head,msecs/2);
-	}
-	rtn.fromByteArray(this->getInfomationData(head));
-	return rtn;
+	JUserInfo ui;
+	ui.fromByteArray(pullInformationData(userId,msecs));
+	return ui;
 }

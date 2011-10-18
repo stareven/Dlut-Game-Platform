@@ -9,15 +9,18 @@ namespace NetworkData{
 class JClientInformationProcessor : public JClientNetworkDataProcessorBase
 {
     Q_OBJECT
+	explicit JClientInformationProcessor(QObject *parent = 0);
 public:
-    explicit JClientInformationProcessor(QObject *parent = 0);
-	void requestInformationTime(const NetworkData::JHead& head);
+	static JClientInformationProcessor* getInstance();
+	void requestInformationRemoteMtime(const NetworkData::JHead& head);
 	void requestInformationData(const NetworkData::JHead& head);
+
+	JType getProcessorType()const;
 protected:
 	void process(const QByteArray& data);
 signals:
-	void receiveLastModifyTime(const NetworkData::JHead& head,JTime_t time);
-	void receiveData(const NetworkData::JHead& head,const QByteArray& data);
+	void receiveRemoteMtime(const NetworkData::JHead& head,JTime_t remoteMtime);
+	void receiveData(const NetworkData::JHead& head,JTime_t localMtime,const QByteArray& data);
 };
 
 #endif // JCLIENTINFORMATIONPROCESSOR_H

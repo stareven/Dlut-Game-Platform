@@ -14,6 +14,10 @@ public:
 	void fromByteArray(const QByteArray& data);
 	QByteArray toByteArray()const;
 	NetworkData::JHead head(JID id)const;
+
+	JID getUserId()const;
+	const QString& getNickname()const;
+	const QString& getOrganization()const;
 private:
     JID m_userId;
 	QString m_nickname;

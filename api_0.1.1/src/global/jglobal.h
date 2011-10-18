@@ -20,7 +20,7 @@ typedef qint32 JID;
 /*!
 	\brief 整个项目通用的一个type类型。
 */
-typedef qint8 JType;
+typedef qint16 JType;
 
 /*!
 	\brief 整个项目通用的函数返回值类型。
