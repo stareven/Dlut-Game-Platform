@@ -7,14 +7,20 @@
 #include "../global/jglobal.h"
 
 namespace NetworkData{
+	struct JHead;
+}
+bool operator==(const NetworkData::JHead&,const NetworkData::JHead&);
+uint qHash(const NetworkData::JHead&);
+
+namespace NetworkData{
 	struct JHead{
 		JType m_type;
 		qint16 m_category;
 		JID m_id;
 
 		JHead(JID id,JType type=-1,qint16 category=-1);
-		friend bool operator==(const JHead&,const JHead&);
-		friend uint qHash(const JHead&);
+		friend bool ::operator==(const JHead&,const JHead&);
+		friend uint ::qHash(const JHead&);
 	};
 	enum EInformationType{
 		EIT_UserInfo,
