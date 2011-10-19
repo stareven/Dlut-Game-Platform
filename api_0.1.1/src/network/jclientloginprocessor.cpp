@@ -24,7 +24,10 @@ void JClientLoginProcessor::login(const QString& loginname,
     QDataStream stream(&data,QIODevice::WriteOnly);
     stream<<loginname<<passwd;
     stream<<(JID)role;
-	getSocket()->sendData(getProcessorType(),data);
+	JCode code=getSocket()->sendData(getProcessorType(),data);
+	if(0!=code){
+		qDebug()<<"JClientLoginProcessor::login : sendData failed:"<<code;
+	}
 }
 
 void JClientLoginProcessor::process(const QByteArray& data){

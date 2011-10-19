@@ -10,6 +10,8 @@ JSocketBase::JSocketBase(QTcpSocket* socket,QObject* parent)
 {
     m_type=-1;
     m_size=0;
+	connect(socket,SIGNAL(readyRead()),SLOT(on_socket_readyRead()));
+	connect(socket,SIGNAL(error(QAbstractSocket::SocketError)),SLOT(on_socket_error(QAbstractSocket::SocketError)));
 }
 
 JCode JSocketBase::registerProcessor(JType type,JNetworkDataProcessorBase* processor){
@@ -62,4 +64,9 @@ void JSocketBase::on_socket_readyRead(){
             stream>>m_size;
         }
     }
+}
+
+void JSocketBase::on_socket_error(QAbstractSocket::SocketError)
+{
+	qDebug()<<metaObject()->className()<<m_socket->errorString();
 }

@@ -25,6 +25,7 @@ protected:
     QTcpSocket* const m_socket;
 private slots:
     void on_socket_readyRead();
+	void on_socket_error(QAbstractSocket::SocketError);
 private:
 	QHash<JType,JNetworkDataProcessorBase*> m_processors;
 	JType m_type;
