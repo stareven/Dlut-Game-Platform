@@ -13,9 +13,10 @@ class JClientNetworkDataProcessorBase : public JNetworkDataProcessorBase
 {
     Q_OBJECT
 protected:
-    explicit JClientNetworkDataProcessorBase(QObject *parent = 0);
-public:
+	explicit JClientNetworkDataProcessorBase(JClientSocketBase *socket = 0);
+private:
     void setSocket(JClientSocketBase*);
+protected:
     JClientSocketBase* getSocket()const;
 private:
     JClientSocketBase* m_socket;

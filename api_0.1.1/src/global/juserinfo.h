@@ -25,4 +25,3 @@ private:
 };
 
 #endif // JUSERINFO_H
-

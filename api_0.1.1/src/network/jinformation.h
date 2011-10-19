@@ -18,12 +18,17 @@ namespace NetworkData{
 		qint16 m_category;
 		JID m_id;
 
-		JHead(JID id,JType type=-1,qint16 category=-1);
+		JHead(JID id=-1,JType type=-1,qint16 category=-1);
 		friend bool ::operator==(const JHead&,const JHead&);
 		friend uint ::qHash(const JHead&);
 	};
 	enum EInformationType{
 		EIT_UserInfo,
+	};
+	enum EInformationProtocol{
+		EIP_RemoteMtime,
+		EIP_Data,
+		EIP_Max,
 	};
 
 	class JInformation
@@ -47,5 +52,9 @@ namespace NetworkData{
 		QByteArray m_data;
 	};
 }
+
+class QDataStream;
+QDataStream& operator<<(QDataStream&,const NetworkData::JHead&);
+QDataStream& operator>>(QDataStream&,NetworkData::JHead&);
 
 #endif // JINFORMATION_H

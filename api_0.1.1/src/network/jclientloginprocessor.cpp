@@ -2,8 +2,8 @@
 
 #include "jclientsocketbase.h"
 
-JClientLoginProcessor::JClientLoginProcessor(QObject *parent) :
-    JClientNetworkDataProcessorBase(parent)
+JClientLoginProcessor::JClientLoginProcessor(JClientSocketBase *socket) :
+	JClientNetworkDataProcessorBase(socket)
 {
 }
 
@@ -11,7 +11,7 @@ JClientLoginProcessor* JClientLoginProcessor::getInstance(){
     static JClientLoginProcessor* instance=NULL;
     if(NULL==instance){
         JClientSocketBase* socket=JClientSocketBase::getInstance();
-        instance=new JClientLoginProcessor(socket);
+		instance=new JClientLoginProcessor(socket);
 		socket->registerProcessor(instance->getProcessorType(),instance);
     }
     return instance;
@@ -24,7 +24,7 @@ void JClientLoginProcessor::login(const QString& loginname,
     QDataStream stream(&data,QIODevice::WriteOnly);
     stream<<loginname<<passwd;
     stream<<(JID)role;
-	JClientSocketBase::getInstance()->sendData(getProcessorType(),data);
+	getSocket()->sendData(getProcessorType(),data);
 }
 
 void JClientLoginProcessor::process(const QByteArray& data){

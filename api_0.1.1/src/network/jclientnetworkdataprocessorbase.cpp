@@ -1,7 +1,19 @@
 #include "jclientnetworkdataprocessorbase.h"
 
-JClientNetworkDataProcessorBase::JClientNetworkDataProcessorBase(QObject *parent) :
-    JNetworkDataProcessorBase(parent)
+#include "jclientsocketbase.h"
+
+JClientNetworkDataProcessorBase::JClientNetworkDataProcessorBase(JClientSocketBase *socket) :
+	JNetworkDataProcessorBase(socket)
 {
-    m_socket=NULL;
+	setSocket(socket);
+}
+
+void JClientNetworkDataProcessorBase::setSocket(JClientSocketBase* socket)
+{
+	m_socket=socket;
+}
+
+JClientSocketBase* JClientNetworkDataProcessorBase::getSocket()const
+{
+	return m_socket;
 }

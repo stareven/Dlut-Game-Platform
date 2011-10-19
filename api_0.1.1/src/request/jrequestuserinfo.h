@@ -11,6 +11,7 @@ class JRequestUserInfo : public JInformationRequestBase
 public:
     explicit JRequestUserInfo(QObject *parent = 0);
 	JUserInfo pullUserInfo(JID userId,int msecs = 30000);
+    NetworkData::JHead getHead(JID id)const;
 };
 
 #endif // JREQUESTUSERINFO_H

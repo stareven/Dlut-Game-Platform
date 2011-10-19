@@ -1,5 +1,7 @@
 #include "jinformation.h"
 
+#include <QDataStream>
+
 using namespace NetworkData;
 
 JHead::JHead(JID id,JType type, qint16 category )
@@ -58,4 +60,20 @@ JTime_t JInformation::getLocalMtime()const
 const QByteArray& JInformation::getData()const
 {
 	return m_data;
+}
+
+QDataStream& operator<<(QDataStream& stream,const JHead& head)
+{
+	stream<<head.m_type;
+	stream<<head.m_category;
+	stream<<head.m_id;
+	return stream;
+}
+
+QDataStream& operator>>(QDataStream& stream,JHead& head)
+{
+	stream>>head.m_type;
+	stream>>head.m_category;
+	stream>>head.m_id;
+	return stream;
 }
