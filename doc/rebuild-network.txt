@@ -1,7 +1,7 @@
 1、细部：
-	request login
+	request login +1
 	request port （废弃）
-	request user info
+	request user info +1
 	request gameinfo
 	send game info
 	download game client
