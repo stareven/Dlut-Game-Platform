@@ -2,6 +2,8 @@
 
 #include <QDataStream>
 
+using namespace NetworkData;
+
 /*!
 	\class JUserInfo juserinfo.h "global/juserinfo.h"
 	\brief 记录一名玩家的信息。
@@ -51,9 +53,9 @@ QByteArray JUserInfo::toByteArray()const
 	return data;
 }
 
-NetworkData::JHead JUserInfo::head(JID id)const
+JHead JUserInfo::head(JID id)const
 {
-	NetworkData::JHead head=NetworkData::JHead(id);
+	JHead head=JHead(id,EIT_UserInfo,0);
 	return head;
 }
 

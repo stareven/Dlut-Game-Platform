@@ -24,6 +24,8 @@ namespace NetworkData{
 	};
 	enum EInformationType{
 		EIT_UserInfo,
+		EIT_GameInfo,
+		EIT_ServerInfo,
 	};
 	enum EInformationProtocol{
 		EIP_RemoteMtime,

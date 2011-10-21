@@ -5,6 +5,7 @@
 
 #include "jserializabledata.h"
 #include "jglobal.h"
+#include "shost.h"
 
 class JServerInfo : public JSerializableData
 {
@@ -18,6 +19,7 @@ public:
 private:
 	JID m_serverId;
 	QString m_name;
+	SHost m_host;
 };
 
 #endif // JSERVERINFO_H
