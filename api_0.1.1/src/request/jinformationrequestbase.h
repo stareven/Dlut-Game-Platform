@@ -7,7 +7,7 @@
 #include "jrequestbase.h"
 
 
-class JClientInformationProcessor;
+class JClientDownloadInformationProcessor;
 
 class JInformationRequestBase : public JRequestBase
 {
@@ -47,7 +47,7 @@ signals:
 						   JTime_t localMtime,
 						   const QByteArray& data);
 private:
-	JClientInformationProcessor* m_processor;
+	JClientDownloadInformationProcessor* m_processor;
 	QSet<NetworkData::JHead> m_receivedRemoteMtime;
 	QSet<NetworkData::JHead> m_receivedInformationData;
 private slots:

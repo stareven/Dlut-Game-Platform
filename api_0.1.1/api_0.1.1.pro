@@ -20,7 +20,7 @@ HEADERS += src/network/jnetworkdataprocessorbase.h src/network/jsocketbase.h \
     src/global/elogin.h \
     src/global/shost.h \
     src/network/jinformation.h \
-    src/network/jclientinformationprocessor.h \
+    src/network/jclientdownloadinformationprocessor.h \
     src/network/jinformationmanager.h \
     src/global/jserializabledata.h \
     src/request/jrequestuserinfo.h \
@@ -30,7 +30,8 @@ HEADERS += src/network/jnetworkdataprocessorbase.h src/network/jsocketbase.h \
     src/request/jrequestgameinfo.h \
     src/global/jversion.h \
     src/global/jserverinfo.h \
-    src/request/jrequestserverinfo.h
+    src/request/jrequestserverinfo.h \
+    src/network/jclientuploadinformationprocessor.h
 SOURCES += src/network/jsocketbase.cpp \
     src/network/jclientsocketbase.cpp \
     src/network/jserversocketbase.cpp \
@@ -41,7 +42,7 @@ SOURCES += src/network/jsocketbase.cpp \
     src/global/shost.cpp \
     src/test/main.cpp \
     src/network/jinformation.cpp \
-    src/network/jclientinformationprocessor.cpp \
+    src/network/jclientdownloadinformationprocessor.cpp \
     src/network/jinformationmanager.cpp \
     src/request/jrequestuserinfo.cpp \
     src/global/juserinfo.cpp \
@@ -50,7 +51,8 @@ SOURCES += src/network/jsocketbase.cpp \
     src/request/jrequestgameinfo.cpp \
     src/global/jversion.cpp \
     src/global/jserverinfo.cpp \
-    src/request/jrequestserverinfo.cpp
+    src/request/jrequestserverinfo.cpp \
+    src/network/jclientuploadinformationprocessor.cpp
 
 OTHER_FILES += \
     ../doc/rebuild-network.txt

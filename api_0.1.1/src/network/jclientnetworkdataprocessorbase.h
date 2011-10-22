@@ -16,8 +16,9 @@ protected:
 	explicit JClientNetworkDataProcessorBase(JClientSocketBase *socket = 0);
 private:
     void setSocket(JClientSocketBase*);
-protected:
     JClientSocketBase* getSocket()const;
+protected:
+	JCode sendData(const QByteArray& data);
 private:
     JClientSocketBase* m_socket;
 };

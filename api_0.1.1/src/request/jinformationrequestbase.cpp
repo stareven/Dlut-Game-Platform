@@ -2,7 +2,7 @@
 
 #include <QCoreApplication>
 
-#include "jclientinformationprocessor.h"
+#include "jclientdownloadinformationprocessor.h"
 #include "../global/jelapsedtimer.h"
 #include "jinformationmanager.h"
 
@@ -11,7 +11,7 @@ using namespace NetworkData;
 JInformationRequestBase::JInformationRequestBase(QObject *parent) :
     JRequestBase(parent)
 {
-	m_processor = JClientInformationProcessor::getInstance();
+	m_processor = JClientDownloadInformationProcessor::getInstance();
 	connect(m_processor,
 			SIGNAL(receiveData(NetworkData::JHead,JTime_t,QByteArray)),
 			SLOT(on_processor_receiveData(NetworkData::JHead,JTime_t,QByteArray)));

@@ -1,4 +1,4 @@
-#include "jclientinformationprocessor.h"
+#include "jclientdownloadinformationprocessor.h"
 
 #include "jclientsocketbase.h"
 #include "jinformation.h"
@@ -6,46 +6,46 @@
 
 using namespace NetworkData;
 
-JClientInformationProcessor::JClientInformationProcessor(JClientSocketBase *socket) :
+JClientDownloadInformationProcessor::JClientDownloadInformationProcessor(JClientSocketBase *socket) :
 	JClientNetworkDataProcessorBase(socket)
 {
 }
 
-JClientInformationProcessor* JClientInformationProcessor::getInstance()
+JClientDownloadInformationProcessor* JClientDownloadInformationProcessor::getInstance()
 {
-	static JClientInformationProcessor* instance = NULL;
+	static JClientDownloadInformationProcessor* instance = NULL;
 	if(NULL == instance){
 		JClientSocketBase* socket=JClientSocketBase::getInstance();
-		instance = new JClientInformationProcessor(socket);
+		instance = new JClientDownloadInformationProcessor(socket);
 		socket->registerProcessor(instance->getProcessorType(),instance);
 	}
 	return instance;
 }
 
-void JClientInformationProcessor::requestInformationRemoteMtime(const JHead& head)
+void JClientDownloadInformationProcessor::requestInformationRemoteMtime(const JHead& head)
 {
 	QByteArray data;
 	QDataStream stream(&data,QIODevice::WriteOnly);
 	stream<<(JID)EIP_RemoteMtime;
 	stream<<head;
-	getSocket()->sendData(getProcessorType(),data);
+	sendData(data);
 }
 
-void JClientInformationProcessor::requestInformationData(const JHead& head)
+void JClientDownloadInformationProcessor::requestInformationData(const JHead& head)
 {
 	QByteArray data;
 	QDataStream stream(&data,QIODevice::WriteOnly);
 	stream<<(JID)EIP_Data;
 	stream<<head;
-	getSocket()->sendData(getProcessorType(),data);
+	sendData(data);
 }
 
-JType JClientInformationProcessor::getProcessorType()const
+JType JClientDownloadInformationProcessor::getProcessorType()const
 {
 	return EPI_INFORMATION;
 }
 
-void JClientInformationProcessor::process(const QByteArray& data)
+void JClientDownloadInformationProcessor::process(const QByteArray& data)
 {
 	QDataStream stream(data);
 	JID protocol;

@@ -24,7 +24,7 @@ void JClientLoginProcessor::login(const QString& loginname,
     QDataStream stream(&data,QIODevice::WriteOnly);
     stream<<loginname<<passwd;
     stream<<(JID)role;
-	JCode code=getSocket()->sendData(getProcessorType(),data);
+	JCode code=sendData(data);
 	if(0!=code){
 		qDebug()<<"JClientLoginProcessor::login : sendData failed:"<<code;
 	}

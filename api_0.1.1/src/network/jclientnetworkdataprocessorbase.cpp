@@ -17,3 +17,8 @@ JClientSocketBase* JClientNetworkDataProcessorBase::getSocket()const
 {
 	return m_socket;
 }
+
+JCode JClientNetworkDataProcessorBase::sendData(const QByteArray& data)
+{
+	return getSocket()->sendData(getProcessorType(),data);
+}

@@ -2,14 +2,16 @@
 	request login +1
 	request port （废弃）
 	request user info +1
-	request gameinfo
-	send game info
-	download game client
+	request gameinfo +1
+	request serverinfo +1
+	
+	download game client 使用web方式下载，不再单独提供协议
+	
+	upload game info
+	upload server info
 NetworkData
 	Information：时间戳系统
 		UserInfo
 		GameInfo
 		ServerInfo
 	Request
-2、JClientInformationProcessor类只负责请求与接收。
-3、直接重载operator<<和operator>>来解释数据，而不再定义相关方法。

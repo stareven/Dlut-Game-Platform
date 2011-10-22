@@ -1,17 +1,17 @@
-#ifndef JCLIENTINFORMATIONPROCESSOR_H
-#define JCLIENTINFORMATIONPROCESSOR_H
+#ifndef JCLIENTDOWNLOADINFORMATIONPROCESSOR_H
+#define JCLIENTDOWNLOADINFORMATIONPROCESSOR_H
 
 #include "jclientnetworkdataprocessorbase.h"
 
 namespace NetworkData{
 	class JHead;
 }
-class JClientInformationProcessor : public JClientNetworkDataProcessorBase
+class JClientDownloadInformationProcessor : public JClientNetworkDataProcessorBase
 {
     Q_OBJECT
-	explicit JClientInformationProcessor(JClientSocketBase *socket = 0);
+	explicit JClientDownloadInformationProcessor(JClientSocketBase *socket = 0);
 public:
-	static JClientInformationProcessor* getInstance();
+	static JClientDownloadInformationProcessor* getInstance();
 	void requestInformationRemoteMtime(const NetworkData::JHead& head);
 	void requestInformationData(const NetworkData::JHead& head);
 
@@ -23,4 +23,4 @@ signals:
 	void receiveData(const NetworkData::JHead& head,JTime_t localMtime,const QByteArray& data);
 };
 
-#endif // JCLIENTINFORMATIONPROCESSOR_H
+#endif // JCLIENTDOWNLOADINFORMATIONPROCESSOR_H
