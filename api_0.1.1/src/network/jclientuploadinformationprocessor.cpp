@@ -1,6 +1,6 @@
 #include "jclientuploadinformationprocessor.h"
 
-JClientUploadInformationProcessor::JClientUploadInformationProcessor(JClientSocketBase *socket = 0) :
+JClientUploadInformationProcessor::JClientUploadInformationProcessor(JClientSocketBase *socket) :
 	JClientNetworkDataProcessorBase(socket)
 {
 }
