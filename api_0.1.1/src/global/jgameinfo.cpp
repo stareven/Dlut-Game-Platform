@@ -4,14 +4,17 @@
 
 using namespace NetworkData;
 
-JGameInfo::JGameInfo()
+JGameInfo::JGameInfo(JID gameId)
+	:JSerializableData(gameId)
 {
 }
 
 void JGameInfo::fromByteArray(const QByteArray& data)
 {
 	QDataStream stream(data);
-	stream>>m_gameId;
+	JID id;
+	stream>>id;
+	setId(id);
 	stream>>m_name;
 	stream>>m_version;
 	stream>>m_author;
@@ -24,7 +27,7 @@ QByteArray JGameInfo::toByteArray()const
 {
 	QByteArray data;
 	QDataStream stream(&data,QIODevice::WriteOnly);
-	stream<<m_gameId;
+	stream<<getId();
 	stream<<m_name;
 	stream<<m_version;
 	stream<<m_author;
@@ -34,13 +37,18 @@ QByteArray JGameInfo::toByteArray()const
 	return data;
 }
 
-JHead JGameInfo::head(JID id)const
+JHead JGameInfo::head()const
 {
-	JHead head=JHead(id,EIT_GameInfo,0);
+	JHead head=JHead(getId(),EIT_GameInfo,0);
 	return head;
 }
 
-const QString& JGameInfo::getName()
+JID JGameInfo::getGameId()const
+{
+	return getId();
+}
+
+const QString& JGameInfo::getName()const
 {
 	return m_name;
 }

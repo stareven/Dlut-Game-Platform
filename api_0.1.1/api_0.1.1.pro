@@ -58,7 +58,8 @@ SOURCES += src/network/jsocketbase.cpp \
     src/network/jclientuploadinformationprocessor.cpp \
     src/request/jinformationsendbase.cpp \
     src/request/juploadgameinfo.cpp \
-    src/request/juploadserverinfo.cpp
+    src/request/juploadserverinfo.cpp \
+    src/global/jserializabledata.cpp
 
 OTHER_FILES += \
     ../doc/rebuild-network.txt

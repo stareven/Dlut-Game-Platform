@@ -42,7 +42,7 @@ void JClientDownloadInformationProcessor::requestInformationData(const JHead& he
 
 JType JClientDownloadInformationProcessor::getProcessorType()const
 {
-	return EPI_INFORMATION;
+	return EPI_DOWNLOADINFORMATION;
 }
 
 void JClientDownloadInformationProcessor::process(const QByteArray& data)

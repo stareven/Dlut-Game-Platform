@@ -9,13 +9,12 @@ JRequestServerInfo::JRequestServerInfo(QObject *parent) :
 
 JServerInfo JRequestServerInfo::pullServerInfo(JID serverId,int msecs )
 {
-	JServerInfo si;
+	JServerInfo si(serverId);
 	si.fromByteArray(pullInformationData(serverId,msecs));
 	return si;
 }
 
 JHead JRequestServerInfo::getHead(JID id)const
 {
-	static JServerInfo si;
-	return si.head(id);
+	return JServerInfo(id).head();
 }

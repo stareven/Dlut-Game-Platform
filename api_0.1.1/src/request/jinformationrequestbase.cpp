@@ -26,11 +26,11 @@ void JInformationRequestBase::rqsRemoteMtime(const NetworkData::JHead& head)
 	m_processor->requestInformationRemoteMtime(head);
 }
 
-bool JInformationRequestBase::waitForRemoteMtime(const NetworkData::JHead& head,int msec)
+bool JInformationRequestBase::waitForRemoteMtime(const NetworkData::JHead& head,int msecs)
 {
 	JElapsedTimer timer;
 	timer.start();
-	while(timer.elapsed()<msec)
+	while(timer.elapsed()<msecs)
 	{
 		if(m_receivedRemoteMtime.contains(head))
 		{
@@ -47,11 +47,11 @@ void JInformationRequestBase::rqsInformationData(const NetworkData::JHead& head)
 	m_processor->requestInformationData(head);
 }
 
-bool JInformationRequestBase::waitForInformationData(const NetworkData::JHead& head,int msec)
+bool JInformationRequestBase::waitForInformationData(const NetworkData::JHead& head,int msecs)
 {
 	JElapsedTimer timer;
 	timer.start();
-	while(timer.elapsed()<msec)
+	while(timer.elapsed()<msecs)
 	{
 		if(m_receivedInformationData.contains(head))
 		{
@@ -77,13 +77,13 @@ QByteArray JInformationRequestBase::getInformationData(const NetworkData::JHead&
 	return JInformationManager::getInstance().getInformation(head).getData();
 }
 
-QByteArray JInformationRequestBase::pullInformationData(const NetworkData::JHead& head,int msec)
+QByteArray JInformationRequestBase::pullInformationData(const NetworkData::JHead& head,int msecs)
 {
 	rqsRemoteMtime(head);
-	if(waitForRemoteMtime(msec/2)){
+	if(waitForRemoteMtime(head,msecs/2)){
 		if(getRemoteMtime(head)>getLocalMtime(head)){
 			rqsInformationData(head);
-			waitForInformationData(head,msec/2);
+			waitForInformationData(head,msecs/2);
 		}
 	}
 	return getInformationData(head);
@@ -94,9 +94,9 @@ void JInformationRequestBase::rqsRemoteMtime(JID id)
 	rqsRemoteMtime(getHead(id));
 }
 
-bool JInformationRequestBase::waitForRemoteMtime(JID id,int msec)
+bool JInformationRequestBase::waitForRemoteMtime(JID id,int msecs)
 {
-	return waitForRemoteMtime(getHead(id),msec);
+	return waitForRemoteMtime(getHead(id),msecs);
 }
 
 void JInformationRequestBase::rqsInformationData(JID id)
@@ -104,9 +104,9 @@ void JInformationRequestBase::rqsInformationData(JID id)
 	rqsInformationData(getHead(id));
 }
 
-bool JInformationRequestBase::waitForInformationData(JID id,int msec)
+bool JInformationRequestBase::waitForInformationData(JID id,int msecs)
 {
-	return waitForInformationData(getHead(id),msec);
+	return waitForInformationData(getHead(id),msecs);
 }
 
 JTime_t JInformationRequestBase::getRemoteMtime(JID id)
@@ -124,9 +124,9 @@ QByteArray JInformationRequestBase::getInformationData(JID id)
 	return getInformationData(getHead(id));
 }
 
-QByteArray JInformationRequestBase::pullInformationData(JID id,int msec)
+QByteArray JInformationRequestBase::pullInformationData(JID id,int msecs)
 {
-	return pullInformationData(getHead(id),msec);
+	return pullInformationData(getHead(id),msecs);
 }
 
 void JInformationRequestBase::on_processor_receiveRemoteMtime(const NetworkData::JHead& head,JTime_t)

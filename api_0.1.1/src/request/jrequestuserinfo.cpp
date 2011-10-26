@@ -16,6 +16,5 @@ JUserInfo JRequestUserInfo::pullUserInfo(JID userId,int msecs)
 
 NetworkData::JHead JRequestUserInfo::getHead(JID id)const
 {
-	static JUserInfo userinfo(id);
-	return userinfo.head(id);
+	return JUserInfo(id).head();
 }

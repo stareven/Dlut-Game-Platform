@@ -19,8 +19,8 @@ using namespace NetworkData;
 JUserInfo::JUserInfo(JID id,
 		  const QString& name,
 		  const QString& org)
+			  :JSerializableData(id)
 {
-	m_userId=id;
 	m_nickname=name;
 	m_organization=org;
 }
@@ -33,7 +33,9 @@ JUserInfo::JUserInfo(JID id,
 void JUserInfo::fromByteArray(const QByteArray& data)
 {
 	QDataStream stream(data);
-	stream>>m_userId;
+	JID id;
+	stream>>id;
+	setId(id);
 	stream>>m_nickname;
 	stream>>m_organization;
 }
@@ -47,21 +49,21 @@ QByteArray JUserInfo::toByteArray()const
 {
 	QByteArray data;
 	QDataStream stream(&data,QIODevice::WriteOnly);
-	stream<<m_userId;
+	stream<<getId();
 	stream<<m_nickname;
 	stream<<m_organization;
 	return data;
 }
 
-JHead JUserInfo::head(JID id)const
+JHead JUserInfo::head()const
 {
-	JHead head=JHead(id,EIT_UserInfo,0);
+	JHead head=JHead(getId(),EIT_UserInfo,0);
 	return head;
 }
 
 JID JUserInfo::getUserId()const
 {
-	return m_userId;
+	return getId();
 }
 
 const QString& JUserInfo::getNickname()const

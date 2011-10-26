@@ -14,15 +14,15 @@ class JInformationSendBase : public JRequestBase
 public:
     explicit JInformationSendBase(QObject *parent = 0);
 	void sendInformationData(const NetworkData::JHead& head,const QByteArray& data);
-	bool waitForSendResult(const NetworkData::JHead& head,int msec=30000);
+	bool waitForSendResult(const NetworkData::JHead& head,int msecs=30000);
 	JCode getSendResult(const NetworkData::JHead& head);
-	JCode pushInformationData(const NetworkData::JHead& head,int msec=30000);
+	JCode pushInformationData(const NetworkData::JHead& head,const QByteArray& data,int msecs=30000);
 
 	virtual NetworkData::JHead getHead(JID id)const=0;
 	void sendInformationData(JID id,const QByteArray& data);
-	bool waitForSendResult(JID id,int msec=30000);
+	bool waitForSendResult(JID id,int msecs=30000);
 	JCode getSendResult(JID id);
-	JCode pushInformationData(JID,int msec=30000);
+	JCode pushInformationData(JID id,const QByteArray& data,int msecs=30000);
 private:
 	JClientUploadInformationProcessor* m_processor;
 	QMap<NetworkData::JHead,JCode> m_sendResults;

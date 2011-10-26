@@ -13,13 +13,12 @@ public:
 		  const QString& org=QString());
 	void fromByteArray(const QByteArray& data);
 	QByteArray toByteArray()const;
-	NetworkData::JHead head(JID id)const;
+	NetworkData::JHead head()const;
 
 	JID getUserId()const;
 	const QString& getNickname()const;
 	const QString& getOrganization()const;
 private:
-    JID m_userId;
 	QString m_nickname;
 	QString m_organization;
 };

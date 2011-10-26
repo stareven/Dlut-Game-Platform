@@ -10,14 +10,14 @@
 class JGameInfo : public JSerializableData
 {
 public:
-    JGameInfo();
+	JGameInfo(JID gameId);
 	void fromByteArray(const QByteArray& data);
 	QByteArray toByteArray()const;
-	NetworkData::JHead head(JID id)const;
+	NetworkData::JHead head()const;
 
-	const QString& getName();
+	JID getGameId()const;
+	const QString& getName()const;
 private:
-	JID m_gameId;
 	QString m_name;
 	JVersion m_version;
 	JID m_author;

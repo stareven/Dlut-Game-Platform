@@ -7,13 +7,12 @@ JRequestGameInfo::JRequestGameInfo(QObject *parent) :
 
 JGameInfo JRequestGameInfo::pullGameInfo(JID gameId,int msecs)
 {
-	JGameInfo gi;
+	JGameInfo gi(gameId);
 	gi.fromByteArray(pullInformationData(gameId,msecs));
 	return gi;
 }
 
 NetworkData::JHead JRequestGameInfo::getHead(JID id) const
 {
-	static JGameInfo gi;
-	return gi.head(id);
+	return JGameInfo(id).head();
 }

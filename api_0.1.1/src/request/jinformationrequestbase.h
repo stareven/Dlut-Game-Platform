@@ -15,25 +15,25 @@ class JInformationRequestBase : public JRequestBase
 public:
 	explicit JInformationRequestBase(QObject *parent = 0);
 	void rqsRemoteMtime(const NetworkData::JHead& head);
-	bool waitForRemoteMtime(const NetworkData::JHead& head,int msec=30000);
+	bool waitForRemoteMtime(const NetworkData::JHead& head,int msecs=30000);
 	void rqsInformationData(const NetworkData::JHead& head);
-	bool waitForInformationData(const NetworkData::JHead& head,int msec=30000);
+	bool waitForInformationData(const NetworkData::JHead& head,int msecs=30000);
 	JTime_t getRemoteMtime(const NetworkData::JHead& head);
 	JTime_t getLocalMtime(const NetworkData::JHead& head);
 	QByteArray getInformationData(const NetworkData::JHead& head);
 	/// a helper function
-	QByteArray pullInformationData(const NetworkData::JHead& head,int msec=30000);
+	QByteArray pullInformationData(const NetworkData::JHead& head,int msecs=30000);
 
 	virtual NetworkData::JHead getHead(JID id)const=0;
 	void rqsRemoteMtime(JID id);
-	bool waitForRemoteMtime(JID id,int msec=30000);
+	bool waitForRemoteMtime(JID id,int msecs=30000);
 	void rqsInformationData(JID id);
-	bool waitForInformationData(JID id,int msec=30000);
+	bool waitForInformationData(JID id,int msecs=30000);
 	JTime_t getRemoteMtime(JID id);
 	JTime_t getLocalMtime(JID id);
 	QByteArray getInformationData(JID id);
 	/// a helper function
-	QByteArray pullInformationData(JID id,int msec=30000);
+	QByteArray pullInformationData(JID id,int msecs=30000);
 signals:
 	void rcvRemoteMtime(const NetworkData::JHead& head,
 					   JTime_t remoteMtime);

@@ -24,6 +24,14 @@ uint qHash(const JHead& head)
 	return (((uint)head.m_type) <<16) + (uint)head.m_category + (uint)head.m_id;
 }
 
+bool JHead::operator<(const JHead& head)const
+{
+	if(m_type!=head.m_type) return m_type<head.m_type;
+	if(m_category!=head.m_category) return m_category<head.m_category;
+	if(m_id!=head.m_id) return m_id<head.m_id;
+	return false;
+}
+
 JInformation::JInformation(const JHead& head)
 	:m_head(head)
 {

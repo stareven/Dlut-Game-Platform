@@ -2,14 +2,17 @@
 
 using namespace NetworkData;
 
-JServerInfo::JServerInfo()
+JServerInfo::JServerInfo(JID serverId)
+	:JSerializableData(serverId)
 {
 }
 
 void JServerInfo::fromByteArray(const QByteArray& data)
 {
 	QDataStream stream(data);
-	stream>>m_serverId;
+	JID id;
+	stream>>id;
+	setId(id);
 	stream>>m_name;
 	stream>>m_host.m_address;
 	stream>>m_host.m_port;
@@ -19,17 +22,22 @@ QByteArray JServerInfo::toByteArray()const
 {
 	QByteArray data;
 	QDataStream stream(&data,QIODevice::WriteOnly);
-	stream<<m_serverId;
+	stream<<getId();
 	stream<<m_name;
 	stream<<m_host.m_address;
 	stream<<m_host.m_port;
 	return data;
 }
 
-JHead JServerInfo::head(JID id)const
+JHead JServerInfo::head()const
 {
-	JHead head=JHead(id,EIT_ServerInfo,0);
+	JHead head=JHead(getId(),EIT_ServerInfo,0);
 	return head;
+}
+
+JID JServerInfo::getServerId()const
+{
+	return getId();
 }
 
 const QString& JServerInfo::getName()const
