@@ -2,7 +2,7 @@
 
 #include <QCoreApplication>
 
-#include "jclientloginprocessor.h"
+#include "../network/jclientloginprocessor.h"
 #include "../global/elogin.h"
 #include "../global/jelapsedtimer.h"
 

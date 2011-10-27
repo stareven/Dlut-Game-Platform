@@ -1,7 +1,7 @@
 #ifndef JINFORMATIONREQUESTBASE_H
 #define JINFORMATIONREQUESTBASE_H
 
-#include "jinformation.h"
+#include "../network/jinformation.h"
 #include <QSet>
 
 #include "jrequestbase.h"

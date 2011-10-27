@@ -3,10 +3,10 @@
 ######################################################################
 
 QT += network
-TEMPLATE = app
-TARGET = 
-DEPENDPATH += . src/network
-INCLUDEPATH += . src/network
+TEMPLATE = lib
+TARGET = api
+VERSION = 0.1.1
+DESTDIR = $$PWD/lib/
 
 # Input
 HEADERS += src/network/jnetworkdataprocessorbase.h src/network/jsocketbase.h \
@@ -43,7 +43,6 @@ SOURCES += src/network/jsocketbase.cpp \
     src/request/jrequestlogin.cpp \
     src/request/jrequestbase.cpp \
     src/global/shost.cpp \
-    src/test/main.cpp \
     src/network/jinformation.cpp \
     src/network/jclientdownloadinformationprocessor.cpp \
     src/network/jinformationmanager.cpp \

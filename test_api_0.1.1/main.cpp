@@ -1,9 +1,9 @@
-#include "../request/jrequestlogin.h"
-#include "../request/jrequestuserinfo.h"
-#include "../request/jrequestgameinfo.h"
-#include "../request/jrequestserverinfo.h"
-#include "../request/juploadgameinfo.h"
-#include "../request/juploadserverinfo.h"
+#include "ClientRequest/JRequestLogin"
+#include "ClientRequest/JRequestUserInfo"
+#include "ClientRequest/JRequestGameInfo"
+#include "ClientRequest/JRequestServerInfo"
+#include "ClientRequest/JUploadGameInfo"
+#include "ClientRequest/JUploadServerInfo"
 
 #include <QHostAddress>
 

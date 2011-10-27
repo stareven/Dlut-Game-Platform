@@ -3,7 +3,7 @@
 */*.pro.user
 */*/*.pro.user
 api/*-build-desktop/*
-api/lib/*
 api/doc_Doxygen/*/*
 make.err
 make.out
+*lib/

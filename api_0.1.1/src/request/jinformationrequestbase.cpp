@@ -2,9 +2,9 @@
 
 #include <QCoreApplication>
 
-#include "jclientdownloadinformationprocessor.h"
+#include "../network/jclientdownloadinformationprocessor.h"
 #include "../global/jelapsedtimer.h"
-#include "jinformationmanager.h"
+#include "../network/jinformationmanager.h"
 
 using namespace NetworkData;
 
