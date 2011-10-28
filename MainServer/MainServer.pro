@@ -7,40 +7,28 @@ TARGET = MainServer
 CONFIG += console
 CONFIG -= app_bundle
 TEMPLATE = app
+
+include(../api/api.pri)
+
 HEADERS += \
-    network/jservertype.h \
     service/jloginverification.h \
     database/jabslogindb.h \
     service/jloginhash.h \
-    service/juserisonline.h \
-    network/jconnectionfactory.h \
-    network/jloginconnection.h \
-    network/jgameinfoconnection.h \
-    service/jportmanager.h \
-    network/jportconnection.h \
-    network/jsubserverconnection.h \
-    service/jsubserversrv.h \
-	network/jplhconnectionbase.h \
+	service/juserisonline.h \
+	service/jportmanager.h \
+	service/jsubserversrv.h \
     database/jsubserverdb.h \
-    database/jgameinfodb.h \
-    network/juserinfoconnection.h \
-	database/juserinfodb.h
+	database/jgameinfodb.h \
+	database/juserinfodb.h \
+    network/jmainserver.h
 SOURCES += main/main.cpp \
-    network/jservertype.cpp \
     service/jloginverification.cpp \
     database/jabslogindb.cpp \
     service/jloginhash.cpp \
 	service/juserisonline.cpp \
-    network/jconnectionfactory.cpp \
-    network/jloginconnection.cpp \
-    network/jgameinfoconnection.cpp \
-    service/jportmanager.cpp \
-    network/jportconnection.cpp \
-    network/jsubserverconnection.cpp \
-    service/jsubserversrv.cpp \
-	network/jplhconnectionbase.cpp \
+	service/jportmanager.cpp \
+	service/jsubserversrv.cpp \
     database/jsubserverdb.cpp \
-    database/jgameinfodb.cpp \
-    network/juserinfoconnection.cpp \
-	database/juserinfodb.cpp
-include(../api/libserverapi.pri)
+	database/jgameinfodb.cpp \
+	database/juserinfodb.cpp \
+	network/jmainserver.cpp

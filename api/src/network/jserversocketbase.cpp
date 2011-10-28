@@ -5,9 +5,3 @@ JServerSocketBase::JServerSocketBase(QTcpSocket* const socket,QObject *parent) :
 {
 }
 
-/*!
-    factory
-*/
-JServerSocketBase* JServerSocketBase::create(){
-    return NULL;
-}
