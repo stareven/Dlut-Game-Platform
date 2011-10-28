@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>DGP_API: JServerBase类参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 制作者 Doxygen 1.7.3 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+--></script>
+<div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">DGP_API</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="namespaces.html"><span>名字空间</span></a></li>
+      <li class="current"><a href="annotated.html"><span>类</span></a></li>
+      <li><a href="files.html"><span>文件</span></a></li>
+      <li id="searchli">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>组合类型列表</span></a></li>
+      <li><a href="classes.html"><span>组合类型索引</span></a></li>
+      <li><a href="hierarchy.html"><span>类继承关系</span></a></li>
+      <li><a href="functions.html"><span>组合类型成员</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公有成员</a> &#124;
+<a href="#pro-slots">保护槽</a> &#124;
+<a href="#pro-methods">保护成员</a>  </div>
+  <div class="headertitle">
+<h1>JServerBase类参考<div class="ingroups"><a class="el" href="group__server.html">Server</a></div></h1>  </div>
+</div>
+<div class="contents">
+<!-- doxytag: class="JServerBase" -->
+<p>对Server端的基本功能做了一个简单的封装  
+<a href="#_details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="jserverbase_8h_source.html">network/jserverbase.h</a>&gt;</code></p>
+
+<p><a href="classJServerBase-members.html">所有成员的列表。</a></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+公有成员</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd894a79d4a074c869f84b80e19b8b32"></a><!-- doxytag: member="JServerBase::JServerBase" ref="afd894a79d4a074c869f84b80e19b8b32" args="(QObject *parent=0)" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJServerBase.html#afd894a79d4a074c869f84b80e19b8b32">JServerBase</a> (QObject *parent=0)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数 <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual quint16&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJServerBase.html#a25e43a7e3aa37f0270960ddc64ff6d06">run</a> (quint16 port)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">启动一个Server  <a href="#a25e43a7e3aa37f0270960ddc64ff6d06"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36602355408ee1c2fad46d286d5b63c5"></a><!-- doxytag: member="JServerBase::serverPort" ref="a36602355408ee1c2fad46d286d5b63c5" args="() const " -->
+quint16&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJServerBase.html#a36602355408ee1c2fad46d286d5b63c5">serverPort</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">返回Server当前监听的端口 <br/></td></tr>
+<tr><td colspan="2"><h2><a name="pro-slots"></a>
+保护槽</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJServerBase.html#a84fb0d5843d74c9e65a6ebc78d4665dd">on_server_newConnection</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">处理新连接  <a href="#a84fb0d5843d74c9e65a6ebc78d4665dd"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pro-methods"></a>
+保护成员</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1713787544702d47ddd449db5c1ad04b"></a><!-- doxytag: member="JServerBase::getConnection" ref="a1713787544702d47ddd449db5c1ad04b" args="(QTcpSocket *socket, QObject *parent) const =0" -->
+virtual <a class="el" href="classJConnectionBase.html">JConnectionBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJServerBase.html#a1713787544702d47ddd449db5c1ad04b">getConnection</a> (QTcpSocket *socket, QObject *parent) const =0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">返回一个 <a class="el" href="classJConnectionBase.html" title="对Server端的基本的网络通信提供一个封装">JConnectionBase</a> 的实例来处理每一个连接的数据 <br/></td></tr>
+</table>
+<hr/><a name="_details"></a><h2>详细描述</h2>
+<div class="textblock"><p>对Server端的基本功能做了一个简单的封装 </p>
+</div><hr/><h2>成员函数文档</h2>
+<a class="anchor" id="a84fb0d5843d74c9e65a6ebc78d4665dd"></a><!-- doxytag: member="JServerBase::on_server_newConnection" ref="a84fb0d5843d74c9e65a6ebc78d4665dd" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void JServerBase::on_server_newConnection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [protected, slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>处理新连接 </p>
+<p>当有新连接到来的时候，这个函数会调用 <a class="el" href="classJServerBase.html#a1713787544702d47ddd449db5c1ad04b" title="返回一个 JConnectionBase 的实例来处理每一个连接的数据">getConnection()</a> 函数产生一个 <a class="el" href="classJConnectionBase.html" title="对Server端的基本的网络通信提供一个封装">JConnectionBase</a> 的实例来处理新连接。</p>
+<dl class="see"><dt><b>参见:</b></dt><dd><a class="el" href="classJServerBase.html#a1713787544702d47ddd449db5c1ad04b" title="返回一个 JConnectionBase 的实例来处理每一个连接的数据">getConnection()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a25e43a7e3aa37f0270960ddc64ff6d06"></a><!-- doxytag: member="JServerBase::run" ref="a25e43a7e3aa37f0270960ddc64ff6d06" args="(quint16 port)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">quint16 JServerBase::run </td>
+          <td>(</td>
+          <td class="paramtype">quint16&#160;</td>
+          <td class="paramname"><em>port</em></td><td>)</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>启动一个Server </p>
+<p>尝试监听<em>port</em> 端口。 </p>
+<dl class="return"><dt><b>返回:</b></dt><dd>Server的端口。 </dd></dl>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成：<ul>
+<li><a class="el" href="jserverbase_8h_source.html">jserverbase.h</a></li>
+<li>jserverbase.cpp</li>
+</ul>
+</div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>友元</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr class="footer"/><address class="footer"><small>Generated at 2011年八月25日 星期四 19:12:55 for DGP_API by&#160;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
+</body>
+</html>

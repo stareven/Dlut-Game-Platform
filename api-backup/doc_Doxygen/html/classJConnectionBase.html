@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>DGP_API: JConnectionBase类参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 制作者 Doxygen 1.7.3 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+--></script>
+<div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">DGP_API</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="namespaces.html"><span>名字空间</span></a></li>
+      <li class="current"><a href="annotated.html"><span>类</span></a></li>
+      <li><a href="files.html"><span>文件</span></a></li>
+      <li id="searchli">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>组合类型列表</span></a></li>
+      <li><a href="classes.html"><span>组合类型索引</span></a></li>
+      <li><a href="hierarchy.html"><span>类继承关系</span></a></li>
+      <li><a href="functions.html"><span>组合类型成员</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">公有成员</a> &#124;
+<a href="#pro-methods">保护成员</a> &#124;
+<a href="#pri-slots">私有槽</a>  </div>
+  <div class="headertitle">
+<h1>JConnectionBase类参考<div class="ingroups"><a class="el" href="group__server.html">Server</a></div></h1>  </div>
+</div>
+<div class="contents">
+<!-- doxytag: class="JConnectionBase" -->
+<p>对Server端的基本的网络通信提供一个封装  
+<a href="#_details">更多...</a></p>
+
+<p><a href="classJConnectionBase-members.html">所有成员的列表。</a></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+公有成员</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a203ce004617040270897683aec9f532f"></a><!-- doxytag: member="JConnectionBase::JConnectionBase" ref="a203ce004617040270897683aec9f532f" args="(QTcpSocket *socket, QObject *parent=0)" -->
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJConnectionBase.html#a203ce004617040270897683aec9f532f">JConnectionBase</a> (QTcpSocket *socket, QObject *parent=0)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数 <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJConnectionBase.html#a99c05439929e188841d2dd00dde992b4">getUserId</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获取当前连接的客户端的用户ID  <a href="#a99c05439929e188841d2dd00dde992b4"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pro-methods"></a>
+保护成员</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJConnectionBase.html#a913a45900efb72cad10ff2890869043f">dataProcess</a> (const QByteArray &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">数据处理函数  <a href="#a913a45900efb72cad10ff2890869043f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJConnectionBase.html#a304b79af895e265fbb489e49646ffb09">sendData</a> (const QByteArray &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据  <a href="#a304b79af895e265fbb489e49646ffb09"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacc537b76fd04dc6b8e71120d6d458e4"></a><!-- doxytag: member="JConnectionBase::closeConnect" ref="aacc537b76fd04dc6b8e71120d6d458e4" args="()" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJConnectionBase.html#aacc537b76fd04dc6b8e71120d6d458e4">closeConnect</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">主动关闭连接 <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJConnectionBase.html#a91830a3ea6a4542c0013b3bec954cbf3">setUserId</a> (<a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a> userid)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">保存用户ID  <a href="#a91830a3ea6a4542c0013b3bec954cbf3"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pri-slots"></a>
+私有槽</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJConnectionBase.html#a640778bb57aff1de78fe5f8c10beabd5">on_socket_readyRead</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">接收但不处理数据  <a href="#a640778bb57aff1de78fe5f8c10beabd5"></a><br/></td></tr>
+</table>
+<hr/><a name="_details"></a><h2>详细描述</h2>
+<div class="textblock"><p>对Server端的基本的网络通信提供一个封装 </p>
+<p>每当有连接到来时，Server端就会产生一个JConnectionBase（或它的子类）的实例来处理这个连接。<br/>
+ 基本的网络通信协议参见 <a class="el" href="classJSocketBase.html" title="客户端向服务器端发起连接请求及基本数据通信的基类">JSocketBase</a> 。</p>
+<dl class="see"><dt><b>参见:</b></dt><dd><a class="el" href="classJSocketBase.html" title="客户端向服务器端发起连接请求及基本数据通信的基类">JSocketBase</a> </dd></dl>
+</div><hr/><h2>成员函数文档</h2>
+<a class="anchor" id="a913a45900efb72cad10ff2890869043f"></a><!-- doxytag: member="JConnectionBase::dataProcess" ref="a913a45900efb72cad10ff2890869043f" args="(const QByteArray &amp;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void JConnectionBase::dataProcess </td>
+          <td>(</td>
+          <td class="paramtype">const QByteArray &amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td><code> [protected, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>数据处理函数 </p>
+<p>子类可以重写这个函数来处理数据。 </p>
+
+</div>
+</div>
+<a class="anchor" id="a99c05439929e188841d2dd00dde992b4"></a><!-- doxytag: member="JConnectionBase::getUserId" ref="a99c05439929e188841d2dd00dde992b4" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a> JConnectionBase::getUserId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获取当前连接的客户端的用户ID </p>
+<dl class="see"><dt><b>参见:</b></dt><dd><a class="el" href="classJConnectionBase.html#a91830a3ea6a4542c0013b3bec954cbf3" title="保存用户ID">setUserId()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a640778bb57aff1de78fe5f8c10beabd5"></a><!-- doxytag: member="JConnectionBase::on_socket_readyRead" ref="a640778bb57aff1de78fe5f8c10beabd5" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void JConnectionBase::on_socket_readyRead </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [private, slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>接收但不处理数据 </p>
+<p>当有数据到来的时候，这个函数处理数据长度与魔数。<br/>
+ 但它并不处理数据的内容而是将内容交给dataProcess()处理。<br/>
+</p>
+<dl class="see"><dt><b>参见:</b></dt><dd><a class="el" href="namespaceMagicNumber.html" title="定义网络通信的“魔数”。">MagicNumber</a> <a class="el" href="classJConnectionBase.html#a913a45900efb72cad10ff2890869043f" title="数据处理函数">dataProcess()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a304b79af895e265fbb489e49646ffb09"></a><!-- doxytag: member="JConnectionBase::sendData" ref="a304b79af895e265fbb489e49646ffb09" args="(const QByteArray &amp;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void JConnectionBase::sendData </td>
+          <td>(</td>
+          <td class="paramtype">const QByteArray &amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>发送数据 </p>
+<p>在数据<em>data</em> 前加上魔数和数据长度，之后发送。 </p>
+
+</div>
+</div>
+<a class="anchor" id="a91830a3ea6a4542c0013b3bec954cbf3"></a><!-- doxytag: member="JConnectionBase::setUserId" ref="a91830a3ea6a4542c0013b3bec954cbf3" args="(JID userid)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void JConnectionBase::setUserId </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a>&#160;</td>
+          <td class="paramname"><em>userid</em></td><td>)</td>
+          <td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>保存用户ID </p>
+<p>在已经收到连接对方的相关身份信息后，可以将用户ID保存起来。<br/>
+</p>
+<dl class="see"><dt><b>参见:</b></dt><dd><a class="el" href="classJConnectionBase.html#a99c05439929e188841d2dd00dde992b4" title="获取当前连接的客户端的用户ID">getUserId()</a> </dd></dl>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成：<ul>
+<li><a class="el" href="jconnectionbase_8h_source.html">jconnectionbase.h</a></li>
+<li>jconnectionbase.cpp</li>
+</ul>
+</div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>友元</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr class="footer"/><address class="footer"><small>Generated at 2011年八月25日 星期四 19:12:55 for DGP_API by&#160;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
+</body>
+</html>

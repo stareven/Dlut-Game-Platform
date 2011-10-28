@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>DGP_API: JSocketBase类参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 制作者 Doxygen 1.7.3 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+--></script>
+<div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">DGP_API</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="namespaces.html"><span>名字空间</span></a></li>
+      <li class="current"><a href="annotated.html"><span>类</span></a></li>
+      <li><a href="files.html"><span>文件</span></a></li>
+      <li id="searchli">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>组合类型列表</span></a></li>
+      <li><a href="classes.html"><span>组合类型索引</span></a></li>
+      <li><a href="hierarchy.html"><span>类继承关系</span></a></li>
+      <li><a href="functions.html"><span>组合类型成员</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="summary">
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">公有成员</a> &#124;
+<a href="#pro-slots">保护槽</a> &#124;
+<a href="#pro-methods">保护成员</a> &#124;
+<a href="#pri-methods">私有成员</a>  </div>
+  <div class="headertitle">
+<h1>JSocketBase类参考<div class="ingroups"><a class="el" href="group__client.html">Client</a></div></h1>  </div>
+</div>
+<div class="contents">
+<!-- doxytag: class="JSocketBase" -->
+<p>客户端向服务器端发起连接请求及基本数据通信的基类  
+<a href="#_details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="jsocketbase_8h_source.html">network/jsocketbase.h</a>&gt;</code></p>
+<div class="dynheader">
+继承图，类JSocketBase</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classJSocketBase.png" usemap="#JSocketBase_map" alt=""/>
+  <map id="JSocketBase_map" name="JSocketBase_map">
+<area href="classJLhcSocketBase.html" alt="JLhcSocketBase" shape="rect" coords="79,56,227,80"/>
+<area href="classJRequestLoginSocket.html" alt="JRequestLoginSocket" shape="rect" coords="237,56,385,80"/>
+<area href="classJRequestPortSocket.html" alt="JRequestPortSocket" shape="rect" coords="395,56,543,80"/>
+<area href="classJRequestUserInfoSocket.html" alt="JRequestUserInfoSocket" shape="rect" coords="0,112,148,136"/>
+<area href="classJSendGsInfoSocket.html" alt="JSendGsInfoSocket" shape="rect" coords="158,112,306,136"/>
+</map>
+ </div></div>
+
+<p><a href="classJSocketBase-members.html">所有成员的列表。</a></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="signals"></a>
+信号</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSocketBase.html#a6b5e1f03d6a291cd3921d8de264747f4">SocketCode</a> (<a class="el" href="jglobal_8h.html#a3b9bcf9bd1a96d72095a1ab9ef8cc140">ENet</a> netcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">当连接状态改变时发射此信号  <a href="#a6b5e1f03d6a291cd3921d8de264747f4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2546095406eb302ecf5da56274a9f187"></a><!-- doxytag: member="JSocketBase::SocketError" ref="a2546095406eb302ecf5da56274a9f187" args="(QString)" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSocketBase.html#a2546095406eb302ecf5da56274a9f187">SocketError</a> (QString)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">以可读的字符串形式发送连接错误信号 <br/></td></tr>
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+公有成员</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSocketBase.html#a943b961614f36e82f77ebe3ad39b98f5">JSocketBase</a> (QObject *parent=0)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数  <a href="#a943b961614f36e82f77ebe3ad39b98f5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSocketBase.html#a4cf03de3209fde7959015dfdbcfc1a67">connectToHost</a> (const QHostAddress &amp;address, quint16 port)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">连接服务器  <a href="#a4cf03de3209fde7959015dfdbcfc1a67"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5a760d157d167e72f069c373d360f421"></a><!-- doxytag: member="JSocketBase::isConnected" ref="a5a760d157d167e72f069c373d360f421" args="() const " -->
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSocketBase.html#a5a760d157d167e72f069c373d360f421">isConnected</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">是否已经连接 <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">QAbstractSocket::SocketState&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSocketBase.html#a06d8598e42dd33abe12dff44bd7a02c8">socketState</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">当前的套接字状态  <a href="#a06d8598e42dd33abe12dff44bd7a02c8"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pro-slots"></a>
+保护槽</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSocketBase.html#a53314504b71f3e491ceb328a4ab3ccf0">on_socket_readyRead</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">接收但不处理数据  <a href="#a53314504b71f3e491ceb328a4ab3ccf0"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pro-methods"></a>
+保护成员</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSocketBase.html#a142b78f31718a50fdfe77861d0554cde">dataProcess</a> (const QByteArray &amp;)=0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">数据处理函数  <a href="#a142b78f31718a50fdfe77861d0554cde"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSocketBase.html#a2758cb001cd0968809f1230710fc432f">sendData</a> (const QByteArray &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">发送数据  <a href="#a2758cb001cd0968809f1230710fc432f"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pri-methods"></a>
+私有成员</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMagicNumber.html#aee5fa8b6592ee567764415262a7e0ab4">MagicNumber::JMagicNumber</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJSocketBase.html#af7a3e7b8a603fb6a4537662602203316">getMagicNumber</a> () const =0</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">返回当前协议的“魔数”  <a href="#af7a3e7b8a603fb6a4537662602203316"></a><br/></td></tr>
+</table>
+<hr/><a name="_details"></a><h2>详细描述</h2>
+<div class="textblock"><p>客户端向服务器端发起连接请求及基本数据通信的基类 </p>
+<h2><a class="anchor" id="base_protocol"></a>
+基本通信协议</h2>
+<p>在这个类中，定义了基本的通信协议。 通过套接字发送数据的基本格式为：&lt;int32:MagicNumber&gt;&lt;int32:size&gt;&lt;byte[size]:data&gt;</p>
+<ol type="1">
+<li>32位有符号整数，表示“魔数”。（参见： <a class="el" href="namespaceMagicNumber.html" title="定义网络通信的“魔数”。">MagicNumber</a> ）</li>
+<li>32位有符号整数，表示data的长度。</li>
+<li>size个字节，表示数据的内容。数据内容的格式由协议自己制定。</li>
+</ol>
+<dl class="see"><dt><b>参见:</b></dt><dd><a class="el" href="classJRequestBase.html" title="向服务器发送请求的基类。">JRequestBase</a> <a class="el" href="namespaceMagicNumber.html" title="定义网络通信的“魔数”。">MagicNumber</a> </dd></dl>
+</div><hr/><h2>构造及析构函数文档</h2>
+<a class="anchor" id="a943b961614f36e82f77ebe3ad39b98f5"></a><!-- doxytag: member="JSocketBase::JSocketBase" ref="a943b961614f36e82f77ebe3ad39b98f5" args="(QObject *parent=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">JSocketBase::JSocketBase </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>0</code></td><td>)</td>
+          <td><code> [explicit]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>构造函数 </p>
+<p>为啥每个类都有构造函数呢？<br/>
+ 关键是，它有就有呗，我还得给每个构造函数写文档。<br/>
+ 我就觉得，构造函数有啥文档可写的……<br/>
+ </p>
+
+</div>
+</div>
+<hr/><h2>成员函数文档</h2>
+<a class="anchor" id="a4cf03de3209fde7959015dfdbcfc1a67"></a><!-- doxytag: member="JSocketBase::connectToHost" ref="a4cf03de3209fde7959015dfdbcfc1a67" args="(const QHostAddress &amp;address, quint16 port)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void JSocketBase::connectToHost </td>
+          <td>(</td>
+          <td class="paramtype">const QHostAddress &amp;&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">quint16&#160;</td>
+          <td class="paramname"><em>port</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>连接服务器 </p>
+<p>向地址为<em>address</em> 端口为<em>port</em> 发起连接。<br/>
+ 如果已经有连接，则断开当前连接，发起新连接。 </p>
+
+</div>
+</div>
+<a class="anchor" id="a142b78f31718a50fdfe77861d0554cde"></a><!-- doxytag: member="JSocketBase::dataProcess" ref="a142b78f31718a50fdfe77861d0554cde" args="(const QByteArray &amp;)=0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">JSocketBase::dataProcess </td>
+          <td>(</td>
+          <td class="paramtype">const QByteArray &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [protected, pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>数据处理函数 </p>
+<p>子类需要重写这个函数以处理数据。</p>
+<dl class="see"><dt><b>参见:</b></dt><dd><a class="el" href="classJSocketBase.html#a53314504b71f3e491ceb328a4ab3ccf0" title="接收但不处理数据">on_socket_readyRead()</a> </dd></dl>
+
+<p>在<a class="el" href="classJLhcSocketBase.html#a39ce63905f33148d237eb86371a7c3f4">JLhcSocketBase</a>、<a class="el" href="classJRequestLoginSocket.html#a0820bc9d83d6c58fd4dfaed7018c353d">JRequestLoginSocket</a>及<a class="el" href="classJRequestPortSocket.html#ab84f0bcee21d07daf71c59b0cdcaa8ac">JRequestPortSocket</a>内被实现。</p>
+
+</div>
+</div>
+<a class="anchor" id="af7a3e7b8a603fb6a4537662602203316"></a><!-- doxytag: member="JSocketBase::getMagicNumber" ref="af7a3e7b8a603fb6a4537662602203316" args="() const =0" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">JSocketBase::getMagicNumber </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [private, pure virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>返回当前协议的“魔数” </p>
+<p>子类需要重写这个函数以定义当前协议的“魔数”。</p>
+<dl class="see"><dt><b>参见:</b></dt><dd><a class="el" href="namespaceMagicNumber.html" title="定义网络通信的“魔数”。">MagicNumber</a> </dd></dl>
+
+<p>在<a class="el" href="classJRequestLoginSocket.html#a03c5bcb883392ac6b847e836546ef5cf">JRequestLoginSocket</a>、<a class="el" href="classJRequestPortSocket.html#a41dd8bffef8bb00b0592fec9e6d44779">JRequestPortSocket</a>、<a class="el" href="classJRequestUserInfoSocket.html#a5d6a852e47a75c79276e1bb3c08d0a9d">JRequestUserInfoSocket</a>及<a class="el" href="classJSendGsInfoSocket.html#ae12ac3e8f4e63306601a0e5c0e434977">JSendGsInfoSocket</a>内被实现。</p>
+
+</div>
+</div>
+<a class="anchor" id="a53314504b71f3e491ceb328a4ab3ccf0"></a><!-- doxytag: member="JSocketBase::on_socket_readyRead" ref="a53314504b71f3e491ceb328a4ab3ccf0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void JSocketBase::on_socket_readyRead </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [protected, slot]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>接收但不处理数据 </p>
+<p>当有数据到来的时候，这个函数处理数据长度与魔数。<br/>
+ 但它并不处理数据的内容而是将内容交给dataProcess()处理。<br/>
+</p>
+<dl class="see"><dt><b>参见:</b></dt><dd><a class="el" href="namespaceMagicNumber.html" title="定义网络通信的“魔数”。">MagicNumber</a> <a class="el" href="classJSocketBase.html#a142b78f31718a50fdfe77861d0554cde" title="数据处理函数">dataProcess()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2758cb001cd0968809f1230710fc432f"></a><!-- doxytag: member="JSocketBase::sendData" ref="a2758cb001cd0968809f1230710fc432f" args="(const QByteArray &amp;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void JSocketBase::sendData </td>
+          <td>(</td>
+          <td class="paramtype">const QByteArray &amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>发送数据 </p>
+<p>在数据<em>data</em> 前加上魔数和数据长度，之后发送。 </p>
+
+</div>
+</div>
+<a class="anchor" id="a6b5e1f03d6a291cd3921d8de264747f4"></a><!-- doxytag: member="JSocketBase::SocketCode" ref="a6b5e1f03d6a291cd3921d8de264747f4" args="(ENet netcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">JSocketBase::SocketCode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="jglobal_8h.html#a3b9bcf9bd1a96d72095a1ab9ef8cc140">ENet</a>&#160;</td>
+          <td class="paramname"><em>netcode</em></td><td>)</td>
+          <td><code> [signal]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>当连接状态改变时发射此信号 </p>
+<dl class="see"><dt><b>参见:</b></dt><dd><a class="el" href="jglobal_8h.html#a3b9bcf9bd1a96d72095a1ab9ef8cc140" title="网络状态。">ENet</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a06d8598e42dd33abe12dff44bd7a02c8"></a><!-- doxytag: member="JSocketBase::socketState" ref="a06d8598e42dd33abe12dff44bd7a02c8" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">QAbstractSocket::SocketState JSocketBase::socketState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>当前的套接字状态 </p>
+<p>参看 Qt4 的文档中关于 QAbstractSocket::SocketState 的内容。<br/>
+ </p>
+<dl class="see"><dt><b>参见:</b></dt><dd>QAbstractSocket::SocketState </dd></dl>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成：<ul>
+<li><a class="el" href="jsocketbase_8h_source.html">jsocketbase.h</a></li>
+<li>jsocketbase.cpp</li>
+</ul>
+</div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>友元</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr class="footer"/><address class="footer"><small>Generated at 2011年八月25日 星期四 19:12:55 for DGP_API by&#160;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
+</body>
+</html>

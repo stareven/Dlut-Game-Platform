@@ -1,4 +1,4 @@
-#include "shost.h"
+#include "global/shost.h"
 
 /*!
 	\class SHost shost.h "global/shost.h"

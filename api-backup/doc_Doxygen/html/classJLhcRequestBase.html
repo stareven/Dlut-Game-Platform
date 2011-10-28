@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>DGP_API: JLhcRequestBase类参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 制作者 Doxygen 1.7.3 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+--></script>
+<div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">DGP_API</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="namespaces.html"><span>名字空间</span></a></li>
+      <li class="current"><a href="annotated.html"><span>类</span></a></li>
+      <li><a href="files.html"><span>文件</span></a></li>
+      <li id="searchli">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>组合类型列表</span></a></li>
+      <li><a href="classes.html"><span>组合类型索引</span></a></li>
+      <li><a href="hierarchy.html"><span>类继承关系</span></a></li>
+      <li><a href="functions.html"><span>组合类型成员</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">公有类型</a> &#124;
+<a href="#signals">信号</a> &#124;
+<a href="#pub-methods">公有成员</a>  </div>
+  <div class="headertitle">
+<h1>JLhcRequestBase类参考</h1>  </div>
+</div>
+<div class="contents">
+<!-- doxytag: class="JLhcRequestBase" --><!-- doxytag: inherits="JRequestBase" -->
+<p>需要Login hash confirm的请求的基类。  
+<a href="#_details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="jlhcrequestbase_8h_source.html">service/jlhcrequestbase.h</a>&gt;</code></p>
+<div class="dynheader">
+继承图，类JLhcRequestBase</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classJLhcRequestBase.png" usemap="#JLhcRequestBase_map" alt=""/>
+  <map id="JLhcRequestBase_map" name="JLhcRequestBase_map">
+<area href="classJRequestBase.html" alt="JRequestBase" shape="rect" coords="61,0,173,24"/>
+<area href="classJRequestUserInfo.html" alt="JRequestUserInfo" shape="rect" coords="0,112,112,136"/>
+<area href="classJSendGsInfo.html" alt="JSendGsInfo" shape="rect" coords="122,112,234,136"/>
+</map>
+ </div></div>
+
+<p><a href="classJLhcRequestBase-members.html">所有成员的列表。</a></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-types"></a>
+公有类型</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJLhcRequestBase.html#ae015ebcf2283d1c6e7539a5e7e6e49d6">ELhcState</a> { <a class="el" href="classJLhcRequestBase.html#ae015ebcf2283d1c6e7539a5e7e6e49d6a6676e2237d0ba8f364ba1530660b11bc">EPS_Init</a>, 
+<a class="el" href="classJLhcRequestBase.html#ae015ebcf2283d1c6e7539a5e7e6e49d6a0a761b843473a53a8a6875b8f209477f">EPS_Sending</a>, 
+<a class="el" href="classJLhcRequestBase.html#ae015ebcf2283d1c6e7539a5e7e6e49d6a86db815dcc0cb07a79ceb33f103cbdd1">EPS_Success</a>, 
+<a class="el" href="classJLhcRequestBase.html#ae015ebcf2283d1c6e7539a5e7e6e49d6a92cbbc2fe6d4da83cd0e3c900ef14f9c">EPS_Failed</a>
+ }</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Login hash confirm的状态。 </p>
+ <a href="classJLhcRequestBase.html#ae015ebcf2283d1c6e7539a5e7e6e49d6">更多...</a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="signals"></a>
+信号</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJLhcRequestBase.html#a3ed52e162fbf7b6f44fbad5021f6e7a3">lhcResult</a> (bool)</td></tr>
+<tr><td colspan="2"><h2><a name="pub-methods"></a>
+公有成员</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJLhcRequestBase.html#a3410154f20fbf7972e01b19bbb510951">JLhcRequestBase</a> (QObject *parent=0)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJLhcRequestBase.html#af0b2ade8a5da019081d37d73be69d9c6">sendLoginHashCode</a> (<a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a>, const QByteArray &amp;)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="classJLhcRequestBase.html#ae015ebcf2283d1c6e7539a5e7e6e49d6">ELhcState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJLhcRequestBase.html#ae6a14f7f94c0f8434094151aa4324c9f">getLhcState</a> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJLhcRequestBase.html#a1c57f621de4f92509400bfd5838950db">waitForLhc</a> (int msecs=30000) const </td></tr>
+</table>
+<hr/><a name="_details"></a><h2>详细描述</h2>
+<div class="textblock"><p>需要Login hash confirm的请求的基类。 </p>
+<p>客户端向服务器发送的部分请求需要通过Login hash confirm。这个类是这类请求的基类，对Login hash confirm的过程提供了封装。<br/>
+ 当已经连接成功后，需要调用 <a class="el" href="classJLhcRequestBase.html#af0b2ade8a5da019081d37d73be69d9c6">sendLoginHashCode()</a> 发送Login hash code。<br/>
+ 之后可以监听 <a class="el" href="classJLhcRequestBase.html#a3ed52e162fbf7b6f44fbad5021f6e7a3">lhcResult()</a> 信号或调用 <a class="el" href="classJLhcRequestBase.html#a1c57f621de4f92509400bfd5838950db">waitForLhc()</a> 函数来获得Login hash confirm的结果。<br/>
+ 关于Login hash confirm和Login hash code，参见 <a class="el" href="classJLoginHashCodeRecorder.html" title="管理登录用户ID及Login hash code。">JLoginHashCodeRecorder</a> 的文档。<br/>
+ 如果您使用的不是C++和Qt，那么您可能需要了解底层的通信协议。参见 <a class="el" href="classJLhcSocketBase.html" title="封装需要Login hash confirm 的通信">JLhcSocketBase</a> 的文档及源代码。</p>
+<dl class="see"><dt><b>参见:</b></dt><dd><a class="el" href="classJLoginHashCodeRecorder.html" title="管理登录用户ID及Login hash code。">JLoginHashCodeRecorder</a>, <a class="el" href="classJRequestBase.html" title="向服务器发送请求的基类。">JRequestBase</a>, <a class="el" href="classJLhcSocketBase.html" title="封装需要Login hash confirm 的通信">JLhcSocketBase</a> </dd></dl>
+</div><hr/><h2>成员枚举类型文档</h2>
+<a class="anchor" id="ae015ebcf2283d1c6e7539a5e7e6e49d6"></a><!-- doxytag: member="JLhcRequestBase::ELhcState" ref="ae015ebcf2283d1c6e7539a5e7e6e49d6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classJLhcRequestBase.html#ae015ebcf2283d1c6e7539a5e7e6e49d6">JLhcRequestBase::ELhcState</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Login hash confirm的状态。 </p>
+<dl><dt><b>枚举值: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="ae015ebcf2283d1c6e7539a5e7e6e49d6a6676e2237d0ba8f364ba1530660b11bc"></a><!-- doxytag: member="EPS_Init" ref="ae015ebcf2283d1c6e7539a5e7e6e49d6a6676e2237d0ba8f364ba1530660b11bc" args="" -->EPS_Init</em>&nbsp;</td><td>
+<p>初始状态 </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ae015ebcf2283d1c6e7539a5e7e6e49d6a0a761b843473a53a8a6875b8f209477f"></a><!-- doxytag: member="EPS_Sending" ref="ae015ebcf2283d1c6e7539a5e7e6e49d6a0a761b843473a53a8a6875b8f209477f" args="" -->EPS_Sending</em>&nbsp;</td><td>
+<p>已经发送但仍未收到结果 </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ae015ebcf2283d1c6e7539a5e7e6e49d6a86db815dcc0cb07a79ceb33f103cbdd1"></a><!-- doxytag: member="EPS_Success" ref="ae015ebcf2283d1c6e7539a5e7e6e49d6a86db815dcc0cb07a79ceb33f103cbdd1" args="" -->EPS_Success</em>&nbsp;</td><td>
+<p>发送成功 </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ae015ebcf2283d1c6e7539a5e7e6e49d6a92cbbc2fe6d4da83cd0e3c900ef14f9c"></a><!-- doxytag: member="EPS_Failed" ref="ae015ebcf2283d1c6e7539a5e7e6e49d6a92cbbc2fe6d4da83cd0e3c900ef14f9c" args="" -->EPS_Failed</em>&nbsp;</td><td>
+<p>发送失败 </p>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+</div>
+</div>
+<hr/><h2>构造及析构函数文档</h2>
+<a class="anchor" id="a3410154f20fbf7972e01b19bbb510951"></a><!-- doxytag: member="JLhcRequestBase::JLhcRequestBase" ref="a3410154f20fbf7972e01b19bbb510951" args="(QObject *parent=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">JLhcRequestBase::JLhcRequestBase </td>
+          <td>(</td>
+          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>0</code></td><td>)</td>
+          <td><code> [explicit]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p><a class="el" href="classJLhcRequestBase.html" title="需要Login hash confirm的请求的基类。">JLhcRequestBase</a> 的构造函数。 </p>
+
+</div>
+</div>
+<hr/><h2>成员函数文档</h2>
+<a class="anchor" id="ae6a14f7f94c0f8434094151aa4324c9f"></a><!-- doxytag: member="JLhcRequestBase::getLhcState" ref="ae6a14f7f94c0f8434094151aa4324c9f" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classJLhcRequestBase.html#ae015ebcf2283d1c6e7539a5e7e6e49d6">JLhcRequestBase::ELhcState</a> JLhcRequestBase::getLhcState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>返回Login hash confirm的状态。<br/>
+ 关于Login hash confirm和Login hash code，参见 <a class="el" href="classJLoginHashCodeRecorder.html" title="管理登录用户ID及Login hash code。">JLoginHashCodeRecorder</a> 的文档。 </p>
+<dl class="see"><dt><b>参见:</b></dt><dd><a class="el" href="classJLhcRequestBase.html#ae015ebcf2283d1c6e7539a5e7e6e49d6" title="Login hash confirm的状态。">ELhcState</a>, <a class="el" href="classJLoginHashCodeRecorder.html" title="管理登录用户ID及Login hash code。">JLoginHashCodeRecorder</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3ed52e162fbf7b6f44fbad5021f6e7a3"></a><!-- doxytag: member="JLhcRequestBase::lhcResult" ref="a3ed52e162fbf7b6f44fbad5021f6e7a3" args="(bool)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">JLhcRequestBase::lhcResult </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>result</em></td><td>)</td>
+          <td><code> [signal]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>这个信号是Login hash confirm的结果。<br/>
+ <em>result</em> 表示是否通过了Login hash confirm。<br/>
+ 关于Login hash confirm和Login hash code，参见 <a class="el" href="classJLoginHashCodeRecorder.html" title="管理登录用户ID及Login hash code。">JLoginHashCodeRecorder</a> 的文档。 </p>
+<dl class="see"><dt><b>参见:</b></dt><dd><a class="el" href="classJLoginHashCodeRecorder.html" title="管理登录用户ID及Login hash code。">JLoginHashCodeRecorder</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af0b2ade8a5da019081d37d73be69d9c6"></a><!-- doxytag: member="JLhcRequestBase::sendLoginHashCode" ref="af0b2ade8a5da019081d37d73be69d9c6" args="(JID, const QByteArray &amp;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void JLhcRequestBase::sendLoginHashCode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16">JID</a>&#160;</td>
+          <td class="paramname"><em>userId</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const QByteArray &amp;&#160;</td>
+          <td class="paramname"><em>code</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>发送Login hash code 。 <em>userId</em> 表示当前用户的ID，<em>code</em> 表示Login hash code。<br/>
+ 如果套接字为空或已经通过Login hash confirm，函数将直接返回。<br/>
+ 调用此函数后， <a class="el" href="classJLhcRequestBase.html#ae6a14f7f94c0f8434094151aa4324c9f">getLhcState()</a> 将变为 EPS_Sending 。<br/>
+ 关于Login hash confirm和Login hash code，参见 <a class="el" href="classJLoginHashCodeRecorder.html" title="管理登录用户ID及Login hash code。">JLoginHashCodeRecorder</a> 的文档。 </p>
+<dl class="see"><dt><b>参见:</b></dt><dd><a class="el" href="classJLoginHashCodeRecorder.html" title="管理登录用户ID及Login hash code。">JLoginHashCodeRecorder</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1c57f621de4f92509400bfd5838950db"></a><!-- doxytag: member="JLhcRequestBase::waitForLhc" ref="a1c57f621de4f92509400bfd5838950db" args="(int msecs=30000) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool JLhcRequestBase::waitForLhc </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>msecs</em> = <code>30000</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>等待<em>msecs</em> 毫秒或收到Login hash confirm的结果。<br/>
+ 关于Login hash confirm，参见 <a class="el" href="classJLoginHashCodeRecorder.html" title="管理登录用户ID及Login hash code。">JLoginHashCodeRecorder</a> 的文档。<br/>
+</p>
+<dl><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>Login hash confirm成功。<br/>
+ </td></tr>
+    <tr><td class="paramname">false</td><td>Login hash confirm失败或时间超过<em>msecs</em> 毫秒。<br/>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="see"><dt><b>参见:</b></dt><dd><a class="el" href="classJLoginHashCodeRecorder.html" title="管理登录用户ID及Login hash code。">JLoginHashCodeRecorder</a> </dd></dl>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成：<ul>
+<li><a class="el" href="jlhcrequestbase_8h_source.html">jlhcrequestbase.h</a></li>
+<li>jlhcrequestbase.cpp</li>
+</ul>
+</div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>友元</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr class="footer"/><address class="footer"><small>Generated at 2011年八月25日 星期四 19:12:55 for DGP_API by&#160;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
+</body>
+</html>

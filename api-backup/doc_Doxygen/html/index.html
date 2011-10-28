@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>DGP_API: DGP大工游戏平台开发手册</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 制作者 Doxygen 1.7.3 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+--></script>
+<div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">DGP_API</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li class="current"><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="namespaces.html"><span>名字空间</span></a></li>
+      <li><a href="annotated.html"><span>类</span></a></li>
+      <li><a href="files.html"><span>文件</span></a></li>
+      <li id="searchli">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="headertitle">
+<h1>DGP大工游戏平台开发手册 </h1>  </div>
+</div>
+<div class="contents">
+<div class="textblock"><h2><a class="anchor" id="introduction"></a>
+概述</h2>
+<p>DGP大工游戏平台仅支持CS模式的应用。因此您需要完成一个服务器端和一个客户端。<br/>
+ 如果您希望与平台的主服务器通信并测试您的游戏是否能在平台上正常运行，您需要向MainServer的运维者索要以下信息：</p>
+<ul>
+<li>MainServer的地址和端口。</li>
+<li>一个具有GAMESERVERRUNNER权限的用户的用户名和密码。</li>
+<li>申请一个游戏ID，注册游戏名，并保证您的用户对此游戏的游戏信息拥有写权限。</li>
+</ul>
+<h2><a class="anchor" id="server"></a>
+服务器端</h2>
+<p>为了明确概念，我们将DGP的服务器称为MainServer，游戏的服务器称为GameServer。<br/>
+ 游戏服务器端启动后，需要进行以下几个步骤：</p>
+<ol type="1">
+<li>连接MainServer的FreePort和SecretPort服务，获得端口列表。</li>
+<li>连接MainServer的Login服务并登录。</li>
+<li>连接MainServer的SUBSERVER服务并上传游戏信息和GameServer的服务器信息。</li>
+</ol>
+<p>如果您使用C++和Qt来开发游戏的服务器端，您可以直接</p>
+<ol type="1">
+<li>调用类 <a class="el" href="classJRequestPort.html" title="获得各个服务的端口">JRequestPort</a> 的setServerPort()方法来保存FreePort的地址和端口（就是从MainServer的运维者处得到的地址和端口），之后可以直接调用 rqsServerPort() 方法来获得任何一个服务的端口。</li>
+<li>调用类 <a class="el" href="classJRequestLogin.html" title="登录请求。">JRequestLogin</a> 的 connectToHost()方法连接MainServer的Login服务，然后调用login()方法来登录服务器。</li>
+<li>调用类 <a class="el" href="classJSendGsInfo.html" title="SubServer向MainServer发送相关信息。">JSendGsInfo</a> 的 connectToHost()方法连接MainServer的SubServer服务，调用sendLoginHashCode()方法请求LoginHash验证，然后调用sendGameInfo()、sendServerInfo()、sendRelation()方法来上传游戏信息和服务器信息。<br/>
+ 具体例子可以参见 JSubServerStartUp 类的startup()方法的源码。</li>
+</ol>
+<p>或者更简单的、初始化一个 JSubServerStartUp 类，调用startup()方法完成以上全部过程。<br/>
+ 具体例子可以参见GameFileServer1或SnakeServer的main()函数。</p>
+<p>如果您使用其它语言，您需要了解底层的socket通信协议。<br/>
+ 参见api/src/network目录下的类的源代码（本周末（2011年8月28日）前会提供相关文档）。</p>
+<h2><a class="anchor" id="client"></a>
+客户端</h2>
+<p>为了明确概念，我们将DGP的客户端称为MainClient，游戏的客户端称为GameClient。<br/>
+ GameClient由MainClient通过系统调用启动，并传入命令行参数。如果您使用C++来开发游戏客户端，您可以通过main()函数的参数（argc，argv）获得它们。<br/>
+ 各个参数的含义</p>
+<ul>
+<li>0:GameClient的路径名。</li>
+<li>1:启动此游戏的用户的UserId。</li>
+<li>2:启动此游戏的用户的LoginHashCode。</li>
+<li>3:MainServer的地址。</li>
+<li>4:MainServer的端口。</li>
+<li>5:GameServer的地址。</li>
+<li>6:GameServer的端口。<br/>
+ 参见SnakeClient项目main/main.cpp文件中的processArgument()函数。 </li>
+</ul>
+</div></div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>友元</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr class="footer"/><address class="footer"><small>Generated at 2011年八月25日 星期四 19:12:55 for DGP_API by&#160;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
+</body>
+</html>

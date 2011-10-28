@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<title>DGP_API: jrequestuserinfosocket.h源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload='searchBox.OnSelectItem(0);'>
+<!-- 制作者 Doxygen 1.7.3 -->
+<script type="text/javascript"><!--
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+--></script>
+<div id="top">
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">DGP_API</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="namespaces.html"><span>名字空间</span></a></li>
+      <li><a href="annotated.html"><span>类</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li id="searchli">
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+      <li><a href="globals.html"><span>文件成员</span></a></li>
+    </ul>
+  </div>
+<div class="header">
+  <div class="headertitle">
+<h1>jrequestuserinfosocket.h</h1>  </div>
+</div>
+<div class="contents">
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef JREQUESTUSERINFOSOCKET_H</span>
+<a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define JREQUESTUSERINFOSOCKET_H</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span>
+<a name="l00004"></a>00004 <span class="preprocessor">#include &quot;<a class="code" href="jlhcsocketbase_8h.html" title="定义了 JLhcSocketBase 类">jlhcsocketbase.h</a>&quot;</span>
+<a name="l00005"></a>00005 
+<a name="l00006"></a>00006 <span class="keyword">namespace </span>UserInfo
+<a name="l00007"></a>00007 {
+<a name="l00008"></a>00008     <span class="keyword">class </span>SUserInfo;
+<a name="l00009"></a>00009 }
+<a name="l00010"></a>00010 
+<a name="l00011"></a><a class="code" href="classJRequestUserInfoSocket.html">00011</a> <span class="keyword">class </span><a class="code" href="classJRequestUserInfoSocket.html">JRequestUserInfoSocket</a> : <span class="keyword">public</span> <a class="code" href="classJLhcSocketBase.html" title="封装需要Login hash confirm 的通信">JLhcSocketBase</a>
+<a name="l00012"></a>00012 {
+<a name="l00013"></a>00013     Q_OBJECT
+<a name="l00014"></a>00014 <span class="keyword">public</span>:
+<a name="l00015"></a>00015     <span class="keyword">explicit</span> <a class="code" href="classJRequestUserInfoSocket.html">JRequestUserInfoSocket</a>(QObject *parent = 0);
+<a name="l00016"></a>00016     <span class="keywordtype">void</span> rqsUserInfo(<a class="code" href="jglobal_8h.html#aca7d043a394f3005f5f3392af7322f16" title="整个项目通用的一个ID类型。">JID</a> userId);
+<a name="l00017"></a>00017 <span class="keyword">protected</span>:
+<a name="l00018"></a>00018     <span class="keywordtype">void</span> <a class="code" href="classJRequestUserInfoSocket.html#aabadd2c0c788a913cbf2fbcef72089b6" title="在通过Login hash confirm 后，由这个函数处理数据">afterLhc</a>(<span class="keyword">const</span> QByteArray&amp;);
+<a name="l00019"></a>00019 signals:
+<a name="l00020"></a>00020     <span class="keywordtype">void</span> rcvUserInfo(<span class="keyword">const</span> <a class="code" href="structUserInfo_1_1SUserInfo.html" title="记录一名玩家的信息。">UserInfo::SUserInfo</a>&amp;);
+<a name="l00021"></a>00021 <span class="keyword">private</span>:
+<a name="l00022"></a><a class="code" href="classJRequestUserInfoSocket.html#a5d6a852e47a75c79276e1bb3c08d0a9d">00022</a>     <a class="code" href="namespaceMagicNumber.html#aee5fa8b6592ee567764415262a7e0ab4" title="“魔数”的定义。">MagicNumber::JMagicNumber</a> <a class="code" href="classJRequestUserInfoSocket.html#a5d6a852e47a75c79276e1bb3c08d0a9d" title="返回当前协议的“魔数”">getMagicNumber</a>()<span class="keyword">const</span>
+<a name="l00023"></a>00023 <span class="keyword">    </span>{
+<a name="l00024"></a>00024         <span class="keywordflow">return</span> <a class="code" href="namespaceMagicNumber.html#a68b664f3105828a2f1139d5ce5dd3fa4ac2ce982a7d922f54ab6fc8ab11b777fd" title="获取玩家信息协议">MagicNumber::EMN_GetUserInfo</a>;
+<a name="l00025"></a>00025     }
+<a name="l00026"></a>00026 };
+<a name="l00027"></a>00027 
+<a name="l00028"></a>00028 <span class="preprocessor">#endif // JREQUESTUSERINFOSOCKET_H</span>
+</pre></div></div>
+</div>
+<!--- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>类</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>名字空间</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>枚举</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>枚举值</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>友元</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<hr class="footer"/><address class="footer"><small>Generated at 2011年八月25日 星期四 19:12:55 for DGP_API by&#160;
+<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </small></address>
+</body>
+</html>
