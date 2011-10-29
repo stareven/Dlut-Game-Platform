@@ -12,7 +12,7 @@ JClientLoginProcessor* JClientLoginProcessor::getInstance(){
     if(NULL==instance){
         JClientSocketBase* socket=JClientSocketBase::getInstance();
 		instance=new JClientLoginProcessor(socket);
-		socket->registerProcessor(instance->getProcessorType(),instance);
+		socket->registerProcessor(instance);
     }
     return instance;
 }

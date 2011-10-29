@@ -15,7 +15,7 @@ class JSocketBase : public QObject{
     Q_OBJECT
 public:
     explicit JSocketBase(QTcpSocket* const socket,QObject* parent=0);
-	JCode registerProcessor(JType type,JNetworkDataProcessorBase*);
+	JCode registerProcessor(JNetworkDataProcessorBase*);
 	JCode sendData(JType type,const QByteArray&);
     QAbstractSocket::SocketState socketState () const;
 signals:
@@ -26,6 +26,7 @@ protected:
 private slots:
     void on_socket_readyRead();
 	void on_socket_error(QAbstractSocket::SocketError);
+	void on_socket_connected();
 private:
 	QHash<JType,JNetworkDataProcessorBase*> m_processors;
 	JType m_type;

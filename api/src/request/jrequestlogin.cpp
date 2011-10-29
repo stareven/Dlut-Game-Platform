@@ -1,6 +1,7 @@
 #include "jrequestlogin.h"
 
 #include <QCoreApplication>
+#include <QDebug>
 
 #include "../network/jclientloginprocessor.h"
 #include "../global/elogin.h"

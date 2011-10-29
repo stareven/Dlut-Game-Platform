@@ -10,12 +10,13 @@ JSocketBase::JSocketBase(QTcpSocket* socket,QObject* parent)
 {
     m_type=-1;
     m_size=0;
-	connect(socket,SIGNAL(readyRead()),SLOT(on_socket_readyRead()));
-	connect(socket,SIGNAL(error(QAbstractSocket::SocketError)),SLOT(on_socket_error(QAbstractSocket::SocketError)));
+	connect(m_socket,SIGNAL(readyRead()),SLOT(on_socket_readyRead()));
+	connect(m_socket,SIGNAL(error(QAbstractSocket::SocketError)),SLOT(on_socket_error(QAbstractSocket::SocketError)));
+	connect(m_socket,SIGNAL(connected()),SLOT(on_socket_connected()));
 }
 
-JCode JSocketBase::registerProcessor(JType type,JNetworkDataProcessorBase* processor){
-    m_processors.insert(type,processor);
+JCode JSocketBase::registerProcessor(JNetworkDataProcessorBase* processor){
+	m_processors.insert(processor->getProcessorType(),processor);
     return 0;
 }
 
@@ -53,7 +54,11 @@ void JSocketBase::on_socket_readyRead(){
             if(m_data.size()==m_size)
             {
                 JNetworkDataProcessorBase* process=m_processors.value(m_type);
-                process->process(m_data);
+				if(process){
+					process->process(m_data);
+				}else{
+					qDebug()<<"JSocketBase::on_socket_readyRead : no such type"<<m_type;
+				}
                 m_data.clear();
                 m_size=0;
 				m_type=-1;
@@ -69,4 +74,8 @@ void JSocketBase::on_socket_readyRead(){
 void JSocketBase::on_socket_error(QAbstractSocket::SocketError)
 {
 	qDebug()<<metaObject()->className()<<m_socket->errorString();
+}
+
+void JSocketBase::on_socket_connected()
+{
 }

@@ -17,7 +17,7 @@ JClientDownloadInformationProcessor* JClientDownloadInformationProcessor::getIns
 	if(NULL == instance){
 		JClientSocketBase* socket=JClientSocketBase::getInstance();
 		instance = new JClientDownloadInformationProcessor(socket);
-		socket->registerProcessor(instance->getProcessorType(),instance);
+		socket->registerProcessor(instance);
 	}
 	return instance;
 }

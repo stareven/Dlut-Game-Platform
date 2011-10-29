@@ -4,16 +4,22 @@
 #include "ClientRequest/JRequestServerInfo"
 #include "ClientRequest/JUploadGameInfo"
 #include "ClientRequest/JUploadServerInfo"
+#include "Socket/JClientSocketBase"
 
 #include <QHostAddress>
+#include <QCoreApplication>
 
-int main(){
+int main(int argc, char *argv[]){
+	QCoreApplication app(argc,argv);
     JRequestLogin login;
-    login.connectToHost(QHostAddress("127.0.0.1"),37373);
-	login.waitForConnected(1000);
-    login.login("a","b",ROLE_GAMEDESIGNER);
+	login.connectToHost(QHostAddress::LocalHost,37373);
+	if(!login.waitForConnected(1000)){
+		qDebug()<<login.getConnectError()<<JClientSocketBase::getInstance()->socketState();
+		return 1;
+	}
+	login.login("elephant","acm",ROLE_GAMEPLAYER);
 	bool rst = login.waitForLogined(1000);
-	qDebug()<<"rst="<<rst;
+	qDebug()<<"rst="<<rst<<" login error:"<<login.getLoginError();
 
 	JRequestUserInfo rui;
 	JUserInfo ui = rui.pullUserInfo(1,1000);

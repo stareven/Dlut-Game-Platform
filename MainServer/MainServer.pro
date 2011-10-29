@@ -9,26 +9,23 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 include(../api/api.pri)
+QMAKE_RPATHDIR = ../api/lib
 
 HEADERS += \
+    network/jmainserver.h \
+    network/jmainserversocket.h \
+    network/jmainserverloginprocessor.h \
     service/jloginverification.h \
+    database/jabstractdatabasefactory.h \
     database/jabslogindb.h \
-    service/jloginhash.h \
-	service/juserisonline.h \
-	service/jportmanager.h \
-	service/jsubserversrv.h \
-    database/jsubserverdb.h \
-	database/jgameinfodb.h \
-	database/juserinfodb.h \
-    network/jmainserver.h
+    database/jtextstreamdatabasefactory.h \
+    database/jtextstreamlogindb.h
 SOURCES += main/main.cpp \
+	network/jmainserver.cpp \
+    network/jmainserversocket.cpp \
+    network/jmainserverloginprocessor.cpp \
     service/jloginverification.cpp \
-    database/jabslogindb.cpp \
-    service/jloginhash.cpp \
-	service/juserisonline.cpp \
-	service/jportmanager.cpp \
-	service/jsubserversrv.cpp \
-    database/jsubserverdb.cpp \
-	database/jgameinfodb.cpp \
-	database/juserinfodb.cpp \
-	network/jmainserver.cpp
+    database/jabstractdatabasefactory.cpp \
+    database/jtextstreamdatabasefactory.cpp \
+    database/jtextstreamlogindb.cpp \
+    database/jabslogindb.cpp

@@ -5,13 +5,10 @@
 
 class JServerSocketBase : public JSocketBase
 {
-    Q_OBJECT
-    JServerSocketBase(const JServerSocketBase&);
-    JServerSocketBase& operator=(const JServerSocketBase&);
-    explicit JServerSocketBase(QTcpSocket* const socket,QObject *parent = 0);
+	Q_OBJECT
 public:
-	// MainServer和GameServer产生的JServerSocketBase显然是不一样的，工厂不应该在这里产生
-	// static JServerSocketBase* create();
+	// 由JServerBase的子类作为工厂
+	explicit JServerSocketBase(QTcpSocket* const socket,QObject *parent = 0);
     void closeConnect();
 };
 

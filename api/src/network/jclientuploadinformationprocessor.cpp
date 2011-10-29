@@ -16,7 +16,7 @@ JClientUploadInformationProcessor* JClientUploadInformationProcessor::getInstanc
 	if(NULL == instance){
 		JClientSocketBase* socket=JClientSocketBase::getInstance();
 		instance = new JClientUploadInformationProcessor(socket);
-		socket->registerProcessor(instance->getProcessorType(),instance);
+		socket->registerProcessor(instance);
 	}
 	return instance;
 }
