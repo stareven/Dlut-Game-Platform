@@ -10,13 +10,17 @@
 class JServerInfo : public JSerializableData
 {
 public:
-	JServerInfo(JID serverId);
+	JServerInfo(JID serverId=-1);
+	JServerInfo(JID serverId,
+				const QString& name,
+				const SHost& host);
 	void fromByteArray(const QByteArray& data);
 	QByteArray toByteArray()const;
 	NetworkData::JHead head()const;
 
 	JID getServerId()const;
 	const QString& getName()const;
+	const SHost& getHost()const;
 private:
 	QString m_name;
 	SHost m_host;

@@ -3,7 +3,6 @@
 #include <Global/Global>
 #include <Global/Login>
 
-#include <QString>
 #include <QFile>
 #include <QTextStream>
 #include <QMap>
@@ -17,17 +16,14 @@ struct SLoginUser
 };
 
 static QMap<JID,SLoginUser> s_loginusers;
-static QMap<QString,JID> s_nameToId;
 
 JTextStreamLoginDB::JTextStreamLoginDB(QObject *parent)
-	:JAbsLoginDB(parent)
+	:JAbstractLoginDB(parent)
 {
-	static bool first=true;
-	if(first)
+	if(s_loginusers.isEmpty())
 	{
-		first=false;
 		QFile file("../database/login");
-		file.open(QIODevice::ReadOnly);
+		file.open(QIODevice::ReadOnly | QIODevice::Text);
 		QTextStream stream(&file);
 		for(int i=0;i<1000;++i)
 		{
@@ -38,14 +34,18 @@ JTextStreamLoginDB::JTextStreamLoginDB(QObject *parent)
 			stream>>user.m_passwd;
 			stream>>user.m_role;
 			s_loginusers.insert(user.m_userid,user);
-			s_nameToId.insert(user.m_loginname,user.m_userid);
 		}
 	}
 }
 
 JID JTextStreamLoginDB::checkLoginName(const QString& loginname)
 {
-	return s_nameToId.value(loginname,-1);
+	foreach(SLoginUser user,s_loginusers){
+		if(user.m_loginname == loginname){
+			return user.m_userid;
+		}
+	}
+	return -1;
 }
 
 bool JTextStreamLoginDB::checkPasswd(JID userId,const QString& passwd)
@@ -58,4 +58,20 @@ bool JTextStreamLoginDB::checkRole(JID userId,JID role)
 {
 	if(!s_loginusers.contains(userId)) return false;
 	return s_loginusers.value(userId).m_role & (1<<role);
+}
+
+void JTextStreamLoginDB::flush()
+{
+	if(s_loginusers.isEmpty()) return;
+	QFile file("../database/login");
+	file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text);
+	QTextStream stream(&file);
+	foreach(SLoginUser user,s_loginusers){
+		stream<<user.m_userid;
+		stream<<user.m_loginname;
+		stream<<user.m_passwd;
+		stream<<user.m_role;
+		stream<<endl;
+	}
+	s_loginusers.clear();
 }

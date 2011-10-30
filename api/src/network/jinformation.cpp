@@ -35,6 +35,8 @@ bool JHead::operator<(const JHead& head)const
 JInformation::JInformation(const JHead& head)
 	:m_head(head)
 {
+	m_remoteMtime=0;
+	m_localMtime=0;
 }
 
 JCode JInformation::setRemoteMtime(JTime_t time)

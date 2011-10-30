@@ -6,7 +6,6 @@
 #include <QHash>
 
 namespace NetworkData{
-
 	/*!
 		由JClientInformationProcessor负责保存收到的信息。
 	*/

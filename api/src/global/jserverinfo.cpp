@@ -7,6 +7,15 @@ JServerInfo::JServerInfo(JID serverId)
 {
 }
 
+JServerInfo::JServerInfo(JID serverId,
+			const QString& name,
+			const SHost& host)
+	:JSerializableData(serverId),
+	m_name(name),
+	m_host(host)
+{
+}
+
 void JServerInfo::fromByteArray(const QByteArray& data)
 {
 	QDataStream stream(data);
@@ -43,4 +52,9 @@ JID JServerInfo::getServerId()const
 const QString& JServerInfo::getName()const
 {
 	return m_name;
+}
+
+const SHost& JServerInfo::getHost()const
+{
+	return m_host;
 }

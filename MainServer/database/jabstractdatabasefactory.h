@@ -3,15 +3,21 @@
 
 #include <QObject>
 
-class JAbsLoginDB;
+#include "jabstractlogindb.h"
+#include "jabstractuserinfodb.h"
+#include "jabstractgameinfodb.h"
+#include "jabstractserverinfodb.h"
 
 class JAbstractDatabaseFactory : public QObject
 {
 protected:
-	JAbstractDatabaseFactory(QObject *parent = 0);
+	explicit JAbstractDatabaseFactory(QObject *parent = 0);
 public:
 	static JAbstractDatabaseFactory* getInstance();
-	virtual JAbsLoginDB* createLoginDB()=0;
+	virtual JAbstractLoginDB* createLoginDB()=0;
+	virtual JAbstractUserInfoDB* createUserInfoDB()=0;
+	virtual JAbstractGameInfoDB* createGameInfoDB()=0;
+	virtual JAbstractServerInfoDB* createServerInfoDB()=0;
 };
 
 #endif // JABSTRACTDATABASEFACTORY_H

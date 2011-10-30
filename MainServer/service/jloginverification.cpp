@@ -4,7 +4,7 @@
 #include <QCryptographicHash>
 
 #include "database/jabstractdatabasefactory.h"
-#include "database/jabslogindb.h"
+#include "database/jabstractlogindb.h"
 
 JLoginVerification::JLoginVerification()
 {
@@ -17,7 +17,7 @@ JLoginVerification::JLoginVerification()
 /// return 3 if no such role
 ELogin JLoginVerification::verification(const QString& loginname,const QString& passwd,const ERole& role)
 {
-	JAbsLoginDB* logindb=JAbstractDatabaseFactory::getInstance()->createLoginDB();
+	JAbstractLoginDB* logindb=JAbstractDatabaseFactory::getInstance()->createLoginDB();
 	JID id=logindb->checkLoginName(loginname);
     if(id<0) return EL_NO_SUCH_USER;
 	if(!logindb->checkPasswd(id,passwd)) return EL_PASSWD_WRONG;
