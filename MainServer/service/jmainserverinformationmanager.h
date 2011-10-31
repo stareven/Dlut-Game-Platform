@@ -16,8 +16,8 @@ public:
 	JTime_t getCurrentTime()const;
 	QByteArray getData(const NetworkData::JHead& head)const;
 
-	void updateData(const NetworkData::JHead& head,const QByteArray& data,JTime_t Mtime);
-	void updateData(const NetworkData::JHead& head,const QByteArray& data);
+	JCode updateData(const NetworkData::JHead& head,const QByteArray& data,JTime_t Mtime);
+	JCode updateData(const NetworkData::JHead& head,const QByteArray& data);
 private:
 	QMap<NetworkData::JHead,JTime_t> m_mtime;
 };

@@ -19,7 +19,7 @@ public:
 	void sendInformationMtime(const NetworkData::JHead& head);
 	void sendInformationData(const NetworkData::JHead& head);
 private:
-	JMainServerInformationManager& m_im;//=JMainServerInformationManager::getInstance();
+	JMainServerInformationManager& m_im;
 };
 
 #endif // JMAINSERVERDOWNLOADINFORMATIONPROCESSOR_H

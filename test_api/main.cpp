@@ -34,11 +34,13 @@ int main(int argc, char *argv[]){
 	qDebug()<<"server name="<<si.getName();
 
 	JUploadGameInfo ugi;
-	JCode code_ugi=ugi.pushGameInfo(gi,1000);
+	JGameInfo uploadGameInfo(1,"upload",JVersion(),1,"upload introduction",1,QUrl());
+	JCode code_ugi=ugi.pushGameInfo(uploadGameInfo,1000);
 	qDebug()<<"upload game info:"<<code_ugi;
 
 	JUploadServerInfo usi;
-	JCode code_usi=usi.pushServerInfo(si,1000);
+	JServerInfo uploadServerInfo(1,"upload",SHost());
+	JCode code_usi=usi.pushServerInfo(uploadServerInfo,1000);
 	qDebug()<<"upload server info:"<<code_usi;
 	return 0;
 }

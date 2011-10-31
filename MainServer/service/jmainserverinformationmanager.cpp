@@ -69,8 +69,15 @@ QByteArray JMainServerInformationManager::getData(const JHead& head)const
 	return pData->toByteArray();
 }
 
-void JMainServerInformationManager::updateData(const JHead& head,const QByteArray& data,JTime_t Mtime)
+/*!
+	\retval 0 success
+	\retval 0x10 bad head
+	\retval 0x11 no such type
+	\retval 0x12 no such category
+*/
+JCode JMainServerInformationManager::updateData(const JHead& head,const QByteArray& data,JTime_t Mtime)
 {
+	enum ERetval{ ER_Success=0,ER_BadHead=0x10,ER_NoSuchType,ER_NoSuchCategory};
 	JAbstractDatabaseFactory* databaseFactory=JAbstractDatabaseFactory::getInstance();
 	switch(head.m_type){
 	case EIT_UserInfo:
@@ -84,6 +91,7 @@ void JMainServerInformationManager::updateData(const JHead& head,const QByteArra
 			break;
 		default:
 			qDebug()<<"JMainServerInformationManager::updateData : no such category "<<head.m_category<<" of type "<<head.m_type;
+			return ER_NoSuchCategory;
 		}
 		break;
 	case EIT_GameInfo:
@@ -97,6 +105,7 @@ void JMainServerInformationManager::updateData(const JHead& head,const QByteArra
 			break;
 		default:
 			qDebug()<<"JMainServerInformationManager::updateData : no such category "<<head.m_category<<" of type "<<head.m_type;
+			return ER_NoSuchCategory;
 		}
 		break;
 	case EIT_ServerInfo:
@@ -110,16 +119,19 @@ void JMainServerInformationManager::updateData(const JHead& head,const QByteArra
 			break;
 		default:
 			qDebug()<<"JMainServerInformationManager::updateData : no such category "<<head.m_category<<" of type "<<head.m_type;
+			return ER_NoSuchCategory;
 		}
 		break;
 	default:
 		qDebug()<<"JMainServerInformationManager::updateData : no such type"<<head.m_type;
+		return ER_NoSuchType;
 		break;
 	}
 	m_mtime[head]=Mtime;
+	return ER_Success;
 }
 
-void JMainServerInformationManager::updateData(const JHead& head,const QByteArray& data)
+JCode JMainServerInformationManager::updateData(const JHead& head,const QByteArray& data)
 {
-	updateData(head,data,getCurrentTime());
+	return updateData(head,data,getCurrentTime());
 }
