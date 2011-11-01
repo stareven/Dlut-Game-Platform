@@ -1,7 +1,7 @@
 #include "jdlgselectserver.h"
 #include "ui_jdlgselectserver.h"
 
-#include "global/ssubserver.h"
+#include <DataStruct/JServerInfo>
 
 #include <QPalette>
 
@@ -22,13 +22,13 @@ JDlgSelectServer::~JDlgSelectServer()
     delete ui;
 }
 
-void JDlgSelectServer::addServer(const SubServer::SSubServer& si)
+void JDlgSelectServer::addServer(const JServerInfo& si)
 {
 	ui->cb_servers->addItem(tr("%1 %2 %3:%4")
-							.arg(si.m_serverId)
-							.arg(si.m_name)
-							.arg(si.m_address.toString())
-							.arg(si.m_port));
+							.arg(si.getServerId())
+							.arg(si.getName())
+							.arg(si.getHost().m_address.toString())
+							.arg(si.getHost().m_port));
 }
 
 void JDlgSelectServer::setText(const QString& str)

@@ -3,12 +3,9 @@
 
 #include <QDialog>
 
-#include "global/jglobal.h"
+#include <Global/Global>
 
-namespace SubServer
-{
-	class SSubServer;
-}
+class JServerInfo;
 
 namespace Ui {
     class JDlgSelectServer;
@@ -21,7 +18,7 @@ class JDlgSelectServer : public QDialog
 public:
     explicit JDlgSelectServer(QWidget *parent = 0);
     ~JDlgSelectServer();
-	void addServer(const SubServer::SSubServer&);
+	void addServer(const JServerInfo&);
 	void setText(const QString&);
 	JID getSelectedServer()const;
 private:

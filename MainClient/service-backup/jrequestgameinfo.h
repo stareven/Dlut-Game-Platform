@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QMap>
 
-#include "global/jglobal.h"
+#include <Global/Global>
 
 class JRequestGameInfoSocket;
 

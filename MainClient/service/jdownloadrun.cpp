@@ -6,9 +6,6 @@
 #include <QHostAddress>
 #include <QFileInfo>
 
-#include "network/jdownloadgamefilesocket.h"
-#include "service/jloginhashcoderecorder.h"
-
 JDownloadRun::JDownloadRun()
 {
 }
@@ -48,15 +45,8 @@ bool JDownloadRun::download()
 		qDebug()<<"already exist.";
 		return true;
 	}
-	JDownloadGameFileSocket dgfs;
-	dgfs.connectToHost(m_hosts[EHT_Download].m_address,m_hosts[EHT_Download].m_port);
-	if(!dgfs.waitForConnected(1000))
-	{
-		qDebug()<<"connect failed.";
-		return false;
-	}
-	dgfs.rqsGameFile(m_gamename,m_version,getPath());
-	return dgfs.waitForDownloaded();
+	qDebug()<<"JDownloadRun::download:unfinished function.";
+	return false;
 }
 
 bool JDownloadRun::run()
@@ -91,12 +81,12 @@ QString JDownloadRun::getPath()const
 QStringList JDownloadRun::getArguments()const
 {
 	QStringList ret;
-	JLoginHashCodeRecorder lhcr;
-	ret<<QString::number(lhcr.getUserId());
-	ret<<lhcr.getCode().toHex().toUpper();
-	ret<<m_hosts[EHT_MainServer].m_address.toString();
-	ret<<QString::number(m_hosts[EHT_MainServer].m_port);
-	ret<<m_hosts[EHT_GameServer].m_address.toString();
-	ret<<QString::number(m_hosts[EHT_GameServer].m_port);
+//	JLoginHashCodeRecorder lhcr;
+//	ret<<QString::number(lhcr.getUserId());
+//	ret<<lhcr.getCode().toHex().toUpper();
+//	ret<<m_hosts[EHT_MainServer].m_address.toString();
+//	ret<<QString::number(m_hosts[EHT_MainServer].m_port);
+//	ret<<m_hosts[EHT_GameServer].m_address.toString();
+//	ret<<QString::number(m_hosts[EHT_GameServer].m_port);
 	return ret;
 }

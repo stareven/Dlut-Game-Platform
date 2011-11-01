@@ -4,7 +4,7 @@
 #include <QString>
 #include <QHostAddress>
 
-#include "global/shost.h"
+#include <DataStruct/SHost>
 
 class SHallServer
 {

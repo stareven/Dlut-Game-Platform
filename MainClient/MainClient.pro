@@ -11,10 +11,7 @@ SOURCES += main/main.cpp \
     gui/dlglogin/shallserver.cpp \
     gui/dlglogin/settings/jrememberpassword.cpp \
     gui/dlglogin/settings/jsettinglogin.cpp \
-    network/jrequestgameinfosocket.cpp \
-	service/jrequestgameinfo.cpp \
 	service/jdownloadrun.cpp \
-    network/jdownloadgamefilesocket.cpp \
     gui/jdlgselectserver.cpp
 HEADERS += gui/mainwindow.h \
     gui/dlglogin/jcomboselectserver.h \
@@ -23,15 +20,13 @@ HEADERS += gui/mainwindow.h \
     gui/dlglogin/shallserver.h \
     gui/dlglogin/settings/jrememberpassword.h \
     gui/dlglogin/settings/jsettinglogin.h \
-    network/jrequestgameinfosocket.h \
-    service/jrequestgameinfo.h \
     service/jdownloadrun.h \
-    network/jdownloadgamefilesocket.h \
     gui/jdlgselectserver.h
 FORMS += gui/mainwindow.ui \
     gui/dlglogin/jdlglogin.ui \
     gui/dlglogin/jdlgnewserver.ui \
     gui/jdlgselectserver.ui
-include(../api/libclientapi.pri)
+include(../api/api.pri)
+QMAKE_RPATHDIR = ../api/lib
 RESOURCES += \
     sources.qrc

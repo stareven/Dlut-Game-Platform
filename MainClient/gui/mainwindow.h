@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 
-#include "global/jglobal.h"
+#include <Global/Global>
 
 namespace Ui {
     class MainWindow;
@@ -11,7 +11,6 @@ namespace Ui {
 
 class JRequestGameInfo;
 class JRequestUserInfo;
-class JRequestPort;
 class QListWidgetItem;
 
 class MainWindow : public QMainWindow {
@@ -36,7 +35,6 @@ private slots:
 private:
     JRequestGameInfo* m_gis;
 	JRequestUserInfo* m_requserinfo;
-	JRequestPort* m_reqport;
 	JID m_currentId;
 };
 

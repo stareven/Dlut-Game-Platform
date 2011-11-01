@@ -3,8 +3,8 @@
 
 #include <QString>
 
-#include "global/jversion.h"
-#include "global/shost.h"
+#include <DataStruct/JVersion>
+#include <DataStruct/SHost>
 
 class QObject;
 class QProcess;

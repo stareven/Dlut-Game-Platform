@@ -4,9 +4,8 @@
 
 #include <QMessageBox>
 
-#include "service/jrequestlogin.h"
-#include "global/elogin.h"
-#include "service/jrequestport.h"
+#include <ClientRequest/JRequestLogin>
+#include <Global/Login>
 
 #include <QPalette>
 
@@ -91,15 +90,7 @@ void JDlgLogin::accept()
 	}
 	SHost freeporthost=ui->cb_server->getServer();
 	ui->lab_message->setText(tr("connecting to server %1:%2").arg(freeporthost.m_address.toString()).arg(freeporthost.m_port));
-	JRequestPort ps;
-    ps.setServerPort(EST_FREEPORT,SHost(ui->cb_server->getServer().getAddress(),ui->cb_server->getServer().getPort()));
-    SHost host=ps.rqsServerPort(EST_LOGIN);
-	if(host.isNull())
-	{
-		ui->lab_message->setText(tr("request port failed:%1").arg(ps.getError()));
-		return;
-	}
-	m_rqslogin->connectToHost(host.m_address,host.m_port);
+	m_rqslogin->connectToHost(freeporthost.m_address,freeporthost.m_port);
 
 	if(!m_rqslogin->waitForConnected(1000))
 	{
@@ -108,7 +99,7 @@ void JDlgLogin::accept()
 	}
 	m_rqslogin->login(ui->edt_username->text(),
 					  ui->edt_passwd->text(),
-					  ui->cb_role->currentIndex());
+					  (ERole)ui->cb_role->currentIndex());
 	ui->lab_message->setText(tr("begin to login"));
 	if(!m_rqslogin->waitForLogined(1000))
 	{

@@ -5,12 +5,10 @@
 #include <QMessageBox>
 #include <QPalette>
 
-#include "service/jrequestgameinfo.h"
 #include "service/jdownloadrun.h"
-#include "global/ssubserver.h"
-#include "service/jrequestuserinfo.h"
-#include "service/jrequestport.h"
-#include "service/jloginhashcoderecorder.h"
+
+#include <ClientRequest/JRequestGameInfo>
+#include <ClientRequest/JRequestUserInfo>
 
 #include "jdlgselectserver.h"
 
@@ -31,14 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->list_game->setPalette(palette);
     ui->tb_game->setPalette(palette);
 
-	m_reqport=new JRequestPort(this);
-	SHost hostuserinfo=m_reqport->rqsServerPort(EST_USERINFO);
 	m_requserinfo=new JRequestUserInfo(this);
-	m_requserinfo->connectToHost(hostuserinfo.m_address,hostuserinfo.m_port);
-	m_requserinfo->waitForConnected(1000);
-	JLoginHashCodeRecorder lhcr;
-	m_requserinfo->sendLoginHashCode(lhcr.getUserId(),lhcr.getCode());
-	m_requserinfo->waitForLhc(1000);
 }
 
 MainWindow::~MainWindow()
@@ -69,49 +60,50 @@ void MainWindow::on_btn_refresh_list_clicked()
     ui->list_game->clear();
     ui->tb_game->clear();
 	m_currentId=-1;
-	m_gis->rqsGameList();
+	m_gis->pullGameList(1000);
 }
 
 void MainWindow::on_gameinfosrv_gameListReady()
 {
-	foreach(SubServer::SGameInfo2 gn,m_gis->getGames())
+	JGameList gl = m_gis->pullGameList(1000);
+	foreach(const QString& name,gl)
     {
-        ui->list_game->addItem(gn.m_name);
+		ui->list_game->addItem(name);
     }
 }
 
 void MainWindow::on_list_game_itemClicked(QListWidgetItem* item)
 {
-	foreach(SubServer::SGameInfo2 gn,m_gis->getGames())
+	JGameList gl = m_gis->pullGameList(1000);
+	foreach(const QString& name,gl)
     {
-        if(item->text()==gn.m_name)
+		if(item->text()==name)
         {
-			m_currentId=gn.m_gameId;
+			m_currentId=gl.key(name);
             break;
         }
     }
-	m_gis->rqsGameInfo(m_currentId);
+	m_gis->pullGameInfo(m_currentId);
 }
 
 void MainWindow::on_gameinfosrv_gameInfoReady(JID gameid)
 {
-	SubServer::SGameInfo2 gi=m_gis->getGameInfo(gameid);
-	UserInfo::SUserInfo author=m_requserinfo->rqsUserInfo(gi.m_author);
+	JGameInfo gi=m_gis->pullGameInfo(gameid);
+	JUserInfo author=m_requserinfo->pullUserInfo(gi.getAuthor());
     ui->tb_game->setText(tr("<font color=red>name</font> : %1 <br>"
 							"<font color=red>author</font> : %2 %3 %4<br>"
 							"<font color=red>version</font> : %5 <br>"
                             "<font color=red>introduction</font> :<br>"
-							"%6<br>").arg(gi.m_name)
-						 .arg(author.m_userId)
-						 .arg(author.m_nickname)
-						 .arg(author.m_organization)
-						 .arg(gi.m_version.getData())
-                         .arg(gi.m_introduction));
-	m_gis->rqsServerList(m_currentId,m_gis->getGameInfo(m_currentId).m_version);
+							"%6<br>").arg(gi.getName())
+						 .arg(author.getUserId())
+						 .arg(author.getNickname())
+						 .arg(author.getOrganization())
+						 .arg(gi.getVersion().getData())
+						 .arg(gi.getIntroduction()));
 }
 
 void MainWindow::on_btn_start_game_clicked()
-{
+{/*
 	if(m_currentId<0)
 	{
 		QMessageBox::warning(this,
@@ -121,8 +113,8 @@ void MainWindow::on_btn_start_game_clicked()
 		return;
 	}
 	JDownloadRun dr;
-	SubServer::SGameInfo2 gi=m_gis->getGameInfo(m_currentId);
-	dr.setGame(gi.m_name,gi.m_version);
+	JGameInfo gi=m_gis->pullGameInfo(m_currentId);
+	dr.setGame(gi.getName(),gi.getVersion());
 	if(dr.needDownload())
 	{
 		if( QMessageBox::Yes == QMessageBox::question(this,
@@ -179,4 +171,5 @@ void MainWindow::on_btn_start_game_clicked()
 		qDebug()<<"run failed";
 		return;
 	}
+	//*/
 }
