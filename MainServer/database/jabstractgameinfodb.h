@@ -4,6 +4,7 @@
 #include <QObject>
 
 #include <DataStruct/JGameInfo>
+#include <DataStruct/JGameList>
 
 class JAbstractGameInfoDB : public QObject
 {
@@ -11,6 +12,7 @@ class JAbstractGameInfoDB : public QObject
 public:
     explicit JAbstractGameInfoDB(QObject *parent = 0);
 	virtual JGameInfo getGameInfoById(JID id)=0;
+	virtual JGameList getGameList()=0;
 	virtual JCode updateGameInfo(const JGameInfo& gameinfo)=0;
 };
 

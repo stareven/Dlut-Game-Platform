@@ -11,7 +11,7 @@ class JRequestServerInfo : public JInformationRequestBase
 public:
     explicit JRequestServerInfo(QObject *parent = 0);
 	JServerInfo pullServerInfo(JID serverId,int msecs = 30000);
-	NetworkData::JHead getHead(JID id)const;
+	NetworkData::JHead getHeadById(JID id)const;
 };
 
 #endif // JREQUESTSERVERINFO_H

@@ -28,6 +28,8 @@ int main(int argc, char *argv[]){
 	JRequestGameInfo rgi;
 	JGameInfo gi = rgi.pullGameInfo(1,1000);
 	qDebug()<<"game name="<<gi.getName();
+	JGameList gl = rgi.pullGameList(1000);
+	qDebug()<<"game list="<<gl;
 
 	JRequestServerInfo rsi;
 	JServerInfo si = rsi.pullServerInfo(1,1000);

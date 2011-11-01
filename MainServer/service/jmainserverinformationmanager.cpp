@@ -50,6 +50,9 @@ QByteArray JMainServerInformationManager::getData(const JHead& head)const
 		case 0:
 			pData=new JGameInfo(databaseFactory->createGameInfoDB()->getGameInfoById(head.m_id));
 			break;
+		case 1:
+			pData = new JGameList(databaseFactory->createGameInfoDB()->getGameList());
+			break;
 		default:
 			qDebug()<<"JMainServerInformationManager::getData : no such category "<<head.m_category<<" of type "<<head.m_type;
 		}
@@ -66,7 +69,11 @@ QByteArray JMainServerInformationManager::getData(const JHead& head)const
 	default:
 		qDebug()<<"JMainServerInformationManager::getData : no such type"<<head.m_type;
 	}
-	return pData->toByteArray();
+	if(pData != NULL){
+		return pData->toByteArray();
+	}else{
+		return QByteArray();
+	}
 }
 
 /*!

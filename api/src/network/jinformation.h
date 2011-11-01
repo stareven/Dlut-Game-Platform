@@ -18,7 +18,7 @@ namespace NetworkData{
 		qint16 m_category;
 		JID m_id;
 
-		JHead(JID id=-1,JType type=-1,qint16 category=-1);
+		explicit JHead(JID id=-1,JType type=-1,qint16 category=-1);
 		friend bool ::operator==(const JHead&,const JHead&);
 		friend uint ::qHash(const JHead&);
 		bool operator<(const JHead& head)const;

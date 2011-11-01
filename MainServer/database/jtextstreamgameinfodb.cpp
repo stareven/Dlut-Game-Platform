@@ -54,6 +54,15 @@ JGameInfo JTextStreamGameInfoDB::getGameInfoById(JID id)
 										QUrl()));
 }
 
+JGameList JTextStreamGameInfoDB::getGameList()
+{
+	JGameList gl;
+	foreach(const JGameInfo& gi,s_gameinfos){
+		gl.insert(gi.getGameId(),gi.getName());
+	}
+	return gl;
+}
+
 JCode JTextStreamGameInfoDB::updateGameInfo(const JGameInfo& gameinfo)
 {
 	s_gameinfos.insert(gameinfo.getGameId(),gameinfo);

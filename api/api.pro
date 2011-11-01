@@ -36,7 +36,9 @@ HEADERS += src/network/jnetworkdataprocessorbase.h src/network/jsocketbase.h \
     src/request/juploadgameinfo.h \
     src/request/juploadserverinfo.h \
     src/network/jserverbase.h \
-    src/network/jservernetworkdataprocessorbase.h
+    src/network/jservernetworkdataprocessorbase.h \
+    src/request/jinformationrequestbyheadbase.h \
+    src/global/jgamelist.h
 SOURCES += src/network/jsocketbase.cpp \
     src/network/jclientsocketbase.cpp \
     src/network/jserversocketbase.cpp \
@@ -62,7 +64,9 @@ SOURCES += src/network/jsocketbase.cpp \
     src/request/juploadserverinfo.cpp \
     src/global/jserializabledata.cpp \
     src/network/jserverbase.cpp \
-    src/network/jservernetworkdataprocessorbase.cpp
+    src/network/jservernetworkdataprocessorbase.cpp \
+    src/request/jinformationrequestbyheadbase.cpp \
+    src/global/jgamelist.cpp
 
 OTHER_FILES += \
     ../doc/rebuild-network.txt

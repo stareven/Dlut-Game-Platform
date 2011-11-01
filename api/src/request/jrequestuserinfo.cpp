@@ -10,11 +10,11 @@ JRequestUserInfo::JRequestUserInfo(QObject *parent) :
 JUserInfo JRequestUserInfo::pullUserInfo(JID userId,int msecs)
 {
 	JUserInfo ui;
-	ui.fromByteArray(pullInformationData(userId,msecs));
+	ui.fromByteArray(pullInformationDataById(userId,msecs));
 	return ui;
 }
 
-NetworkData::JHead JRequestUserInfo::getHead(JID id)const
+NetworkData::JHead JRequestUserInfo::getHeadById(JID id)const
 {
 	return JUserInfo(id).head();
 }

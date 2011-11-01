@@ -1,5 +1,7 @@
 #include "jrequestgameinfo.h"
 
+using namespace NetworkData;
+
 JRequestGameInfo::JRequestGameInfo(QObject *parent) :
     JInformationRequestBase(parent)
 {
@@ -8,11 +10,19 @@ JRequestGameInfo::JRequestGameInfo(QObject *parent) :
 JGameInfo JRequestGameInfo::pullGameInfo(JID gameId,int msecs)
 {
 	JGameInfo gi(gameId);
-	gi.fromByteArray(pullInformationData(gameId,msecs));
+	gi.fromByteArray(pullInformationDataById(gameId,msecs));
 	return gi;
 }
 
-NetworkData::JHead JRequestGameInfo::getHead(JID id) const
+JGameList JRequestGameInfo::pullGameList(int msecs)
+{
+	JGameList gl;
+	gl.fromByteArray(pullInformationData(gl.head(),msecs));
+	return gl;
+}
+
+
+NetworkData::JHead JRequestGameInfo::getHeadById(JID id) const
 {
 	return JGameInfo(id).head();
 }
