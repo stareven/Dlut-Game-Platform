@@ -6,7 +6,7 @@
 
 #include <QSet>
 
-class JClientDownloadInformationProcessor;
+class JClientInformationProcessor;
 
 class JInformationRequestByHeadBase : public JRequestBase
 {
@@ -29,7 +29,7 @@ signals:
 						   JTime_t localMtime,
 						   const QByteArray& data);
 private:
-	JClientDownloadInformationProcessor* m_processor;
+	JClientInformationProcessor* m_processor;
 	QSet<NetworkData::JHead> m_receivedRemoteMtime;
 	QSet<NetworkData::JHead> m_receivedInformationData;
 private slots:

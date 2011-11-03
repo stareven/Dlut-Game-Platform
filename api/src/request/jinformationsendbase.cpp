@@ -2,7 +2,7 @@
 
 #include <QCoreApplication>
 
-#include "../network/jclientuploadinformationprocessor.h"
+#include "../network/jclientinformationprocessor.h"
 #include "../global/jelapsedtimer.h"
 
 using namespace NetworkData;
@@ -10,16 +10,16 @@ using namespace NetworkData;
 JInformationSendBase::JInformationSendBase(QObject *parent) :
     JRequestBase(parent)
 {
-	m_processor = JClientUploadInformationProcessor::getInstance();
+	m_processor = JClientInformationProcessor::getInstance();
 	connect(m_processor,
-			SIGNAL(receiveSendInformationResult(NetworkData::JHead,JCode)),
-			SLOT(on_processor_receiveSendInformationResult(NetworkData::JHead,JCode)));
+			SIGNAL(receiveUploadResult(NetworkData::JHead,JCode)),
+			SLOT(on_processor_receiveUploadResult(NetworkData::JHead,JCode)));
 }
 
 void JInformationSendBase::sendInformationData(const JHead& head,const QByteArray& data)
 {
 	m_sendResults.remove(head);
-	m_processor->sendInformationData(head,data);
+	m_processor->requestUploadData(head,data);
 }
 
 bool JInformationSendBase::waitForSendResult(const JHead& head,int msecs)
@@ -69,7 +69,7 @@ JCode JInformationSendBase::pushInformationData(JID id,const QByteArray& data,in
 	return pushInformationData(getHead(id),data,msecs);
 }
 
-void JInformationSendBase::on_processor_receiveSendInformationResult(const JHead& head,JCode result)
+void JInformationSendBase::on_processor_receiveUploadResult(const JHead& head,JCode result)
 {
 	m_sendResults.insert(head,result);
 }

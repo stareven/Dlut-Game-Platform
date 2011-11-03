@@ -18,8 +18,7 @@ public:
 
 	enum EProcessorType{
         EPI_LOGIN,
-		EPI_DOWNLOADINFORMATION,
-		EPI_UPLOADINFORMATION,
+		EPI_INFORMATION,
     };
 };
 

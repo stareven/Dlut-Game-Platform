@@ -6,7 +6,7 @@
 
 #include "jrequestbase.h"
 
-class JClientUploadInformationProcessor;
+class JClientInformationProcessor;
 
 class JInformationSendBase : public JRequestBase
 {
@@ -24,10 +24,10 @@ public:
 	JCode getSendResult(JID id);
 	JCode pushInformationData(JID id,const QByteArray& data,int msecs=30000);
 private:
-	JClientUploadInformationProcessor* m_processor;
+	JClientInformationProcessor* m_processor;
 	QMap<NetworkData::JHead,JCode> m_sendResults;
 private slots:
-	void on_processor_receiveSendInformationResult(const NetworkData::JHead& head,JCode result);
+	void on_processor_receiveUploadResult(const NetworkData::JHead& head,JCode result);
 };
 
 #endif // JINFORMATIONSENDBASE_H

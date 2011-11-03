@@ -2,7 +2,7 @@
 
 #include <QCoreApplication>
 
-#include "../network/jclientdownloadinformationprocessor.h"
+#include "../network/jclientinformationprocessor.h"
 #include "../global/jelapsedtimer.h"
 #include "../network/jinformationmanager.h"
 
@@ -11,7 +11,7 @@ using namespace NetworkData;
 JInformationRequestByHeadBase::JInformationRequestByHeadBase(QObject *parent) :
     JRequestBase(parent)
 {
-	m_processor = JClientDownloadInformationProcessor::getInstance();
+	m_processor = JClientInformationProcessor::getInstance();
 	connect(m_processor,
 			SIGNAL(receiveData(NetworkData::JHead,JTime_t,QByteArray)),
 			SLOT(on_processor_receiveData(NetworkData::JHead,JTime_t,QByteArray)));
@@ -23,7 +23,7 @@ JInformationRequestByHeadBase::JInformationRequestByHeadBase(QObject *parent) :
 void JInformationRequestByHeadBase::rqsRemoteMtime(const NetworkData::JHead& head)
 {
 	m_receivedRemoteMtime.remove(head);
-	m_processor->requestInformationRemoteMtime(head);
+	m_processor->requestDownloadRemoteMtime(head);
 }
 
 bool JInformationRequestByHeadBase::waitForRemoteMtime(const NetworkData::JHead& head,int msecs)
@@ -44,7 +44,7 @@ bool JInformationRequestByHeadBase::waitForRemoteMtime(const NetworkData::JHead&
 void JInformationRequestByHeadBase::rqsInformationData(const NetworkData::JHead& head)
 {
 	m_receivedInformationData.remove(head);
-	m_processor->requestInformationData(head);
+	m_processor->requestDownloadData(head);
 }
 
 bool JInformationRequestByHeadBase::waitForInformationData(const NetworkData::JHead& head,int msecs)

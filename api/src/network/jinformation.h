@@ -29,8 +29,9 @@ namespace NetworkData{
 		EIT_ServerInfo,
 	};
 	enum EInformationProtocol{
-		EIP_RemoteMtime,
-		EIP_Data,
+		EIP_DownloadRemoteMtime,
+		EIP_DownloadData,
+		EIP_UploadData,
 		EIP_Max,
 	};
 
