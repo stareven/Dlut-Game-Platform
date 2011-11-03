@@ -20,7 +20,6 @@ HEADERS += \
     database/jabstractlogindb.h \
     database/jtextstreamdatabasefactory.h \
     database/jtextstreamlogindb.h \
-    network/jmainserverdownloadinformationprocessor.h \
     database/jabstractuserinfodb.h \
     database/jtextstreamuserinfodb.h \
     database/jabstractgameinfodb.h \
@@ -28,7 +27,7 @@ HEADERS += \
     service/jmainserverinformationmanager.h \
     database/jtextstreamgameinfodb.h \
     database/jtextstreamserverinfodb.h \
-    network/jmainserveruploadinformationprocessor.h
+    network/jmainserverinformationprocessor.h
 SOURCES += main/main.cpp \
 	network/jmainserver.cpp \
     network/jmainserversocket.cpp \
@@ -38,7 +37,6 @@ SOURCES += main/main.cpp \
     database/jtextstreamdatabasefactory.cpp \
     database/jtextstreamlogindb.cpp \
     database/jabstractlogindb.cpp \
-    network/jmainserverdownloadinformationprocessor.cpp \
     database/jabstractuserinfodb.cpp \
     database/jtextstreamuserinfodb.cpp \
     database/jabstractgameinfodb.cpp \
@@ -46,4 +44,4 @@ SOURCES += main/main.cpp \
     service/jmainserverinformationmanager.cpp \
     database/jtextstreamgameinfodb.cpp \
     database/jtextstreamserverinfodb.cpp \
-    network/jmainserveruploadinformationprocessor.cpp
+    network/jmainserverinformationprocessor.cpp

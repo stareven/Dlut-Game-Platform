@@ -2,8 +2,7 @@
 
 #include "jmainserversocket.h"
 #include "jmainserverloginprocessor.h"
-#include "jmainserverdownloadinformationprocessor.h"
-#include "jmainserveruploadinformationprocessor.h"
+#include "jmainserverinformationprocessor.h"
 
 JMainServer::JMainServer(QObject *parent) :
     JServerBase(parent)
@@ -14,10 +13,8 @@ JServerSocketBase* JMainServer::getConnection(QTcpSocket* socket,QObject* parent
 {
 	JServerSocketBase* connection = new JMainServerSocket(socket,parent);
 	JServerNetworkDataProcessorBase* loginProcessor = new JMainServerLoginProcessor(connection);
-	JServerNetworkDataProcessorBase* downloadInformationProcessor = new JMainServerDownloadInformationProcessor(connection);
-	JServerNetworkDataProcessorBase* uploadInformationProcessor = new JMainServerUploadInformationProcessor(connection);
+	JServerNetworkDataProcessorBase* informationProcessor = new JMainServerInformationProcessor(connection);
 	connection->registerProcessor(loginProcessor);
-	connection->registerProcessor(downloadInformationProcessor);
-	connection->registerProcessor(uploadInformationProcessor);
+	connection->registerProcessor(informationProcessor);
 	return connection;
 }

@@ -93,6 +93,7 @@ void JClientInformationProcessor::process(const QByteArray& data)
 				stream>>result;
 				emit receiveUploadResult(head,result);
 			}
+			break;
 		case EIP_Max:
 			qDebug()<<"JClientInformationProcessor::process :"
 					   "EInformationProtocol error :"<<protocol;
