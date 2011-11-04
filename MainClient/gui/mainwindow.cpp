@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QPalette palette;
     palette.setColor(QPalette::Background, QColor(0,0,0));
     setPalette(palette);
-     palette.setColor(QPalette::Base, QColor(0,0,0));
+	palette.setColor(QPalette::Base, QColor(0,0,0));
     palette.setColor(QPalette::Text, QColor(Qt::green));
     palette.setColor(QPalette::HighlightedText, QColor(Qt::red));
     ui->list_game->setPalette(palette);
@@ -60,16 +60,7 @@ void MainWindow::on_btn_refresh_list_clicked()
     ui->list_game->clear();
     ui->tb_game->clear();
 	m_currentId=-1;
-	m_gis->pullGameList(1000);
-}
-
-void MainWindow::on_gameinfosrv_gameListReady()
-{
-	JGameList gl = m_gis->pullGameList(1000);
-	foreach(const QString& name,gl)
-    {
-		ui->list_game->addItem(name);
-    }
+	updateGameList();
 }
 
 void MainWindow::on_list_game_itemClicked(QListWidgetItem* item)
@@ -82,18 +73,27 @@ void MainWindow::on_list_game_itemClicked(QListWidgetItem* item)
 			m_currentId=gl.key(name);
             break;
         }
-    }
-	m_gis->pullGameInfo(m_currentId);
+	}
+	updateGameInfo(m_currentId);
 }
 
-void MainWindow::on_gameinfosrv_gameInfoReady(JID gameid)
+void MainWindow::updateGameList()
 {
-	JGameInfo gi=m_gis->pullGameInfo(gameid);
+	JGameList gl = m_gis->pullGameList(1000);
+	foreach(const QString& name,gl)
+	{
+		ui->list_game->addItem(name);
+	}
+}
+
+void MainWindow::updateGameInfo(JID gameId)
+{
+	JGameInfo gi=m_gis->pullGameInfo(gameId);
 	JUserInfo author=m_requserinfo->pullUserInfo(gi.getAuthor());
-    ui->tb_game->setText(tr("<font color=red>name</font> : %1 <br>"
+	ui->tb_game->setText(tr("<font color=red>name</font> : %1 <br>"
 							"<font color=red>author</font> : %2 %3 %4<br>"
 							"<font color=red>version</font> : %5 <br>"
-                            "<font color=red>introduction</font> :<br>"
+							"<font color=red>introduction</font> :<br>"
 							"%6<br>").arg(gi.getName())
 						 .arg(author.getUserId())
 						 .arg(author.getNickname())
