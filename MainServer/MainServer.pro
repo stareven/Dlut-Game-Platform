@@ -27,7 +27,9 @@ HEADERS += \
     service/jmainserverinformationmanager.h \
     database/jtextstreamgameinfodb.h \
     database/jtextstreamserverinfodb.h \
-    network/jmainserverinformationprocessor.h
+    network/jmainserverinformationprocessor.h \
+    service/jcommandmanager.h \
+    network/jmainservercommandprocessor.h
 SOURCES += main/main.cpp \
 	network/jmainserver.cpp \
     network/jmainserversocket.cpp \
@@ -44,4 +46,6 @@ SOURCES += main/main.cpp \
     service/jmainserverinformationmanager.cpp \
     database/jtextstreamgameinfodb.cpp \
     database/jtextstreamserverinfodb.cpp \
-    network/jmainserverinformationprocessor.cpp
+    network/jmainserverinformationprocessor.cpp \
+    service/jcommandmanager.cpp \
+    network/jmainservercommandprocessor.cpp

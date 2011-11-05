@@ -18,11 +18,11 @@ JClientCommandProcessor* JClientCommandProcessor::getInstance()
 	return instance;
 }
 
-void JClientCommandProcessor::sendCommand(JClientCommandProcessor::ECommandType type,JID param1)
+void JClientCommandProcessor::sendCommand(ECommandType type,JID param1)
 {
 	QByteArray data;
 	QDataStream stream(&data,QIODevice::WriteOnly);
-	stream<<type;
+	stream<<(JID)type;
 	stream<<param1;
 	sendData(data);
 }

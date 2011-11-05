@@ -2,6 +2,7 @@
 #define JCLIENTCOMMANDPROCESSOR_H
 
 #include "jclientnetworkdataprocessorbase.h"
+#include "../global/command.h"
 
 class JClientCommandProcessor : public JClientNetworkDataProcessorBase
 {
@@ -9,10 +10,6 @@ class JClientCommandProcessor : public JClientNetworkDataProcessorBase
 	explicit JClientCommandProcessor(JClientSocketBase *socket);
 public:
 	static JClientCommandProcessor* getInstance();
-	enum ECommandType{
-		ECT_Shutdown,
-		ECT_Restart,
-	};
 	void sendCommand(ECommandType type,JID param1=-1);
 protected:
 	void process(const QByteArray &data);

@@ -10,10 +10,10 @@ JCommandSendBase::JCommandSendBase(QObject *parent) :
 
 void JCommandSendBase::sendShutdown()
 {
-	m_processor->sendCommand(JClientCommandProcessor::ECT_Shutdown);
+	m_processor->sendCommand(ECT_Shutdown);
 }
 
 void JCommandSendBase::sendRestart()
 {
-	m_processor->sendCommand(JClientCommandProcessor::ECT_Restart);
+	m_processor->sendCommand(ECT_Restart);
 }
