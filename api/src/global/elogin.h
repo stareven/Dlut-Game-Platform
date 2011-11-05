@@ -32,7 +32,7 @@ enum ELogin{
 	EL_PASSWD_WRONG, /**< 密码错误 */
 	EL_NO_SUCH_ROLE, /**< 用户不具有此身份 */
 	EL_ALREADY_LOGIN, /**< 已经登录，不能重复登录 */
-	EL_SOCKET_DISCONNECTED, /**< 连接断开 */
+	EL_NETWORK_ERROR, /**< 网络错误 */
 };
 
 #endif

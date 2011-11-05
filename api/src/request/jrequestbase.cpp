@@ -39,6 +39,10 @@ JRequestBase::JRequestBase(QObject *parent)
 	:QObject(parent)
 {
     m_error=error_no;
+	m_socket=JClientSocketBase::getInstance();
+	connect(m_socket,
+			SIGNAL(error(JCode)),
+			SLOT(on_socket_SocketError(JCode)));
 }
 
 /*!
@@ -49,7 +53,7 @@ JRequestBase::JRequestBase(QObject *parent)
 */
 void JRequestBase::connectToHost(const QHostAddress& address,quint16 port)
 {
-    if(JClientSocketBase::getInstance()==NULL)
+    if(m_socket==NULL)
 	{
         qDebug()<<"JRequestBase: socket is NULL";
 		const static QString error_socket_null="socket is NULL";
@@ -57,12 +61,12 @@ void JRequestBase::connectToHost(const QHostAddress& address,quint16 port)
 		emit error();
 		return;
 	}
-    if(JClientSocketBase::getInstance()->socketState()==QAbstractSocket::ConnectedState)
+    if(m_socket->socketState()==QAbstractSocket::ConnectedState)
 	{
 		qDebug()<<"JRequestBase::connectToHost : already connected.";
 		return;
     }
-    JClientSocketBase::getInstance()->connectToServer(SHost(address,port));
+    m_socket->connectToServer(SHost(address,port));
 }
 
 /*!
@@ -76,13 +80,13 @@ bool JRequestBase::waitForConnected(int msecs)const
 	timer.start();
 	while(timer.elapsed()<msecs)
 	{
-        if(JClientSocketBase::getInstance()->socketState()!=QAbstractSocket::ConnectingState)
+        if(m_socket->socketState()!=QAbstractSocket::ConnectingState)
 		{
 			break;
 		}
 		QCoreApplication::processEvents();
 	}
-    return JClientSocketBase::getInstance()->socketState()==QAbstractSocket::ConnectedState;
+    return m_socket->socketState()==QAbstractSocket::ConnectedState;
 }
 
 /*!
@@ -93,8 +97,8 @@ const QString& JRequestBase::getConnectError()const
     return m_error;
 }
 
-void JRequestBase::on_socket_SocketError(const QString& socketError)
+void JRequestBase::on_socket_SocketError(JCode errorCode)
 {
-    m_error=socketError;
+	m_error=tr("network error : %1").arg(errorCode);
 	emit error();
 }

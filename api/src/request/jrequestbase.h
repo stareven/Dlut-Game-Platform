@@ -6,6 +6,7 @@
 #include "../global/jglobal.h"
 
 class QHostAddress;
+class JClientSocketBase;
 
 class JRequestBase : public QObject
 {
@@ -19,8 +20,9 @@ signals:
 	void error();
 private:
     QString m_error;
+	JClientSocketBase* m_socket;
 private slots:
-	void on_socket_SocketError(const QString&);
+	void on_socket_SocketError(JCode errorCode);
 };
 
 #endif // JREQUESTBASE_H

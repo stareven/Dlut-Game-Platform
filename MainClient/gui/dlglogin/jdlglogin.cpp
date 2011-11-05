@@ -25,7 +25,7 @@ JDlgLogin::JDlgLogin(QWidget *parent) :
     QPalette palette;
     palette.setColor(QPalette::Background, QColor(0,0,0));
     setPalette(palette);
-     palette.setColor(QPalette::WindowText, QColor(Qt::green));
+	palette.setColor(QPalette::WindowText, QColor(Qt::green));
     ui->lab_username->setPalette(palette);
     ui->lab_message->setPalette(palette);
     ui->lab_passwd->setPalette(palette);

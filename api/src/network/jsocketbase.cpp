@@ -3,6 +3,7 @@
 #include <QTcpSocket>
 
 #include "jnetworkdataprocessorbase.h"
+#include "../global/jcodeerror.h"
 
 JSocketBase::JSocketBase(QTcpSocket* socket,QObject* parent)
     :QObject(parent),
@@ -71,9 +72,10 @@ void JSocketBase::on_socket_readyRead(){
     }
 }
 
-void JSocketBase::on_socket_error(QAbstractSocket::SocketError)
+void JSocketBase::on_socket_error(QAbstractSocket::SocketError socketError)
 {
 	qDebug()<<metaObject()->className()<<m_socket->errorString();
+	emit error(ENetworkError | socketError);
 }
 
 void JSocketBase::on_socket_connected()

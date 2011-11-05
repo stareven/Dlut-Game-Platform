@@ -20,7 +20,7 @@ public:
     QAbstractSocket::SocketState socketState () const;
 signals:
     void disconnected();
-    void error ( QAbstractSocket::SocketError socketError );
+	void error ( JCode errorCode );
 protected:
     QTcpSocket* const m_socket;
 private slots:

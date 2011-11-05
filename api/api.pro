@@ -40,7 +40,8 @@ HEADERS += src/network/jnetworkdataprocessorbase.h src/network/jsocketbase.h \
     src/network/jclientinformationprocessor.h \
     src/network/jclientcommandprocessor.h \
     src/request/jcommandsendbase.h \
-    src/global/command.h
+    src/global/command.h \
+    src/global/jcodeerror.h
 SOURCES += src/network/jsocketbase.cpp \
     src/network/jclientsocketbase.cpp \
     src/network/jserversocketbase.cpp \

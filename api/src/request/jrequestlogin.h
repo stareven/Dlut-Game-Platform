@@ -27,7 +27,7 @@ public:
 signals:
 	void loginResult(bool);
 protected slots:
-	void on_socket_loginCode(JCode);
+	void on_processor_loginCode(JCode);
 private:
 	ELoginState m_state;
 	ELogin m_loginError;

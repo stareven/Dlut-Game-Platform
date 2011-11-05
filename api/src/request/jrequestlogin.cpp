@@ -43,7 +43,7 @@ const QString loginErrorString[]={
 	QObject::tr("password wrong"),
 	QObject::tr("no such role"),
 	QObject::tr("already login"),
-	QObject::tr("socket disconnected"),
+	QObject::tr("network error"),
 };
 
 /*!
@@ -54,7 +54,7 @@ JRequestLogin::JRequestLogin(QObject *parent) :
 {
     m_processor=JClientLoginProcessor::getInstance();
 	m_loginError=EL_SUCCESS;
-    connect(m_processor,SIGNAL(loginCode(JCode)),SLOT(on_socket_loginCode(JCode)));
+	connect(m_processor,SIGNAL(loginCode(JCode)),SLOT(on_processor_loginCode(JCode)));
 }
 
 /*!
@@ -109,10 +109,10 @@ bool JRequestLogin::waitForLogined(int msecs)
 */
 const QString& JRequestLogin::getLoginError()const
 {
-    return loginErrorString[m_loginError];
+	return loginErrorString[m_loginError];
 }
 
-void JRequestLogin::on_socket_loginCode(JCode code)
+void JRequestLogin::on_processor_loginCode(JCode code)
 {
     switch(code)
 	{
