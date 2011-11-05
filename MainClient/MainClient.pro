@@ -12,7 +12,8 @@ SOURCES += main/main.cpp \
     gui/dlglogin/settings/jrememberpassword.cpp \
     gui/dlglogin/settings/jsettinglogin.cpp \
 	service/jdownloadrun.cpp \
-    gui/jdlgselectserver.cpp
+    gui/jdlgselectserver.cpp \
+    gui/widgetadmin/jwidgetadmin.cpp
 HEADERS += gui/mainwindow.h \
     gui/dlglogin/jcomboselectserver.h \
     gui/dlglogin/jdlglogin.h \
@@ -21,11 +22,13 @@ HEADERS += gui/mainwindow.h \
     gui/dlglogin/settings/jrememberpassword.h \
     gui/dlglogin/settings/jsettinglogin.h \
     service/jdownloadrun.h \
-    gui/jdlgselectserver.h
+    gui/jdlgselectserver.h \
+    gui/widgetadmin/jwidgetadmin.h
 FORMS += gui/mainwindow.ui \
     gui/dlglogin/jdlglogin.ui \
     gui/dlglogin/jdlgnewserver.ui \
-    gui/jdlgselectserver.ui
+    gui/jdlgselectserver.ui \
+    gui/widgetadmin/jwidgetadmin.ui
 include(../api/api.pri)
 QMAKE_RPATHDIR = ../api/lib
 RESOURCES += \

@@ -70,7 +70,19 @@
      <height>25</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuAdmin">
+    <property name="title">
+     <string>&amp;admin</string>
+    </property>
+    <addaction name="actionShow_admin_window"/>
+   </widget>
+   <addaction name="menuAdmin"/>
   </widget>
+  <action name="actionShow_admin_window">
+   <property name="text">
+    <string>show &amp;admin window</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

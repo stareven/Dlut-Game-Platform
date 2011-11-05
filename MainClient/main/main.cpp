@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 	if(dlg.exec()==QDialog::Rejected)
     {
         return 0;
-    }
+	}
     MainWindow w;
     w.show();
     return a.exec();

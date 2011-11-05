@@ -11,6 +11,7 @@
 #include <ClientRequest/JRequestUserInfo>
 
 #include "jdlgselectserver.h"
+#include "widgetadmin/jwidgetadmin.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -23,13 +24,14 @@ MainWindow::MainWindow(QWidget *parent) :
     QPalette palette;
     palette.setColor(QPalette::Background, QColor(0,0,0));
     setPalette(palette);
-	palette.setColor(QPalette::Base, QColor(0,0,0));
+    palette.setColor(QPalette::Base, QColor(0,0,0));
     palette.setColor(QPalette::Text, QColor(Qt::green));
     palette.setColor(QPalette::HighlightedText, QColor(Qt::red));
     ui->list_game->setPalette(palette);
     ui->tb_game->setPalette(palette);
 
 	m_requserinfo=new JRequestUserInfo(this);
+	m_widgetadmin=NULL;
 }
 
 MainWindow::~MainWindow()
@@ -53,6 +55,15 @@ void MainWindow::showEvent ( QShowEvent * event)
 {
 	QMainWindow::showEvent(event);
     on_btn_refresh_list_clicked();
+}
+
+void MainWindow::on_actionShow_admin_window_triggered()
+{
+	if(m_widgetadmin==NULL){
+		m_widgetadmin=new JWidgetAdmin(this);
+		m_widgetadmin->setWindowFlags(Qt::Window);
+	}
+	m_widgetadmin->show();
 }
 
 void MainWindow::on_btn_refresh_list_clicked()
