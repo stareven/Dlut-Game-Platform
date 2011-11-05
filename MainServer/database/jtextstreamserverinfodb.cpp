@@ -20,8 +20,11 @@ JTextStreamServerInfoDB::JTextStreamServerInfoDB(QObject *parent) :
 			QString address;
 			quint16 port;
 			stream>>serverId;
+			if(stream.atEnd()) break;
 			stream>>name;
+			if(stream.atEnd()) break;
 			stream>>address;
+			if(stream.atEnd()) break;
 			stream>>port;
 			JServerInfo serverinfo(serverId,name,SHost(QHostAddress(address),port));
 			s_serverinfos.insert(serverinfo.getServerId(),serverinfo);
@@ -49,10 +52,10 @@ void JTextStreamServerInfoDB::flush()
 	file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text);
 	QTextStream stream(&file);
 	foreach(JServerInfo serverinfo,s_serverinfos){
-		stream<<serverinfo.getServerId();
-		stream<<serverinfo.getName();
-		stream<<serverinfo.getHost().m_address.toString();
-		stream<<serverinfo.getHost().m_port;
+		stream<<serverinfo.getServerId()<<' ';
+		stream<<serverinfo.getName()<<' ';
+		stream<<serverinfo.getHost().m_address.toString()<<' ';
+		stream<<serverinfo.getHost().m_port<<' ';
 		stream<<endl;
 	}
 	s_serverinfos.clear();

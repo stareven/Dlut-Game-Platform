@@ -20,7 +20,9 @@ JTextStreamUserInfoDB::JTextStreamUserInfoDB(QObject* parent)
 			JID userId;
 			QString nickname,organization;
 			stream>>userId;
+			if(stream.atEnd()) break;
 			stream>>nickname;
+			if(stream.atEnd()) break;
 			stream>>organization;
 			JUserInfo userinfo(userId,nickname,organization);
 			s_users.insert(userinfo.getUserId(),userinfo);
@@ -49,8 +51,8 @@ void JTextStreamUserInfoDB::flush()
 	file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text);
 	QTextStream stream(&file);
 	foreach(JUserInfo userinfo,s_users){
-		stream<<userinfo.getUserId();
-		stream<<userinfo.getNickname();
+		stream<<userinfo.getUserId()<<' ';
+		stream<<userinfo.getNickname()<<' ';
 		stream<<userinfo.getOrganization();
 		stream<<endl;
 	}

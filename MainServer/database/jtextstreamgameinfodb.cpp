@@ -24,11 +24,17 @@ JTextStreamGameInfoDB::JTextStreamGameInfoDB(QObject *parent) :
 			JID serverId;
 			QString downloadUrl;
 			stream>>gameId;
+			if(stream.atEnd()) break;
 			stream>>name;
+			if(stream.atEnd()) break;
 			stream>>version;
+			if(stream.atEnd()) break;
 			stream>>author;
+			if(stream.atEnd()) break;
 			stream>>introduction;
+			if(stream.atEnd()) break;
 			stream>>serverId;
+			if(stream.atEnd()) break;
 			stream>>downloadUrl;
 			JGameInfo gameinfo(gameId,
 							   name,
@@ -76,12 +82,12 @@ void JTextStreamGameInfoDB::flush()
 	file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text);
 	QTextStream stream(&file);
 	foreach(JGameInfo gameinfo,s_gameinfos){
-		stream<<gameinfo.getGameId();
-		stream<<gameinfo.getName();
-		stream<<gameinfo.getVersion().getData();
-		stream<<gameinfo.getAuthor();
-		stream<<gameinfo.getIntroduction();
-		stream<<gameinfo.getServerId();
+		stream<<gameinfo.getGameId()<<' ';
+		stream<<gameinfo.getName()<<' ';
+		stream<<gameinfo.getVersion().getData()<<' ';
+		stream<<gameinfo.getAuthor()<<' ';
+		stream<<gameinfo.getIntroduction()<<' ';
+		stream<<gameinfo.getServerId()<<' ';
 		stream<<gameinfo.getDownloadUrl().toString();
 		stream<<endl;
 	}

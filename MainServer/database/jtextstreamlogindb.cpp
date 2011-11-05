@@ -30,8 +30,11 @@ JTextStreamLoginDB::JTextStreamLoginDB(QObject *parent)
 			if(stream.atEnd()) break;
 			SLoginUser user;
 			stream>>user.m_userid;
+			if(stream.atEnd()) break;
 			stream>>user.m_loginname;
+			if(stream.atEnd()) break;
 			stream>>user.m_passwd;
+			if(stream.atEnd()) break;
 			stream>>user.m_role;
 			s_loginusers.insert(user.m_userid,user);
 		}
@@ -67,9 +70,9 @@ void JTextStreamLoginDB::flush()
 	file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text);
 	QTextStream stream(&file);
 	foreach(SLoginUser user,s_loginusers){
-		stream<<user.m_userid;
-		stream<<user.m_loginname;
-		stream<<user.m_passwd;
+		stream<<user.m_userid<<' ';
+		stream<<user.m_loginname<<' ';
+		stream<<user.m_passwd<<' ';
 		stream<<user.m_role;
 		stream<<endl;
 	}
