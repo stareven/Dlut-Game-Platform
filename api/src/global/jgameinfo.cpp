@@ -12,6 +12,7 @@ JGameInfo::JGameInfo(JID gameId,
 		  const QString& name,
 		  const JVersion& version,
 		  JID author,
+		  JID runner,
 		  const QString& introduction,
 		  JID serverId,
 		  const QUrl& downloadUrl)
@@ -19,6 +20,7 @@ JGameInfo::JGameInfo(JID gameId,
 	m_name(name),
 	m_version(version),
 	m_author(author),
+	m_runner(runner),
 	m_introduction(introduction),
 	m_serverId(serverId),
 	m_downloadUrl(downloadUrl)
@@ -77,6 +79,11 @@ const JVersion& JGameInfo::getVersion()const
 JID JGameInfo::getAuthor()const
 {
 	return m_author;
+}
+
+JID JGameInfo::getRunner()const
+{
+	return m_runner;
 }
 
 const QString& JGameInfo::getIntroduction()const

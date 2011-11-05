@@ -1,5 +1,7 @@
 #include "jmainserver.h"
 
+#include <Socket/JSession>
+
 #include "jmainserversocket.h"
 #include "jmainserverloginprocessor.h"
 #include "jmainserverinformationprocessor.h"
@@ -12,7 +14,7 @@ JMainServer::JMainServer(QObject *parent) :
 
 JServerSocketBase* JMainServer::getConnection(QTcpSocket* socket,QObject* parent)const
 {
-	JServerSocketBase* connection = new JMainServerSocket(socket,parent);
+	JMainServerSocket* connection = new JMainServerSocket(socket,parent);
 	JServerNetworkDataProcessorBase* loginProcessor = new JMainServerLoginProcessor(connection);
 	JServerNetworkDataProcessorBase* informationProcessor = new JMainServerInformationProcessor(connection);
 	JServerNetworkDataProcessorBase* commandProcessor = new JMainServerCommandProcessor(connection);

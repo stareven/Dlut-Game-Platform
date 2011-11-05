@@ -29,7 +29,8 @@ HEADERS += \
     database/jtextstreamserverinfodb.h \
     network/jmainserverinformationprocessor.h \
     service/jcommandmanager.h \
-    network/jmainservercommandprocessor.h
+    network/jmainservercommandprocessor.h \
+    service/jpermissioncontrol.h
 SOURCES += main/main.cpp \
 	network/jmainserver.cpp \
     network/jmainserversocket.cpp \
@@ -48,4 +49,5 @@ SOURCES += main/main.cpp \
     database/jtextstreamserverinfodb.cpp \
     network/jmainserverinformationprocessor.cpp \
     service/jcommandmanager.cpp \
-    network/jmainservercommandprocessor.cpp
+    network/jmainservercommandprocessor.cpp \
+    service/jpermissioncontrol.cpp

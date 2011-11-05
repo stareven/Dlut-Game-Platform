@@ -13,6 +13,7 @@ public:
 	JServerInfo(JID serverId=-1);
 	JServerInfo(JID serverId,
 				const QString& name,
+				JID runner,
 				const SHost& host);
 	void fromByteArray(const QByteArray& data);
 	QByteArray toByteArray()const;
@@ -20,9 +21,11 @@ public:
 
 	JID getServerId()const;
 	const QString& getName()const;
+	JID getRunner()const;
 	const SHost& getHost()const;
 private:
 	QString m_name;
+	JID m_runner;
 	SHost m_host;
 };
 

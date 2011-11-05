@@ -15,6 +15,7 @@ public:
 			  const QString& name,
 			  const JVersion& version,
 			  JID author,
+			  JID runner,
 			  const QString& introduction,
 			  JID serverId,
 			  const QUrl& downloadUrl);
@@ -26,6 +27,7 @@ public:
 	const QString& getName()const;
 	const JVersion& getVersion()const;
 	JID getAuthor()const;
+	JID getRunner()const;
 	const QString& getIntroduction()const;
 	JID getServerId()const;
 	const QUrl& getDownloadUrl()const;
@@ -33,6 +35,7 @@ private:
 	QString m_name;
 	JVersion m_version;
 	JID m_author;
+	JID m_runner;
 	QString m_introduction;
 	JID m_serverId;
 	QUrl m_downloadUrl;

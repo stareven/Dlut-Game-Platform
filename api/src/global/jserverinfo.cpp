@@ -9,9 +9,11 @@ JServerInfo::JServerInfo(JID serverId)
 
 JServerInfo::JServerInfo(JID serverId,
 			const QString& name,
+			JID runner,
 			const SHost& host)
 	:JSerializableData(serverId),
 	m_name(name),
+	m_runner(runner),
 	m_host(host)
 {
 }
@@ -52,6 +54,11 @@ JID JServerInfo::getServerId()const
 const QString& JServerInfo::getName()const
 {
 	return m_name;
+}
+
+JID JServerInfo::getRunner()const
+{
+	return m_runner;
 }
 
 const SHost& JServerInfo::getHost()const

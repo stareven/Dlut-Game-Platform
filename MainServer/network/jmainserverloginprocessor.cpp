@@ -4,11 +4,13 @@
 #include <QDebug>
 
 #include <Global/Login>
+#include <Socket/JSession>
 
 #include "service/jloginverification.h"
+#include "jmainserversocket.h"
 
-JMainServerLoginProcessor::JMainServerLoginProcessor(JServerSocketBase *socket) :
-	JServerNetworkDataProcessorBase(socket)
+JMainServerLoginProcessor::JMainServerLoginProcessor(JMainServerSocket *socket) :
+	JServerNetworkDataProcessorBase(socket->getSession(),socket)
 {
 }
 
@@ -21,6 +23,9 @@ void JMainServerLoginProcessor::process(const QByteArray& data)
 	stream>>loginname>>passwd>>role;
 	JLoginVerification lv;
 	JCode code=lv.verification(loginname,passwd,(ERole)role);
+	if(0==code){
+		getSession()->setUserId(lv.getUserId());
+	}
 	QByteArray outdata;
 	QDataStream outstream(&outdata,QIODevice::WriteOnly);
 	outstream<<code;

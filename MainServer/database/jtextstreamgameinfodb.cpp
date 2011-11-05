@@ -20,6 +20,7 @@ JTextStreamGameInfoDB::JTextStreamGameInfoDB(QObject *parent) :
 			QString name;
 			quint32 version;
 			JID author;
+			JID runner;
 			QString introduction;
 			JID serverId;
 			QString downloadUrl;
@@ -31,6 +32,8 @@ JTextStreamGameInfoDB::JTextStreamGameInfoDB(QObject *parent) :
 			if(stream.atEnd()) break;
 			stream>>author;
 			if(stream.atEnd()) break;
+			stream>>runner;
+			if(stream.atEnd()) break;
 			stream>>introduction;
 			if(stream.atEnd()) break;
 			stream>>serverId;
@@ -40,6 +43,7 @@ JTextStreamGameInfoDB::JTextStreamGameInfoDB(QObject *parent) :
 							   name,
 							   JVersion(version),
 							   author,
+							   runner,
 							   introduction,
 							   serverId,
 							   QUrl(downloadUrl));
@@ -54,6 +58,7 @@ JGameInfo JTextStreamGameInfoDB::getGameInfoById(JID id)
 							 JGameInfo(id,
 										"no such game on server database",
 										JVersion(1),
+										-1,
 										-1,
 										"no such game on server database",
 										-1,

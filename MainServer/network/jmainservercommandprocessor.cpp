@@ -1,11 +1,15 @@
 #include "jmainservercommandprocessor.h"
 
+#include "service/jpermissioncontrol.h"
 #include "service/jcommandmanager.h"
+#include "jmainserversocket.h"
+
+#include <Socket/JSession>
 
 #include <QDataStream>
 
-JMainServerCommandProcessor::JMainServerCommandProcessor(JServerSocketBase *socket) :
-	JServerNetworkDataProcessorBase(socket)
+JMainServerCommandProcessor::JMainServerCommandProcessor(JMainServerSocket *socket) :
+	JServerNetworkDataProcessorBase(socket->getSession(),socket)
 {
 }
 
@@ -16,8 +20,11 @@ void JMainServerCommandProcessor::process(const QByteArray& data)
 	JID param;
 	stream>>type;
 	stream>>param;
-	JCommandManager cm;
-	cm.executeCommand(type,param);
+	JPermissionControl pc(getSession()->getUserId());
+	if(pc.checkCommand(type,param)){
+		JCommandManager cm;
+		cm.executeCommand(type,param);
+	}
 }
 
 JType JMainServerCommandProcessor::getProcessorType()const

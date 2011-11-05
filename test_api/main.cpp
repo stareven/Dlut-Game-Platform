@@ -36,12 +36,12 @@ int main(int argc, char *argv[]){
 	qDebug()<<"server name="<<si.getName();
 
 	JUploadGameInfo ugi;
-	JGameInfo uploadGameInfo(1,"upload",JVersion(),1,"upload introduction",1,QUrl());
+	JGameInfo uploadGameInfo(1,"upload",JVersion(),1,1,"upload introduction",1,QUrl());
 	JCode code_ugi=ugi.pushGameInfo(uploadGameInfo,1000);
 	qDebug()<<"upload game info:"<<code_ugi;
 
 	JUploadServerInfo usi;
-	JServerInfo uploadServerInfo(1,"upload",SHost());
+	JServerInfo uploadServerInfo(1,"upload",1,SHost());
 	JCode code_usi=usi.pushServerInfo(uploadServerInfo,1000);
 	qDebug()<<"upload server info:"<<code_usi;
 	return 0;

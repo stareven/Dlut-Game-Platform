@@ -8,11 +8,13 @@ namespace NetworkData{
 }
 class JMainServerInformationManager;
 
+class JMainServerSocket;
+
 class JMainServerInformationProcessor : public JServerNetworkDataProcessorBase
 {
     Q_OBJECT
 public:
-	explicit JMainServerInformationProcessor(JServerSocketBase *socket);
+	explicit JMainServerInformationProcessor(JMainServerSocket *socket);
 	void process(const QByteArray& data);
 	JType getProcessorType()const;
 

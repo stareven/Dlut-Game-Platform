@@ -17,16 +17,19 @@ JTextStreamServerInfoDB::JTextStreamServerInfoDB(QObject *parent) :
 			if(stream.atEnd()) break;
 			JID serverId;
 			QString name;
+			JID runner;
 			QString address;
 			quint16 port;
 			stream>>serverId;
 			if(stream.atEnd()) break;
 			stream>>name;
 			if(stream.atEnd()) break;
+			stream>>runner;
+			if(stream.atEnd()) break;
 			stream>>address;
 			if(stream.atEnd()) break;
 			stream>>port;
-			JServerInfo serverinfo(serverId,name,SHost(QHostAddress(address),port));
+			JServerInfo serverinfo(serverId,name,runner,SHost(QHostAddress(address),port));
 			s_serverinfos.insert(serverinfo.getServerId(),serverinfo);
 		}
 	}
@@ -36,6 +39,7 @@ JServerInfo JTextStreamServerInfoDB::getServerInfoById(JID id)
 {
 	return s_serverinfos.value(id,JServerInfo(id,
 											  "no such server on server database",
+											  -1,
 											  SHost()));
 }
 

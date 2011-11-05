@@ -4,12 +4,17 @@
 
 #include <QDataStream>
 
+#include <Socket/JSession>
+#include <Global/CodeError>
+
+#include "service/jpermissioncontrol.h"
 #include "service/jmainserverinformationmanager.h"
+#include "jmainserversocket.h"
 
 using namespace NetworkData;
 
-JMainServerInformationProcessor::JMainServerInformationProcessor(JServerSocketBase *socket) :
-	JServerNetworkDataProcessorBase(socket),
+JMainServerInformationProcessor::JMainServerInformationProcessor(JMainServerSocket *socket) :
+	JServerNetworkDataProcessorBase(socket->getSession(),socket),
 	m_im(JMainServerInformationManager::getInstance())
 {
 }
@@ -77,15 +82,30 @@ void JMainServerInformationProcessor::replyUploadResult(const JHead& head,JCode 
 
 void JMainServerInformationProcessor::processDownloadRemoteMtime(const JHead& head)
 {
-	replyMtime(head,m_im.getMtime(head));
+	JPermissionControl pc(getSession()->getUserId());
+	if(pc.checkInformation(EIP_DownloadRemoteMtime,head)){
+		replyMtime(head,m_im.getMtime(head));
+	}else{
+		replyMtime(head,0);
+	}
 }
 
 void JMainServerInformationProcessor::processDownloadData(const JHead& head)
 {
-	replyData(head,m_im.getCurrentTime(),m_im.getData(head));
+	JPermissionControl pc(getSession()->getUserId());
+	if(pc.checkInformation(EIP_DownloadData,head)){
+		replyData(head,m_im.getCurrentTime(),m_im.getData(head));
+	}else{
+		replyData(head,m_im.getCurrentTime(),QByteArray());
+	}
 }
 
 void JMainServerInformationProcessor::processUploadData(const JHead& head,const QByteArray& uploadData)
 {
-	replyUploadResult(head,m_im.updateData(head,uploadData));
+	JPermissionControl pc(getSession()->getUserId());
+	if(pc.checkInformation(EIP_UploadData,head)){
+		replyUploadResult(head,m_im.updateData(head,uploadData));
+	}else{
+		replyUploadResult(head,EPermissionDenied);
+	}
 }
