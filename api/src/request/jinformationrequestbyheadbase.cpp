@@ -18,6 +18,7 @@ JInformationRequestByHeadBase::JInformationRequestByHeadBase(QObject *parent) :
 	connect(m_processor,
 			SIGNAL(receiveRemoteMtime(NetworkData::JHead,JTime_t)),
 			SLOT(on_processor_receiveRemoteMtime(NetworkData::JHead,JTime_t)));
+	m_lastLocalMtime=0;
 }
 
 void JInformationRequestByHeadBase::rqsRemoteMtime(const NetworkData::JHead& head)
@@ -72,6 +73,11 @@ JTime_t JInformationRequestByHeadBase::getLocalMtime(const NetworkData::JHead& h
 	return JInformationManager::getInstance().getInformation(head).getLocalMtime();
 }
 
+JTime_t JInformationRequestByHeadBase::getLastLocalMtime()const
+{
+	return m_lastLocalMtime;
+}
+
 QByteArray JInformationRequestByHeadBase::getInformationData(const NetworkData::JHead& head)
 {
 	return JInformationManager::getInstance().getInformation(head).getData();
@@ -94,7 +100,8 @@ void JInformationRequestByHeadBase::on_processor_receiveRemoteMtime(const Networ
 	m_receivedRemoteMtime.insert(head);
 }
 
-void JInformationRequestByHeadBase::on_processor_receiveData(const NetworkData::JHead& head,JTime_t,const QByteArray&)
+void JInformationRequestByHeadBase::on_processor_receiveData(const NetworkData::JHead& head,JTime_t localMtime,const QByteArray&)
 {
+	m_lastLocalMtime=localMtime;
 	m_receivedInformationData.insert(head);
 }

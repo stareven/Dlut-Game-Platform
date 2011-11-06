@@ -13,7 +13,10 @@ SOURCES += main/main.cpp \
     gui/dlglogin/settings/jsettinglogin.cpp \
 	service/jdownloadrun.cpp \
     gui/jdlgselectserver.cpp \
-    gui/widgetadmin/jwidgetadmin.cpp
+    gui/widgetadmin/jwidgetadmin.cpp \
+    pseudoserver/jpseudoserver.cpp \
+    pseudoserver/jpseudoserversocket.cpp \
+    pseudoserver/jpseudoserverinformationprocessor.cpp
 HEADERS += gui/mainwindow.h \
     gui/dlglogin/jcomboselectserver.h \
     gui/dlglogin/jdlglogin.h \
@@ -23,7 +26,10 @@ HEADERS += gui/mainwindow.h \
     gui/dlglogin/settings/jsettinglogin.h \
     service/jdownloadrun.h \
     gui/jdlgselectserver.h \
-    gui/widgetadmin/jwidgetadmin.h
+    gui/widgetadmin/jwidgetadmin.h \
+    pseudoserver/jpseudoserver.h \
+    pseudoserver/jpseudoserversocket.h \
+    pseudoserver/jpseudoserverinformationprocessor.h
 FORMS += gui/mainwindow.ui \
     gui/dlglogin/jdlglogin.ui \
     gui/dlglogin/jdlgnewserver.ui \
