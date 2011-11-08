@@ -5,6 +5,7 @@
 #include "ClientRequest/JUploadGameInfo"
 #include "ClientRequest/JUploadServerInfo"
 #include "Socket/JClientSocketBase"
+#include <Socket/JSession>
 
 #include <QHostAddress>
 #include <QCoreApplication>
@@ -20,6 +21,8 @@ int main(int argc, char *argv[]){
 	login.login("elephant","acm",ROLE_GAMEPLAYER);
 	bool rst = login.waitForLogined(1000);
 	qDebug()<<"rst="<<rst<<" login error:"<<login.getLoginError();
+	qDebug()<<"user id = "<<JClientSocketBase::getInstance()->getSession()->getUserId()
+			<<"login hash code = "<<JClientSocketBase::getInstance()->getSession()->getLoginHashCodeStr();
 
 	JRequestUserInfo rui;
 	JUserInfo ui = rui.pullUserInfo(1,1000);

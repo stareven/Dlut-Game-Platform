@@ -10,6 +10,8 @@ public:
 	JID checkLoginName(const QString& loginname);
 	bool checkPasswd(JID,const QString& passwd);
 	bool checkRole(JID,JID);
+	QString getLoginName(JID userId);
+	QString getPassword(JID userId);
 
 	static void flush();
 };

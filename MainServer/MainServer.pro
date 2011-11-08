@@ -30,7 +30,8 @@ HEADERS += \
     network/jmainserverinformationprocessor.h \
     service/jcommandmanager.h \
     network/jmainservercommandprocessor.h \
-    service/jpermissioncontrol.h
+    service/jpermissioncontrol.h \
+    service/jloginhashcodecreator.h
 SOURCES += main/main.cpp \
 	network/jmainserver.cpp \
     network/jmainserversocket.cpp \
@@ -50,4 +51,5 @@ SOURCES += main/main.cpp \
     network/jmainserverinformationprocessor.cpp \
     service/jcommandmanager.cpp \
     network/jmainservercommandprocessor.cpp \
-    service/jpermissioncontrol.cpp
+    service/jpermissioncontrol.cpp \
+    service/jloginhashcodecreator.cpp

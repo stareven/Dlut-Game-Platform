@@ -1,6 +1,7 @@
 #include "jclientloginprocessor.h"
 
 #include "jclientsocketbase.h"
+#include "jsession.h"
 
 JClientLoginProcessor::JClientLoginProcessor(JClientSocketBase *socket) :
 	JClientNetworkDataProcessorBase(socket)
@@ -33,10 +34,14 @@ void JClientLoginProcessor::login(const QString& loginname,
 void JClientLoginProcessor::process(const QByteArray& data){
     QDataStream stream(data);
     JCode code;
+	QByteArray loginhashcode;
     stream>>code;
     if(code==0)
     {
         stream>>m_userid;
+		stream>>loginhashcode;
+		getSocket()->getSession()->setUserId(m_userid);
+		getSocket()->getSession()->setLoginHashCode(loginhashcode);
     }
     emit loginCode(code);
 }

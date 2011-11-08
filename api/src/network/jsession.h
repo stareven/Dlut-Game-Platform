@@ -10,8 +10,13 @@ public:
     explicit JSession(QObject *parent = 0);
 	JID getUserId()const;
 	void setUserId(JID userId);
+	const QByteArray& getLoginHashCode()const;
+	void setLoginHashCode(const QByteArray& code);
+	QString getLoginHashCodeStr()const;
+	void setLoginHashCodeStr(const QString& str);
 private:
 	JID m_userId;
+	QByteArray m_loginhashcode;
 };
 
 #endif // JSESSION_H

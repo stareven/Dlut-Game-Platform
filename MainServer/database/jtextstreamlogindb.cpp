@@ -63,6 +63,16 @@ bool JTextStreamLoginDB::checkRole(JID userId,JID role)
 	return s_loginusers.value(userId).m_role & (1<<role);
 }
 
+QString JTextStreamLoginDB::getLoginName(JID userId)
+{
+	return s_loginusers.value(userId).m_loginname;
+}
+
+QString JTextStreamLoginDB::getPassword(JID userId)
+{
+	return s_loginusers.value(userId).m_passwd;
+}
+
 void JTextStreamLoginDB::flush()
 {
 	if(s_loginusers.isEmpty()) return;

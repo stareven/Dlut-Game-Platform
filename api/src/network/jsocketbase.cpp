@@ -4,6 +4,7 @@
 
 #include "jnetworkdataprocessorbase.h"
 #include "../global/jcodeerror.h"
+#include "jsession.h"
 
 JSocketBase::JSocketBase(QTcpSocket* socket,QObject* parent)
     :QObject(parent),
@@ -11,6 +12,7 @@ JSocketBase::JSocketBase(QTcpSocket* socket,QObject* parent)
 {
     m_type=-1;
     m_size=0;
+	m_session=new JSession(this);
 	connect(m_socket,SIGNAL(readyRead()),SLOT(on_socket_readyRead()));
 	connect(m_socket,SIGNAL(error(QAbstractSocket::SocketError)),SLOT(on_socket_error(QAbstractSocket::SocketError)));
 	connect(m_socket,SIGNAL(connected()),SLOT(on_socket_connected()));
@@ -43,6 +45,11 @@ JCode JSocketBase::sendData(JType type,const QByteArray& data){
 
 QAbstractSocket::SocketState JSocketBase::socketState () const{
     return m_socket->state();
+}
+
+JSession* JSocketBase::getSession()const
+{
+	return m_session;
 }
 
 void JSocketBase::on_socket_readyRead(){
