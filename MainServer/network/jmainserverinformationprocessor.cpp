@@ -4,7 +4,7 @@
 
 #include <QDataStream>
 
-#include <Socket/JSession>
+#include <Session/JSession>
 #include <Global/CodeError>
 
 #include "service/jpermissioncontrol.h"
@@ -13,8 +13,8 @@
 
 using namespace NetworkData;
 
-JMainServerInformationProcessor::JMainServerInformationProcessor(JMainServerSocket *socket) :
-	JServerNetworkDataProcessorBase(socket->getSession(),socket),
+JMainServerInformationProcessor::JMainServerInformationProcessor(JSession* session,JSocketBase *socket) :
+	JServerNetworkDataProcessorBase(session,socket),
 	m_im(JMainServerInformationManager::getInstance())
 {
 }

@@ -4,14 +4,13 @@
 #include <QDebug>
 
 #include <Global/Login>
-#include <Socket/JSession>
+#include <Session/JSession>
 
 #include "service/jloginverification.h"
 #include "service/jloginhashcodecreator.h"
-#include "jmainserversocket.h"
 
-JMainServerLoginProcessor::JMainServerLoginProcessor(JMainServerSocket *socket) :
-	JServerNetworkDataProcessorBase(socket->getSession(),socket)
+JMainServerLoginProcessor::JMainServerLoginProcessor(JSession* session,JSocketBase *socket) :
+	JServerNetworkDataProcessorBase(session,socket)
 {
 }
 

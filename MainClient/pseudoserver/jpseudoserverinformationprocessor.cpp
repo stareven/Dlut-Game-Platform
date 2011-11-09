@@ -1,14 +1,13 @@
 #include "jpseudoserverinformationprocessor.h"
 
 #include <Global/CodeError>
-#include <Socket/JServerSocketBase>
 #include <Information/JInformation>
 #include <ClientRequest/JInformationRequestByHeadBase>
 
 using namespace NetworkData;
 
-JPseudoServerInformationProcessor::JPseudoServerInformationProcessor(JServerSocketBase *socket) :
-	JServerInformationProcessorBase(socket->getSession(),socket)
+JPseudoServerInformationProcessor::JPseudoServerInformationProcessor(JSession* session,JSocketBase *socket) :
+	JServerInformationProcessorBase(session,socket)
 {
 }
 

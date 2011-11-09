@@ -22,3 +22,42 @@ ClientInformationProcessor:
 		EIP_DownloadRemoteMtime : head remoteMtime
 		EIP_DownloadData : head localMtime data
 		EIP_UploadData : head result
+
+waste code:
+void JClientSocketBase::connectToServer(const SHost& host){
+	if(m_socket->state()==QAbstractSocket::ConnectedState)
+	{
+		if(m_socket->peerAddress()==host.m_address&& m_socket->peerPort()==host.m_port)
+		{
+			return;
+		}else{
+			m_socket->disconnectFromHost();
+		}
+	}
+	m_socket->connectToHost(host.m_address,host.m_port);
+}
+
+void JClientNetworkDataProcessorBase::setSocket(JClientSocketBase* socket)
+{
+	m_socket=socket;
+}
+
+JClientSocketBase* JClientNetworkDataProcessorBase::getSocket()const
+{
+	return m_socket;
+}
+
+JCode JClientNetworkDataProcessorBase::sendData(const QByteArray& data)
+{
+	return getSocket()->sendData(getProcessorType(),data);
+}
+
+void JServerNetworkDataProcessorBase::sendData(const QByteArray& data)
+{
+	m_socket->sendData(getProcessorType(),data);
+}
+
+JSession* JServerNetworkDataProcessorBase::getSession()const
+{
+	return m_session;
+}

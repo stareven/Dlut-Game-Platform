@@ -10,7 +10,7 @@
 class QTcpSocket;
 
 class JNetworkDataProcessorBase;
-class JSession;
+class SHost;
 
 class JSocketBase : public QObject{
     Q_OBJECT
@@ -18,11 +18,9 @@ public:
     explicit JSocketBase(QTcpSocket* const socket,QObject* parent=0);
 	JCode registerProcessor(JNetworkDataProcessorBase*);
 	JCode sendData(JType type,const QByteArray&);
+	void closeConnect();
+	virtual void connectToServer(const SHost&);
     QAbstractSocket::SocketState socketState () const;
-public:
-	JSession* getSession()const;
-private:
-	JSession* m_session;
 signals:
     void disconnected();
 	void error ( JCode errorCode );

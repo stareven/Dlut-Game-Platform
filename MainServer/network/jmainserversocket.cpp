@@ -1,6 +1,6 @@
 #include "jmainserversocket.h"
 
-#include <Socket/JSession>
+#include <Session/JSession>
 
 JMainServerSocket::JMainServerSocket(QTcpSocket* const socket,QObject *parent) :
 	JServerSocketBase(socket,parent)

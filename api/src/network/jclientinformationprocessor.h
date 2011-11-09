@@ -10,7 +10,7 @@ namespace NetworkData{
 class JClientInformationProcessor : public JClientNetworkDataProcessorBase
 {
     Q_OBJECT
-	explicit JClientInformationProcessor(JClientSocketBase *socket);
+	explicit JClientInformationProcessor(JSession* session,JSocketBase *socket);
 public:
 	static JClientInformationProcessor* getInstance();
 	void requestDownloadRemoteMtime(const NetworkData::JHead& head);

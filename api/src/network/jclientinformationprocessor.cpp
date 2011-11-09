@@ -3,11 +3,12 @@
 #include "jclientsocketbase.h"
 #include "jinformation.h"
 #include "jinformationmanager.h"
+#include "jclientsession.h"
 
 using namespace NetworkData;
 
-JClientInformationProcessor::JClientInformationProcessor(JClientSocketBase *socket) :
-	JClientNetworkDataProcessorBase(socket)
+JClientInformationProcessor::JClientInformationProcessor(JSession* session,JSocketBase *socket) :
+	JClientNetworkDataProcessorBase(session,socket)
 {
 }
 
@@ -16,7 +17,8 @@ JClientInformationProcessor* JClientInformationProcessor::getInstance()
 	static JClientInformationProcessor* instance=NULL;
 	if(NULL == instance){
 		JClientSocketBase* socket = JClientSocketBase::getInstance();
-		instance = new JClientInformationProcessor(socket);
+		JClientSession* session = JClientSession::getInstance();
+		instance = new JClientInformationProcessor(session,socket);
 		socket->registerProcessor(instance);
 	}
 	return instance;

@@ -9,7 +9,7 @@ class JMainServerLoginProcessor : public JServerNetworkDataProcessorBase
 {
     Q_OBJECT
 public:
-	explicit JMainServerLoginProcessor(JMainServerSocket *socket);
+	explicit JMainServerLoginProcessor(JSession* session,JSocketBase *socket);
 	void process(const QByteArray& data);
 	JType getProcessorType()const;
 };

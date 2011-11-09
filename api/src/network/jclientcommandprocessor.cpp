@@ -1,9 +1,10 @@
 #include "jclientcommandprocessor.h"
 
 #include "jclientsocketbase.h"
+#include "jclientsession.h"
 
-JClientCommandProcessor::JClientCommandProcessor(JClientSocketBase *socket) :
-	JClientNetworkDataProcessorBase(socket)
+JClientCommandProcessor::JClientCommandProcessor(JSession* session,JSocketBase *socket) :
+	JClientNetworkDataProcessorBase(session,socket)
 {
 }
 
@@ -12,7 +13,8 @@ JClientCommandProcessor* JClientCommandProcessor::getInstance()
 	static JClientCommandProcessor* instance=NULL;
 	if(NULL==instance){
 		JClientSocketBase* socket=JClientSocketBase::getInstance();
-		instance = new JClientCommandProcessor(socket);
+		JClientSession* session = JClientSession::getInstance();
+		instance = new JClientCommandProcessor(session,socket);
 		socket->registerProcessor(instance);
 	}
 	return instance;

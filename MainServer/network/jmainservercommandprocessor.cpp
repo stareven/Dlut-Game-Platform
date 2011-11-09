@@ -4,12 +4,12 @@
 #include "service/jcommandmanager.h"
 #include "jmainserversocket.h"
 
-#include <Socket/JSession>
+#include <Session/JSession>
 
 #include <QDataStream>
 
-JMainServerCommandProcessor::JMainServerCommandProcessor(JMainServerSocket *socket) :
-	JServerNetworkDataProcessorBase(socket->getSession(),socket)
+JMainServerCommandProcessor::JMainServerCommandProcessor(JSession* session,JSocketBase *socket) :
+	JServerNetworkDataProcessorBase(session,socket)
 {
 }
 

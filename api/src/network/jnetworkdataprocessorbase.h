@@ -7,12 +7,14 @@
 
 class QByteArray;
 
+class JSession;
+class JSocketBase;
+
 class JNetworkDataProcessorBase : public QObject
 {
     Q_OBJECT
 public:
-    JNetworkDataProcessorBase (QObject *parent = 0)
-        :QObject(parent){}
+	JNetworkDataProcessorBase (JSession* session,JSocketBase *socket);
     virtual void process(const QByteArray& data)=0;
 	virtual JType getProcessorType()const=0;
 
@@ -21,6 +23,13 @@ public:
 		EPI_INFORMATION,
 		EPI_COMMAND,
     };
+
+protected:
+	JCode sendData(const QByteArray& data);
+	JSession* getSession()const;
+private:
+	JSocketBase* m_socket;
+	JSession* m_session;
 };
 
 #endif // JNETWORKDATAPROCESSORBASE_H

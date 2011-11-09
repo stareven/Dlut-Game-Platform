@@ -8,7 +8,7 @@
 
 using namespace NetworkData;
 
-JServerInformationProcessorBase::JServerInformationProcessorBase(JSession* session,JServerSocketBase *socket) :
+JServerInformationProcessorBase::JServerInformationProcessorBase(JSession* session,JSocketBase *socket) :
 	JServerNetworkDataProcessorBase(session,socket)
 {
 }

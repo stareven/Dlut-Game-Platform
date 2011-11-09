@@ -11,7 +11,7 @@ class JServerInformationProcessorBase : public JServerNetworkDataProcessorBase
 {
     Q_OBJECT
 public:
-	explicit JServerInformationProcessorBase(JSession* session,JServerSocketBase *socket);
+	explicit JServerInformationProcessorBase(JSession* session,JSocketBase *socket);
 	void process(const QByteArray& data);
 	JType getProcessorType()const;
 

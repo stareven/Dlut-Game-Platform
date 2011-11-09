@@ -7,7 +7,7 @@
 class JClientLoginProcessor : public JClientNetworkDataProcessorBase
 {
 	Q_OBJECT
-	explicit JClientLoginProcessor(JClientSocketBase *socket);
+	explicit JClientLoginProcessor(JSession* session,JSocketBase *socket);
 public:
     static JClientLoginProcessor* getInstance();
     void login(const QString& loginname,const QString& passwd,ERole role);

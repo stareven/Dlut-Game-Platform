@@ -1,5 +1,7 @@
 #include "jpseudoserver.h"
 
+#include <Session/JSession>
+
 #include "jpseudoserversocket.h"
 #include "jpseudoserverinformationprocessor.h"
 
@@ -11,7 +13,8 @@ JPseudoServer::JPseudoServer(QObject *parent) :
 JServerSocketBase* JPseudoServer::getConnection(QTcpSocket* socket,QObject* parent)const
 {
 	JPseudoServerSocket* connection = new JPseudoServerSocket(socket,parent);
-	JServerNetworkDataProcessorBase* informationProcessor = new JPseudoServerInformationProcessor(connection);
+	JSession* session = new JSession(connection);
+	JServerNetworkDataProcessorBase* informationProcessor = new JPseudoServerInformationProcessor(session,connection);
 	connection->registerProcessor(informationProcessor);
 	return connection;
 }

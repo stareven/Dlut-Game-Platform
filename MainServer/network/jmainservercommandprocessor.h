@@ -3,13 +3,11 @@
 
 #include <Processor/JServerNetworkDataProcessorBase>
 
-class JMainServerSocket;
-
 class JMainServerCommandProcessor : public JServerNetworkDataProcessorBase
 {
     Q_OBJECT
 public:
-	explicit JMainServerCommandProcessor(JMainServerSocket *socket);
+	explicit JMainServerCommandProcessor(JSession* session,JSocketBase *socket);
 	void process(const QByteArray& data);
 	JType getProcessorType()const;
 };

@@ -4,6 +4,7 @@
 
 #include "jnetworkdataprocessorbase.h"
 #include "../global/jcodeerror.h"
+#include "../global/shost.h"
 #include "jsession.h"
 
 JSocketBase::JSocketBase(QTcpSocket* socket,QObject* parent)
@@ -11,8 +12,7 @@ JSocketBase::JSocketBase(QTcpSocket* socket,QObject* parent)
     m_socket(socket)
 {
     m_type=-1;
-    m_size=0;
-	m_session=new JSession(this);
+	m_size=0;
 	connect(m_socket,SIGNAL(readyRead()),SLOT(on_socket_readyRead()));
 	connect(m_socket,SIGNAL(error(QAbstractSocket::SocketError)),SLOT(on_socket_error(QAbstractSocket::SocketError)));
 	connect(m_socket,SIGNAL(connected()),SLOT(on_socket_connected()));
@@ -43,13 +43,27 @@ JCode JSocketBase::sendData(JType type,const QByteArray& data){
     return 0;
 }
 
-QAbstractSocket::SocketState JSocketBase::socketState () const{
-    return m_socket->state();
+void JSocketBase::closeConnect()
+{
+	m_socket->disconnectFromHost();
 }
 
-JSession* JSocketBase::getSession()const
+void JSocketBase::connectToServer(const SHost& host)
 {
-	return m_session;
+	if(m_socket->state()==QAbstractSocket::ConnectedState)
+	{
+		if(m_socket->peerAddress()==host.m_address&& m_socket->peerPort()==host.m_port)
+		{
+			return;
+		}else{
+			m_socket->disconnectFromHost();
+		}
+	}
+	m_socket->connectToHost(host.m_address,host.m_port);
+}
+
+QAbstractSocket::SocketState JSocketBase::socketState () const{
+    return m_socket->state();
 }
 
 void JSocketBase::on_socket_readyRead(){

@@ -7,7 +7,7 @@ class JPseudoServerInformationProcessor : public JServerInformationProcessorBase
 {
     Q_OBJECT
 public:
-	explicit JPseudoServerInformationProcessor(JServerSocketBase *socket);
+	explicit JPseudoServerInformationProcessor(JSession* session,JSocketBase *socket);
 protected:
 	void processDownloadRemoteMtime(const NetworkData::JHead& head);
 	void processDownloadData(const NetworkData::JHead& head);

@@ -1,10 +1,10 @@
 #include "jclientloginprocessor.h"
 
 #include "jclientsocketbase.h"
-#include "jsession.h"
+#include "jclientsession.h"
 
-JClientLoginProcessor::JClientLoginProcessor(JClientSocketBase *socket) :
-	JClientNetworkDataProcessorBase(socket)
+JClientLoginProcessor::JClientLoginProcessor(JSession* session,JSocketBase *socket) :
+	JClientNetworkDataProcessorBase(session,socket)
 {
 }
 
@@ -12,7 +12,8 @@ JClientLoginProcessor* JClientLoginProcessor::getInstance(){
     static JClientLoginProcessor* instance=NULL;
     if(NULL==instance){
         JClientSocketBase* socket=JClientSocketBase::getInstance();
-		instance=new JClientLoginProcessor(socket);
+		JClientSession* session = JClientSession::getInstance();
+		instance=new JClientLoginProcessor(session,socket);
 		socket->registerProcessor(instance);
     }
     return instance;
@@ -40,8 +41,8 @@ void JClientLoginProcessor::process(const QByteArray& data){
     {
         stream>>m_userid;
 		stream>>loginhashcode;
-		getSocket()->getSession()->setUserId(m_userid);
-		getSocket()->getSession()->setLoginHashCode(loginhashcode);
+		getSession()->setUserId(m_userid);
+		getSession()->setLoginHashCode(loginhashcode);
     }
     emit loginCode(code);
 }

@@ -7,7 +7,7 @@
 class JClientCommandProcessor : public JClientNetworkDataProcessorBase
 {
     Q_OBJECT
-	explicit JClientCommandProcessor(JClientSocketBase *socket);
+	explicit JClientCommandProcessor(JSession* session,JSocketBase *socket);
 public:
 	static JClientCommandProcessor* getInstance();
 	void sendCommand(ECommandType type,JID param1=-1);
