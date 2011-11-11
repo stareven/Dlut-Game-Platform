@@ -54,6 +54,7 @@ JRequestLogin::JRequestLogin(QObject *parent) :
 {
     m_processor=JClientLoginProcessor::getInstance();
 	m_loginError=EL_SUCCESS;
+	m_state=ELS_Init;
 	connect(m_processor,SIGNAL(loginCode(JCode)),SLOT(on_processor_loginCode(JCode)));
 }
 

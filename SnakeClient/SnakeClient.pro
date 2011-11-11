@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += network
 
 TARGET = SnakeClient
 TEMPLATE = app

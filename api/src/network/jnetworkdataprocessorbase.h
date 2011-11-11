@@ -22,6 +22,7 @@ public:
         EPI_LOGIN,
 		EPI_INFORMATION,
 		EPI_COMMAND,
+		EPI_UserRegister,
     };
 
 protected:

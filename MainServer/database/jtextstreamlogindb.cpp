@@ -2,6 +2,7 @@
 
 #include <Global/Global>
 #include <Global/Login>
+#include <Global/Register>
 
 #include <QFile>
 #include <QTextStream>
@@ -71,6 +72,23 @@ QString JTextStreamLoginDB::getLoginName(JID userId)
 QString JTextStreamLoginDB::getPassword(JID userId)
 {
 	return s_loginusers.value(userId).m_passwd;
+}
+
+JCode JTextStreamLoginDB::addLoginUser(const QString& loginname,const QString& password)
+{
+	JID userId;
+	for(userId=1001;userId<65535;++userId){
+		if(!s_loginusers.contains(userId)){
+			SLoginUser user;
+			user.m_userid = userId;
+			user.m_loginname = loginname;
+			user.m_passwd = password;
+			user.m_role = 1<<ROLE_GAMEPLAYER;
+			s_loginusers.insert(user.m_userid,user);
+			return 0;
+		}
+	}
+	return ER_UserIdFull;
 }
 
 void JTextStreamLoginDB::flush()

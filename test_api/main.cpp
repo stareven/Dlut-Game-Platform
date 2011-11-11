@@ -6,6 +6,7 @@
 #include "ClientRequest/JUploadServerInfo"
 #include "Socket/JClientSocketBase"
 #include <Session/JClientSession>
+#include <ClientRequest/JRequestUserRegister>
 
 #include <QHostAddress>
 #include <QCoreApplication>
@@ -18,7 +19,13 @@ int main(int argc, char *argv[]){
 		qDebug()<<login.getConnectError()<<JClientSocketBase::getInstance()->socketState();
 		return 1;
 	}
-	login.login("elephant","acm",ROLE_GAMEPLAYER);
+	JRequestUserRegister reg;
+	reg.sendRegister("tryregister","register");
+	if(!reg.waitForRegisterResult(1000)){
+		qDebug()<<"register failed"<<reg.getRegisterError();
+		return 1;
+	}
+	login.login("tryregister","register",ROLE_GAMEPLAYER);
 	bool rst = login.waitForLogined(1000);
 	qDebug()<<"rst="<<rst<<" login error:"<<login.getLoginError();
 	qDebug()<<"user id = "<<JClientSession::getInstance()->getUserId()

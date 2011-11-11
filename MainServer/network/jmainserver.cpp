@@ -4,6 +4,7 @@
 #include "jmainserverloginprocessor.h"
 #include "jmainserverinformationprocessor.h"
 #include "jmainservercommandprocessor.h"
+#include "jmainserveruserregisterprocessor.h"
 #include "jmainserversession.h"
 
 JMainServer::JMainServer(QObject *parent) :
@@ -18,8 +19,10 @@ JServerSocketBase* JMainServer::getConnection(QTcpSocket* socket,QObject* parent
 	JServerNetworkDataProcessorBase* loginProcessor = new JMainServerLoginProcessor(session,connection);
 	JServerNetworkDataProcessorBase* informationProcessor = new JMainServerInformationProcessor(session,connection);
 	JServerNetworkDataProcessorBase* commandProcessor = new JMainServerCommandProcessor(session,connection);
+	JServerNetworkDataProcessorBase* userRegisterProcessor = new JMainServerUserRegisterProcessor(session,connection);
 	connection->registerProcessor(loginProcessor);
 	connection->registerProcessor(informationProcessor);
 	connection->registerProcessor(commandProcessor);
+	connection->registerProcessor(userRegisterProcessor);
 	return connection;
 }

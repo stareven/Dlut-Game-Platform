@@ -12,6 +12,7 @@ public:
 	bool checkRole(JID,JID);
 	QString getLoginName(JID userId);
 	QString getPassword(JID userId);
+	JCode addLoginUser(const QString& loginname,const QString& password);
 
 	static void flush();
 };
