@@ -9,6 +9,8 @@
 
 #include <ClientRequest/JRequestGameInfo>
 #include <ClientRequest/JRequestUserInfo>
+#include <Socket/JClientSocketBase>
+#include <Session/JSession>
 
 #include "jdlgselectserver.h"
 #include "widgetadmin/jwidgetadmin.h"
@@ -55,6 +57,7 @@ void MainWindow::showEvent ( QShowEvent * event)
 {
 	QMainWindow::showEvent(event);
     on_btn_refresh_list_clicked();
+	on_btn_refresh_myuserinfo_clicked();
 }
 
 void MainWindow::on_actionShow_admin_window_triggered()
@@ -183,4 +186,13 @@ void MainWindow::on_btn_start_game_clicked()
 		return;
 	}
 	//*/
+}
+
+void MainWindow::on_btn_refresh_myuserinfo_clicked()
+{
+	JID myUserID = JClientSocketBase::getInstance()->getSession()->getUserId();
+	JUserInfo myUserInfo = m_requserinfo->pullUserInfo(myUserID);
+	ui->text_userid->setText(QString::number(myUserInfo.getUserId()));
+	ui->text_nickname->setText(myUserInfo.getNickname());
+	ui->text_organization->setText(myUserInfo.getOrganization());
 }

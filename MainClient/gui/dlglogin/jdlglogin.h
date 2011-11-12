@@ -33,7 +33,8 @@ private:
 	JRequestLogin *m_rqslogin;
 
 private slots:
-	void on_cb_role_currentIndexChanged(int index);
+	void on_btn_register_clicked();
+ void on_cb_role_currentIndexChanged(int index);
 	void on_edt_passwd_editingFinished();
     void on_edt_username_editingFinished();
 signals:

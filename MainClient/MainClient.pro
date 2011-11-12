@@ -16,7 +16,8 @@ SOURCES += main/main.cpp \
     gui/widgetadmin/jwidgetadmin.cpp \
     pseudoserver/jpseudoserver.cpp \
     pseudoserver/jpseudoserversocket.cpp \
-    pseudoserver/jpseudoserverinformationprocessor.cpp
+    pseudoserver/jpseudoserverinformationprocessor.cpp \
+    gui/dialoguserregister/jdialoguserregister.cpp
 HEADERS += gui/mainwindow.h \
     gui/dlglogin/jcomboselectserver.h \
     gui/dlglogin/jdlglogin.h \
@@ -29,12 +30,14 @@ HEADERS += gui/mainwindow.h \
     gui/widgetadmin/jwidgetadmin.h \
     pseudoserver/jpseudoserver.h \
     pseudoserver/jpseudoserversocket.h \
-    pseudoserver/jpseudoserverinformationprocessor.h
+    pseudoserver/jpseudoserverinformationprocessor.h \
+    gui/dialoguserregister/jdialoguserregister.h
 FORMS += gui/mainwindow.ui \
     gui/dlglogin/jdlglogin.ui \
     gui/dlglogin/jdlgnewserver.ui \
     gui/jdlgselectserver.ui \
-    gui/widgetadmin/jwidgetadmin.ui
+    gui/widgetadmin/jwidgetadmin.ui \
+    gui/dialoguserregister/jdialoguserregister.ui
 include(../api/api.pri)
 QMAKE_RPATHDIR = ../api/lib
 RESOURCES += \

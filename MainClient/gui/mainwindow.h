@@ -28,6 +28,7 @@ private:
     Ui::MainWindow *ui;
 	JWidgetAdmin *m_widgetadmin;
 private slots:
+	void on_btn_refresh_myuserinfo_clicked();
 	void on_actionShow_admin_window_triggered();
 	void on_btn_start_game_clicked();
 	void on_list_game_itemClicked(QListWidgetItem* item);

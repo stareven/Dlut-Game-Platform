@@ -3,8 +3,6 @@
 
 #include <ClientRequest/JCommandSendBase>
 
-#include <QDebug>
-
 JWidgetAdmin::JWidgetAdmin(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::JWidgetAdmin)
@@ -19,14 +17,12 @@ JWidgetAdmin::~JWidgetAdmin()
 
 void JWidgetAdmin::on_btn_shutdown_mainserver_clicked()
 {
-	qDebug()<<"JWidgetAdmin::on_btn_shutdown_mainserver_clicked";
 	JCommandSendBase csb;
 	csb.sendShutdown();
 }
 
 void JWidgetAdmin::on_btn_restart_mainserver_clicked()
 {
-	qDebug()<<"JWidgetAdmin::on_btn_restart_mainserver_clicked";
 	JCommandSendBase csb;
 	csb.sendRestart();;
 }

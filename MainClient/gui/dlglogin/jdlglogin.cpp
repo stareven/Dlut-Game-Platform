@@ -1,12 +1,12 @@
 #include "jdlglogin.h"
 #include "ui_jdlglogin.h"
 
-
-#include <QMessageBox>
+#include "../dialoguserregister/jdialoguserregister.h"
 
 #include <ClientRequest/JRequestLogin>
 #include <Global/Login>
 
+#include <QMessageBox>
 #include <QPalette>
 
 JDlgLogin::JDlgLogin(QWidget *parent) :
@@ -30,7 +30,6 @@ JDlgLogin::JDlgLogin(QWidget *parent) :
     ui->lab_message->setPalette(palette);
     ui->lab_passwd->setPalette(palette);
     ui->lab_role->setPalette(palette);
-    ui->lab_server->setPalette(palette);
     ui->chb_autologin->setPalette(palette);
     ui->chb_rememberpassword->setPalette(palette);
     connect(this,SIGNAL(autoLogin()),this,SLOT(accept()),Qt::QueuedConnection);
@@ -71,14 +70,6 @@ void JDlgLogin::accept()
                               );
         return;
     }
-    if(ui->cb_server->getServer().isEmpty())
-    {
-        QMessageBox::critical(this,
-                              tr("server is empty"),
-                              tr("server can not be empty!")
-                              );
-		return;
-    }
     m_remember.setIsRemember(ui->chb_rememberpassword->isChecked());
     m_remember.setIsAutoLogin(ui->chb_autologin->isChecked());
     if(ui->chb_rememberpassword->isChecked())
@@ -87,15 +78,6 @@ void JDlgLogin::accept()
     }else{
 		m_remember.remember();
         m_remember.remove();
-	}
-	SHost freeporthost=ui->cb_server->getServer();
-	ui->lab_message->setText(tr("connecting to server %1:%2").arg(freeporthost.m_address.toString()).arg(freeporthost.m_port));
-	m_rqslogin->connectToHost(freeporthost.m_address,freeporthost.m_port);
-
-	if(!m_rqslogin->waitForConnected(1000))
-	{
-		ui->lab_message->setText(tr("connect failed : %1").arg(m_rqslogin->getConnectError()));
-		return;
 	}
 	m_rqslogin->login(ui->edt_username->text(),
 					  ui->edt_passwd->text(),
@@ -129,4 +111,10 @@ void JDlgLogin::on_edt_passwd_editingFinished()
 void JDlgLogin::on_cb_role_currentIndexChanged(int index)
 {
 	m_remember.setRole(index);
+}
+
+void JDlgLogin::on_btn_register_clicked()
+{
+	JDialogUserRegister dlg(this);
+	dlg.exec();
 }

@@ -2,8 +2,6 @@
 
 #include <QSettings>
 
-#include "jdlgnewserver.h"
-
 JComboSelectServer::JComboSelectServer(QWidget *parent) :
     QComboBox(parent)
 {
@@ -20,27 +18,25 @@ const SHallServer& JComboSelectServer::getServer()const
     return noserver;
 }
 
-void JComboSelectServer::selectedServer(int index)
+void JComboSelectServer::addServer(const SHallServer& server)
 {
-    if(index==m_servers.count())
-    {
-        addNewServer();
-	}else{
-		QSettings settings(getFileName(), QSettings::IniFormat,this);
-		settings.setValue(tr("select/current"),index);
-	}
+	m_servers.append(server);
+	updateServers();
+	saveServers();
+	setCurrentIndex(m_servers.count()-1);
 }
 
-void JComboSelectServer::addNewServer()
+void JComboSelectServer::removeCurrentServer()
 {
-    JDlgNewServer dlg(this);
-    if(dlg.exec()==QDialog::Accepted)
-    {
-        m_servers.append(dlg.getServer());
-        updateServers();
-		saveServers();
-		setCurrentIndex(m_servers.count()-1);
-    }
+	m_servers.removeAt(currentIndex());
+	updateServers();
+	saveServers();
+}
+
+void JComboSelectServer::selectedServer(int index)
+{
+	QSettings settings(getFileName(), QSettings::IniFormat,this);
+	settings.setValue(tr("select/current"),index);
 }
 
 void JComboSelectServer::readServers()
@@ -87,7 +83,6 @@ void JComboSelectServer::updateServers()
     foreach(SHallServer server,m_servers)
     {
 		addItem(server.toString());
-    }
-	addItem("new server");
+	}
 	setCurrentIndex(select);
 }

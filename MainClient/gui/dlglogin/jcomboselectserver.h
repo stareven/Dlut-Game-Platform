@@ -11,14 +11,15 @@ Q_OBJECT
 public:
     explicit JComboSelectServer(QWidget *parent = 0);
     const SHallServer& getServer()const;
+	void addServer(const SHallServer& server);
+	void removeCurrentServer();
 private slots:
     void selectedServer(int);
 private:
     void readServers();
     void saveServers();
     const QString& getFileName()const;
-    void updateServers();
-    void addNewServer();
+	void updateServers();
 private:
     QList<SHallServer> m_servers;
 };

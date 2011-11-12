@@ -17,12 +17,14 @@ class JDlgSelectServer : public QDialog
 
 public:
     explicit JDlgSelectServer(QWidget *parent = 0);
-    ~JDlgSelectServer();
-	void addServer(const JServerInfo&);
-	void setText(const QString&);
-	JID getSelectedServer()const;
+	~JDlgSelectServer();
+	void accept();
 private:
     Ui::JDlgSelectServer *ui;
+
+private slots:
+	void on_btn_remove_clicked();
+	void on_btn_add_clicked();
 };
 
 #endif // JDLGSELECTSERVER_H

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>382</width>
-    <height>99</height>
+    <height>263</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,11 +29,11 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QComboBox" name="cb_servers">
+  <widget class="JComboSelectServer" name="cb_servers">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>50</y>
+     <y>70</y>
      <width>261</width>
      <height>29</height>
     </rect>
@@ -42,17 +42,66 @@
   <widget class="QLabel" name="lab_text">
    <property name="geometry">
     <rect>
-     <x>28</x>
+     <x>10</x>
      <y>0</y>
      <width>251</width>
      <height>51</height>
     </rect>
    </property>
    <property name="text">
-    <string>text</string>
+    <string>please select which server to connect</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_add">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>110</y>
+     <width>98</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>add server</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btn_remove">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>150</y>
+     <width>98</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>remove server</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_info">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>130</y>
+     <width>201</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>waiting to connect</string>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>JComboSelectServer</class>
+   <extends>QComboBox</extends>
+   <header>gui/dlglogin/jcomboselectserver.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>

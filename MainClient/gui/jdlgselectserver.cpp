@@ -1,9 +1,12 @@
 #include "jdlgselectserver.h"
 #include "ui_jdlgselectserver.h"
+#include "dlglogin/jdlgnewserver.h"
 
 #include <DataStruct/JServerInfo>
+#include <ClientRequest/JRequestBase>
 
 #include <QPalette>
+#include <QMessageBox>
 
 JDlgSelectServer::JDlgSelectServer(QWidget *parent) :
     QDialog(parent),
@@ -22,23 +25,48 @@ JDlgSelectServer::~JDlgSelectServer()
     delete ui;
 }
 
-void JDlgSelectServer::addServer(const JServerInfo& si)
+void JDlgSelectServer::accept()
 {
-	ui->cb_servers->addItem(tr("%1 %2 %3:%4")
-							.arg(si.getServerId())
-							.arg(si.getName())
-							.arg(si.getHost().m_address.toString())
-							.arg(si.getHost().m_port));
+	if(ui->cb_servers->getServer().isEmpty())
+	{
+		QMessageBox::critical(this,
+							  tr("server is empty"),
+							  tr("server can not be empty!")
+							  );
+		return;
+	}
+	JRequestBase req;
+	const SHallServer& server = ui->cb_servers->getServer();
+	ui->label_info->setText(
+			tr("connection to server %1:%2")
+			.arg(server.getAddress().toString())
+			.arg(server.getPort())
+			);
+	req.connectToHost(server.getAddress(),server.getPort());
+	if(req.waitForConnected(1000)){
+		ui->label_info->setText(
+				tr("connect succeed")
+				);
+		QDialog::accept();
+	}else{
+		ui->label_info->setText(
+				tr("connect failed : %1")
+				.arg(req.getConnectError())
+				);
+	}
 }
 
-void JDlgSelectServer::setText(const QString& str)
+void JDlgSelectServer::on_btn_add_clicked()
 {
-	ui->lab_text->setText(str);
+	JDlgNewServer dlg(this);
+	if(dlg.exec()==QDialog::Accepted)
+	{
+		ui->cb_servers->addServer(dlg.getServer());
+	}
+
 }
 
-JID JDlgSelectServer::getSelectedServer()const
+void JDlgSelectServer::on_btn_remove_clicked()
 {
-	QString select=ui->cb_servers->currentText();
-	int index= select.indexOf(tr(" "));
-	return select.left(index).toInt();
+	ui->cb_servers->removeCurrentServer();
 }
