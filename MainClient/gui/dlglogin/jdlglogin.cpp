@@ -5,6 +5,7 @@
 
 #include <ClientRequest/JRequestLogin>
 #include <Global/Login>
+#include <Socket/JClientSocketBase>
 
 #include <QMessageBox>
 #include <QPalette>
@@ -33,6 +34,9 @@ JDlgLogin::JDlgLogin(QWidget *parent) :
     ui->chb_autologin->setPalette(palette);
     ui->chb_rememberpassword->setPalette(palette);
     connect(this,SIGNAL(autoLogin()),this,SLOT(accept()),Qt::QueuedConnection);
+	connect(JClientSocketBase::getInstance(),
+			SIGNAL(disconnected()),
+			SLOT(On_socket_disconnected()));
 }
 
 JDlgLogin::~JDlgLogin()
@@ -101,6 +105,13 @@ void JDlgLogin::on_edt_username_editingFinished()
 {
     m_remember.changeUserName(ui->edt_username->text());
     ui->edt_passwd->setText(m_remember.getPassWord());
+}
+
+void JDlgLogin::On_socket_disconnected()
+{
+	QMessageBox::critical(this,
+						  tr("network disconnected"),
+						  tr("network disconnected."));
 }
 
 void JDlgLogin::on_edt_passwd_editingFinished()

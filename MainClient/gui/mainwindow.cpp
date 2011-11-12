@@ -35,6 +35,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	m_requserinfo=new JRequestUserInfo(this);
 	m_widgetadmin=NULL;
+	connect(JClientSocketBase::getInstance(),
+			SIGNAL(disconnected()),
+			SLOT(On_socket_disconnected()));
 }
 
 MainWindow::~MainWindow()
@@ -76,6 +79,13 @@ void MainWindow::on_btn_refresh_list_clicked()
     ui->tb_game->clear();
 	m_currentId=-1;
 	updateGameList();
+}
+
+void MainWindow::On_socket_disconnected()
+{
+	QMessageBox::critical(this,
+						  tr("network disconnected"),
+						  tr("network disconnected."));
 }
 
 void MainWindow::on_list_game_itemClicked(QListWidgetItem* item)

@@ -34,19 +34,24 @@ ClientInformationProcessor:
 
 方案：
 1、邮件系统可以基于已有的Information系统构建，
-    JMain : public JSerializableData
+    JMail : public JSerializableData
         - JID m_sender;//需要服务器端验证
         - QList<JID> m_receiver;
         - QDataTime m_sendtime;//需要服务器端验证
         - QString m_content;
 2、在《设计模式》中介绍过一个strategy的模式。邮件系统的服务器端验证使用strategy模式设计。并提供一个实现，只验证sender和sendtime。
-+3、服务器端socket在调用processor前增加验证功能。同样使用strategy设计。strategy对象能够拿到socket对象以调用disconnectFromHost方法，并由返回值决定是否调用process方法。
+++3、服务器端socket在调用processor前增加验证功能。同样使用strategy设计。strategy对象能够拿到socket对象以调用disconnectFromHost方法，并由返回值决定是否调用process方法。
 +4、Information系统中增加JLoginUser以支持注册功能。
 x5、将Information系统中的验证过程也用strategy重新实现。
 .6、单独增加一个更改用户权限的接口。使用strategy设计。基本的实现为：一个管理员只能给一个向别比他低的用户赋予一个级别比他低的权限。
 7、MainClient断线时弹出提出窗口。
 +8、Command接口增加返回值。
 
+
+1、邮件系统。
+2、更改用户权限。
+3、断线时弹出提示。
+4、重做美工。
 
 感谢
 推荐

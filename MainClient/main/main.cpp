@@ -6,12 +6,10 @@
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
-	JDlgSelectServer dlgs;
-	if(dlgs.exec() ==QDialog::Rejected){
+	if(JDlgSelectServer().exec() ==QDialog::Rejected){
 		return 0;
 	}
-	JDlgLogin dlg;
-	if(dlg.exec()==QDialog::Rejected)
+	if(JDlgLogin().exec()==QDialog::Rejected)
     {
         return 0;
 	}
