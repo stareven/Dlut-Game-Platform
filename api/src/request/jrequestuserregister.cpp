@@ -1,6 +1,5 @@
 #include "jrequestuserregister.h"
 
-#include <QDebug>
 #include <QCoreApplication>
 
 #include "../network/jclientuserregisterprocessor.h"
@@ -58,7 +57,6 @@ const QString& JRequestUserRegister::getRegisterError()const
 
 void JRequestUserRegister::on_processor_receiveRegisterResult(JCode result,JID userId,const QString& loginname)
 {
-	qDebug()<<__FILE__<<__FUNCTION__<<result<<' '<<userId<<' '<<loginname;
 	switch(result){
 	case 0:
 		m_state=ERS_Success;

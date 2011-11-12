@@ -14,6 +14,7 @@
 
 #include "jdlgselectserver.h"
 #include "widgetadmin/jwidgetadmin.h"
+#include "dialogupdateuserinfo/jdialogupdateuserinfo.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -191,8 +192,17 @@ void MainWindow::on_btn_start_game_clicked()
 void MainWindow::on_btn_refresh_myuserinfo_clicked()
 {
 	JID myUserID = JClientSocketBase::getInstance()->getSession()->getUserId();
-	JUserInfo myUserInfo = m_requserinfo->pullUserInfo(myUserID);
-	ui->text_userid->setText(QString::number(myUserInfo.getUserId()));
-	ui->text_nickname->setText(myUserInfo.getNickname());
-	ui->text_organization->setText(myUserInfo.getOrganization());
+	m_myUserInfo = m_requserinfo->pullUserInfo(myUserID);
+	ui->text_userid->setText(QString::number(m_myUserInfo.getUserId()));
+	ui->text_nickname->setText(m_myUserInfo.getNickname());
+	ui->text_organization->setText(m_myUserInfo.getOrganization());
+}
+
+void MainWindow::on_btn_update_myuserinfo_clicked()
+{
+	JDialogUpdateUserInfo dlg(this);
+	dlg.setInitUserInfo(m_myUserInfo);
+	if(QDialog::Accepted == dlg.exec()){
+		on_btn_refresh_myuserinfo_clicked();
+	}
 }

@@ -130,10 +130,10 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="2" colspan="2">
+    <item row="4" column="3">
      <widget class="QPushButton" name="btn_refresh_myuserinfo">
       <property name="text">
-       <string>refresh my user info</string>
+       <string>refresh</string>
       </property>
      </widget>
     </item>
@@ -177,6 +177,13 @@
      <widget class="QPushButton" name="btn_refresh_list">
       <property name="text">
        <string>refresh list</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QPushButton" name="btn_update_myuserinfo">
+      <property name="text">
+       <string>update</string>
       </property>
      </widget>
     </item>

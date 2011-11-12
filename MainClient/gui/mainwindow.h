@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include <Global/Global>
+#include <DataStruct/JUserInfo>
 
 namespace Ui {
     class MainWindow;
@@ -28,6 +29,7 @@ private:
     Ui::MainWindow *ui;
 	JWidgetAdmin *m_widgetadmin;
 private slots:
+	void on_btn_update_myuserinfo_clicked();
 	void on_btn_refresh_myuserinfo_clicked();
 	void on_actionShow_admin_window_triggered();
 	void on_btn_start_game_clicked();
@@ -40,6 +42,7 @@ private:
     JRequestGameInfo* m_gis;
 	JRequestUserInfo* m_requserinfo;
 	JID m_currentId;
+	JUserInfo m_myUserInfo;
 };
 
 #endif // MAINWINDOW_H
