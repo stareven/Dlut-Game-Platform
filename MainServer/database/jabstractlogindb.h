@@ -4,6 +4,7 @@
 #include <QObject>
 
 #include "Global/Global"
+#include <Global/Login>
 
 class JAbstractLoginDB : public QObject
 {
@@ -16,6 +17,8 @@ public:
 	virtual QString getLoginName(JID userId)=0;
 	virtual QString getPassword(JID userId)=0;
 	virtual JCode addLoginUser(const QString& loginname,const QString& password)=0;
+	virtual JRoleCombination getRoleCombination(JID userId)=0;
+	virtual void setRoleCombination(JID userId,JRoleCombination role)=0;
 };
 
 #endif // JABSTRACTLOGINDB_H

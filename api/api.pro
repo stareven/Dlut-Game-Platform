@@ -48,7 +48,9 @@ HEADERS += src/network/jnetworkdataprocessorbase.h src/network/jsocketbase.h \
     src/request/jrequestuserregister.h \
     src/global/eregister.h \
     src/network/jsocketstrategy.h \
-    src/global/processor.h
+    src/global/processor.h \
+    src/network/jclientcontrolroleprocessor.h \
+    src/request/jrequestcontrolrole.h
 SOURCES += src/network/jsocketbase.cpp \
     src/network/jclientsocketbase.cpp \
     src/network/jserversocketbase.cpp \
@@ -83,7 +85,9 @@ SOURCES += src/network/jsocketbase.cpp \
     src/network/jnetworkdataprocessorbase.cpp \
     src/network/jclientuserregisterprocessor.cpp \
     src/request/jrequestuserregister.cpp \
-    src/network/jsocketstrategy.cpp
+    src/network/jsocketstrategy.cpp \
+    src/network/jclientcontrolroleprocessor.cpp \
+    src/request/jrequestcontrolrole.cpp
 
 OTHER_FILES += \
     ../doc/rebuild-network.txt

@@ -13,7 +13,7 @@ struct SLoginUser
 	JID m_userid;
 	QString m_loginname;
 	QString m_passwd;
-	JRole m_role;
+	JRoleCombination m_role;
 };
 
 static QMap<JID,SLoginUser> s_loginusers;
@@ -89,6 +89,21 @@ JCode JTextStreamLoginDB::addLoginUser(const QString& loginname,const QString& p
 		}
 	}
 	return ER_UserIdFull;
+}
+
+JRoleCombination JTextStreamLoginDB::getRoleCombination(JID userId)
+{
+	if(s_loginusers.contains(userId)){
+		return s_loginusers.value(userId).m_role;
+	}
+	return -1;
+}
+
+void JTextStreamLoginDB::setRoleCombination(JID userId,JRoleCombination role)
+{
+	if(s_loginusers.contains(userId)){
+		s_loginusers[userId].m_role=role;
+	}
 }
 
 void JTextStreamLoginDB::flush()

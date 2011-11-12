@@ -6,6 +6,7 @@ enum EProcessorType{
 	EPI_INFORMATION,
 	EPI_COMMAND,
 	EPI_UserRegister,
+	EPI_ControlRole,
 };
 
 #endif // PROCESSOR_H

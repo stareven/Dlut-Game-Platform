@@ -13,6 +13,8 @@ public:
 	QString getLoginName(JID userId);
 	QString getPassword(JID userId);
 	JCode addLoginUser(const QString& loginname,const QString& password);
+	JRoleCombination getRoleCombination(JID userId);
+	void setRoleCombination(JID userId,JRoleCombination role);
 
 	static void flush();
 };
