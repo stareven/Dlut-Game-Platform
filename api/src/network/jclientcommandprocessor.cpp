@@ -29,9 +29,14 @@ void JClientCommandProcessor::sendCommand(ECommandType type,JID param1)
 	sendData(data);
 }
 
-void JClientCommandProcessor::process(const QByteArray&)
+void JClientCommandProcessor::process(const QByteArray& data)
 {
-	qDebug()<<"JClientCommandProcessor::process . There should not be any responce.";
+	QDataStream stream(data);
+	JID type;
+	JCode result;
+	stream>>type;
+	stream>>result;
+	emit receiveCommandResult(type,result);
 }
 
 EProcessorType JClientCommandProcessor::getProcessorType()const

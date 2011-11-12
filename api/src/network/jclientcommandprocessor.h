@@ -14,6 +14,8 @@ public:
 protected:
 	void process(const QByteArray &data);
 	EProcessorType getProcessorType()const;
+signals:
+	void receiveCommandResult(JID type,JCode result);
 };
 
 #endif // JCLIENTCOMMANDPROCESSOR_H

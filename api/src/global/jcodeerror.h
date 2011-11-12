@@ -3,6 +3,8 @@
 
 #include "jglobal.h"
 
+const JCode ESuccess = 0;
+
 const JCode ENetworkError = 0x0200;
 
 

@@ -5,6 +5,7 @@
 #include "jmainserversocket.h"
 
 #include <Session/JSession>
+#include <Global/CodeError>
 
 #include <QDataStream>
 
@@ -20,14 +21,31 @@ void JMainServerCommandProcessor::process(const QByteArray& data)
 	JID param;
 	stream>>type;
 	stream>>param;
+	processCommand(type,param);
+}
+
+EProcessorType JMainServerCommandProcessor::getProcessorType()const
+{
+	return EPI_COMMAND;
+}
+
+void JMainServerCommandProcessor::processCommand(JID type,JID param)
+{
 	JPermissionControl pc(getSession()->getUserId());
 	if(pc.checkCommand(type,param)){
 		JCommandManager cm;
 		cm.executeCommand(type,param);
+		replyCommandResult(type,ESuccess);
+	}else{
+		replyCommandResult(type,EPermissionDenied);
 	}
 }
 
-JType JMainServerCommandProcessor::getProcessorType()const
+void JMainServerCommandProcessor::replyCommandResult(JID type,JCode result)
 {
-	return EPI_COMMAND;
+	QByteArray outdata;
+	QDataStream outstream(&outdata,QIODevice::WriteOnly);
+	outstream<<type;
+	outstream<<result;
+	sendData(outdata);
 }

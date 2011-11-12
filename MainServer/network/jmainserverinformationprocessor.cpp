@@ -44,7 +44,7 @@ void JMainServerInformationProcessor::process(const QByteArray& data)
 	}
 }
 
-JType JMainServerInformationProcessor::getProcessorType()const
+EProcessorType JMainServerInformationProcessor::getProcessorType()const
 {
 	return EPI_INFORMATION;
 }

@@ -11,7 +11,7 @@ class JMainServerLoginProcessor : public JServerNetworkDataProcessorBase
 public:
 	explicit JMainServerLoginProcessor(JSession* session,JSocketBase *socket);
 	void process(const QByteArray& data);
-	JType getProcessorType()const;
+	EProcessorType getProcessorType()const;
 };
 
 #endif // JMAINSERVERLOGINPROCESSOR_H
