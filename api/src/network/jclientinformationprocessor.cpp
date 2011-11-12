@@ -3,7 +3,7 @@
 #include "jclientsocketbase.h"
 #include "jinformation.h"
 #include "jinformationmanager.h"
-#include "jclientsession.h"
+#include "jsession.h"
 
 using namespace NetworkData;
 
@@ -17,7 +17,7 @@ JClientInformationProcessor* JClientInformationProcessor::getInstance()
 	static JClientInformationProcessor* instance=NULL;
 	if(NULL == instance){
 		JClientSocketBase* socket = JClientSocketBase::getInstance();
-		JClientSession* session = JClientSession::getInstance();
+		JSession* session = socket->getSession();
 		instance = new JClientInformationProcessor(session,socket);
 		socket->registerProcessor(instance);
 	}
@@ -52,7 +52,7 @@ void JClientInformationProcessor::requestUploadData(const JHead& head,const QByt
 	sendData(outdata);
 }
 
-JType JClientInformationProcessor::getProcessorType()const
+EProcessorType JClientInformationProcessor::getProcessorType()const
 {
 	return EPI_INFORMATION;
 }

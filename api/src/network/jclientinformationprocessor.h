@@ -17,7 +17,7 @@ public:
 	void requestDownloadData(const NetworkData::JHead& head);
 	void requestUploadData(const NetworkData::JHead& head,const QByteArray& data);
 
-	JType getProcessorType()const;
+	EProcessorType getProcessorType()const;
 protected:
 	void process(const QByteArray& data);
 signals:

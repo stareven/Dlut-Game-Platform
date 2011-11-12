@@ -4,6 +4,7 @@
 #include <QObject>
 
 #include "../global/jglobal.h"
+#include "../global/processor.h"
 
 class QByteArray;
 
@@ -16,14 +17,7 @@ class JNetworkDataProcessorBase : public QObject
 public:
 	JNetworkDataProcessorBase (JSession* session,JSocketBase *socket);
     virtual void process(const QByteArray& data)=0;
-	virtual JType getProcessorType()const=0;
-
-	enum EProcessorType{
-        EPI_LOGIN,
-		EPI_INFORMATION,
-		EPI_COMMAND,
-		EPI_UserRegister,
-    };
+	virtual EProcessorType getProcessorType()const=0;
 
 protected:
 	JCode sendData(const QByteArray& data);

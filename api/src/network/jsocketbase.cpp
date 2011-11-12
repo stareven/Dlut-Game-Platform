@@ -6,6 +6,7 @@
 #include "../global/jcodeerror.h"
 #include "../global/shost.h"
 #include "jsession.h"
+#include "jsocketstrategy.h"
 
 JSocketBase::JSocketBase(QTcpSocket* socket,QObject* parent)
     :QObject(parent),
@@ -13,6 +14,8 @@ JSocketBase::JSocketBase(QTcpSocket* socket,QObject* parent)
 {
     m_type=-1;
 	m_size=0;
+	m_session = new JSession(this);
+	m_socketStrategy=NULL;
 	connect(m_socket,SIGNAL(readyRead()),SLOT(on_socket_readyRead()));
 	connect(m_socket,SIGNAL(error(QAbstractSocket::SocketError)),SLOT(on_socket_error(QAbstractSocket::SocketError)));
 	connect(m_socket,SIGNAL(connected()),SLOT(on_socket_connected()));
@@ -66,6 +69,26 @@ QAbstractSocket::SocketState JSocketBase::socketState () const{
     return m_socket->state();
 }
 
+JSession* JSocketBase::getSession()
+{
+	return m_session;
+}
+
+JType JSocketBase::getType()const
+{
+	return m_type;
+}
+
+void JSocketBase::setSocketStrategy(JSocketStrategy* strategy)
+{
+	m_socketStrategy = strategy;
+}
+
+JSocketStrategy* JSocketBase::getSocketStrategy()const
+{
+	return m_socketStrategy;
+}
+
 void JSocketBase::on_socket_readyRead(){
     while(m_socket->bytesAvailable()>0)
     {
@@ -77,7 +100,10 @@ void JSocketBase::on_socket_readyRead(){
             {
                 JNetworkDataProcessorBase* process=m_processors.value(m_type);
 				if(process){
-					process->process(m_data);
+					JSocketStrategy *strategy=getSocketStrategy();
+					if(NULL == strategy || strategy->filterBeforeProcess(this)){
+						process->process(m_data);
+					}
 				}else{
 					qDebug()<<"JSocketBase::on_socket_readyRead : no such type"<<m_type;
 				}

@@ -16,7 +16,7 @@ signals:
     void loginCode(JCode);
 protected:
     void process(const QByteArray& data);
-	JType getProcessorType()const;
+	EProcessorType getProcessorType()const;
 private:
     JID m_userid;
 };

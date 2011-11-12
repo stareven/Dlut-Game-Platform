@@ -1,7 +1,7 @@
 #include "jclientloginprocessor.h"
 
 #include "jclientsocketbase.h"
-#include "jclientsession.h"
+#include "jsession.h"
 
 JClientLoginProcessor::JClientLoginProcessor(JSession* session,JSocketBase *socket) :
 	JClientNetworkDataProcessorBase(session,socket)
@@ -12,7 +12,7 @@ JClientLoginProcessor* JClientLoginProcessor::getInstance(){
     static JClientLoginProcessor* instance=NULL;
     if(NULL==instance){
         JClientSocketBase* socket=JClientSocketBase::getInstance();
-		JClientSession* session = JClientSession::getInstance();
+		JSession* session = socket->getSession();
 		instance=new JClientLoginProcessor(session,socket);
 		socket->registerProcessor(instance);
     }
@@ -47,6 +47,6 @@ void JClientLoginProcessor::process(const QByteArray& data){
     emit loginCode(code);
 }
 
-JType JClientLoginProcessor::getProcessorType()const{
+EProcessorType JClientLoginProcessor::getProcessorType()const{
     return EPI_LOGIN;
 }

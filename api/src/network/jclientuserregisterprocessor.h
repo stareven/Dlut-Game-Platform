@@ -14,7 +14,7 @@ signals:
 	void receiveRegisterResult(JCode result,JID userId,const QString& loginname);
 protected:
 	void process(const QByteArray &data);
-	JType getProcessorType()const;
+	EProcessorType getProcessorType()const;
 };
 
 #endif // JCLIENTUSERREGISTERPROCESSOR_H

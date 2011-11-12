@@ -32,9 +32,9 @@ HEADERS += \
     network/jmainservercommandprocessor.h \
     service/jpermissioncontrol.h \
     service/jloginhashcodecreator.h \
-    network/jmainserversession.h \
     network/jmainserveruserregisterprocessor.h \
-    service/juserregister.h
+    service/juserregister.h \
+    network/jmainserversocketstrategy.h
 SOURCES += main/main.cpp \
 	network/jmainserver.cpp \
     network/jmainserversocket.cpp \
@@ -56,6 +56,6 @@ SOURCES += main/main.cpp \
     network/jmainservercommandprocessor.cpp \
     service/jpermissioncontrol.cpp \
     service/jloginhashcodecreator.cpp \
-    network/jmainserversession.cpp \
     network/jmainserveruserregisterprocessor.cpp \
-    service/juserregister.cpp
+    service/juserregister.cpp \
+    network/jmainserversocketstrategy.cpp

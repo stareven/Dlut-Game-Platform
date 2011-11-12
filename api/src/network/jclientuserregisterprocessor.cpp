@@ -1,7 +1,7 @@
 #include "jclientuserregisterprocessor.h"
 
 #include "jclientsocketbase.h"
-#include "jclientsession.h"
+#include "jsession.h"
 
 JClientUserRegisterProcessor::JClientUserRegisterProcessor(JSession* session,JSocketBase *socket) :
 	JClientNetworkDataProcessorBase(session,socket)
@@ -13,7 +13,7 @@ JClientUserRegisterProcessor* JClientUserRegisterProcessor::getInstance()
 	static JClientUserRegisterProcessor* instance=NULL;
 	if(NULL==instance){
 		JClientSocketBase* socket=JClientSocketBase::getInstance();
-		JClientSession* session = JClientSession::getInstance();
+		JSession* session = socket->getSession();
 		instance=new JClientUserRegisterProcessor(session,socket);
 		socket->registerProcessor(instance);
 	}
@@ -41,7 +41,7 @@ void JClientUserRegisterProcessor::process(const QByteArray &data)
 	emit receiveRegisterResult(result,userId,loginname);
 }
 
-JType JClientUserRegisterProcessor::getProcessorType()const
+EProcessorType JClientUserRegisterProcessor::getProcessorType()const
 {
 	return EPI_UserRegister;
 }

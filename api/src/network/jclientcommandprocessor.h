@@ -13,7 +13,7 @@ public:
 	void sendCommand(ECommandType type,JID param1=-1);
 protected:
 	void process(const QByteArray &data);
-	JType getProcessorType()const;
+	EProcessorType getProcessorType()const;
 };
 
 #endif // JCLIENTCOMMANDPROCESSOR_H

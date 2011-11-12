@@ -1,7 +1,7 @@
 #include "jclientcommandprocessor.h"
 
 #include "jclientsocketbase.h"
-#include "jclientsession.h"
+#include "jsession.h"
 
 JClientCommandProcessor::JClientCommandProcessor(JSession* session,JSocketBase *socket) :
 	JClientNetworkDataProcessorBase(session,socket)
@@ -13,7 +13,7 @@ JClientCommandProcessor* JClientCommandProcessor::getInstance()
 	static JClientCommandProcessor* instance=NULL;
 	if(NULL==instance){
 		JClientSocketBase* socket=JClientSocketBase::getInstance();
-		JClientSession* session = JClientSession::getInstance();
+		JSession* session = socket->getSession();
 		instance = new JClientCommandProcessor(session,socket);
 		socket->registerProcessor(instance);
 	}
@@ -34,7 +34,7 @@ void JClientCommandProcessor::process(const QByteArray&)
 	qDebug()<<"JClientCommandProcessor::process . There should not be any responce.";
 }
 
-JType JClientCommandProcessor::getProcessorType()const
+EProcessorType JClientCommandProcessor::getProcessorType()const
 {
 	return EPI_COMMAND;
 }

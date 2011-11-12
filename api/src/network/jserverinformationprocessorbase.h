@@ -13,7 +13,7 @@ class JServerInformationProcessorBase : public JServerNetworkDataProcessorBase
 public:
 	explicit JServerInformationProcessorBase(JSession* session,JSocketBase *socket);
 	void process(const QByteArray& data);
-	JType getProcessorType()const;
+	EProcessorType getProcessorType()const;
 
 	void replyMtime(const NetworkData::JHead& head,JTime_t mtime);
 	void replyData(const NetworkData::JHead& head,JTime_t currentTime,const QByteArray& data);

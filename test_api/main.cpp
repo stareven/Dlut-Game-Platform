@@ -5,7 +5,7 @@
 #include "ClientRequest/JUploadGameInfo"
 #include "ClientRequest/JUploadServerInfo"
 #include "Socket/JClientSocketBase"
-#include <Session/JClientSession>
+#include <Session/JSession>
 #include <ClientRequest/JRequestUserRegister>
 
 #include <QHostAddress>
@@ -19,6 +19,7 @@ int main(int argc, char *argv[]){
 		qDebug()<<login.getConnectError()<<JClientSocketBase::getInstance()->socketState();
 		return 1;
 	}
+	//*
 	JRequestUserRegister reg;
 	reg.sendRegister("tryregister","register");
 	if(!reg.waitForRegisterResult(1000)){
@@ -28,9 +29,9 @@ int main(int argc, char *argv[]){
 	login.login("tryregister","register",ROLE_GAMEPLAYER);
 	bool rst = login.waitForLogined(1000);
 	qDebug()<<"rst="<<rst<<" login error:"<<login.getLoginError();
-	qDebug()<<"user id = "<<JClientSession::getInstance()->getUserId()
-			<<"login hash code = "<<JClientSession::getInstance()->getLoginHashCodeStr();
-
+	qDebug()<<"user id = "<<JClientSocketBase::getInstance()->getSession()->getUserId()
+			<<"login hash code = "<<JClientSocketBase::getInstance()->getSession()->getLoginHashCodeStr();
+	//*/
 	JRequestUserInfo rui;
 	JUserInfo ui = rui.pullUserInfo(1,1000);
 	qDebug()<<"user nickname="<<ui.getNickname();
