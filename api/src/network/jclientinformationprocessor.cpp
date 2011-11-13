@@ -1,6 +1,6 @@
 #include "jclientinformationprocessor.h"
 
-#include "jclientsocketbase.h"
+#include "jmainclientsocket.h"
 #include "jinformation.h"
 #include "jinformationmanager.h"
 #include "jsession.h"
@@ -16,7 +16,7 @@ JClientInformationProcessor* JClientInformationProcessor::getInstance()
 {
 	static JClientInformationProcessor* instance=NULL;
 	if(NULL == instance){
-		JClientSocketBase* socket = JClientSocketBase::getInstance();
+		JMainClientSocket* socket = JMainClientSocket::getInstance();
 		JSession* session = socket->getSession();
 		instance = new JClientInformationProcessor(session,socket);
 		socket->registerProcessor(instance);

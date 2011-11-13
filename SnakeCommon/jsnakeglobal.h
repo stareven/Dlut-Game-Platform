@@ -3,7 +3,8 @@
 
 #include <QList>
 
-#include "global/jglobal.h"
+#include <Global/Global>
+#include <Global/Processor>
 
 class QDataStream;
 namespace Snake{
@@ -155,5 +156,9 @@ namespace SnakeProtocol{
 		// S -> C : SP_GA_MoveOn , <int>num
 	const JProtocol SP_GA_Stop = (SP_GameAct | 0x0900 );
 		// S -> C : SP_GA_Stop
+}
+
+namespace Snake{
+	const EProcessorType SnakeProcessorType = EPI_UserType_1;
 }
 #endif // JSNAKEGLOBAL_H

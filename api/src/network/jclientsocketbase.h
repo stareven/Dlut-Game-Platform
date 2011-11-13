@@ -11,7 +11,7 @@ class JClientSocketBase : public JSocketBase
 protected:
 	explicit JClientSocketBase(QTcpSocket* const socket,QObject *parent = 0);
 public:
-    static JClientSocketBase* getInstance();
+	//static JClientSocketBase* getInstance();
 };
 
 #endif // JCLIENTSOCKETBASE_H

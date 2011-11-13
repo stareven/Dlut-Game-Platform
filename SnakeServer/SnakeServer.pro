@@ -3,8 +3,9 @@
 ######################################################################
 
 TEMPLATE = app
-QT       += core
+QT       += core network
 QT       -= gui
+
 
 TARGET = SnakeServer
 CONFIG   += console
@@ -30,6 +31,4 @@ SOURCES += main/jargumentanalyse.cpp \
 	service/juserlistmanager.cpp \
     service/jroommanager.cpp \
     ../SnakeCommon/jsnakestream.cpp \
-    service/jsnakegameonserver.cpp
-include(../api/libserverapi.pri)
-include(../api/libsubserverapi.pri)
+	service/jsnakegameonserver.cpp

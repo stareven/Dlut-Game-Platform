@@ -3,14 +3,14 @@
 
 #include <QWidget>
 
+#include <Global/Global>
+
 namespace Ui {
     class JHallWidget;
 }
 
-#include "global/jglobal.h"
-class JSnakeSocket;
+class JSnakeProcessor;
 class JRequestUserInfo;
-class JRequestPort;
 class JRoomListModel;
 namespace Snake
 {
@@ -27,9 +27,8 @@ public:
 
 private:
     Ui::JHallWidget *ui;
-	JSnakeSocket *m_socket;
+	JSnakeProcessor *m_processor;
 	JRequestUserInfo *m_reqUserInfo;
-	JRequestPort *m_reqPort;
 	JRoomListModel *m_roomlistmodel;
 private slots:
 	void on_btn_refresh_room_clicked();

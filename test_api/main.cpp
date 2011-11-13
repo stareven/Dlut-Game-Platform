@@ -4,34 +4,37 @@
 #include "ClientRequest/JRequestServerInfo"
 #include "ClientRequest/JUploadGameInfo"
 #include "ClientRequest/JUploadServerInfo"
-#include "Socket/JClientSocketBase"
+#include "Socket/JMainClientSocket"
 #include <Session/JSession>
 #include <ClientRequest/JRequestUserRegister>
+#include <Helper/JConnectHelper>
 
 #include <QHostAddress>
 #include <QCoreApplication>
 
 int main(int argc, char *argv[]){
 	QCoreApplication app(argc,argv);
-    JRequestLogin login;
-	login.connectToHost(QHostAddress::LocalHost,37373);
-	if(!login.waitForConnected(1000)){
-		qDebug()<<login.getConnectError()<<JClientSocketBase::getInstance()->socketState();
+	JConnectHelper connectHelper(JMainClientSocket::getInstance());
+	connectHelper.connectToHost(SHost(QHostAddress::LocalHost,37373));
+	if(!connectHelper.waitForConnected(1000)){
+		qDebug()<<connectHelper.getConnectError()<<JMainClientSocket::getInstance()->socketState();
 		return 1;
 	}
-	//*
+
 	JRequestUserRegister reg;
 	reg.sendRegister("tryregister","register");
 	if(!reg.waitForRegisterResult(1000)){
 		qDebug()<<"register failed"<<reg.getRegisterError();
 		return 1;
 	}
+
+	JRequestLogin login;
 	login.login("tryregister","register",ROLE_GAMEPLAYER);
 	bool rst = login.waitForLogined(1000);
 	qDebug()<<"rst="<<rst<<" login error:"<<login.getLoginError();
-	qDebug()<<"user id = "<<JClientSocketBase::getInstance()->getSession()->getUserId()
-			<<"login hash code = "<<JClientSocketBase::getInstance()->getSession()->getLoginHashCodeStr();
-	//*/
+	qDebug()<<"user id = "<<JMainClientSocket::getInstance()->getSession()->getUserId()
+			<<"login hash code = "<<JMainClientSocket::getInstance()->getSession()->getLoginHashCodeStr();
+
 	JRequestUserInfo rui;
 	JUserInfo ui = rui.pullUserInfo(1,1000);
 	qDebug()<<"user nickname="<<ui.getNickname();

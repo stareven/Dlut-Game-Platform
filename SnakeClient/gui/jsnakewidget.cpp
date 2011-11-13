@@ -11,8 +11,8 @@
 #include <QLabel>
 #include <QLCDNumber>
 
-#include "network/jsnakesocket.h"
-#include "service/jloginhashcoderecorder.h"
+#include "network/jsnakeprocessor.h"
+#include "service/jglobalsettings.h"
 
 const int INITX=20;
 const int INITY=30;
@@ -42,41 +42,41 @@ JSnakeWidget::JSnakeWidget(QWidget *parent) :
 			ui->gridLayout->addWidget(m_lcds[i][j],i+1,j+2,1,1);
         }
     }
-	m_socket=&JSnakeSocket::getInstance();
-	connect(m_socket,
+	m_processor=JSnakeProcessor::getInstance();
+	connect(m_processor,
 			SIGNAL(rcvEnterRoom(JID,JID)),
 			SLOT(om_socket_rcvEnterRoom(JID,JID)));
-	connect(m_socket,
+	connect(m_processor,
 			SIGNAL(rcvEscapeRoom(JID,JID)),
 			SLOT(om_socket_rcvEscapeRoom(JID,JID)));
-	connect(m_socket,
+	connect(m_processor,
 			SIGNAL(rcvUserlist(JID,QList<JID>)),
 			SLOT(om_socket_rcvUserlist(JID,QList<JID>)));
-	connect(m_socket,
+	connect(m_processor,
 			SIGNAL(rcvGA_Ready(bool,int)),
 			SLOT(om_socket_rcvGA_Ready(bool,int)));
-	connect(m_socket,
+	connect(m_processor,
 			SIGNAL(rcvGA_CountDown(int)),
 			SLOT(om_socket_rcvGA_CountDown(int)));
-	connect(m_socket,
+	connect(m_processor,
 			SIGNAL(rcvGA_GetCommand()),
 			SLOT(om_socket_rcvGA_GetCommand()));
-	connect(m_socket,
+	connect(m_processor,
 			SIGNAL(rcvGA_Turn(qint16,int)),
 			SLOT(om_socket_rcvGA_Turn(qint16,int)));
-	connect(m_socket,
+	connect(m_processor,
 			SIGNAL(rcvGA_Collision(int)),
 			SLOT(om_socket_rcvGA_Collision(int)));
-	connect(m_socket,
+	connect(m_processor,
 			SIGNAL(rcvGA_CreateBean(QPoint)),
 			SLOT(om_socket_rcvGA_CreateBean(QPoint)));
-	connect(m_socket,
+	connect(m_processor,
 			SIGNAL(rcvGA_Increase(int)),
 			SLOT(om_socket_rcvGA_Increase(int)));
-	connect(m_socket,
+	connect(m_processor,
 			SIGNAL(rcvGA_MoveOn(int)),
 			SLOT(om_socket_rcvGA_MoveOn(int)));
-	connect(m_socket,
+	connect(m_processor,
 			SIGNAL(rcvGA_Stop()),
 			SLOT(om_socket_rcvGA_Stop()));
 	setFocus();
@@ -156,7 +156,7 @@ void JSnakeWidget::om_socket_rcvEnterRoom(JID roomId,JID userId)
 {
 	if(m_roomId<0)
 	{
-		if(roomId>0 && userId==JLoginHashCodeRecorder().getUserId())
+		if(roomId>0 && userId==GlobalSettings::g_userId)
 		{
 			m_roomId=roomId;
 			ui->list_players->addItem(QString::number(userId));
@@ -173,7 +173,7 @@ void JSnakeWidget::om_socket_rcvEscapeRoom(JID roomId,JID userId)
 {
 	if(roomId==m_roomId)
 	{
-		if(userId==JLoginHashCodeRecorder().getUserId())
+		if(userId==GlobalSettings::g_userId)
 		{
 			emit escape(0);
 		}else{
@@ -201,7 +201,7 @@ void JSnakeWidget::om_socket_rcvUserlist(JID roomId,const QList<JID>& userlist)
 
 void JSnakeWidget::on_btn_ready_clicked(bool ready)
 {
-	m_socket->sendGA_Ready(ready);
+	m_processor->sendGA_Ready(ready);
 	if(ready)
 	{
 		ui->btn_ready->setText(tr("cancel ready"));
@@ -229,7 +229,7 @@ void JSnakeWidget::om_socket_rcvGA_Ready(bool ready,int num)
 
 void JSnakeWidget::on_btn_escape_clicked()
 {
-	m_socket->sendEscapeRoom();
+	m_processor->sendEscapeRoom();
 }
 
 void JSnakeWidget::om_socket_rcvGA_CountDown(int sec)
@@ -246,7 +246,7 @@ void JSnakeWidget::om_socket_rcvGA_GetCommand()
 {
 	if(m_command>=0 && m_command < JSnake::ED_NONE)
 	{
-		m_socket->sendGA_Turn(m_command);
+		m_processor->sendGA_Turn(m_command);
 	}
 	m_command=JSnake::ED_NONE;
 }

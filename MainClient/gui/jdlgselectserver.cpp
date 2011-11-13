@@ -3,7 +3,7 @@
 #include "dlglogin/jdlgnewserver.h"
 
 #include <DataStruct/JServerInfo>
-#include <Socket/JClientSocketBase>
+#include <Socket/JMainClientSocket>
 #include <Helper/JConnectHelper>
 
 #include <QPalette>
@@ -36,7 +36,7 @@ void JDlgSelectServer::accept()
 							  );
 		return;
 	}
-	JConnectHelper connecthelper(JClientSocketBase::getInstance());
+	JConnectHelper connecthelper(JMainClientSocket::getInstance());
 	const SHallServer& server = ui->cb_servers->getServer();
 	ui->label_info->setText(
 			tr("connection to server %1:%2")

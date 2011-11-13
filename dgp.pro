@@ -1,5 +1,7 @@
 TEMPLATE  = subdirs
-SUBDIRS = api MainClient MainServer test_api
+SUBDIRS = api MainClient MainServer test_api SnakeClient SnakeServer
 MainClient.depends = api
 MainServer.depends = api
 test_api.depends = api
+SnakeClient.depends = api
+SnakeServer.depends = api

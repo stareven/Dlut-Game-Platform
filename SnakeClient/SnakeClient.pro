@@ -11,6 +11,8 @@ TEMPLATE = app
 INCLUDEPATH += \
 				../SnakeCommon/
 
+include(../api/api.pri)
+QMAKE_RPATHDIR = ../api/lib
 
 SOURCES += main/main.cpp\
         gui/mainwindow.cpp \
@@ -21,24 +23,23 @@ SOURCES += main/main.cpp\
     network/jsnakesocket.cpp \
 	service/jglobalsettings.cpp \
 	../SnakeCommon/jsnakestream.cpp \
-    service/jroomlistmodel.cpp
+    service/jroomlistmodel.cpp \
+    network/jsnakeprocessor.cpp
     
 HEADERS  += gui/mainwindow.h \
     ../SnakeCommon/jsnake.h \
     gui/jsnakewidget.h \
     ../SnakeCommon/jsnakegame.h \
 	gui/jhallwidget.h \
-	../api/include/global/jglobal.h \
-	../api/include/global/magicnumber.h \
     network/jsnakesocket.h \
     ../SnakeCommon/jsnakeglobal.h \
     service/jglobalsettings.h \
-    service/jroomlistmodel.h
+    service/jroomlistmodel.h \
+    network/jsnakeprocessor.h
     
 FORMS    += gui/mainwindow.ui \
     gui/jsnakewidget.ui \
     gui/jhallwidget.ui
 
 RESOURCES += \
-    res/res.qrc
-include(../api/libclientapi.pri)
+	res/res.qrc

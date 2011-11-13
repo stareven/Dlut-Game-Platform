@@ -1,6 +1,6 @@
 #include "jclientcommandprocessor.h"
 
-#include "jclientsocketbase.h"
+#include "jmainclientsocket.h"
 #include "jsession.h"
 
 JClientCommandProcessor::JClientCommandProcessor(JSession* session,JSocketBase *socket) :
@@ -12,7 +12,7 @@ JClientCommandProcessor* JClientCommandProcessor::getInstance()
 {
 	static JClientCommandProcessor* instance=NULL;
 	if(NULL==instance){
-		JClientSocketBase* socket=JClientSocketBase::getInstance();
+		JMainClientSocket* socket=JMainClientSocket::getInstance();
 		JSession* session = socket->getSession();
 		instance = new JClientCommandProcessor(session,socket);
 		socket->registerProcessor(instance);

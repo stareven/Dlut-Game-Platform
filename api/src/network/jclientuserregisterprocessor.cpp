@@ -1,6 +1,6 @@
 #include "jclientuserregisterprocessor.h"
 
-#include "jclientsocketbase.h"
+#include "jmainclientsocket.h"
 #include "jsession.h"
 
 JClientUserRegisterProcessor::JClientUserRegisterProcessor(JSession* session,JSocketBase *socket) :
@@ -12,7 +12,7 @@ JClientUserRegisterProcessor* JClientUserRegisterProcessor::getInstance()
 {
 	static JClientUserRegisterProcessor* instance=NULL;
 	if(NULL==instance){
-		JClientSocketBase* socket=JClientSocketBase::getInstance();
+		JMainClientSocket* socket=JMainClientSocket::getInstance();
 		JSession* session = socket->getSession();
 		instance=new JClientUserRegisterProcessor(session,socket);
 		socket->registerProcessor(instance);

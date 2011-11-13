@@ -5,7 +5,7 @@
 
 #include <ClientRequest/JRequestLogin>
 #include <Global/Login>
-#include <Socket/JClientSocketBase>
+#include <Socket/JMainClientSocket>
 
 #include <QMessageBox>
 #include <QPalette>
@@ -34,7 +34,7 @@ JDlgLogin::JDlgLogin(QWidget *parent) :
     ui->chb_autologin->setPalette(palette);
     ui->chb_rememberpassword->setPalette(palette);
     connect(this,SIGNAL(autoLogin()),this,SLOT(accept()),Qt::QueuedConnection);
-	connect(JClientSocketBase::getInstance(),
+	connect(JMainClientSocket::getInstance(),
 			SIGNAL(disconnected()),
 			SLOT(On_socket_disconnected()));
 }

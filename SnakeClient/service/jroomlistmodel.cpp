@@ -5,7 +5,7 @@
 JRoomListModel::JRoomListModel(QObject *parent) :
     QAbstractListModel(parent)
 {
-	m_socket=&JSnakeSocket::getInstance();
+	m_socket=JSnakeSocket::getInstance();
 	connect(m_socket,
 			SIGNAL(rcvAddRoom(Snake::JRoom)),
 			SLOT(on_socket_rcvAddRoom(Snake::JRoom)));

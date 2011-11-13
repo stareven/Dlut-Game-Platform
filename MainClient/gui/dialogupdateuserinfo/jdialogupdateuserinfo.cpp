@@ -3,7 +3,7 @@
 
 #include <Global/CodeError>
 #include <DataStruct/JUserInfo>
-#include <Socket/JClientSocketBase>
+#include <Socket/JMainClientSocket>
 #include <Session/JSession>
 #include <ClientRequest/JUploadUserInfo>
 
@@ -30,7 +30,7 @@ void JDialogUpdateUserInfo::setInitUserInfo(const JUserInfo& userinfo)
 
 void JDialogUpdateUserInfo::accept()
 {
-	JID myuserid = JClientSocketBase::getInstance()->getSession()->getUserId();
+	JID myuserid = JMainClientSocket::getInstance()->getSession()->getUserId();
 	QString mynickname = ui->lineEdit_nickname->text();
 	QString myorganization = ui->lineEdit_organization->text();
 	JUserInfo myuserinfo(myuserid,mynickname,myorganization);

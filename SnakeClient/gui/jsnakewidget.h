@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-#include "global/jglobal.h"
+#include <Global/Global>
 #include "jsnake.h"
 
 namespace Ui {
@@ -13,7 +13,7 @@ namespace Ui {
 class JSnakeGame;
 class QLCDNumber;
 class QLabel;
-class JSnakeSocket;
+class JSnakeProcessor;
 
 class JSnakeWidget : public QWidget
 {
@@ -31,7 +31,7 @@ private:
 	QLabel *m_lab_ready[4];
     QLCDNumber *m_lcds[4][2];
 	JSnakeGame* m_game;
-	JSnakeSocket* m_socket;
+	JSnakeProcessor* m_processor;
 	JID m_roomId;
 signals:
 	void escape(int a);

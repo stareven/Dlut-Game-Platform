@@ -3,61 +3,39 @@
 
 #include <QInputDialog>
 
+#include <ClientRequest/JRequestUserInfo>
+
 #include "jsnakeglobal.h"
-#include "network/jsnakesocket.h"
+#include "network/jsnakeprocessor.h"
 #include "service/jglobalsettings.h"
-#include "service/jrequestuserinfo.h"
-#include "service/jrequestport.h"
-#include "service/jloginhashcoderecorder.h"
 #include "service/jroomlistmodel.h"
 
 JHallWidget::JHallWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::JHallWidget)
 {
-	m_socket=&JSnakeSocket::getInstance();
+	m_processor=JSnakeProcessor::getInstance();
 	m_reqUserInfo=new JRequestUserInfo(this);
-	m_reqPort=new JRequestPort(this);
-	connect(m_socket,
+	connect(m_processor,
 			SIGNAL(rcvHello(JCode)),
 			SLOT(om_socket_rcvHello(JCode)));
-	connect(m_socket,
+	connect(m_processor,
 			SIGNAL(rcvUserlist(JID,QList<JID>)),
 			SLOT(om_socket_rcvUserlist(JID,QList<JID>)));
-	connect(m_socket,
+	connect(m_processor,
 			SIGNAL(rcvAddRoom(Snake::JRoom)),
 			SLOT(om_socket_rcvAddRoom(Snake::JRoom)));
-	connect(m_socket,
+	connect(m_processor,
 			SIGNAL(rcvEnterRoom(JID,JID)),
 			SLOT(om_socket_rcvEnterRoom(JID,JID)));
-	connect(m_socket,
+	connect(m_processor,
 			SIGNAL(rcvEscapeRoom(JID,JID)),
 			SLOT(om_socket_rcvEscapeRoom(JID,JID)));
 	m_roomlistmodel=new JRoomListModel(this);
 	ui->setupUi(this);
 	ui->listView_room->setModel(m_roomlistmodel);
-	m_reqPort->setServerPort(EST_FREEPORT,SHost(GlobalSettings::g_mainServer.m_address,GlobalSettings::g_mainServer.m_port));
-	SHost hostuserinfo=m_reqPort->rqsServerPort(EST_USERINFO);
-	m_reqUserInfo->connectToHost(hostuserinfo.m_address,hostuserinfo.m_port);
-	qDebug()<<"user info begin to connect";
-	if(!m_reqUserInfo->waitForConnected(1000))
-	{
-		qDebug()<<"user info connect failed.";
-		return;
-	}else{
-		qDebug()<<"user info connect success.";
-	}
-	JLoginHashCodeRecorder cr;
-	m_reqUserInfo->sendLoginHashCode(cr.getUserId(),cr.getCode());
-	if(!m_reqUserInfo->waitForLhc(1000))
-	{
-		qDebug()<<"user info plh failed.";
-		return;
-	}else{
-		qDebug()<<"user info plh success.";
-	}
-	m_socket->sendHello(cr.getUserId());
-	m_socket->sendRqsRoomlist();
+	m_processor->sendHello(GlobalSettings::g_userId);
+	m_processor->sendRqsRoomlist();
 }
 
 JHallWidget::~JHallWidget()
@@ -68,14 +46,14 @@ JHallWidget::~JHallWidget()
 void JHallWidget::on_btn_refresh_userlist_clicked()
 {
 	ui->lst_player->clear();
-	m_socket->sendRqsUserlist();
+	m_processor->sendRqsUserlist();
 }
 
 void JHallWidget::om_socket_rcvHello(JCode code)
 {
 	if(0==code)
 	{
-		m_socket->sendRqsUserlist();
+		m_processor->sendRqsUserlist();
 	}
 }
 
@@ -99,7 +77,7 @@ void JHallWidget::on_btn_create_room_clicked()
 	{
 		return;
 	}
-	m_socket->sendAddRoom(room);
+	m_processor->sendAddRoom(room);
 }
 
 void JHallWidget::om_socket_rcvAddRoom(const Snake::JRoom& room)
@@ -109,7 +87,7 @@ void JHallWidget::om_socket_rcvAddRoom(const Snake::JRoom& room)
 
 void JHallWidget::om_socket_rcvEnterRoom(JID roomId,JID userId)
 {
-	if(roomId>0 && userId==JLoginHashCodeRecorder().getUserId())
+	if(roomId>0 && userId==GlobalSettings::g_userId)
 	{
 		emit enterGame(1);
 	}else if(0==roomId){
@@ -136,25 +114,25 @@ void JHallWidget::on_btn_enter_room_clicked()
 {
 	JID roomId;
 	roomId=m_roomlistmodel->data(ui->listView_room->currentIndex(),Qt::EditRole).toInt();
-	m_socket->sendEnterRoom(roomId);
+	m_processor->sendEnterRoom(roomId);
 }
 
 void JHallWidget::on_btn_refresh_room_clicked()
 {
-	m_socket->sendRqsRoomlist();
+	m_processor->sendRqsRoomlist();
 }
 
 void JHallWidget::addUserToList(JID userId)
 {
 	if(ui->lst_player->findItems(tr("%1:").arg(userId),Qt::MatchStartsWith).isEmpty())
 	{
-		UserInfo::SUserInfo userinfo=m_reqUserInfo->rqsUserInfo(userId);
-		if(userinfo.m_userId==userId)
+		JUserInfo userinfo=m_reqUserInfo->pullUserInfo(userId,1000);
+		if(userinfo.getUserId()==userId)
 		{
 			ui->lst_player->addItem(tr("%1:%2:%3")
-									.arg(userinfo.m_userId)
-									.arg(userinfo.m_nickname)
-									.arg(userinfo.m_organization));
+									.arg(userinfo.getUserId())
+									.arg(userinfo.getNickname())
+									.arg(userinfo.getOrganization()));
 		}else{
 			ui->lst_player->addItem(tr("%1:").arg(userId));
 		}

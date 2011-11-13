@@ -9,7 +9,7 @@
 
 #include <ClientRequest/JRequestGameInfo>
 #include <ClientRequest/JRequestUserInfo>
-#include <Socket/JClientSocketBase>
+#include <Socket/JMainClientSocket>
 #include <Session/JSession>
 
 #include "jdlgselectserver.h"
@@ -35,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	m_requserinfo=new JRequestUserInfo(this);
 	m_widgetadmin=NULL;
-	connect(JClientSocketBase::getInstance(),
+	connect(JMainClientSocket::getInstance(),
 			SIGNAL(disconnected()),
 			SLOT(On_socket_disconnected()));
 }
@@ -201,7 +201,7 @@ void MainWindow::on_btn_start_game_clicked()
 
 void MainWindow::on_btn_refresh_myuserinfo_clicked()
 {
-	JID myUserID = JClientSocketBase::getInstance()->getSession()->getUserId();
+	JID myUserID = JMainClientSocket::getInstance()->getSession()->getUserId();
 	m_myUserInfo = m_requserinfo->pullUserInfo(myUserID);
 	ui->text_userid->setText(QString::number(m_myUserInfo.getUserId()));
 	ui->text_nickname->setText(m_myUserInfo.getNickname());

@@ -1,6 +1,6 @@
 #include "jclientloginprocessor.h"
 
-#include "jclientsocketbase.h"
+#include "jmainclientsocket.h"
 #include "jsession.h"
 
 JClientLoginProcessor::JClientLoginProcessor(JSession* session,JSocketBase *socket) :
@@ -11,7 +11,7 @@ JClientLoginProcessor::JClientLoginProcessor(JSession* session,JSocketBase *sock
 JClientLoginProcessor* JClientLoginProcessor::getInstance(){
     static JClientLoginProcessor* instance=NULL;
     if(NULL==instance){
-        JClientSocketBase* socket=JClientSocketBase::getInstance();
+		JMainClientSocket* socket=JMainClientSocket::getInstance();
 		JSession* session = socket->getSession();
 		instance=new JClientLoginProcessor(session,socket);
 		socket->registerProcessor(instance);

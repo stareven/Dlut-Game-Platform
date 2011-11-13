@@ -1,6 +1,6 @@
 #include "jclientcontrolroleprocessor.h"
 
-#include "jclientsocketbase.h"
+#include "jmainclientsocket.h"
 #include "jsession.h"
 
 JClientControlRoleProcessor::JClientControlRoleProcessor(JSession* session,JSocketBase *socket) :
@@ -12,7 +12,7 @@ JClientControlRoleProcessor* JClientControlRoleProcessor::getInstance()
 {
 	static JClientControlRoleProcessor* instance=NULL;
 	if(NULL==instance){
-		JClientSocketBase* socket=JClientSocketBase::getInstance();
+		JMainClientSocket* socket=JMainClientSocket::getInstance();
 		JSession* session = socket->getSession();
 		instance=new JClientControlRoleProcessor(session,socket);
 		socket->registerProcessor(instance);
