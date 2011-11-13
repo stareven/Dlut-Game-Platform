@@ -2,6 +2,7 @@
 #define JREQUESTLOGIN_H
 
 #include "jrequestbase.h"
+#include "../global/jglobal.h"
 #include "../global/elogin.h"
 
 class JClientLoginProcessor;

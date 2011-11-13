@@ -2,6 +2,7 @@
 #define JCOMMANDSENDBASE_H
 
 #include "jrequestbase.h"
+#include "../global/jglobal.h"
 
 class JClientCommandProcessor;
 

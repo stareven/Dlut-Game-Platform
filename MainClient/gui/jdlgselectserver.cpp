@@ -3,7 +3,8 @@
 #include "dlglogin/jdlgnewserver.h"
 
 #include <DataStruct/JServerInfo>
-#include <ClientRequest/JRequestBase>
+#include <Socket/JClientSocketBase>
+#include <Helper/JConnectHelper>
 
 #include <QPalette>
 #include <QMessageBox>
@@ -35,15 +36,15 @@ void JDlgSelectServer::accept()
 							  );
 		return;
 	}
-	JRequestBase req;
+	JConnectHelper connecthelper(JClientSocketBase::getInstance());
 	const SHallServer& server = ui->cb_servers->getServer();
 	ui->label_info->setText(
 			tr("connection to server %1:%2")
 			.arg(server.getAddress().toString())
 			.arg(server.getPort())
 			);
-	req.connectToHost(server.getAddress(),server.getPort());
-	if(req.waitForConnected(1000)){
+	connecthelper.connectToHost(server);
+	if(connecthelper.waitForConnected(1000)){
 		ui->label_info->setText(
 				tr("connect succeed")
 				);
@@ -51,7 +52,7 @@ void JDlgSelectServer::accept()
 	}else{
 		ui->label_info->setText(
 				tr("connect failed : %1")
-				.arg(req.getConnectError())
+				.arg(connecthelper.getConnectError())
 				);
 	}
 }

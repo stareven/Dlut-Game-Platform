@@ -2,6 +2,7 @@
 #define JREQUESTUSERREGISTER_H
 
 #include "jrequestbase.h"
+#include "../global/jglobal.h"
 #include "../global/eregister.h"
 
 class JClientUserRegisterProcessor;
