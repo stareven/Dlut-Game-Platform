@@ -6,7 +6,7 @@
 #include "jsnakeglobal.h"
 
 
-class JSnakeSocket;
+class JSnakeProcessor;
 
 class JRoomListModel : public QAbstractListModel
 {
@@ -20,12 +20,12 @@ public:
 private:
 	QList<JID> m_index2Id;
 	QMap<JID,Snake::JRoom> m_rooms;
-	JSnakeSocket* m_socket;
+	JSnakeProcessor* m_processor;
 private slots:
-	void on_socket_rcvAddRoom(const Snake::JRoom&);
-	void on_socket_rcvRoomList(const QList<Snake::JRoom>& roomlist);
-	void on_socket_rcvDeleteRoom(JID roomId);
-	void on_socket_rcvRoominfoUpdate(const Snake::JRoom& roominfo);
+	void on_processor_rcvAddRoom(const Snake::JRoom&);
+	void on_processor_rcvRoomList(const QList<Snake::JRoom>& roomlist);
+	void on_processor_rcvDeleteRoom(JID roomId);
+	void on_processor_rcvRoominfoUpdate(const Snake::JRoom& roominfo);
 };
 
 #endif // JROOMLISTMODEL_H

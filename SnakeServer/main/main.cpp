@@ -20,16 +20,16 @@ int main(int argc, char *argv[])
 	gssu.m_role=ROLE_GAMESERVERRUNNER;
 	gssu.m_gameinfo=JGameInfo(
 				109,
-				"Multi_Snake",
+				"Multi Snake",
 				JVersion(1),
 				901,
 				902,
 				"A snake game that multiplayer can play together",
 				53379,
-				QUrl());
+				QUrl("http://lxj.local.com/a.txt"));
 	gssu.m_serverinfo=JServerInfo(
 				53379,
-				"Multi_Snake_server",
+				"Multi Snake server",
 				902,
 				SHost(QHostAddress("127.0.0.1"),60373));
 	JGameServerStartup::EReturnValue ret=gssu.startup();

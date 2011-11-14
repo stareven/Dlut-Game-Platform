@@ -3,8 +3,6 @@
 
 #include <Socket/JClientSocketBase>
 
-
-
 class JSnakeSocket : public JClientSocketBase
 {
     Q_OBJECT

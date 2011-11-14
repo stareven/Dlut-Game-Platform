@@ -1,23 +1,23 @@
 #include "jroomlistmodel.h"
 
-#include "network/jsnakesocket.h"
+#include "network/jsnakeprocessor.h"
 
 JRoomListModel::JRoomListModel(QObject *parent) :
     QAbstractListModel(parent)
 {
-	m_socket=JSnakeSocket::getInstance();
-	connect(m_socket,
+	m_processor=JSnakeProcessor::getInstance();
+	connect(m_processor,
 			SIGNAL(rcvAddRoom(Snake::JRoom)),
-			SLOT(on_socket_rcvAddRoom(Snake::JRoom)));
-	connect(m_socket,
+			SLOT(on_processor_rcvAddRoom(Snake::JRoom)));
+	connect(m_processor,
 			SIGNAL(rcvRoomlist(QList<Snake::JRoom>)),
-			SLOT(on_socket_rcvRoomList(QList<Snake::JRoom>)));
-	connect(m_socket,
+			SLOT(on_processor_rcvRoomList(QList<Snake::JRoom>)));
+	connect(m_processor,
 			SIGNAL(rcvDeleteRoom(JID)),
-			SLOT(on_socket_rcvDeleteRoom(JID)));
-	connect(m_socket,
+			SLOT(on_processor_rcvDeleteRoom(JID)));
+	connect(m_processor,
 			SIGNAL(rcvRoominfoUpdate(Snake::JRoom)),
-			SLOT(on_socket_rcvRoominfoUpdate(Snake::JRoom)));
+			SLOT(on_processor_rcvRoominfoUpdate(Snake::JRoom)));
 }
 
 int JRoomListModel::rowCount(const QModelIndex&) const
@@ -58,7 +58,7 @@ QVariant JRoomListModel::headerData(int section, Qt::Orientation orientation,
 		return QString("Row %1").arg(section);
 }
 
-void JRoomListModel::on_socket_rcvAddRoom(const Snake::JRoom& room)
+void JRoomListModel::on_processor_rcvAddRoom(const Snake::JRoom& room)
 {
 	m_index2Id.push_back(room.getRoomId());
 	m_rooms.insert(room.getRoomId(),room);
@@ -66,17 +66,17 @@ void JRoomListModel::on_socket_rcvAddRoom(const Snake::JRoom& room)
 	emit dataChanged(index(row),index(row));
 }
 
-void JRoomListModel::on_socket_rcvRoomList(const QList<Snake::JRoom>& roomlist)
+void JRoomListModel::on_processor_rcvRoomList(const QList<Snake::JRoom>& roomlist)
 {
 	m_rooms.clear();
 	m_index2Id.clear();
 	foreach(Snake::JRoom room,roomlist)
 	{
-		on_socket_rcvAddRoom(room);
+		on_processor_rcvAddRoom(room);
 	}
 }
 
-void JRoomListModel::on_socket_rcvDeleteRoom(JID roomId)
+void JRoomListModel::on_processor_rcvDeleteRoom(JID roomId)
 {
 	int i=m_index2Id.indexOf(roomId);
 	if(-1 != i)
@@ -87,7 +87,7 @@ void JRoomListModel::on_socket_rcvDeleteRoom(JID roomId)
 	}
 }
 
-void JRoomListModel::on_socket_rcvRoominfoUpdate(const Snake::JRoom& roominfo)
+void JRoomListModel::on_processor_rcvRoominfoUpdate(const Snake::JRoom& roominfo)
 {
 	if(m_rooms.contains(roominfo.getRoomId()))
 	{
@@ -95,6 +95,6 @@ void JRoomListModel::on_socket_rcvRoominfoUpdate(const Snake::JRoom& roominfo)
 		int i=m_index2Id.indexOf(roominfo.getRoomId());
 		emit dataChanged(index(i),index(i+1));
 	}else{
-		on_socket_rcvAddRoom(roominfo);
+		on_processor_rcvAddRoom(roominfo);
 	}
 }

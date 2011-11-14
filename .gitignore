@@ -5,4 +5,3 @@ make.err
 make.out
 *lib/
 *waste/
-database/*
