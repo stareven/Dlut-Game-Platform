@@ -1,25 +1,22 @@
-#ifndef JSNAKECONNECTION_H
-#define JSNAKECONNECTION_H
+#ifndef JSNAKESERVERPROCESSOR_H
+#define JSNAKESERVERPROCESSOR_H
 
-#include "network/jconnectionbase.h"
+#include <Processor/JServerNetworkDataProcessorBase>
+
 #include "jsnake.h"
 
 class JRoomManager;
 class QPoint;
 
-class JSnakeConnection : public JConnectionBase
+class JSnakeServerProcessor : public JServerNetworkDataProcessorBase
 {
     Q_OBJECT
 public:
-	explicit JSnakeConnection(QTcpSocket* socket,QObject *parent = 0);
-protected:
-	void dataProcess(const QByteArray&);
+	explicit JSnakeServerProcessor(JSession* session,JSocketBase *socket);
+	void process(const QByteArray& data);
+	EProcessorType getProcessorType()const;
+protected slots:
 	void on_socket_disconnected();
-private:
-	MagicNumber::JMagicNumber getMagicNumber()const
-	{
-		return MagicNumber::EMN_UserNumber+1;
-	}
 private:
 	JRoomManager* m_roomMng;
 private slots:
@@ -44,4 +41,4 @@ private:
 	void processEscapeRoom();
 };
 
-#endif // JSNAKECONNECTION_H
+#endif // JSNAKESERVERPROCESSOR_H

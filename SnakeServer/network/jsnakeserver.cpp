@@ -1,13 +1,18 @@
 #include "jsnakeserver.h"
 
-#include "jsnakeconnection.h"
+#include "jsnakeserversocket.h"
+#include "jsnakeserverprocessor.h"
 
 JSnakeServer::JSnakeServer(QObject *parent) :
     JServerBase(parent)
 {
 }
 
-JConnectionBase* JSnakeServer::getConnection(QTcpSocket* socket,QObject* parent)const
+JServerSocketBase* JSnakeServer::getConnection(QTcpSocket* socket,QObject* parent)const
 {
-	return new JSnakeConnection(socket,parent);
+	JSnakeServerSocket* connection = new JSnakeServerSocket(socket,parent);
+	JSession* session = connection->getSession();
+	JServerNetworkDataProcessorBase* snakeProcessor = new JSnakeServerProcessor(session,connection);
+	connection->registerProcessor(snakeProcessor);
+	return connection;
 }

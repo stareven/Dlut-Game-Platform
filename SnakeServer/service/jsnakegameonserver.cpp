@@ -3,7 +3,8 @@
 #include <QTimer>
 #include <QCoreApplication>
 #include <QTime>
-#include "global/jelapsedtimer.h"
+
+#include <DataStruct/JElapsedTimer>
 
 JSnakeGameOnServer::JSnakeGameOnServer(QObject *parent) :
     QObject(parent)

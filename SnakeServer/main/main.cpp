@@ -1,8 +1,7 @@
 #include <QtCore/QCoreApplication>
 
+#include <Helper/JGameServerStartup>
 #include "jargumentanalyse.h"
-#include "service/jsubserverstartup.h"
-#include "global/elogin.h"
 
 #include "network/jsnakeserver.h"
 
@@ -14,23 +13,26 @@ int main(int argc, char *argv[])
 	server.run(60373);
 	quint16 port=server.serverPort();
 	qDebug()<<"snake server :"<<port;
-	JSubServerStartup sssu;
-	sssu.m_host.m_address=aa.getAddress();
-	sssu.m_host.m_port=aa.getPort();
-	sssu.m_loginname="sampleserverrunner";
-	sssu.m_passwd="123";
-	sssu.m_role=ROLE_GAMESERVERRUNNER;
-	sssu.m_gameinfo.m_gameId=109;
-	sssu.m_gameinfo.m_name="Multi_Snake";
-	sssu.m_gameinfo.m_author=901;
-	sssu.m_gameinfo.m_version=JVersion(1);
-	sssu.m_gameinfo.m_introduction="A snake game that multiplayer can play together";
-	sssu.m_serverinfo.m_serverId=53379;
-	sssu.m_serverinfo.m_name="Multi_Snake_server";
-	sssu.m_serverinfo.m_address=QHostAddress::LocalHost;
-	sssu.m_serverinfo.m_port=port;
-	sssu.m_serverinfo.m_type=SubServer::SSubServer::ET_GameServer;
-	sssu.startup();
+	JGameServerStartup gssu;
+	gssu.m_mainserver = SHost(aa.getAddress(),aa.getPort());
+	gssu.m_loginname="sampleserverrunner";
+	gssu.m_passwd="123";
+	gssu.m_role=ROLE_GAMESERVERRUNNER;
+	gssu.m_gameinfo=JGameInfo(
+				109,
+				"Multi_Snake",
+				JVersion(1),
+				901,
+				902,
+				"A snake game that multiplayer can play together",
+				53379,
+				QUrl());
+	gssu.m_serverinfo=JServerInfo(
+				53379,
+				"Multi_Snake_server",
+				902,
+				SHost(QHostAddress("127.0.0.1"),60373));
+	gssu.startup();
 //	if(ret!=JSubServerStartup::ERV_Success)
 //	{
 //		return ret;

@@ -1,7 +1,8 @@
 #ifndef JUSERLISTMANAGER_H
 #define JUSERLISTMANAGER_H
 
-#include "global/jglobal.h"
+#include <Global/Global>
+
 #include <QList>
 #include <QMap>
 
