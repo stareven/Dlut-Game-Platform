@@ -25,6 +25,7 @@ void JServerInfo::fromByteArray(const QByteArray& data)
 	stream>>id;
 	setId(id);
 	stream>>m_name;
+	stream>>m_runner;
 	stream>>m_host.m_address;
 	stream>>m_host.m_port;
 }
@@ -35,6 +36,7 @@ QByteArray JServerInfo::toByteArray()const
 	QDataStream stream(&data,QIODevice::WriteOnly);
 	stream<<getId();
 	stream<<m_name;
+	stream<<m_runner;
 	stream<<m_host.m_address;
 	stream<<m_host.m_port;
 	return data;

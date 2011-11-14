@@ -1,5 +1,6 @@
 #include "jtextstreamgameinfodb.h"
 
+#include <QStringList>
 #include <QString>
 #include <QFile>
 #include <QTextStream>
@@ -13,32 +14,21 @@ JTextStreamGameInfoDB::JTextStreamGameInfoDB(QObject *parent) :
 	if(s_gameinfos.isEmpty()){
 		QFile file("../database/gameinfo");
 		file.open(QIODevice::ReadOnly | QIODevice::Text);
-		QTextStream stream(&file);
 		for(int i=0;i<1000;++i){
-			if(stream.atEnd()) break;
-			JID gameId;
-			QString name;
-			quint32 version;
-			JID author;
-			JID runner;
-			QString introduction;
-			JID serverId;
-			QString downloadUrl;
-			stream>>gameId;
-			if(stream.atEnd()) break;
-			stream>>name;
-			if(stream.atEnd()) break;
-			stream>>version;
-			if(stream.atEnd()) break;
-			stream>>author;
-			if(stream.atEnd()) break;
-			stream>>runner;
-			if(stream.atEnd()) break;
-			stream>>introduction;
-			if(stream.atEnd()) break;
-			stream>>serverId;
-			if(stream.atEnd()) break;
-			stream>>downloadUrl;
+			if(file.atEnd()) break;
+			QString strLine = file.readLine(500);
+			QStringList split = strLine.split(QRegExp("#|\n"));
+			if(split.length()<8){
+				continue;
+			}
+			JID gameId=split.at(0).toInt();
+			QString name=split.at(1);
+			quint32 version=split.at(2).toInt();
+			JID author=split.at(3).toInt();
+			JID runner=split.at(4).toInt();
+			QString introduction=split.at(5);
+			JID serverId=split.at(6).toInt();
+			QString downloadUrl=split.at(7);
 			JGameInfo gameinfo(gameId,
 							   name,
 							   JVersion(version),
@@ -87,12 +77,13 @@ void JTextStreamGameInfoDB::flush()
 	file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text);
 	QTextStream stream(&file);
 	foreach(JGameInfo gameinfo,s_gameinfos){
-		stream<<gameinfo.getGameId()<<' ';
-		stream<<gameinfo.getName()<<' ';
-		stream<<gameinfo.getVersion().getData()<<' ';
-		stream<<gameinfo.getAuthor()<<' ';
-		stream<<gameinfo.getIntroduction()<<' ';
-		stream<<gameinfo.getServerId()<<' ';
+		stream<<gameinfo.getGameId()<<'#';
+		stream<<gameinfo.getName()<<'#';
+		stream<<gameinfo.getVersion().getData()<<'#';
+		stream<<gameinfo.getAuthor()<<'#';
+		stream<<gameinfo.getRunner()<<'#';
+		stream<<gameinfo.getIntroduction()<<'#';
+		stream<<gameinfo.getServerId()<<'#';
 		stream<<gameinfo.getDownloadUrl().toString();
 		stream<<endl;
 	}

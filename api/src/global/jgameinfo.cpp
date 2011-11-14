@@ -36,6 +36,7 @@ void JGameInfo::fromByteArray(const QByteArray& data)
 	stream>>m_name;
 	stream>>m_version;
 	stream>>m_author;
+	stream>>m_runner;
 	stream>>m_introduction;
 	stream>>m_serverId;
 	stream>>m_downloadUrl;
@@ -49,6 +50,7 @@ QByteArray JGameInfo::toByteArray()const
 	stream<<m_name;
 	stream<<m_version;
 	stream<<m_author;
+	stream<<m_runner;
 	stream<<m_introduction;
 	stream<<m_serverId;
 	stream<<m_downloadUrl;

@@ -32,10 +32,10 @@ int main(int argc, char *argv[])
 				"Multi_Snake_server",
 				902,
 				SHost(QHostAddress("127.0.0.1"),60373));
-	gssu.startup();
-//	if(ret!=JSubServerStartup::ERV_Success)
-//	{
-//		return ret;
-//	}
+	JGameServerStartup::EReturnValue ret=gssu.startup();
+	if(ret !=JGameServerStartup::ERV_Success)
+	{
+		return ret;
+	}
     return a.exec();
 }
