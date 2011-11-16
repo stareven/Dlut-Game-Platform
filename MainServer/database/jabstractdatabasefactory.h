@@ -13,7 +13,7 @@ class JAbstractDatabaseFactory : public QObject
 protected:
 	explicit JAbstractDatabaseFactory(QObject *parent = 0);
 public:
-	static JAbstractDatabaseFactory* getInstance();
+	static JAbstractDatabaseFactory* getInstance(const QString& type="textstream");
 	virtual JAbstractLoginDB* createLoginDB()=0;
 	virtual JAbstractUserInfoDB* createUserInfoDB()=0;
 	virtual JAbstractGameInfoDB* createGameInfoDB()=0;

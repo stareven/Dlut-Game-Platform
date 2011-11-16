@@ -22,7 +22,8 @@ JTextStreamDatabaseFactory::~JTextStreamDatabaseFactory()
 
 JTextStreamDatabaseFactory* JTextStreamDatabaseFactory::getInstance()
 {
-	static JTextStreamDatabaseFactory* instance=new JTextStreamDatabaseFactory(QCoreApplication::instance());
+	static QObject parent;
+	static JTextStreamDatabaseFactory* instance=new JTextStreamDatabaseFactory(&parent);
 	return instance;
 }
 
