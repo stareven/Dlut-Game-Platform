@@ -18,7 +18,9 @@ SOURCES += main/main.cpp \
     pseudoserver/jpseudoserversocket.cpp \
     pseudoserver/jpseudoserverinformationprocessor.cpp \
     gui/dialoguserregister/jdialoguserregister.cpp \
-    gui/dialogupdateuserinfo/jdialogupdateuserinfo.cpp
+    gui/dialogupdateuserinfo/jdialogupdateuserinfo.cpp \
+    service/jgameclientloader.cpp \
+    service/jdownloader.cpp
 HEADERS += gui/mainwindow.h \
     gui/dlglogin/jcomboselectserver.h \
     gui/dlglogin/jdlglogin.h \
@@ -33,7 +35,9 @@ HEADERS += gui/mainwindow.h \
     pseudoserver/jpseudoserversocket.h \
     pseudoserver/jpseudoserverinformationprocessor.h \
     gui/dialoguserregister/jdialoguserregister.h \
-    gui/dialogupdateuserinfo/jdialogupdateuserinfo.h
+    gui/dialogupdateuserinfo/jdialogupdateuserinfo.h \
+    service/jgameclientloader.h \
+    service/jdownloader.h
 FORMS += gui/mainwindow.ui \
     gui/dlglogin/jdlglogin.ui \
     gui/dlglogin/jdlgnewserver.ui \

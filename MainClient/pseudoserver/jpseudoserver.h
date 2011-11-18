@@ -6,8 +6,9 @@
 class JPseudoServer : public JServerBase
 {
     Q_OBJECT
+	explicit JPseudoServer(QObject *parent = 0);
 public:
-    explicit JPseudoServer(QObject *parent = 0);
+	static JPseudoServer* getInstance();
 protected:
 	JServerSocketBase* getConnection(QTcpSocket* socket,QObject* parent)const;
 };

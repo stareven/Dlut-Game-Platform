@@ -5,16 +5,18 @@
 #include <QMessageBox>
 #include <QPalette>
 
-#include "service/jdownloadrun.h"
-
+#include <Global/CodeError>
 #include <ClientRequest/JRequestGameInfo>
 #include <ClientRequest/JRequestUserInfo>
+#include <ClientRequest/JRequestServerInfo>
 #include <Socket/JMainClientSocket>
 #include <Session/JSession>
 
 #include "jdlgselectserver.h"
 #include "widgetadmin/jwidgetadmin.h"
 #include "dialogupdateuserinfo/jdialogupdateuserinfo.h"
+#include "../service/jgameclientloader.h"
+#include "../pseudoserver/jpseudoserver.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -128,7 +130,7 @@ void MainWindow::updateGameInfo(JID gameId)
 }
 
 void MainWindow::on_btn_start_game_clicked()
-{/*
+{
 	if(m_currentId<0)
 	{
 		QMessageBox::warning(this,
@@ -137,66 +139,19 @@ void MainWindow::on_btn_start_game_clicked()
 							 );
 		return;
 	}
-	JDownloadRun dr;
-	JGameInfo gi=m_gis->pullGameInfo(m_currentId);
-	dr.setGame(gi.getName(),gi.getVersion());
-	if(dr.needDownload())
-	{
-		if( QMessageBox::Yes == QMessageBox::question(this,
-													  tr("need download"),
-													  tr("game file does not exist or version does not match . do you want to download the game client ?"),
-													  QMessageBox::Yes | QMessageBox::No
-													  )
-			){
-			qDebug()<<"download";
-			QSet<JID> servers=m_gis->getServerListOnGame(gi.m_gameId);
-			JDlgSelectServer dlg(this);
-			dlg.setText(tr("select server for download"));
-			foreach(JID serverId,servers)
-			{
-				SubServer::SSubServer si=m_gis->getServerInfo(serverId);
-				if( SubServer::SSubServer::ET_GameFileServer ==si.m_type)
-				{
-					dlg.addServer(si);
-				}else if(SubServer::SSubServer::ET_GameServer ==si.m_type){
-					dr.setHost(JDownloadRun::EHT_GameServer,si);
-				}
-			}
-			if(QDialog::Rejected==dlg.exec())
-			{
-				return;
-			}else{
-				SubServer::SSubServer si=m_gis->getServerInfo(dlg.getSelectedServer());
-				dr.setHost(JDownloadRun::EHT_Download,si);
-				if(!dr.download())
-				{
-					qDebug()<<"download failed";
-					return;
-				}
-
-			}
-		}else{
-			qDebug()<<"not download";
-			return;
-		}
+	JRequestServerInfo rsi;
+	JGameInfo gi = m_gis->pullGameInfo(m_currentId,1000);
+	JServerInfo si = rsi.pullServerInfo(gi.getServerId(),1000);
+	JGameClientLoader l;
+	l.setParent(this);
+	l.setPseudoServer(SHost(QHostAddress::LocalHost,JPseudoServer::getInstance()->serverPort()));
+	l.setGameInfo(gi);
+	l.setServerInfo(si);
+	if(ESuccess == l.load()){
+		qDebug()<<"load succeed.";
+	}else{
+		qDebug()<<"load failed."<<l.getErrorString();
 	}
-	dr.setParent(this);
-	QSet<JID> servers=m_gis->getServerListOnGame(gi.m_gameId);
-	foreach(JID serverId,servers)
-	{
-		SubServer::SSubServer si=m_gis->getServerInfo(serverId);
-		if(SubServer::SSubServer::ET_GameServer ==si.m_type){
-			dr.setHost(JDownloadRun::EHT_GameServer,si);
-			break;
-		}
-	}
-	dr.setHost(JDownloadRun::EHT_MainServer,m_reqport->getServerPort(EST_FREEPORT));
-	if(!dr.run())
-	{
-		qDebug()<<"run failed";
-		return;
-	}
-	//*/
 }
 
 void MainWindow::on_btn_refresh_myuserinfo_clicked()
