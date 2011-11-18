@@ -147,6 +147,7 @@ void MainWindow::on_btn_start_game_clicked()
 	l.setPseudoServer(SHost(QHostAddress::LocalHost,JPseudoServer::getInstance()->serverPort()));
 	l.setGameInfo(gi);
 	l.setServerInfo(si);
+	l.setSession(JMainClientSocket::getInstance()->getSession());
 	if(ESuccess == l.load()){
 		qDebug()<<"load succeed.";
 	}else{

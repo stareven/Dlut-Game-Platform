@@ -13,7 +13,7 @@ class JDownloader : public QObject
 public:
     explicit JDownloader(QObject *parent = 0);
 	void start(const QUrl& url,const QString& saveFilePath);
-	JCode waitForFinished();
+	JCode waitForFinished(int msecs=60*60*1000);
 	void stop();
 };
 

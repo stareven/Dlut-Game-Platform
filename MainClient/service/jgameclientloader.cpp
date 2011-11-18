@@ -2,6 +2,9 @@
 #include "jdownloader.h"
 
 #include <Global/CodeError>
+#include <Session/JSession>
+
+#include <QProcess>
 
 JGameClientLoader::JGameClientLoader()
 {
@@ -33,6 +36,11 @@ void JGameClientLoader::setServerInfo(const JServerInfo& serverinfo)
 	m_serverInfo = serverinfo;
 }
 
+void JGameClientLoader::setSession(JSession* session)
+{
+	m_session = session;
+}
+
 JDownloader* JGameClientLoader::getDownloader()const
 {
 	return m_downloader;
@@ -41,6 +49,7 @@ JDownloader* JGameClientLoader::getDownloader()const
 JCode JGameClientLoader::load()
 {
 	JCode rtn;
+	/*
 	rtn = download();
 	if(ESuccess != rtn){
 		return rtn;
@@ -49,6 +58,7 @@ JCode JGameClientLoader::load()
 	if(ESuccess != rtn){
 		return rtn;
 	}
+	//*/
 	rtn = start();
 	if(ESuccess != rtn){
 		return rtn;
@@ -71,14 +81,33 @@ JCode JGameClientLoader::download()
 
 JCode JGameClientLoader::install()
 {
-	extern JCode asdf;
-	return asdf;
+	return 1;
 }
 
 JCode JGameClientLoader::start()
 {
-	extern JCode asdf;
-	return asdf;
+	static QProcess *s_process=NULL;
+	if(s_process==NULL)
+	{
+		s_process=new QProcess(m_parent);
+	}
+	if(s_process->state()==QProcess::NotRunning)
+	{
+		qDebug()<<"run:"<<getSaveFilePath();
+		s_process->setProcessChannelMode(QProcess::ForwardedChannels);
+		s_process->start(getSaveFilePath(),getArguments());
+		if(s_process->waitForStarted(1000)){
+			qDebug()<<"run succeed";
+			return 0;
+		}else{
+			qDebug()<<"run failed"<<s_process->errorString();
+			return 2;
+		}
+	}else{
+		qDebug()<<"is running.escape";
+		return 1;
+	}
+	return 1;
 }
 
 void JGameClientLoader::setErrorString(const QString& error)
@@ -92,4 +121,16 @@ QString JGameClientLoader::getSaveFilePath()const
 			.arg(m_gameInfo.getAuthor())
 			.arg(m_gameInfo.getName())
 			.arg("setup");
+}
+
+QStringList JGameClientLoader::getArguments()const
+{
+	QStringList ret;
+	ret<<QString::number(m_session->getUserId());
+	ret<<m_session->getLoginHashCodeStr();
+	ret<<m_pseudoServer.m_address.toString();
+	ret<<QString::number(m_pseudoServer.m_port);
+	ret<<m_serverInfo.getHost().m_address.toString();
+	ret<<QString::number(m_serverInfo.getHost().m_port);
+	return ret;
 }
