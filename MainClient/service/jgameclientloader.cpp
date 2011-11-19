@@ -49,7 +49,6 @@ JDownloader* JGameClientLoader::getDownloader()const
 JCode JGameClientLoader::load()
 {
 	JCode rtn;
-	/*
 	rtn = download();
 	if(ESuccess != rtn){
 		return rtn;
@@ -58,7 +57,6 @@ JCode JGameClientLoader::load()
 	if(ESuccess != rtn){
 		return rtn;
 	}
-	//*/
 	rtn = start();
 	if(ESuccess != rtn){
 		return rtn;
@@ -76,7 +74,8 @@ JCode JGameClientLoader::download()
 	m_downloader->start(
 				m_gameInfo.getDownloadUrl(),
 				getSaveFilePath());
-	return m_downloader->waitForFinished();
+	JCode downloadResult =  m_downloader->waitForFinished();
+	return downloadResult;
 }
 
 JCode JGameClientLoader::install()
