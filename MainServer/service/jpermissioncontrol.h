@@ -16,6 +16,7 @@ public:
 	bool checkInformation(JID protocol,const NetworkData::JHead& head);
 	bool checkCommand(JID type,JID param);
 	bool checkControlRole(JID targetUserId,ERole targetRole,EControlRoleAction act);
+	bool isMultiLoginAble(ERole role);
 private:
 	JID m_userId;
 	JAbstractDatabaseFactory* m_dbFactory;

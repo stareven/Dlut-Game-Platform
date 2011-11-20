@@ -85,3 +85,8 @@ bool JPermissionControl::checkControlRole(JID,ERole targetRole,EControlRoleActio
 	}
 	return false;
 }
+
+bool JPermissionControl::isMultiLoginAble(ERole role)
+{
+	return role == ROLE_GAMESERVERRUNNER;
+}
