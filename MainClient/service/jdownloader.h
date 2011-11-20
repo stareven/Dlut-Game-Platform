@@ -5,8 +5,10 @@
 
 #include <QObject>
 #include <QUrl>
+#include <QNetworkReply>
 
 class QFile;
+class QNetworkAccessManager;
 
 class JDownloader : public QObject
 {
@@ -27,10 +29,16 @@ public:
 
 	EDownloadState getDownloadState()const;
 private:
+	void start();
 	bool makeSaveFileDir();
 	bool openSaveFile();
 	bool getDownloadTotalSize();
 	void beginDownloadFile();
+private slots:
+	void on_reply_readyRead();
+	void on_reply_finished();
+	void on_reply_error(QNetworkReply::NetworkError);
+	void on_reply_downloadProgress(qint64,qint64);
 private:
 	EDownloadState m_state;
 	JCode m_error;
@@ -38,6 +46,8 @@ private:
 	QString m_saveFilePath;
 	qint64 m_downloadTotalSize;
 	QFile *m_file;
+	QNetworkAccessManager* m_networkAccessManager;
+	QNetworkReply* m_reply;
 };
 
 #endif // JDOWNLOADER_H

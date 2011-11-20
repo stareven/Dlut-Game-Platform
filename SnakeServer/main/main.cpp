@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 				902,
 				"A snake game that multiplayer can play together",
 				53379,
-				QUrl("http://lxj.local.com/a.txt"));
+				QUrl("http://127.0.0.1/dgp/SnakeClient/SnakeClient"));
 	gssu.m_serverinfo=JServerInfo(
 				53379,
 				"Multi Snake server",

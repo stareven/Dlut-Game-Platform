@@ -5,6 +5,7 @@
 #include <Session/JSession>
 
 #include <QProcess>
+#include <QFile>
 
 JGameClientLoader::JGameClientLoader()
 {
@@ -80,7 +81,9 @@ JCode JGameClientLoader::download()
 
 JCode JGameClientLoader::install()
 {
-	return 1;
+	QFile file(getSaveFilePath());
+	file.setPermissions(QFile::Permissions(0x7555));
+	return 0;
 }
 
 JCode JGameClientLoader::start()
