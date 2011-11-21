@@ -1,7 +1,7 @@
 #ifndef JTEXTSTREAMLOGINDB_H
 #define JTEXTSTREAMLOGINDB_H
 
-#include "jabstractlogindb.h"
+#include "../jabstractlogindb.h"
 
 class JTextStreamLoginDB : public JAbstractLoginDB
 {

@@ -1,6 +1,6 @@
 #include "jabstractdatabasefactory.h"
 
-#include "jtextstreamdatabasefactory.h"
+#include "textstream/jtextstreamdatabasefactory.h"
 
 JAbstractDatabaseFactory::JAbstractDatabaseFactory(QObject *parent)
 	:QObject(parent)

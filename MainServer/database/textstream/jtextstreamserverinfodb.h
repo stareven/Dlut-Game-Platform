@@ -1,7 +1,7 @@
 #ifndef JTEXTSTREAMSERVERINFODB_H
 #define JTEXTSTREAMSERVERINFODB_H
 
-#include "jabstractserverinfodb.h"
+#include "../jabstractserverinfodb.h"
 
 class JTextStreamServerInfoDB : public JAbstractServerInfoDB
 {

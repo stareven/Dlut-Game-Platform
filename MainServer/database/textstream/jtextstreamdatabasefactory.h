@@ -1,7 +1,7 @@
 #ifndef JTEXTSTREAMDATABASEFACTORY_H
 #define JTEXTSTREAMDATABASEFACTORY_H
 
-#include "jabstractdatabasefactory.h"
+#include "../jabstractdatabasefactory.h"
 
 class JTextStreamDatabaseFactory : public JAbstractDatabaseFactory
 {

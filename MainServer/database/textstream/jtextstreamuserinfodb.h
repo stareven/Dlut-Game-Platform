@@ -1,7 +1,7 @@
 #ifndef JTEXTSTREAMUSERINFODB_H
 #define JTEXTSTREAMUSERINFODB_H
 
-#include "jabstractuserinfodb.h"
+#include "../jabstractuserinfodb.h"
 
 class JTextStreamUserInfoDB : public JAbstractUserInfoDB
 {

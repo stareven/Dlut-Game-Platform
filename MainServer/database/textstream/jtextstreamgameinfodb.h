@@ -1,7 +1,7 @@
 #ifndef JTEXTSTREAMGAMEINFODB_H
 #define JTEXTSTREAMGAMEINFODB_H
 
-#include "jabstractgameinfodb.h"
+#include "../jabstractgameinfodb.h"
 
 class JTextStreamGameInfoDB : public JAbstractGameInfoDB
 {
