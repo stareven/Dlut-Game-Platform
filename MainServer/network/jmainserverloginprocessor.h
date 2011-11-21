@@ -12,6 +12,8 @@ public:
 	explicit JMainServerLoginProcessor(JSession* session,JSocketBase *socket);
 	void process(const QByteArray& data);
 	EProcessorType getProcessorType()const;
+private slots:
+	void on_socket_disconnect();
 };
 
 #endif // JMAINSERVERLOGINPROCESSOR_H

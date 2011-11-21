@@ -1,10 +1,10 @@
 #include "jmainserverloginprocessor.h"
 
 #include <QDataStream>
-#include <QDebug>
 
 #include <Global/Login>
 #include <Session/JSession>
+#include <Socket/JSocketBase>
 
 #include "service/jloginverification.h"
 #include "service/jloginhashcodecreator.h"
@@ -14,6 +14,9 @@
 JMainServerLoginProcessor::JMainServerLoginProcessor(JSession* session,JSocketBase *socket) :
 	JServerNetworkDataProcessorBase(session,socket)
 {
+	connect(socket,
+			SIGNAL(disconnected()),
+			SLOT(on_socket_disconnect()));
 }
 
 void JMainServerLoginProcessor::process(const QByteArray& data)
@@ -53,4 +56,13 @@ void JMainServerLoginProcessor::process(const QByteArray& data)
 EProcessorType JMainServerLoginProcessor::getProcessorType()const
 {
 	return EPI_LOGIN;
+}
+
+void JMainServerLoginProcessor::on_socket_disconnect()
+{
+	JID userId = getSession()->getUserId();
+	if(userId>=0){
+		JUserStateManager usm;
+		usm.setUserState(userId,JUserStateManager::ES_OffLine);
+	}
 }
