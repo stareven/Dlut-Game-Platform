@@ -1,17 +1,14 @@
 #include "jdownloader.h"
 
 #include <Global/CodeError>
-#include <DataStruct/JElapsedTimer>
 
-#include <QApplication>
-#include <QUrl>
 #include <QDebug>
+#include <QUrl>
 #include <QFileInfo>
 #include <QDir>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
-#include <QEventLoop>
 
 JDownloader::JDownloader(QObject *parent) :
     QObject(parent)
@@ -23,6 +20,10 @@ JDownloader::JDownloader(QObject *parent) :
 	m_networkAccessManager = new QNetworkAccessManager(this);
 }
 
+JDownloader::~JDownloader(){
+	m_networkAccessManager->deleteResource(QNetworkRequest(m_url));
+}
+
 void JDownloader::start(const QUrl& url,const QString& saveFilePath)
 {
 	QFileInfo fileinfo(saveFilePath);
@@ -30,22 +31,6 @@ void JDownloader::start(const QUrl& url,const QString& saveFilePath)
 	m_url = url;
 	m_saveFilePath = saveFilePath;
 	start();
-}
-
-JCode JDownloader::waitForFinished(int msecs)
-{
-	qDebug()<<__FUNCTION__<<msecs;
-	JElapsedTimer timer;
-	timer.start();
-	while(timer.elapsed()<msecs)
-	{
-		if(getDownloadState()!=EDS_Downloading)
-		{
-			break;
-		}
-		QCoreApplication::processEvents();
-	}
-	return m_error;
 }
 
 void JDownloader::stop()
@@ -64,11 +49,7 @@ void JDownloader::start()
 		m_state = EDS_Error;
 		return;
 	}
-	if(!getDownloadTotalSize()){
-		m_state = EDS_Error;
-		return;
-	}
-	beginDownloadFile();
+	beginGetDownloadTotalSize();
 }
 
 JDownloader::EDownloadState JDownloader::getDownloadState()const
@@ -101,29 +82,12 @@ bool JDownloader::openSaveFile()
 	return result;
 }
 
-bool JDownloader::getDownloadTotalSize()
+void JDownloader::beginGetDownloadTotalSize()
 {
-	QEventLoop e;
-	QNetworkReply* pReply = m_networkAccessManager->head(QNetworkRequest(m_url));
-	connect(pReply,SIGNAL(finished()),&e,SLOT(quit()));
-	e.exec();
-	QByteArray contentLength = "Content-Length";
-	qDebug()<<__FUNCTION__
-			<<pReply->rawHeaderList()
-			<<pReply->rawHeader(contentLength);
-
-	if(pReply->hasRawHeader(contentLength)){
-		bool ok;
-		m_downloadTotalSize = pReply->rawHeader(contentLength).toLongLong(&ok);
-		Q_ASSERT (ok);
-		m_error = ESuccess;
-		return true;
-	}else{
-		m_error = ECannotGetContentLengthInHead;
-		return false;
-	}
-	m_error = EUnknownError;
-	return false;
+	m_headReply = m_networkAccessManager->head(QNetworkRequest(m_url));
+	connect(m_headReply,
+			SIGNAL(finished()),
+			SLOT(on_headReply_finished()));
 }
 
 void JDownloader::beginDownloadFile()
@@ -146,6 +110,7 @@ void JDownloader::beginDownloadFile()
 				SLOT(on_reply_downloadProgress(qint64,qint64)));
 		m_state = EDS_Downloading;
 		m_error = ESuccess;
+		emit begin();
 	}else if(m_file->size() == m_downloadTotalSize){
 		on_reply_finished();
 	}else{
@@ -154,6 +119,25 @@ void JDownloader::beginDownloadFile()
 		m_file->remove();
 		start();
 	}
+}
+
+void JDownloader::on_headReply_finished()
+{
+	QByteArray contentLength = "Content-Length";
+	qDebug()<<__FUNCTION__
+			<<m_headReply->rawHeaderList()
+			<<m_headReply->rawHeader(contentLength);
+
+	if(m_headReply->hasRawHeader(contentLength)){
+		bool ok;
+		m_downloadTotalSize = m_headReply->rawHeader(contentLength).toLongLong(&ok);
+		Q_ASSERT (ok);
+		m_error = ESuccess;
+	}else{
+		m_error = ECannotGetContentLengthInHead;
+	}
+	emit rcvTotalSize(m_downloadTotalSize);
+	beginDownloadFile();
 }
 
 void JDownloader::on_reply_readyRead()
@@ -167,6 +151,7 @@ void JDownloader::on_reply_finished()
 {
 	m_file->close();
 	m_state = EDS_Finished;
+	emit finished();
 }
 
 void JDownloader::on_reply_error(QNetworkReply::NetworkError)
@@ -181,4 +166,5 @@ void JDownloader::on_reply_downloadProgress(qint64 a,qint64 b)
 			<<" total size:"<<m_downloadTotalSize
 			<<" a="<<a
 			<<" b="<<b;
+	emit progress(m_file->size(),m_downloadTotalSize);
 }

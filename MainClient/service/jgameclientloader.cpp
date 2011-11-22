@@ -47,46 +47,25 @@ JDownloader* JGameClientLoader::getDownloader()const
 	return m_downloader;
 }
 
-JCode JGameClientLoader::load()
-{
-	JCode rtn;
-	rtn = download();
-	if(ESuccess != rtn){
-		return rtn;
-	}
-	rtn = install();
-	if(ESuccess != rtn){
-		return rtn;
-	}
-	rtn = start();
-	if(ESuccess != rtn){
-		return rtn;
-	}
-	return ESuccess;
-}
-
 const QString& JGameClientLoader::getErrorString()const
 {
 	return m_error;
 }
 
-JCode JGameClientLoader::download()
+void JGameClientLoader::download()
 {
 	m_downloader->start(
 				m_gameInfo.getDownloadUrl(),
 				getSaveFilePath());
-	JCode downloadResult =  m_downloader->waitForFinished();
-	return downloadResult;
 }
 
-JCode JGameClientLoader::install()
+void JGameClientLoader::install()
 {
 	QFile file(getSaveFilePath());
 	file.setPermissions(QFile::Permissions(0x7555));
-	return 0;
 }
 
-JCode JGameClientLoader::start()
+void JGameClientLoader::start()
 {
 	static QProcess *s_process=NULL;
 	if(s_process==NULL)
@@ -100,16 +79,12 @@ JCode JGameClientLoader::start()
 		s_process->start(getSaveFilePath(),getArguments());
 		if(s_process->waitForStarted(1000)){
 			qDebug()<<"run succeed";
-			return 0;
 		}else{
 			qDebug()<<"run failed"<<s_process->errorString();
-			return 2;
 		}
 	}else{
 		qDebug()<<"is running.escape";
-		return 1;
 	}
-	return 1;
 }
 
 void JGameClientLoader::setErrorString(const QString& error)

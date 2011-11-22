@@ -5,7 +5,6 @@
 #include <QMessageBox>
 #include <QPalette>
 
-#include <Global/CodeError>
 #include <ClientRequest/JRequestGameInfo>
 #include <ClientRequest/JRequestUserInfo>
 #include <ClientRequest/JRequestServerInfo>
@@ -15,8 +14,7 @@
 #include "jdlgselectserver.h"
 #include "widgetadmin/jwidgetadmin.h"
 #include "dialogupdateuserinfo/jdialogupdateuserinfo.h"
-#include "../service/jgameclientloader.h"
-#include "../pseudoserver/jpseudoserver.h"
+#include "jdialogstartgame.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -139,20 +137,9 @@ void MainWindow::on_btn_start_game_clicked()
 							 );
 		return;
 	}
-	JRequestServerInfo rsi;
-	JGameInfo gi = m_gis->pullGameInfo(m_currentId,1000);
-	JServerInfo si = rsi.pullServerInfo(gi.getServerId(),1000);
-	JGameClientLoader l;
-	l.setParent(this);
-	l.setPseudoServer(SHost(QHostAddress::LocalHost,JPseudoServer::getInstance()->serverPort()));
-	l.setGameInfo(gi);
-	l.setServerInfo(si);
-	l.setSession(JMainClientSocket::getInstance()->getSession());
-	if(ESuccess == l.load()){
-		qDebug()<<"load succeed.";
-	}else{
-		qDebug()<<"load failed."<<l.getErrorString();
-	}
+	JDialogStartGame dlg(this);
+	dlg.setGameId(m_currentId);
+	dlg.exec();
 }
 
 void MainWindow::on_btn_refresh_myuserinfo_clicked()

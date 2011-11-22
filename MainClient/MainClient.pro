@@ -20,7 +20,8 @@ SOURCES += main/main.cpp \
     gui/dialoguserregister/jdialoguserregister.cpp \
     gui/dialogupdateuserinfo/jdialogupdateuserinfo.cpp \
     service/jgameclientloader.cpp \
-    service/jdownloader.cpp
+    service/jdownloader.cpp \
+    gui/jdialogstartgame.cpp
 HEADERS += gui/mainwindow.h \
     gui/dlglogin/jcomboselectserver.h \
     gui/dlglogin/jdlglogin.h \
@@ -37,14 +38,16 @@ HEADERS += gui/mainwindow.h \
     gui/dialoguserregister/jdialoguserregister.h \
     gui/dialogupdateuserinfo/jdialogupdateuserinfo.h \
     service/jgameclientloader.h \
-    service/jdownloader.h
+    service/jdownloader.h \
+    gui/jdialogstartgame.h
 FORMS += gui/mainwindow.ui \
     gui/dlglogin/jdlglogin.ui \
     gui/dlglogin/jdlgnewserver.ui \
     gui/jdlgselectserver.ui \
     gui/widgetadmin/jwidgetadmin.ui \
     gui/dialoguserregister/jdialoguserregister.ui \
-    gui/dialogupdateuserinfo/jdialogupdateuserinfo.ui
+    gui/dialogupdateuserinfo/jdialogupdateuserinfo.ui \
+    gui/jdialogstartgame.ui
 include(../api/api.pri)
 QMAKE_RPATHDIR = ../api/lib
 RESOURCES += \

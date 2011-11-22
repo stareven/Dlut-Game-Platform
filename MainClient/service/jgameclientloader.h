@@ -20,12 +20,10 @@ public:
 	void setSession(JSession* session);
 
 	JDownloader* getDownloader()const;
-	JCode load();
 	const QString& getErrorString()const;
-private:
-	JCode download();
-	JCode install();
-	JCode start();
+	void download();
+	void install();
+	void start();
 private:
 	void setErrorString(const QString& error);
 	QString getSaveFilePath()const;
