@@ -33,8 +33,8 @@ JTextStreamUserInfoDB::JTextStreamUserInfoDB(QObject* parent)
 JUserInfo JTextStreamUserInfoDB::getUserInfoById(JID userId)
 {
 	return s_users.value(userId,JUserInfo(userId,
-										  "no such user on server database",
-										  "no such user on server database"
+										  "Mr.NoNickname",
+										  "no organization"
 										 ));
 }
 

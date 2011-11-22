@@ -6,6 +6,7 @@
 #include "jmainservercommandprocessor.h"
 #include "jmainserveruserregisterprocessor.h"
 #include "jmainservercontrolroleprocessor.h"
+#include "jmainserverhalltalkprocessor.h"
 #include "jmainserversocketstrategy.h"
 
 JMainServer::JMainServer(QObject *parent) :
@@ -24,10 +25,12 @@ JServerSocketBase* JMainServer::getConnection(QTcpSocket* socket,QObject* parent
 	JServerNetworkDataProcessorBase* commandProcessor = new JMainServerCommandProcessor(session,connection);
 	JServerNetworkDataProcessorBase* userRegisterProcessor = new JMainServerUserRegisterProcessor(session,connection);
 	JServerNetworkDataProcessorBase* controlRoleProcessor = new JMainServerControlRoleProcessor(session,connection);
+	JServerNetworkDataProcessorBase* hallTalkProcessor = new JMainServerHallTalkProcessor(session,connection);
 	connection->registerProcessor(loginProcessor);
 	connection->registerProcessor(informationProcessor);
 	connection->registerProcessor(commandProcessor);
 	connection->registerProcessor(userRegisterProcessor);
 	connection->registerProcessor(controlRoleProcessor);
+	connection->registerProcessor(hallTalkProcessor);
 	return connection;
 }

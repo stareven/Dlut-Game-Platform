@@ -7,6 +7,8 @@ enum EProcessorType{
 	EPI_COMMAND,
 	EPI_UserRegister,
 	EPI_ControlRole,
+	EPI_HallTalk,
+
 	EPI_UserType=0x1000,
 	EPI_UserType_1,
 	EPI_UserType_2,
