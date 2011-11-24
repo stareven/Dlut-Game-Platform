@@ -28,6 +28,8 @@ public:
 	void stop();
 
 	EDownloadState getDownloadState()const;
+	JCode getErrorCode()const;
+	static QString getErrorString(JCode code);
 signals:
 	void begin();
 	void rcvTotalSize(qint64 size);

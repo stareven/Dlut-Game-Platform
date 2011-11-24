@@ -57,6 +57,27 @@ JDownloader::EDownloadState JDownloader::getDownloadState()const
 	return m_state;
 }
 
+JCode JDownloader::getErrorCode()const
+{
+	return m_error;
+}
+
+QString JDownloader::getErrorString(JCode code)
+{
+	switch(code){
+	case ECannotGetContentLengthInHead:
+		return tr("can not get content length."
+				  "I guess the file you are downloading does not exist.");
+		break;
+	case EContentLengthIsZero:
+		return tr("content length is zero ."
+				  "I guess the file you are downloading does not exist.");
+		break;
+	default:
+		return tr("unknow error:%1").arg(code);
+	}
+}
+
 bool JDownloader::makeSaveFileDir()
 {
 	QFileInfo fileinfo(m_saveFilePath);
@@ -132,12 +153,22 @@ void JDownloader::on_headReply_finished()
 		bool ok;
 		m_downloadTotalSize = m_headReply->rawHeader(contentLength).toLongLong(&ok);
 		Q_ASSERT (ok);
-		m_error = ESuccess;
+		if(m_downloadTotalSize > 0){
+			m_error = ESuccess;
+		}else{
+			m_error = EContentLengthIsZero;
+			emit error();
+		}
 	}else{
 		m_error = ECannotGetContentLengthInHead;
 	}
-	emit rcvTotalSize(m_downloadTotalSize);
-	beginDownloadFile();
+	if(ESuccess == m_error){
+		emit rcvTotalSize(m_downloadTotalSize);
+		beginDownloadFile();
+	}else{
+		m_state = EDS_Error;
+		emit error();
+	}
 }
 
 void JDownloader::on_reply_readyRead()

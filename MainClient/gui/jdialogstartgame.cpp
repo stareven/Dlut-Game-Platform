@@ -11,6 +11,7 @@
 #include <Socket/JMainClientSocket>
 
 #include <QPushButton>
+#include <QTimer>
 
 JDialogStartGame::JDialogStartGame(QWidget *parent) :
     QDialog(parent),
@@ -87,12 +88,21 @@ void JDialogStartGame::download_finished()
 {
 	ui->label->setText(tr("download finished."));
 	ui->progressBar->setValue(100);
-	m_gameClientLoader->install();
-	m_gameClientLoader->start();
-	accept();
+	QTimer::singleShot(1000, this, SLOT(loader_install_start()));
 }
 
 void JDialogStartGame::download_error()
 {
-	ui->label->setText(tr("error"));
+	JCode error = m_gameClientLoader->getDownloader()->getErrorCode();
+	ui->label->setText(
+				tr("download error:%1:%2")
+				.arg(error)
+				.arg(JDownloader::getErrorString(error)));
+}
+
+void JDialogStartGame::loader_install_start()
+{
+	m_gameClientLoader->install();
+	m_gameClientLoader->start();
+	accept();
 }

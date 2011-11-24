@@ -54,4 +54,5 @@ FORMS += gui/mainwindow.ui \
 include(../api/api.pri)
 QMAKE_RPATHDIR = ../api/lib
 RESOURCES += \
-    sources.qrc
+    sources.qrc \
+    styles/styles.qrc

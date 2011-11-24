@@ -29,6 +29,7 @@ private slots:
 	void download_progress(qint64,qint64);
 	void download_finished();
 	void download_error();
+	void loader_install_start();
 };
 
 #endif // JDIALOGSTARTGAME_H

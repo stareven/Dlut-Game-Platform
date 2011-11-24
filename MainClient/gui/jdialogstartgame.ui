@@ -32,22 +32,34 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>40</y>
-     <width>251</width>
-     <height>17</height>
+     <x>20</x>
+     <y>90</y>
+     <width>350</width>
+     <height>131</height>
     </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>16777215</height>
+    </size>
    </property>
    <property name="text">
     <string>TextLabel</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QProgressBar" name="progressBar">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>110</y>
-     <width>118</width>
+     <x>40</x>
+     <y>40</y>
+     <width>301</width>
      <height>23</height>
     </rect>
    </property>

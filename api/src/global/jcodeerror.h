@@ -11,6 +11,7 @@ const JCode EDeveloping = 0x0100;
 
 const JCode ENetworkError = 0x0200;
 const JCode ECannotGetContentLengthInHead = ENetworkError | 0x0001;
+const JCode EContentLengthIsZero = ENetworkError | 0x0002;
 
 const JCode EPermissionError = 0x0300;
 const JCode EPermissionDenied = EPermissionError | 0x0001;
