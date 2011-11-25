@@ -6,8 +6,6 @@
 
 #include <ClientRequest/JCommandSendBase>
 
-#include <QDebug>
-
 JWidgetAdmin::JWidgetAdmin(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::JWidgetAdmin)
@@ -36,7 +34,6 @@ void JWidgetAdmin::on_btn_restart_mainserver_clicked()
 
 void JWidgetAdmin::on_send_receiveCommandResult(JID type,JCode result)
 {
-	qDebug()<<__FUNCTION__<<type<<result;
 	QString action;
 	QString error;
 	switch(type){

@@ -34,10 +34,10 @@ void JDialogUserRegister::accept()
 							  );
 		return;
 	}
-	if(ui->lineEdit_password->text().length()<3){
+	if(ui->lineEdit_password->text().length()<6){
 		QMessageBox::critical(this,
 							  tr("password too short"),
-							  tr("password can not be shorter than 3")
+							  tr("password can not be shorter than 6")
 							  );
 		return;
 	}

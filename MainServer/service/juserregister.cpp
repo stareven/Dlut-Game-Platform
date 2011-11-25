@@ -21,7 +21,7 @@ void JUserRegister::execute(const QString& loginname,const QString& password)
 		m_result = ER_LoginNameLengthError;
 		return;
 	}
-	if(password.length() <3 || password.length() >20){
+	if(password.length() <3 || password.length() >50){
 		m_result = ER_PasswordLengthError;
 		return;
 	}

@@ -4,6 +4,7 @@
 
 #include "../network/jclientuserregisterprocessor.h"
 #include "../global/jelapsedtimer.h"
+#include "../global/jencryptor.h"
 
 const QString registerErrorString[]={
 	QObject::tr("success"),
@@ -27,7 +28,8 @@ JRequestUserRegister::JRequestUserRegister(QObject *parent) :
 void JRequestUserRegister::sendRegister(const QString& loginname,const QString& password)
 {
 	m_state = ERS_Sending;
-	m_processor->sendRegister(loginname,password);
+	JEncryptor e;
+	m_processor->sendRegister(loginname,e.encryptPassword(password));
 }
 
 JRequestUserRegister::ERegisterState JRequestUserRegister::getRegisterState()const

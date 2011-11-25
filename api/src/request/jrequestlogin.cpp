@@ -6,6 +6,7 @@
 #include "../network/jclientloginprocessor.h"
 #include "../global/elogin.h"
 #include "../global/jelapsedtimer.h"
+#include "../global/jencryptor.h"
 
 /*!
 	\file jrequestlogin.h
@@ -72,7 +73,8 @@ void JRequestLogin::login(const QString& loginname,
            const ERole& role)
 {
 	m_state=ELS_Sending;
-    m_processor->login(loginname,passwd,role);
+	JEncryptor e;
+	m_processor->login(loginname,e.encryptPassword(passwd),role);
 }
 
 /*!

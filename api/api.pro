@@ -55,7 +55,8 @@ HEADERS += src/network/jnetworkdataprocessorbase.h src/network/jsocketbase.h \
     src/request/jconnecthelper.h \
     src/network/jmainclientsocket.h \
     src/request/jgameserverstartup.h \
-    src/network/jclienthalltalkprocessor.h
+    src/network/jclienthalltalkprocessor.h \
+    src/global/jencryptor.h
 SOURCES += src/network/jsocketbase.cpp \
     src/network/jclientsocketbase.cpp \
     src/network/jserversocketbase.cpp \
@@ -97,7 +98,8 @@ SOURCES += src/network/jsocketbase.cpp \
     src/request/jconnecthelper.cpp \
     src/network/jmainclientsocket.cpp \
     src/request/jgameserverstartup.cpp \
-    src/network/jclienthalltalkprocessor.cpp
+    src/network/jclienthalltalkprocessor.cpp \
+    src/global/jencryptor.cpp
 
 OTHER_FILES += \
     ../doc/rebuild-network.txt
