@@ -6,7 +6,7 @@
 #include "gui/jdlgselectserver.h"
 
 void loadStyles(){
-	QFile qss(":/mc.qss");
+	QFile qss("styles/mc.qss");
 	qss.open(QFile::ReadOnly);
 	qApp->setStyleSheet(qss.readAll());
 	qss.close();

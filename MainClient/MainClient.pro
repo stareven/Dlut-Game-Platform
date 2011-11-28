@@ -1,8 +1,7 @@
-# -------------------------------------------------
-# Project created by QtCreator 2011-03-13T18:59:56
-# -------------------------------------------------
 TARGET = MainClient
 TEMPLATE = app
+include(../api/api.pri)
+
 SOURCES += main/main.cpp \
     gui/mainwindow.cpp \
     gui/dlglogin/jcomboselectserver.cpp \
@@ -51,8 +50,5 @@ FORMS += gui/mainwindow.ui \
     gui/dialogupdateuserinfo/jdialogupdateuserinfo.ui \
     gui/jdialogstartgame.ui \
     gui/jwidgethalltalk.ui
-include(../api/api.pri)
-QMAKE_RPATHDIR = ../api/lib
 RESOURCES += \
-    sources.qrc \
-    styles/styles.qrc
+    sources.qrc
