@@ -48,7 +48,7 @@ void JDialogUserRegister::accept()
 							  );
 		return;
 	}
-	m_register->sendRegister(ui->lineEdit_loginname->text(),ui->lineEdit_password->text());
+	m_register->sendRegister(ui->lineEdit_loginname->text(),ui->lineEdit_password->text(),ROLE_GAMEPLAYER);
 	if(m_register->waitForRegisterResult(1000)){
 		QMessageBox::information(this,
 								 tr("register succeed"),

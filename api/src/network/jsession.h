@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "../global/jglobal.h"
+#include "../global/elogin.h"
 
 class JSession : public QObject
 {

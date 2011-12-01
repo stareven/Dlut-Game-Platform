@@ -2,6 +2,10 @@
 #include "../service/juserregister.h"
 
 #include <QDataStream>
+#include <Global/Login>
+#include <Global/CodeError>
+#include <Session/JSession>
+#include <Global/Register>
 
 JMainServerUserRegisterProcessor::JMainServerUserRegisterProcessor(JSession* session,JSocketBase *socket) :
 	JServerNetworkDataProcessorBase(session,socket)
@@ -13,9 +17,11 @@ void JMainServerUserRegisterProcessor::process(const QByteArray& data)
 	QDataStream stream(data);
 	QString loginname;
 	QString password;
+	JID role;
 	stream>>loginname;
 	stream>>password;
-	processUserRegister(loginname,password);
+	stream>>role;
+	processUserRegister(loginname,password,role);
 }
 
 EProcessorType JMainServerUserRegisterProcessor::getProcessorType()const
@@ -33,9 +39,13 @@ void JMainServerUserRegisterProcessor::replyRegisterResult(JCode result,JID user
 	sendData(outdata);
 }
 
-void JMainServerUserRegisterProcessor::processUserRegister(const QString& loginname,const QString& password)
+void JMainServerUserRegisterProcessor::processUserRegister(const QString& loginname,const QString& password,JID role)
 {
-	JUserRegister ur;
-	ur.execute(loginname,password);
+	if(role<0 || role > ROLE_ROOT){
+		replyRegisterResult(ER_RoleOverflow,-1,loginname);
+		return;
+	}
+	JUserRegister ur(getSession()->getUserId());
+	ur.execute(loginname,password,(ERole)role);
 	replyRegisterResult(ur.getResult(),ur.getUserId(),ur.getLoginname());
 }

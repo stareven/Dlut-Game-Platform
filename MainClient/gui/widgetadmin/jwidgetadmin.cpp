@@ -5,6 +5,7 @@
 #include <Global/CodeError>
 
 #include <ClientRequest/JCommandSendBase>
+#include <ClientRequest/JRequestUserRegister>
 
 JWidgetAdmin::JWidgetAdmin(QWidget *parent) :
     QWidget(parent),
@@ -59,5 +60,30 @@ void JWidgetAdmin::on_send_receiveCommandResult(JID type,JCode result)
 		ui->label->setText(tr("%1 operation success").arg(action));
 	}else{
 		ui->label->setText(tr("%1 operation error:%2").arg(action).arg(error));
+	}
+}
+
+void JWidgetAdmin::on_buttonBox_accepted()
+{
+	QString loginname = ui->edt_loginname->text();
+	QString password = ui->edt_password->text();
+	JID iRole = ui->cb_role->currentIndex();
+	ui->lab_msg->setText(
+				tr("loginname:%1 password:%2 role:%3")
+				.arg(loginname)
+				.arg(password)
+				.arg(iRole)
+				);
+	if(iRole <0 || iRole > ROLE_ROOT){
+		ui->lab_msg->setText(tr("role overflow"));
+		return;
+	}
+	ERole role=(ERole)iRole;
+	JRequestUserRegister rur;
+	rur.sendRegister(loginname,password,role);
+	if(rur.waitForRegisterResult(1000)){
+		ui->lab_msg->setText(tr("add user success"));
+	}else{
+		ui->lab_msg->setText(tr("add user failed:%1").arg(rur.getRegisterError()));
 	}
 }

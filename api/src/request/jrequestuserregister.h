@@ -4,6 +4,7 @@
 #include "jrequestbase.h"
 #include "../global/jglobal.h"
 #include "../global/eregister.h"
+#include "../global/elogin.h"
 
 class JClientUserRegisterProcessor;
 
@@ -12,7 +13,7 @@ class JRequestUserRegister : public JRequestBase
     Q_OBJECT
 public:
     explicit JRequestUserRegister(QObject *parent = 0);
-	void sendRegister(const QString& loginname,const QString& password);
+	void sendRegister(const QString& loginname,const QString& password,ERole role);
 	/// \brief 注册状态
 	enum ERegisterState{
 		ERS_Init, ///< 初始状态

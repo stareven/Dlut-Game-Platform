@@ -4,15 +4,28 @@
 #include "database/jabstractlogindb.h"
 #include <Global/Register>
 
-JUserRegister::JUserRegister()
+JUserRegister::JUserRegister(JID runnerId)
 {
+	m_runnerId=runnerId;
 	m_result=-1;
 	m_userId = -1;
 }
 
-void JUserRegister::execute(const QString& loginname,const QString& password)
+void JUserRegister::execute(const QString& loginname,const QString& password,ERole role)
 {
 	JAbstractLoginDB* logindb=JAbstractDatabaseFactory::getInstance()->createLoginDB();
+	if(-1 == m_runnerId){
+		if(role != ROLE_GAMEPLAYER){
+			m_result = ER_PermissionDenied;
+			return;
+		}
+	}else{
+		JRoleCombination rc = logindb->getRoleCombination(m_runnerId);
+		if( (rc>>1) < (1<<role) ){
+			m_result = ER_PermissionDenied;
+			return;
+		}
+	}
 	if(logindb->checkLoginName(loginname)>=0){
 		m_result = ER_LoginNameExists;
 		return;
