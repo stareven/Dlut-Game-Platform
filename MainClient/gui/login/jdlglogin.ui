@@ -165,7 +165,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="../../sources.qrc">:/source/gui/DGP1.png</pixmap>
+    <pixmap resource="../../sources.qrc">:/res/DGP1.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>

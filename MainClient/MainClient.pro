@@ -3,52 +3,52 @@ TEMPLATE = app
 include(../api/api.pri)
 
 SOURCES += main/main.cpp \
-    gui/mainwindow.cpp \
-    gui/dlglogin/jcomboselectserver.cpp \
-    gui/dlglogin/jdlglogin.cpp \
-    gui/dlglogin/jdlgnewserver.cpp \
-    gui/dlglogin/shallserver.cpp \
-    gui/dlglogin/settings/jrememberpassword.cpp \
-    gui/dlglogin/settings/jsettinglogin.cpp \
+    gui/gamehall/mainwindow.cpp \
+    gui/selectserver/jcomboselectserver.cpp \
+    gui/login/jdlglogin.cpp \
+    gui/selectserver/jdlgnewserver.cpp \
+    gui/selectserver/shallserver.cpp \
+    gui/login/settings/jrememberpassword.cpp \
+    gui/login/settings/jsettinglogin.cpp \
 	service/jdownloadrun.cpp \
-    gui/jdlgselectserver.cpp \
-    gui/widgetadmin/jwidgetadmin.cpp \
+    gui/selectserver/jdlgselectserver.cpp \
+    gui/gamehall/jwidgetadmin.cpp \
     pseudoserver/jpseudoserver.cpp \
     pseudoserver/jpseudoserversocket.cpp \
     pseudoserver/jpseudoserverinformationprocessor.cpp \
-    gui/dialoguserregister/jdialoguserregister.cpp \
-    gui/dialogupdateuserinfo/jdialogupdateuserinfo.cpp \
+    gui/login/jdialoguserregister.cpp \
+    gui/gamehall/jdialogupdateuserinfo.cpp \
     service/jgameclientloader.cpp \
     service/jdownloader.cpp \
-    gui/jdialogstartgame.cpp \
-    gui/jwidgethalltalk.cpp
-HEADERS += gui/mainwindow.h \
-    gui/dlglogin/jcomboselectserver.h \
-    gui/dlglogin/jdlglogin.h \
-    gui/dlglogin/jdlgnewserver.h \
-    gui/dlglogin/shallserver.h \
-    gui/dlglogin/settings/jrememberpassword.h \
-    gui/dlglogin/settings/jsettinglogin.h \
+    gui/gamehall/jdialogstartgame.cpp \
+    gui/gamehall/jwidgethalltalk.cpp
+HEADERS += gui/gamehall/mainwindow.h \
+    gui/selectserver/jcomboselectserver.h \
+    gui/login/jdlglogin.h \
+    gui/selectserver/jdlgnewserver.h \
+    gui/selectserver/shallserver.h \
+    gui/login/settings/jrememberpassword.h \
+    gui/login/settings/jsettinglogin.h \
     service/jdownloadrun.h \
-    gui/jdlgselectserver.h \
-    gui/widgetadmin/jwidgetadmin.h \
+    gui/selectserver/jdlgselectserver.h \
+    gui/gamehall/jwidgetadmin.h \
     pseudoserver/jpseudoserver.h \
     pseudoserver/jpseudoserversocket.h \
     pseudoserver/jpseudoserverinformationprocessor.h \
-    gui/dialoguserregister/jdialoguserregister.h \
-    gui/dialogupdateuserinfo/jdialogupdateuserinfo.h \
+    gui/login/jdialoguserregister.h \
+    gui/gamehall/jdialogupdateuserinfo.h \
     service/jgameclientloader.h \
     service/jdownloader.h \
-    gui/jdialogstartgame.h \
-    gui/jwidgethalltalk.h
-FORMS += gui/mainwindow.ui \
-    gui/dlglogin/jdlglogin.ui \
-    gui/dlglogin/jdlgnewserver.ui \
-    gui/jdlgselectserver.ui \
-    gui/widgetadmin/jwidgetadmin.ui \
-    gui/dialoguserregister/jdialoguserregister.ui \
-    gui/dialogupdateuserinfo/jdialogupdateuserinfo.ui \
-    gui/jdialogstartgame.ui \
-    gui/jwidgethalltalk.ui
+    gui/gamehall/jdialogstartgame.h \
+    gui/gamehall/jwidgethalltalk.h
+FORMS += gui/gamehall/mainwindow.ui \
+    gui/login/jdlglogin.ui \
+    gui/selectserver/jdlgnewserver.ui \
+    gui/selectserver/jdlgselectserver.ui \
+    gui/gamehall/jwidgetadmin.ui \
+    gui/login/jdialoguserregister.ui \
+    gui/gamehall/jdialogupdateuserinfo.ui \
+    gui/gamehall/jdialogstartgame.ui \
+    gui/gamehall/jwidgethalltalk.ui
 RESOURCES += \
-    sources.qrc
+    res/sources.qrc

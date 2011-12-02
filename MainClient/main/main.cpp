@@ -1,9 +1,9 @@
 #include <QtGui/QApplication>
 #include <QFile>
 
-#include "gui/mainwindow.h"
-#include "gui/dlglogin/jdlglogin.h"
-#include "gui/jdlgselectserver.h"
+#include "gui/gamehall/mainwindow.h"
+#include "gui/login/jdlglogin.h"
+#include "gui/selectserver/jdlgselectserver.h"
 
 void loadStyles(){
 	QFile qss("styles/mc.qss");

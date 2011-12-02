@@ -8,6 +8,16 @@ JDlgNewServer::JDlgNewServer(QWidget *parent) :
     ui(new Ui::JDlgNewServer)
 {
     ui->setupUi(this);
+	QRegExpValidator *validator_address = new QRegExpValidator(this);
+	validator_address->setRegExp(
+		QRegExp(
+			"^((\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])\\.){1,3}(\\d{1,2}|1\\d\\d|2[0-4]\\d|25[0-5])$"
+		)
+	);
+	ui->edt_address->setValidator(validator_address);
+	QIntValidator *validator_port = new QIntValidator(this);
+	validator_port->setRange(0,65535);
+	ui->edt_port->setValidator(validator_port);
     QPalette palette;
     palette.setColor(QPalette::Background, QColor(0,0,0));
     setPalette(palette);

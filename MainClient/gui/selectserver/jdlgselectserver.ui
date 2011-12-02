@@ -111,7 +111,7 @@
   <customwidget>
    <class>JComboSelectServer</class>
    <extends>QComboBox</extends>
-   <header>gui/dlglogin/jcomboselectserver.h</header>
+   <header>gui/selectserver/jcomboselectserver.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -22,7 +22,7 @@ int main(int argc, char *argv[]){
 	}
 
 	JRequestUserRegister reg;
-	reg.sendRegister("tryregister","register");
+	reg.sendRegister("tryregister","register",ROLE_GAMEPLAYER);
 	if(!reg.waitForRegisterResult(1000)){
 		qDebug()<<"register failed"<<reg.getRegisterError();
 		return 1;
