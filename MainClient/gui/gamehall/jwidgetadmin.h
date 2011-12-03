@@ -22,6 +22,7 @@ private:
     Ui::JWidgetAdmin *ui;
 	JCommandSendBase* m_send;
 private slots:
+	void on_buttonBox_rejected();
 	void on_btn_restart_mainserver_clicked();
 	void on_btn_shutdown_mainserver_clicked();
 	void on_send_receiveCommandResult(JID type,JCode result);

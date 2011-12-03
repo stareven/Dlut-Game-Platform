@@ -87,3 +87,10 @@ void JWidgetAdmin::on_buttonBox_accepted()
 		ui->lab_msg->setText(tr("add user failed:%1").arg(rur.getRegisterError()));
 	}
 }
+
+void JWidgetAdmin::on_buttonBox_rejected()
+{
+	ui->edt_loginname->clear();
+	ui->edt_password->clear();
+	ui->cb_role->setCurrentIndex(0);
+}
