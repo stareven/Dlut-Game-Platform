@@ -13,7 +13,6 @@ SOURCES += \
     ../SnakeCommon/jsnakegame.cpp \
     gui/jhallwidget.cpp \
     network/jsnakesocket.cpp \
-    service/jglobalsettings.cpp \
     ../SnakeCommon/jsnakestream.cpp \
     service/jroomlistmodel.cpp \
     network/jsnakeprocessor.cpp
@@ -26,7 +25,6 @@ HEADERS  += \
     gui/jhallwidget.h \
     network/jsnakesocket.h \
     ../SnakeCommon/jsnakeglobal.h \
-    service/jglobalsettings.h \
     service/jroomlistmodel.h \
     network/jsnakeprocessor.h
 

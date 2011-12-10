@@ -23,4 +23,6 @@ const JCode EFileSystemError = 0x0700;
 const JCode EMakeDirFailed = EFileSystemError | 0x0001;
 const JCode EOpenFileFailed = EFileSystemError | 0x0002;
 
+const JCode EUserCode = 0x1000;
+
 #endif // JCODEERROR_H

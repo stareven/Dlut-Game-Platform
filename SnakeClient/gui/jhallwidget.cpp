@@ -4,10 +4,10 @@
 #include <QInputDialog>
 
 #include <ClientRequest/JRequestUserInfo>
+#include <Helper/JGameClientArgumentAnalyser>
 
 #include "jsnakeglobal.h"
 #include "network/jsnakeprocessor.h"
-#include "service/jglobalsettings.h"
 #include "service/jroomlistmodel.h"
 
 JHallWidget::JHallWidget(QWidget *parent) :
@@ -34,7 +34,7 @@ JHallWidget::JHallWidget(QWidget *parent) :
 	m_roomlistmodel=new JRoomListModel(this);
 	ui->setupUi(this);
 	ui->listView_room->setModel(m_roomlistmodel);
-	m_processor->sendHello(GlobalSettings::g_userId);
+    m_processor->sendHello(JGameClientArgumentAnalyser::getInstance()->getUserId());
 	m_processor->sendRqsRoomlist();
 }
 
@@ -87,7 +87,7 @@ void JHallWidget::om_socket_rcvAddRoom(const Snake::JRoom& room)
 
 void JHallWidget::om_socket_rcvEnterRoom(JID roomId,JID userId)
 {
-	if(roomId>0 && userId==GlobalSettings::g_userId)
+    if(roomId>0 && userId==JGameClientArgumentAnalyser::getInstance()->getUserId())
 	{
 		emit enterGame(1);
 	}else if(0==roomId){
