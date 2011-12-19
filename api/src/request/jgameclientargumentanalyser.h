@@ -10,7 +10,7 @@ class JGameClientArgumentAnalyser
 {
 public:
     static JGameClientArgumentAnalyser* getInstance();
-    void processArgument(const QStringList& arguments);
+    bool processArgument(const QStringList& arguments);
     JID getUserId()const;
     const QByteArray& getLoginHashCode()const;
     const SHost& getMainServer()const;
