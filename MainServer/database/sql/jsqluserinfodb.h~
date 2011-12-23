@@ -1,0 +1,20 @@
+#ifndef JMYSQLUSERINFODB_H
+#define JMYSQLUSERINFODB_H
+
+#include "../jabstractuserinfodb.h"
+
+class QSqlDatabase;
+
+class JMySQLUserInfoDB : public JAbstractUserInfoDB
+{
+public:
+	explicit JMySQLUserInfoDB(QSqlDatabase *dgpDB, QObject *parent = 0);
+//	~JMySQLUserInfoDB();
+	JUserInfo getUserInfoById(JID userID);
+	JCode updateUserInfo(const JUserInfo &userInfo);
+
+private:
+	QSqlDatabase *userInfoDB;
+};
+
+#endif // JMYSQLUSERINFODB_H

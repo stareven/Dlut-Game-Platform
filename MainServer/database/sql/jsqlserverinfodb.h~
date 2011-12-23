@@ -1,0 +1,20 @@
+#ifndef JMYSQLSERVERINFODB_H
+#define JMYSQLSERVERINFODB_H
+
+#include "../jabstractserverinfodb.h"
+
+class QSqlDatabase;
+
+class JMySQLServerInfoDB : public JAbstractServerInfoDB
+{
+public:
+	explicit JMySQLServerInfoDB(QSqlDatabase *dgpDB, QObject *parent = 0);
+//	~JMySQLServerInfoDB();
+	JServerInfo getServerInfoById(JID ID);
+	JCode updateServerInfo(const JServerInfo &serverInfo);
+
+private:
+	QSqlDatabase *serverInfoDB;
+};
+
+#endif // JMYSQLSERVERINFODB_H
