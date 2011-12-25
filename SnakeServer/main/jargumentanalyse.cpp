@@ -35,7 +35,6 @@ void JArgumentAnalyse::init()
 
 void JArgumentAnalyse::Analyse()
 {
-
     while(!m_argv.isEmpty())
     {
         QString arg=m_argv.front();
