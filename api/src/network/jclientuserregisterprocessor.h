@@ -2,6 +2,7 @@
 #define JCLIENTUSERREGISTERPROCESSOR_H
 
 #include "jclientnetworkdataprocessorbase.h"
+#include "../global/elogin.h"
 
 class JClientUserRegisterProcessor : public JClientNetworkDataProcessorBase
 {
@@ -9,7 +10,7 @@ class JClientUserRegisterProcessor : public JClientNetworkDataProcessorBase
 	explicit JClientUserRegisterProcessor(JSession* session,JSocketBase *socket);
 public:
 	static JClientUserRegisterProcessor* getInstance();
-	void sendRegister(const QString& loginname,const QString& password);
+	void sendRegister(const QString& loginname,const QString& password,ERole role);
 signals:
 	void receiveRegisterResult(JCode result,JID userId,const QString& loginname);
 protected:

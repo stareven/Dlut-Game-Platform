@@ -20,12 +20,13 @@ JClientUserRegisterProcessor* JClientUserRegisterProcessor::getInstance()
 	return instance;
 }
 
-void JClientUserRegisterProcessor::sendRegister(const QString& loginname,const QString& password)
+void JClientUserRegisterProcessor::sendRegister(const QString& loginname,const QString& password,ERole role)
 {
 	QByteArray data;
 	QDataStream stream(&data,QIODevice::WriteOnly);
 	stream<<loginname;
 	stream<<password;
+	stream<<(JID)role;
 	sendData(data);
 }
 

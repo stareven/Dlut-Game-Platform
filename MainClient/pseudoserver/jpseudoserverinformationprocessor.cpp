@@ -32,7 +32,7 @@ void JPseudoServerInformationProcessor::processDownloadData(const JHead& head)
 		localMtime=req.getLocalMtime(head);
 		data = req.getInformationData(head);
 	}
-
+    replyData(head,localMtime,data);
 }
 
 void JPseudoServerInformationProcessor::processUploadData(const JHead& head,const QByteArray&)

@@ -8,6 +8,8 @@
 
 const QString registerErrorString[]={
 	QObject::tr("success"),
+	QObject::tr("permission denied"),
+	QObject::tr("role over flow"),
 	QObject::tr("login name exists"),
 	QObject::tr("login name length error"),
 	QObject::tr("password length error"),
@@ -25,11 +27,11 @@ JRequestUserRegister::JRequestUserRegister(QObject *parent) :
 			SLOT(on_processor_receiveRegisterResult(JCode,JID,QString)));
 }
 
-void JRequestUserRegister::sendRegister(const QString& loginname,const QString& password)
+void JRequestUserRegister::sendRegister(const QString& loginname,const QString& password,ERole role)
 {
 	m_state = ERS_Sending;
 	JEncryptor e;
-	m_processor->sendRegister(loginname,e.encryptPassword(password));
+	m_processor->sendRegister(loginname,e.encryptPassword(password),role);
 }
 
 JRequestUserRegister::ERegisterState JRequestUserRegister::getRegisterState()const

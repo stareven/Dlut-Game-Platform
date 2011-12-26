@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/source">
-        <file>gui/DGP1.png</file>
-        <file>gui/DGP2.png</file>
-    </qresource>
-</RCC>

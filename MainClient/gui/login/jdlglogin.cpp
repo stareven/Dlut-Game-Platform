@@ -1,7 +1,7 @@
 #include "jdlglogin.h"
 #include "ui_jdlglogin.h"
 
-#include "../dialoguserregister/jdialoguserregister.h"
+#include "jdialoguserregister.h"
 
 #include <ClientRequest/JRequestLogin>
 #include <Global/Login>

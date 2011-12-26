@@ -1,16 +1,11 @@
-# -------------------------------------------------
-# Project created by QtCreator 2011-03-06T12:57:13
-# -------------------------------------------------
 QT -= gui
 QT += network
 TARGET = MainServer
 CONFIG += console
 CONFIG -= app_bundle
 TEMPLATE = app
-
-include(../api/api.pri)
 include(database/database.pri)
-QMAKE_RPATHDIR = ../api/lib
+include(../api/api.pri)
 
 HEADERS += \
     network/jmainserver.h \

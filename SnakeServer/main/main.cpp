@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 	JGameServerStartup gssu;
 	gssu.m_mainserver = SHost(aa.getAddress(),aa.getPort());
 	gssu.m_loginname="sampleserverrunner";
-	gssu.m_passwd="123";
+    gssu.m_passwd="123456";
 	gssu.m_role=ROLE_GAMESERVERRUNNER;
 	gssu.m_gameinfo=JGameInfo(
 				109,

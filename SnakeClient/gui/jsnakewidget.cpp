@@ -3,6 +3,8 @@
 
 #include "jsnakegame.h"
 
+#include <Helper/JGameClientArgumentAnalyser>
+
 #include <QPainter>
 #include <QTimer>
 #include <QKeyEvent>
@@ -12,7 +14,6 @@
 #include <QLCDNumber>
 
 #include "network/jsnakeprocessor.h"
-#include "service/jglobalsettings.h"
 
 const int INITX=20;
 const int INITY=30;
@@ -134,7 +135,6 @@ void JSnakeWidget::paintEvent(QPaintEvent * )
 
 void JSnakeWidget::keyPressEvent(QKeyEvent *key)
 {
-	qDebug()<<"JSnakeWidget::keyPressEvent"<<key->key();
     switch(key->key())
     {
     case Qt::Key_Up:
@@ -156,7 +156,7 @@ void JSnakeWidget::om_socket_rcvEnterRoom(JID roomId,JID userId)
 {
 	if(m_roomId<0)
 	{
-		if(roomId>0 && userId==GlobalSettings::g_userId)
+        if(roomId>0 && userId==JGameClientArgumentAnalyser::getInstance()->getUserId())
 		{
 			m_roomId=roomId;
 			ui->list_players->addItem(QString::number(userId));
@@ -173,7 +173,7 @@ void JSnakeWidget::om_socket_rcvEscapeRoom(JID roomId,JID userId)
 {
 	if(roomId==m_roomId)
 	{
-		if(userId==GlobalSettings::g_userId)
+        if(userId==JGameClientArgumentAnalyser::getInstance()->getUserId())
 		{
 			emit escape(0);
 		}else{

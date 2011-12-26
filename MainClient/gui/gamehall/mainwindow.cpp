@@ -11,9 +11,8 @@
 #include <Socket/JMainClientSocket>
 #include <Session/JSession>
 
-#include "jdlgselectserver.h"
-#include "widgetadmin/jwidgetadmin.h"
-#include "dialogupdateuserinfo/jdialogupdateuserinfo.h"
+#include "jwidgetadmin.h"
+#include "jdialogupdateuserinfo.h"
 #include "jdialogstartgame.h"
 
 MainWindow::MainWindow(QWidget *parent) :

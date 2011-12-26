@@ -1,6 +1,6 @@
 #include "jdlgselectserver.h"
 #include "ui_jdlgselectserver.h"
-#include "dlglogin/jdlgnewserver.h"
+#include "jdlgnewserver.h"
 
 #include <DataStruct/JServerInfo>
 #include <Socket/JMainClientSocket>
