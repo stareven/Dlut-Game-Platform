@@ -1,31 +1,39 @@
 #include "databasecreater.h"
 
-#include <QLabel>
+#include <QDebug>
 #include <QSqlDatabase>
 #include <QSettings>
-#include <QDebug>
-
-QSettings* DatabaseCreater::dgpdbIni = new QSettings("dgpdb.ini", QSettings::IniFormat);
 
 DatabaseCreater::DatabaseCreater(QWidget *parent) :
 	QWidget(parent)
 {
-//	dgpdbIni->setIniCodec("UTF-8");
 }
 
-
-void DatabaseCreater::checkDbName(QString name) {
-	if (doCheckName(name))
-		dbNameStatus->setText(tr("OK!"));
-	else
-		dbNameStatus->setText(tr("ERROR!"));
+DatabaseCreater::~DatabaseCreater() {
+//	qDebug() << "++++++ called ~DatabaseCreater ++++++";
+	if (db) {
+		delete db;
+		db = NULL;
+	}
+	if (dgpdbIni) {
+		delete dgpdbIni;
+		dgpdbIni = NULL;
+	}
 }
 
-bool DatabaseCreater::doCheckName(QString name) {
+bool DatabaseCreater::checkName(QString name) {
 	if (name.isEmpty()) return false;
-	foreach(QChar ch, name) {
+	foreach (QChar ch, name) {
 		if (('0' <= ch && ch <= '9') || ('a' <= ch && ch <= 'z') || (ch =='_')) continue;
 		return false;
 	}
 	return true;
+}
+
+bool DatabaseCreater::checkPwdLength(QString passwd) {
+	return passwd.length() >= 6;
+}
+
+bool DatabaseCreater::checkConfirmPwd(QString userPwd, QString confirmPwd) {
+	return userPwd == confirmPwd;
 }

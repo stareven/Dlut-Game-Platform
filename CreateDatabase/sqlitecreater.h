@@ -2,36 +2,44 @@
 #define SQLITECREATER_H
 
 #include "databasecreater.h"
-class QLabel;
-class QLineEdit;
-class QPushButton;
-class QLayout;
 
 class SQLiteCreater : public DatabaseCreater
 {
     Q_OBJECT
 public:
-	explicit SQLiteCreater(QWidget *parent = 0);
-	~SQLiteCreater();
+	explicit SQLiteCreater(QWidget *parent = 0,
+						   QString _dbName = "_for_checker_only");
+	virtual ~SQLiteCreater();
 
-private slots:
-	virtual void reset();
-	virtual void create();
+	// reimplement, contains [_.0-9a-z]
+	virtual bool checkName(QString name);
+
+	virtual bool exec();	// execute creating operation
 
 private:
-	virtual bool doCheckName(QString name);
+	QString dbName;
+
+	// main structure
 	virtual bool finalCheck();
-	bool finalCheckDbName();
 	virtual bool confirmOverwrite();
+	virtual bool doDrop();				// drop old database & configuration if exist
+	virtual bool doCreate();			// create new database & configuration
+	virtual void showConclusion();
+
+	// finalCheck helpers
+	bool finalCheckDbName();
+
+	// confirmOverwrite helpers
 	bool confirmOverwriteDb();
 	bool confirmOverwriteIni();
-	bool doDrop();
+
+	//  doDrop helpers
 	bool dropIni();
 	bool dropDb();
-	virtual bool doCreate();
+
+	// doCreate helpers
 	bool createDb();
 	bool createIni();
-	virtual void showConclusion();
 };
 
 #endif // SQLITECREATER_H

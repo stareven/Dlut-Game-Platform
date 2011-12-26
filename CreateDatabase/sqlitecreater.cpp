@@ -3,79 +3,43 @@
 #include <QSettings>
 #include <QSqlDatabase>
 #include <QSqlQuery>
-#include <QLabel>
-#include <QLineEdit>
-#include <QPushButton>
-#include <QLayout>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QGridLayout>
 #include <QMessageBox>
 #include <QDir>
 
 #include <QSqlError>
 #include <QDebug>
 
-SQLiteCreater::~SQLiteCreater() {
-	if (db->isOpen()) {
-		qDebug() << "database close";
-		db->close();
-	}
-	delete db;
-}
-
-SQLiteCreater::SQLiteCreater(QWidget *parent) :
-    DatabaseCreater(parent)
+SQLiteCreater::SQLiteCreater(QWidget *parent, QString _dbName) :
+	DatabaseCreater(parent),
+	dbName(_dbName)
 {
-	dgpdbIni = new QSettings("dgpdb.ini", QSettings::IniFormat);
-	db = new QSqlDatabase;
-	*db = QSqlDatabase::addDatabase("QSQLITE", "sqlite");
-
-	dbNameLabel = new QLabel(tr("&Database Name:"), this);
-	dbNameLabel->setAlignment(Qt::AlignRight);
-	dbNameEdit = new QLineEdit(this);
-	dbNameEdit->setMaxLength(16);
-	dbNameEdit->setFixedWidth(dbNameEdit->sizeHint().width());
-	dbNameLabel->setBuddy(dbNameEdit);
-	dbNameStatus = new QLabel(tr("ERROR!"), this);
-	//fix the size
-	dbNameStatus->setFixedWidth(dbNameStatus->sizeHint().width());
-	dbNameStatus->setText("OK!");
-	connect(dbNameEdit, SIGNAL(textChanged(QString)), this, SLOT(checkDbName(QString)));
-
-	reset();
-
-	resetBtn = new QPushButton(tr("&Reset"), this);
-	connect(resetBtn, SIGNAL(clicked()), this, SLOT(reset()));
-
-	createBtn = new QPushButton(tr("&Create"), this);
-	connect(createBtn, SIGNAL(clicked()), this, SLOT(create()));
-
-	QVBoxLayout *mainLayout = new QVBoxLayout;
-
-	QGridLayout *editLayout  = new QGridLayout;
-	editLayout->addWidget(dbNameLabel, 0, 0);
-	editLayout->addWidget(dbNameEdit, 0, 1);
-	editLayout->addWidget(dbNameStatus, 0, 2);
-
-	QHBoxLayout *btnLayout = new QHBoxLayout;
-	btnLayout->addWidget(resetBtn);
-	btnLayout->addStretch();
-	btnLayout->addWidget(createBtn);
-
-	mainLayout->addLayout(editLayout);
-	mainLayout->addStretch();
-	mainLayout->addLayout(btnLayout);
-
-	setLayout(mainLayout);
-
-
-	//fix the size
-
-	resize(sizeHint());
+	if (dbName != "_for_checker_only") {
+		dgpdbIni = new QSettings("dgpdb.ini", QSettings::IniFormat);
+		db = new QSqlDatabase;
+		*db = QSqlDatabase::addDatabase("QSQLITE", "sqlite");
+	} else {
+		db = NULL;
+		dgpdbIni = NULL;
+	}
 }
 
-bool SQLiteCreater::doCheckName(QString name) {
+SQLiteCreater::~SQLiteCreater() {
+	if (db) {
+		if (db->isOpen()) {
+			qDebug() << "database closed";
+			db->close();
+		}
+		delete db;
+		db = NULL;
+		QSqlDatabase::removeDatabase("sqlite");
+	}
+	if (dgpdbIni) {
+		delete dgpdbIni;
+		dgpdbIni = NULL;
+	}
+}
+
+bool SQLiteCreater::checkName(QString name) {
 	if (name.isEmpty()) return false;
 	foreach(QChar ch, name) {
 		if (('0' <= ch && ch <= '9') || ('a' <= ch && ch <= 'z') || (ch == '_') || (ch == '.')) continue;
@@ -84,28 +48,21 @@ bool SQLiteCreater::doCheckName(QString name) {
 	return true;
 }
 
-void SQLiteCreater::reset() {
-//	dgpdbIni->beginGroup("SQLite");
-//	if (dgpdbIni->contains("database"))
-//		dbNameEdit->setText(dgpdbIni->value("database").toString());
-//	else
-		dbNameEdit->setText("dgp.db");
-//	dgpdbIni->endGroup();
-}
-
-void SQLiteCreater::create() {
-	if (!finalCheck()) return ;
-	if (doDrop() && doCreate()) showConclusion();
+bool SQLiteCreater::exec() {
+	if (finalCheck() && confirmOverwrite() && doDrop() && doCreate()) {
+		showConclusion();
+		return true;
+	} else {
+		return false;
+	}
 }
 
 bool SQLiteCreater::finalCheck() {
-	if (!finalCheckDbName()) return false;
-	if (!confirmOverwrite()) return false;
-	return true;
+	return finalCheckDbName();
 }
 
 bool SQLiteCreater::finalCheckDbName() {
-	if (!doCheckName(dbNameEdit->text())) {
+	if (!checkName(dbName)) {
 		QMessageBox::warning(this, tr("Unavailable Name"),
 							 tr("The database name should not be empty\n"
 								"and contains only:\n\n"
@@ -124,11 +81,11 @@ bool SQLiteCreater::confirmOverwrite() {
 }
 
 bool SQLiteCreater::confirmOverwriteDb() {
-	if (QDir::current().exists(dbNameEdit->text())) {
+	if (QDir::current().exists(dbName)) {
 		int yes = QMessageBox::warning(this, tr("Overwrite the Database"),
 									   tr("A database named \"%1\" already exists.  Do you want to replace it?\n"
 										  "Replacing it will overwrite its contents.")
-									   .arg(dbNameEdit->text()),
+									   .arg(dbName),
 									   QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
 		if (yes == QMessageBox::Yes)
 			return true;
@@ -173,13 +130,13 @@ bool SQLiteCreater::doDrop() {
 }
 
 bool SQLiteCreater::dropDb() {
-	if (QDir::current().exists(dbNameEdit->text())) {
-		if (QDir::current().remove(dbNameEdit->text())) return true;
+	if (QDir::current().exists(dbName)) {
+		if (QDir::current().remove(dbName)) return true;
 		else {
 			QMessageBox::critical(this, tr("Overwrite Database Error"),
 								  tr("Unable to overwrite \"%1\"\n"
 									 "You do not have the permissions necessary to remove the file.")
-								  .arg(QDir::current().absoluteFilePath(dbNameEdit->text())),
+								  .arg(QDir::current().absoluteFilePath(dbName)),
 								  QMessageBox::Ok, QMessageBox::Ok);
 			return false;
 		}
@@ -198,7 +155,7 @@ bool SQLiteCreater::doCreate() {
 }
 
 bool SQLiteCreater::createDb() {
-	db->setDatabaseName(dbNameEdit->text());
+	db->setDatabaseName(dbName);
 	if (db->open()) {
 		qDebug() << "sqlite open/create succ";
 	} else {
@@ -209,7 +166,7 @@ bool SQLiteCreater::createDb() {
 	QSqlQuery *query = new QSqlQuery(*db);
 
 //	if (query->exec(QString("CREATE DATABASE %1")
-//					.arg(dbNameEdit->text())))
+//					.arg(dbName)))
 //	{
 //		qDebug() << "create sqlite database exec succ";
 //	} else {
@@ -289,7 +246,7 @@ bool SQLiteCreater::createDb() {
 
 bool SQLiteCreater::createIni() {
 	dgpdbIni->beginGroup("SQLite");
-	dgpdbIni->setValue("database", dbNameEdit->text());
+	dgpdbIni->setValue("database", dbName);
 	dgpdbIni->endGroup();
 	dgpdbIni->sync();
 	return true;

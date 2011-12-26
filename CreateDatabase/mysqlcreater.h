@@ -2,53 +2,52 @@
 #define MYSQLCREATER_H
 
 #include "databasecreater.h"
-class QLabel;
-class QLineEdit;
-class QPushButton;
-class QLayout;
 
 class MySQLCreater : public DatabaseCreater
 {
     Q_OBJECT
 public:
-	explicit MySQLCreater(QWidget *parent = 0);
-	~MySQLCreater();
+	explicit MySQLCreater(QWidget *parent = 0,
+						  QString _dbName = "_for_checker_only",
+						  QString _userName = "",
+						  QString _userPwd = "",
+						  QString _confirmPwd = "");
+	virtual ~MySQLCreater();
 
-private slots:
-	virtual void reset();
-	virtual void create();
-	void checkUserName(QString name);
-	void checkUserPwd(QString passwd);
-	void checkConfirmPwd(QString passwd);
+	virtual bool exec();	// execute creating operation
 
 private:
-	QLabel *userNameLabel;
-	QLineEdit *userNameEdit;
-	QLabel *userNameStatus;
-	QLabel *userPwdLabel;
-	QLineEdit *userPwdEdit;
-	QLabel *userPwdStatus;
-	QLabel *confirmPwdLabel;
-	QLineEdit *confirmPwdEdit;
-	QLabel *confirmPwdStatus;
+	QString dbName;
+	QString userName;
+	QString userPwd;
+	QString confirmPwd;
 
-	bool doCheckPwdLength(QString passwd);
-	bool doCheckConfirmPwd(QString passwd);
+	// main structure
 	virtual bool finalCheck();
+	virtual bool confirmOverwrite();
+	virtual bool doDrop();				// drop old database & configuration if exist
+	virtual bool doCreate();			// create new database & configuration
+	virtual void showConclusion();
+
+	// finalCheck helpers
 	bool finalCheckDbName();
 	bool finalCheckUserName();
 	bool finalCheckPwd();
-	bool tryRootPwd();
-	virtual bool confirmOverwrite();
+
+	// try to connect to MySQL
+	bool connectToDbAsRoot();
+
+	// confirmOverwrite helpers
 	bool confirmOverwriteDb();
 	bool confirmOverwriteIni();
-	bool doDrop();
+
+	// doDrop helpers
 	bool dropIni();
 	bool dropDb();
-	virtual bool doCreate();
+
+	// doCreate helpers
 	bool createDb();
 	bool createIni();
-	virtual void showConclusion();
 };
 
 #endif // MYSQLCREATER_H

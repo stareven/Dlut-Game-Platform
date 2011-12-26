@@ -1,3 +1,4 @@
+QT += sql
 HEADERS += \
     sqlitecreater.h \
     mysqlcreater.h \

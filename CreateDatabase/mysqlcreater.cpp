@@ -3,172 +3,71 @@
 #include <QSettings>
 #include <QSqlDatabase>
 #include <QSqlQuery>
-#include <QPushButton>
-#include <QLabel>
-#include <QLineEdit>
-#include <QLayout>
-#include <QGridLayout>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
 #include <QMessageBox>
 #include <QInputDialog>
 #include <QStringList>
-#include <QDir>
 
 #include <QSqlError>
 #include <QDebug>
 
-MySQLCreater::~MySQLCreater() {
-	if (db->isOpen()) {
-		qDebug() << "database close";
-		db->close();
-	}
-	delete db;
-}
-
-MySQLCreater::MySQLCreater(QWidget *parent) :
-	DatabaseCreater(parent)
+MySQLCreater::MySQLCreater(QWidget *parent,
+						   QString _dbName, QString _userName, QString _userPwd, QString _confirmPwd) :
+	DatabaseCreater(parent),
+	dbName(_dbName), userName(_userName), userPwd(_userPwd), confirmPwd(_confirmPwd)
 {
-//	dgpdbIni = new QSettings("dgpdb.ini", QSettings::IniFormat);
-	db = new QSqlDatabase;
-	*db = QSqlDatabase::addDatabase("QMYSQL", "mysql");
-	db->setUserName("root");
-
-	dbNameLabel = new QLabel(tr("&Database Name:"), this);
-	dbNameLabel->setAlignment(Qt::AlignRight);
-	dbNameEdit = new QLineEdit(this);
-	dbNameEdit->setMaxLength(16);
-	dbNameLabel->setBuddy(dbNameEdit);
-	dbNameStatus = new QLabel(tr("OK!"), this);
-	connect(dbNameEdit, SIGNAL(textChanged(QString)), this, SLOT(checkDbName(QString)));
-
-	userNameLabel = new QLabel(tr("User &Name:"), this);
-	userNameLabel->setAlignment(Qt::AlignRight);
-	userNameEdit = new QLineEdit(this);
-	userNameEdit->setMaxLength(16);
-	userNameLabel->setBuddy(userNameEdit);
-	userNameStatus = new QLabel(tr("OK!"), this);
-	connect(userNameEdit, SIGNAL(textChanged(QString)), this, SLOT(checkUserName(QString)));
-
-	userPwdLabel = new QLabel(tr("User &Password:"), this);
-	userPwdLabel->setAlignment(Qt::AlignRight);
-	userPwdEdit = new QLineEdit(this);
-	userPwdEdit->setMaxLength(16);
-	userPwdEdit->setEchoMode(QLineEdit::Password);
-	userPwdLabel->setBuddy(userPwdEdit);
-	userPwdStatus = new QLabel(tr("ERROR!"), this);
-	connect(userPwdEdit, SIGNAL(textChanged(QString)), this, SLOT(checkUserPwd(QString)));
-
-	confirmPwdLabel = new QLabel(tr("Con&firm Password:"), this);
-	confirmPwdLabel->setAlignment(Qt::AlignRight);
-	confirmPwdEdit = new QLineEdit(this);
-	confirmPwdEdit->setMaxLength(16);
-	confirmPwdEdit->setEchoMode(QLineEdit::Password);
-	confirmPwdLabel->setBuddy(confirmPwdEdit);
-	confirmPwdStatus = new QLabel(tr("ERROR!"), this);
-	connect(confirmPwdEdit, SIGNAL(textChanged(QString)), this, SLOT(checkConfirmPwd(QString)));
-
-	reset();
-
-	resetBtn = new QPushButton(tr("&Reset"), this);
-	connect(resetBtn, SIGNAL(clicked()), this, SLOT(reset()));
-
-	createBtn = new QPushButton(tr("&Create"), this);
-	connect(createBtn, SIGNAL(clicked()), this, SLOT(create()));
-
-	QVBoxLayout *mainLayout = new QVBoxLayout;
-
-	QGridLayout *editLayout = new QGridLayout;
-	editLayout->addWidget(dbNameLabel, 0, 0);
-	editLayout->addWidget(dbNameEdit, 0, 1);
-	editLayout->addWidget(dbNameStatus, 0, 2);
-	editLayout->addWidget(userNameLabel, 1, 0);
-	editLayout->addWidget(userNameEdit, 1, 1);
-	editLayout->addWidget(userNameStatus, 1, 2);
-	editLayout->addWidget(userPwdLabel, 2, 0);
-	editLayout->addWidget(userPwdEdit, 2, 1);
-	editLayout->addWidget(userPwdStatus, 2, 2);
-	editLayout->addWidget(confirmPwdLabel, 3, 0);
-	editLayout->addWidget(confirmPwdEdit, 3, 1);
-	editLayout->addWidget(confirmPwdStatus, 3, 2);
-
-	QHBoxLayout *btnLayout = new QHBoxLayout;
-	btnLayout->addWidget(resetBtn);
-	btnLayout->addStretch();
-	btnLayout->addWidget(createBtn);
-
-	mainLayout->addLayout(editLayout);
-	mainLayout->addStretch();
-	mainLayout->addLayout(btnLayout);
-
-	setLayout(mainLayout);
-
-	//fix the size
-	confirmPwdEdit->setFixedWidth(confirmPwdEdit->sizeHint().width());
-	confirmPwdStatus->setFixedWidth(confirmPwdStatus->sizeHint().width());
-	setFixedSize(sizeHint());
+//	qDebug() << "++ construct MySQLCreater ++";
+	if (dbName != "_for_checker_only") {
+//		qDebug() << "+ construct a real creater +";
+		dgpdbIni = new QSettings("dgpdb.ini", QSettings::IniFormat);
+		db = new QSqlDatabase;
+		*db = QSqlDatabase::addDatabase("QMYSQL", "mysql");
+	} else {
+		db = NULL;
+		dgpdbIni = NULL;
+//		qDebug() << "+ construct only a checker +";
+	}
+//	qDebug() << "++ construct MySQLCreater end ++";
 }
 
-void MySQLCreater::reset() {
-//	dgpdbIni->beginGroup("MySQL");
-//	if (dgpdbIni->contains("database"))
-//		dbNameEdit->setText(dgpdbIni->value("database").toString());
-//	else
-		dbNameEdit->setText("dgpdb");
-//	if (dgpdbIni->contains("user"))
-//		userNameEdit->setText(dgpdbIni->value("user").toString());
-//	else
-		userNameEdit->setText("dgproot");
-//	dgpdbIni->endGroup();
-
-	userPwdEdit->setText("");
-	confirmPwdEdit->setText("");
+MySQLCreater::~MySQLCreater() {
+//	qDebug() << "++ destoy MySQLCreater ++";
+	if (db) {
+//		qDebug() << "+ db not null +";
+		if (db->isOpen()) {
+			qDebug() << "database closed";
+			db->close();
+		}
+		delete db;
+		db = NULL;
+		QSqlDatabase::removeDatabase("mysql");
+	} else {
+//		qDebug() << "+ db is null +";
+	}
+	if (dgpdbIni) {
+//		qDebug() << "+ dgpdbIni not null +";
+		delete dgpdbIni;
+		dgpdbIni = NULL;
+	} else {
+//		qDebug() << "+ dgpdbIni is null +";
+	}
+//	qDebug() << "++ destroy end ++";
 }
 
-void MySQLCreater::checkUserName(QString name) {
-	if (doCheckName(name))
-		userNameStatus->setText(tr("OK!"));
-	else
-		userNameStatus->setText(tr("ERROR!"));
-}
-
-void MySQLCreater::checkUserPwd(QString passwd) {
-	if (doCheckPwdLength(passwd))
-		userPwdStatus->setText(tr("OK!"));
-	else
-		userPwdStatus->setText(tr("ERROR!"));
-	checkConfirmPwd(confirmPwdEdit->text());
-}
-
-void MySQLCreater::checkConfirmPwd(QString passwd) {
-	if (doCheckPwdLength(passwd) && doCheckConfirmPwd(passwd))
-		confirmPwdStatus->setText(tr("OK!"));
-	else
-		confirmPwdStatus->setText(tr("ERROR!"));
-}
-
-bool MySQLCreater::doCheckPwdLength(QString passwd) {
-	return passwd.length() >= 6;
-}
-
-bool MySQLCreater::doCheckConfirmPwd(QString passwd) {
-	return passwd == userPwdEdit->text();
-}
-
-void MySQLCreater::create() {
-	if (!finalCheck()) return ;
-	if (doDrop() && doCreate()) showConclusion();
+bool MySQLCreater::exec() {
+	if (finalCheck() && connectToDbAsRoot() && confirmOverwrite() && doDrop() && doCreate()) {
+		showConclusion();
+		return true;
+	} else {
+		return false;
+	}
 }
 
 bool MySQLCreater::finalCheck() {
-	if (!finalCheckDbName() || !finalCheckUserName() || !finalCheckPwd()) return false;
-	if (!tryRootPwd()) return false;
-	if (!confirmOverwrite()) return false;
-	return true;
+	return finalCheckDbName() && finalCheckUserName() && finalCheckPwd();
 }
 
 bool MySQLCreater::finalCheckDbName() {
-	if (!doCheckName(dbNameEdit->text())) {
+	if (!checkName(dbName)) {
 		QMessageBox::warning(this, tr("Unavailable Name"),
 							 tr("The database name should not be empty\n"
 								"and contains only:\n\n"
@@ -182,7 +81,7 @@ bool MySQLCreater::finalCheckDbName() {
 }
 
 bool MySQLCreater::finalCheckUserName() {
-	if (!doCheckName(userNameEdit->text())) {
+	if (!checkName(userName)) {
 		QMessageBox::warning(this, tr("Unavailable Name"),
 							 tr("The user name should not be empty\n"
 								"and contains only:\n\n"
@@ -196,14 +95,14 @@ bool MySQLCreater::finalCheckUserName() {
 }
 
 bool MySQLCreater::finalCheckPwd() {
-	if (!doCheckPwdLength(userPwdEdit->text())) {
+	if (!checkPwdLength(userPwd)) {
 		QMessageBox::warning(this, tr("Unavailable User Password"),
 							 tr("The user password is too short!\n"
 								"The length of the user password should not be less than 6."),
 							 QMessageBox::Ok, QMessageBox::Ok);
 		return false;
 	}
-	if (!doCheckConfirmPwd(confirmPwdEdit->text())) {
+	if (!checkConfirmPwd(userPwd, confirmPwd)) {
 		QMessageBox::warning(this, tr("Confirm User Password"),
 							 tr("\"Confirm Password\" is diffrent from \"User Passeord\"!\n"
 								"\"Confirm Password\" should be the same as \"User Passeord\"!"),
@@ -213,7 +112,8 @@ bool MySQLCreater::finalCheckPwd() {
 	return true;
 }
 
-bool MySQLCreater::tryRootPwd() {
+bool MySQLCreater::connectToDbAsRoot() {
+	db->setUserName("root");
 	while (true) {
 		bool ok = true;
 		QString password = QInputDialog::getText(this, QObject::tr("Connect to MySQL as Root"),
@@ -249,6 +149,7 @@ bool MySQLCreater::confirmOverwriteDb() {
 	} else {
 		qDebug() << query->lastError().databaseText();
 		qDebug() << "USE infomation_schema fail";
+		delete query;
 		return false;
 	}
 	if (query->prepare("SELECT 1 FROM SCHEMATA	\n"
@@ -259,7 +160,7 @@ bool MySQLCreater::confirmOverwriteDb() {
 		qDebug() << "find dbName prepare fail";
 		return false;
 	}
-	query->bindValue(":dbName", dbNameEdit->text());
+	query->bindValue(":dbName", dbName);
 	if (query->exec()) {
 		qDebug() << "find dbName exec succ";
 	} else {
@@ -271,7 +172,7 @@ bool MySQLCreater::confirmOverwriteDb() {
 		int yes = QMessageBox::warning(this, tr("Overwrite the Database"),
 									   tr("A database named \"%1\" already exists.  Do you want to replace it?\n"
 										  "Replacing it will overwrite its contents.")
-									   .arg(dbNameEdit->text()),
+									   .arg(dbName),
 									   QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
 		if (yes == QMessageBox::Yes)
 			return true;
@@ -283,7 +184,7 @@ bool MySQLCreater::confirmOverwriteDb() {
 }
 
 bool MySQLCreater::confirmOverwriteIni() {
-	qDebug() << dgpdbIni->fileName();
+//	qDebug() << dgpdbIni->fileName();
 	if (!dgpdbIni->isWritable()) {
 		QMessageBox::warning(this, tr("Permission Denied"),
 							 tr("Unable to write \"%1\"\n"
@@ -319,7 +220,7 @@ bool MySQLCreater::doDrop() {
 bool MySQLCreater::dropDb() {
 	QSqlQuery *query = new QSqlQuery(*db);
 	if (query->exec(QString("DROP DATABASE IF EXISTS %1")
-					.arg(dbNameEdit->text())))
+					.arg(dbName)))
 	{
 		qDebug() << "drop succ";
 		return true;
@@ -342,7 +243,7 @@ bool MySQLCreater::doCreate() {
 bool MySQLCreater::createDb() {
 	QSqlQuery *query = new QSqlQuery(*db);
 	if (query->exec(QString("CREATE DATABASE %1")
-					.arg(dbNameEdit->text()))) {
+					.arg(dbName))) {
 		qDebug() << "create db exec succ";
 	} else {
 		qDebug() << query->lastError().text();
@@ -350,9 +251,9 @@ bool MySQLCreater::createDb() {
 		return false;
 	}
 	if (query->exec(QString("GRANT ALL ON %1.* TO %2@localhost IDENTIFIED BY '%3'")
-					.arg(dbNameEdit->text())
-					.arg(userNameEdit->text())
-					.arg(userPwdEdit->text()))) {
+					.arg(dbName)
+					.arg(userName)
+					.arg(userPwd))) {
 		qDebug() << "grant exec succ";
 	} else {
 		qDebug() << query->lastError().text();
@@ -360,7 +261,7 @@ bool MySQLCreater::createDb() {
 		return false;
 	}
 	if (query->exec(QString("USE %1")
-					.arg(dbNameEdit->text())))
+					.arg(dbName)))
 	{
 		qDebug() << "use db exec succ";
 	} else {
@@ -438,9 +339,9 @@ bool MySQLCreater::createDb() {
 
 bool MySQLCreater::createIni() {
 	dgpdbIni->beginGroup("MySQL");
-	dgpdbIni->setValue("database", dbNameEdit->text());
-	dgpdbIni->setValue("user", userNameEdit->text());
-	dgpdbIni->setValue("password", userPwdEdit->text());
+	dgpdbIni->setValue("database", dbName);
+	dgpdbIni->setValue("user", userName);
+	dgpdbIni->setValue("password", userPwd);
 	dgpdbIni->endGroup();
 	dgpdbIni->sync();
 	return true;
