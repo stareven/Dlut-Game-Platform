@@ -155,6 +155,7 @@ bool SQLiteCreater::doCreate() {
 }
 
 bool SQLiteCreater::createDb() {
+	//create database
 	db->setDatabaseName(dbName);
 	if (db->open()) {
 		qDebug() << "sqlite open/create succ";
@@ -165,21 +166,12 @@ bool SQLiteCreater::createDb() {
 	}
 	QSqlQuery *query = new QSqlQuery(*db);
 
-//	if (query->exec(QString("CREATE DATABASE %1")
-//					.arg(dbName)))
-//	{
-//		qDebug() << "create sqlite database exec succ";
-//	} else {
-//		qDebug() << query->lastError().text();
-//		qDebug() << "create sqlite database exec fail";
-//		return false;
-//	}
-
+	//create loginingo table
 	if (query->exec("CREATE TABLE logininfo(\n"
-					"user_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,\n"
+					"user_id INTEGER PRIMARY KEY AUTOINCREMENT,\n"
 					"user_name VARCHAR(50) NOT NULL UNIQUE,\n"
 					"passwd VARCHAR(50) NOT NULL,"
-					"roles TINYINT UNSIGNED NOT NULL DEFAULT '0')"))
+					"roles INTEGER NOT NULL DEFAULT '0')"))
 	{
 		qDebug() << "create logininfo exec succ";
 	} else {
@@ -188,18 +180,9 @@ bool SQLiteCreater::createDb() {
 		return false;
 	}
 
-	/*	ERROR
-	if (query->exec("ALTER TABLE logininfo AUTO_INCREMENT=1001")) {
-		qDebug() << "alter logininfo exec succ";
-	} else {
-		qDebug() << query->lastError().text();
-		qDebug() << "alter logininfo exec fail";
-		return false;
-	}
-	*/
-
+	//create userinfo table
 	if (query->exec("CREATE TABLE userinfo(\n"
-					"user_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,\n"
+					"user_id INTEGER PRIMARY KEY,\n"
 					"nickname VARCHAR(50),\n"
 					"org TEXT)"))
 	{
@@ -210,12 +193,13 @@ bool SQLiteCreater::createDb() {
 		return false;
 	}
 
+	//create serverinfo table
 	if (query->exec("CREATE TABLE serverinfo(\n"
-					"server_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,\n"
+					"server_id INTEGER PRIMARY KEY AUTOINCREMENT,\n"
 					"server_name VARCHAR(50) NOT NULL UNIQUE,\n"
-					"runner_id INT UNSIGNED,\n"
+					"runner_id INTEGER,\n"
 					"host_addr VARCHAR(255),\n"
-					"host_port SMALLINT UNSIGNED)"))
+					"host_port INTEGER)"))
 	{
 		qDebug() << "create serverinfo exec succ";
 	} else {
@@ -224,13 +208,14 @@ bool SQLiteCreater::createDb() {
 		return false;
 	}
 
+	//create gameinfo table
 	if (query->exec("CREATE TABLE gameinfo(\n"
-					"game_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,\n"
+					"game_id INTEGER PRIMARY KEY AUTOINCREMENT,\n"
 					"game_name VARCHAR(50) NOT NULL UNIQUE,\n"
-					"version INT UNSIGNED,\n"
-					"author_id INT UNSIGNED,\n"
-					"runner_id INT UNSIGNED,\n"
-					"server_id INT UNSIGNED,\n"
+					"version INTEGER,\n"
+					"author_id INTEGER,\n"
+					"runner_id INTEGER,\n"
+					"server_id INTEGER,\n"
 					"download_url VARCHAR(255),\n"
 					"intro TEXT)"))
 	{
@@ -238,6 +223,17 @@ bool SQLiteCreater::createDb() {
 	} else {
 		qDebug() << query->lastError().text();
 		qDebug() << "create gameinfo exec fail";
+		return false;
+	}
+
+	//set AUTOINCREMENT = 1001 of logininfo
+	if (query->exec("INSERT INTO SQLITE_SEQUENCE\n"
+					"VALUES('logininfo', '1000')"))
+	{
+		qDebug() << "set AUTOINCREMENT exec succ";
+	} else {
+		qDebug() << query->lastError().text();
+		qDebug() << "set AUTOINCREMENT exec fail";
 		return false;
 	}
 
