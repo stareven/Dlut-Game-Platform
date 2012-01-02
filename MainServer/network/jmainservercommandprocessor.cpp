@@ -24,7 +24,7 @@ void JMainServerCommandProcessor::process(const QByteArray& data)
 	processCommand(type,param);
 }
 
-EProcessorType JMainServerCommandProcessor::getProcessorType()const
+JType JMainServerCommandProcessor::getProcessorType()const
 {
 	return EPI_COMMAND;
 }

@@ -42,7 +42,7 @@ void JClientUserRegisterProcessor::process(const QByteArray &data)
 	emit receiveRegisterResult(result,userId,loginname);
 }
 
-EProcessorType JClientUserRegisterProcessor::getProcessorType()const
+JType JClientUserRegisterProcessor::getProcessorType()const
 {
 	return EPI_UserRegister;
 }

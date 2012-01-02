@@ -9,7 +9,7 @@ class JMainServerUserRegisterProcessor : public JServerNetworkDataProcessorBase
 public:
 	explicit JMainServerUserRegisterProcessor(JSession* session,JSocketBase *socket);
 	void process(const QByteArray& data);
-	EProcessorType getProcessorType()const;
+    JType getProcessorType()const;
 
 	void replyRegisterResult(JCode result,JID userId,const QString& loginname);
 protected:

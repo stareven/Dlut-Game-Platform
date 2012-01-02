@@ -43,7 +43,7 @@ signals:
 	void rcvGA_Stop();
 public:
 	void process(const QByteArray& data);
-	EProcessorType getProcessorType()const;
+    JType getProcessorType()const;
 };
 
 #endif // JSNAKEPROCESSOR_H

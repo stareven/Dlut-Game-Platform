@@ -52,7 +52,7 @@ void JClientInformationProcessor::requestUploadData(const JHead& head,const QByt
 	sendData(outdata);
 }
 
-EProcessorType JClientInformationProcessor::getProcessorType()const
+JType JClientInformationProcessor::getProcessorType()const
 {
 	return EPI_INFORMATION;
 }

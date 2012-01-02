@@ -13,8 +13,7 @@ DGP仅包含一个游戏大厅，并不包含任何游戏。由热爱游戏设�
 项目目前仍处于开发阶段。
 详细介绍： http://lexdene.github.com/Dlut-Game-Platform
 源代码： https://github.com/lexdene/Dlut-Game-Platform
-交流讨论QQ群： 26927924
-如果您希望加入DGP项目，请与我联系。联系方式： elephant_liu@mail.dlut.edu.cn
+交流讨论版： http://bbs.dlut.edu.cn/nforum/board/DGP
 
 ------------------字符编码相关问题------------------
 如果您使用的是其它操作系统（如Windows等），您在阅读doc/文件夹下的纯文本文件以及源代码时可能会出现以下问题。这需要您做相应的设置才能正常阅读。

@@ -159,6 +159,6 @@ namespace SnakeProtocol{
 }
 
 namespace Snake{
-	const EProcessorType SnakeProcessorType = EPI_UserType_1;
+    const JType SnakeProcessorType = EPI_UserType + 1;
 }
 #endif // JSNAKEGLOBAL_H

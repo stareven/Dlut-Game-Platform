@@ -14,7 +14,7 @@ signals:
 	void rcvMessage(const QString& msg);
 protected:
 	void process(const QByteArray& data);
-	EProcessorType getProcessorType()const;
+    JType getProcessorType()const;
 };
 
 #endif // JCLIENTHALLTALKPROCESSOR_H

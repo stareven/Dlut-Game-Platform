@@ -9,7 +9,7 @@ class JMainServerCommandProcessor : public JServerNetworkDataProcessorBase
 public:
 	explicit JMainServerCommandProcessor(JSession* session,JSocketBase *socket);
 	void process(const QByteArray& data);
-	EProcessorType getProcessorType()const;
+    JType getProcessorType()const;
 private:
 	void processCommand(JID type,JID param);
 	void replyCommandResult(JID type,JCode result);

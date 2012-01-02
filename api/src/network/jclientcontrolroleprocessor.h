@@ -16,7 +16,7 @@ signals:
 	void receiveControlRoleResult(JID userId,JCode result);
 protected:
 	void process(const QByteArray& data);
-	EProcessorType getProcessorType()const;
+    JType getProcessorType()const;
 };
 
 #endif // JCLIENTCONTROLROLEPROCESSOR_H

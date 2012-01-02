@@ -17,7 +17,7 @@ class JNetworkDataProcessorBase : public QObject
 public:
 	JNetworkDataProcessorBase (JSession* session,JSocketBase *socket);
     virtual void process(const QByteArray& data)=0;
-	virtual EProcessorType getProcessorType()const=0;
+    virtual JType getProcessorType()const=0;
 
 protected:
 	JCode sendData(const QByteArray& data);

@@ -20,7 +20,7 @@ void JMainServerHallTalkProcessor::process(const QByteArray& data)
 	emit rcvMessage(msg);
 }
 
-EProcessorType JMainServerHallTalkProcessor::getProcessorType()const
+JType JMainServerHallTalkProcessor::getProcessorType()const
 {
 	return EPI_HallTalk;
 }

@@ -24,7 +24,7 @@ void JMainServerUserRegisterProcessor::process(const QByteArray& data)
 	processUserRegister(loginname,password,role);
 }
 
-EProcessorType JMainServerUserRegisterProcessor::getProcessorType()const
+JType JMainServerUserRegisterProcessor::getProcessorType()const
 {
 	return EPI_UserRegister;
 }
