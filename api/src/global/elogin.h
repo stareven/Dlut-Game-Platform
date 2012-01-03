@@ -8,7 +8,8 @@
 */
 
 /*!
-	\brief 每名用户能够以多个身份登录。我们按bit记录一个用户拥有的身份的组合。
+	\brief 一个用户拥有的身份的组合
+	每名用户能够拥有多个身份。我们按位记录一个用户拥有的身份的组合。
 */
 typedef qint16 JRoleCombination;
 
@@ -35,9 +36,13 @@ enum ELogin{
 	EL_NETWORK_ERROR, /**< 网络错误 */
 };
 
+/*!
+    \brief 更改用户身份的动作
+    详情请见 JRequestControlRole
+*/
 enum EControlRoleAction{
-	ECRA_Add,
-	ECRA_Remove,
+	ECRA_Add, ///< 添加一个身份
+	ECRA_Remove, ///< 移除一个身份
 };
 
 #endif

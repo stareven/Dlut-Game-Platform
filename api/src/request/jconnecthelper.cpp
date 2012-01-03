@@ -9,7 +9,7 @@
 const static QString error_no="no error";
 
 /*!
-	\fn JRequestBase::error();
+	\fn JConnectHelper::error();
 	\brief 发生错误。
 
 	可以通过getConnectError()函数以可读的字符串获取错误的具体内容。

@@ -5,7 +5,8 @@
 using namespace NetworkData;
 
 /*!
-	\class JUserInfo juserinfo.h "global/juserinfo.h"
+	\class JUserInfo juserinfo.h <DataStruct/JUserInfo>
+	\ingroup global
 	\brief 记录一名玩家的信息。
 
 	包括玩家的Id，昵称和组织名。
@@ -61,16 +62,25 @@ JHead JUserInfo::head()const
 	return head;
 }
 
+/*!
+    \brief 返回用户ID
+*/
 JID JUserInfo::getUserId()const
 {
 	return getId();
 }
 
+/*!
+    \brief 返回用户昵称
+*/
 const QString& JUserInfo::getNickname()const
 {
 	return m_nickname;
 }
 
+/*!
+    \brief 返回用户组织
+*/
 const QString& JUserInfo::getOrganization()const
 {
 	return m_organization;

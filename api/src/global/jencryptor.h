@@ -3,10 +3,15 @@
 
 #include <QString>
 
+/*!
+	\file jencryptor.h
+	\ingroup global
+	\brief 定义了 JEncryptor 类。
+*/
+
 class JEncryptor
 {
 public:
-    JEncryptor();
 	QString encryptPassword(const QString& pswd)const;
 };
 

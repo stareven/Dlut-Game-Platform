@@ -6,6 +6,12 @@
 #include "jserializabledata.h"
 #include "jglobal.h"
 
+/*!
+    \file juserinfo.h
+    \ingroup global
+    \brief 定义了 JUserInfo 类
+*/
+
 class JUserInfo : public JSerializableData{
 public:
 	JUserInfo(JID id=-1,

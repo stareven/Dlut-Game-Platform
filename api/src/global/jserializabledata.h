@@ -5,6 +5,12 @@
 
 #include "../network/jinformation.h"
 
+/*!
+    \file jserializabledata.h
+    \ingroup global
+    \brief 定义了 JSerializableData 接口
+*/
+
 class JSerializableData
 {
 public:

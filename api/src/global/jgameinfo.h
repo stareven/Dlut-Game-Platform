@@ -7,6 +7,12 @@
 
 #include <QUrl>
 
+/*!
+    \file jgameinfo.h
+    \ingroup global
+    \brief 定义了 JGameInfo 类
+*/
+
 class JGameInfo : public JSerializableData
 {
 public:
