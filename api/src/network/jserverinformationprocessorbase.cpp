@@ -4,7 +4,8 @@
 #include <QDataStream>
 
 #include "../global/jcodeerror.h"
-#include "jinformation.h"
+#include "../global/jhead.h"
+#include "../global/jinformation.h"
 
 using namespace NetworkData;
 

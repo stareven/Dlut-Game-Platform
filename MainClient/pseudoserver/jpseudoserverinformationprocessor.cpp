@@ -1,7 +1,6 @@
 #include "jpseudoserverinformationprocessor.h"
 
 #include <Global/CodeError>
-#include <Information/JInformation>
 #include <ClientRequest/JInformationRequestByHeadBase>
 
 using namespace NetworkData;

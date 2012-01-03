@@ -1,7 +1,5 @@
 #include "jrequestuserinfo.h"
 
-#include "../network/jinformation.h"
-
 JRequestUserInfo::JRequestUserInfo(QObject *parent) :
 	JInformationRequestBase(parent)
 {

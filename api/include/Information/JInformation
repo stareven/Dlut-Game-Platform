@@ -1,1 +1,1 @@
-#include "../../src/network/jinformation.h"
+#include "../../src/global/jinformation.h"

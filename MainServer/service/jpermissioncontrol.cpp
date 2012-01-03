@@ -1,5 +1,6 @@
 #include "jpermissioncontrol.h"
 
+#include <Information/JHead>
 #include <Information/JInformation>
 #include <Global/Login>
 #include <Global/Command>

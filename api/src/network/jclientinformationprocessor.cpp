@@ -1,7 +1,7 @@
 #include "jclientinformationprocessor.h"
 
 #include "jmainclientsocket.h"
-#include "jinformation.h"
+#include "../global/jhead.h"
 #include "jinformationmanager.h"
 #include "jsession.h"
 

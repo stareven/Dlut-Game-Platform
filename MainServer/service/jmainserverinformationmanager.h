@@ -5,7 +5,7 @@
 #include <QMap>
 
 #include <Global/Global>
-#include <Information/JInformation>
+#include <Information/JHead>
 
 class JMainServerInformationManager
 {

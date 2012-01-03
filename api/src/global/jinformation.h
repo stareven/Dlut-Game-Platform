@@ -1,33 +1,12 @@
 #ifndef JINFORMATION_H
 #define JINFORMATION_H
 
-#include <QtGlobal>
 #include <QByteArray>
 
-#include "../global/jglobal.h"
+#include "jglobal.h"
+#include "jhead.h"
 
 namespace NetworkData{
-	struct JHead;
-}
-bool operator==(const NetworkData::JHead&,const NetworkData::JHead&);
-uint qHash(const NetworkData::JHead&);
-
-namespace NetworkData{
-	struct JHead{
-		JType m_type;
-		qint16 m_category;
-		JID m_id;
-
-		explicit JHead(JID id=-1,JType type=-1,qint16 category=-1);
-		friend bool ::operator==(const JHead&,const JHead&);
-		friend uint ::qHash(const JHead&);
-		bool operator<(const JHead& head)const;
-	};
-	enum EInformationType{
-		EIT_UserInfo,
-		EIT_GameInfo,
-		EIT_ServerInfo,
-	};
 	enum EInformationProtocol{
 		EIP_DownloadRemoteMtime,
 		EIP_DownloadData,
@@ -56,9 +35,5 @@ namespace NetworkData{
 		QByteArray m_data;
 	};
 }
-
-class QDataStream;
-QDataStream& operator<<(QDataStream&,const NetworkData::JHead&);
-QDataStream& operator>>(QDataStream&,NetworkData::JHead&);
 
 #endif // JINFORMATION_H

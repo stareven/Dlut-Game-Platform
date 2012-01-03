@@ -3,7 +3,7 @@
 
 #include <QByteArray>
 
-#include "../network/jinformation.h"
+#include "../global/jhead.h"
 
 /*!
     \file jserializabledata.h

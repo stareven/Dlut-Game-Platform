@@ -16,7 +16,7 @@ HEADERS += \
     src/request/jrequestbase.h \
     src/global/elogin.h \
     src/global/shost.h \
-    src/network/jinformation.h \
+    src/global/jinformation.h \
     src/network/jinformationmanager.h \
     src/global/jserializabledata.h \
     src/request/jrequestuserinfo.h \
@@ -54,7 +54,8 @@ HEADERS += \
     src/request/jgameserverstartup.h \
     src/network/jclienthalltalkprocessor.h \
     src/global/jencryptor.h \
-    src/request/jgameclientargumentanalyser.h
+    src/request/jgameclientargumentanalyser.h \
+    src/global/jhead.h
 SOURCES += src/network/jsocketbase.cpp \
     src/network/jclientsocketbase.cpp \
     src/network/jserversocketbase.cpp \
@@ -63,7 +64,7 @@ SOURCES += src/network/jsocketbase.cpp \
     src/request/jrequestlogin.cpp \
     src/request/jrequestbase.cpp \
     src/global/shost.cpp \
-    src/network/jinformation.cpp \
+    src/global/jinformation.cpp \
     src/network/jinformationmanager.cpp \
     src/request/jrequestuserinfo.cpp \
     src/global/juserinfo.cpp \
@@ -98,4 +99,5 @@ SOURCES += src/network/jsocketbase.cpp \
     src/request/jgameserverstartup.cpp \
     src/network/jclienthalltalkprocessor.cpp \
     src/global/jencryptor.cpp \
-    src/request/jgameclientargumentanalyser.cpp
+    src/request/jgameclientargumentanalyser.cpp \
+    src/global/jhead.cpp

@@ -6,6 +6,7 @@
 
 #include <Session/JSession>
 #include <Global/CodeError>
+#include <Information/JInformation>
 
 #include "service/jpermissioncontrol.h"
 #include "service/jmainserverinformationmanager.h"
