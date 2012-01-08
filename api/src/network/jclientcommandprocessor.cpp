@@ -39,7 +39,7 @@ void JClientCommandProcessor::process(const QByteArray& data)
 	emit receiveCommandResult(type,result);
 }
 
-EProcessorType JClientCommandProcessor::getProcessorType()const
+JType JClientCommandProcessor::getProcessorType()const
 {
 	return EPI_COMMAND;
 }

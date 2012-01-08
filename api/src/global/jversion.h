@@ -5,6 +5,7 @@
 
 /*!
 	\file jversion.h
+	\ingroup global
 	\brief 定义了 JVersion 类。
 */
 

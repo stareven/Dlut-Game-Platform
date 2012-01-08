@@ -9,7 +9,7 @@ class JMainServerHallTalkProcessor : public JServerNetworkDataProcessorBase
 public:
 	explicit JMainServerHallTalkProcessor(JSession* session,JSocketBase *socket);
 	void process(const QByteArray& data);
-	EProcessorType getProcessorType()const;
+    JType getProcessorType()const;
 public slots:
 	void sendMessage(const QString& msg);
 signals:

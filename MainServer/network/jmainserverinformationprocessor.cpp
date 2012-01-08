@@ -6,6 +6,7 @@
 
 #include <Session/JSession>
 #include <Global/CodeError>
+#include <Information/JInformation>
 
 #include "service/jpermissioncontrol.h"
 #include "service/jmainserverinformationmanager.h"
@@ -44,7 +45,7 @@ void JMainServerInformationProcessor::process(const QByteArray& data)
 	}
 }
 
-EProcessorType JMainServerInformationProcessor::getProcessorType()const
+JType JMainServerInformationProcessor::getProcessorType()const
 {
 	return EPI_INFORMATION;
 }

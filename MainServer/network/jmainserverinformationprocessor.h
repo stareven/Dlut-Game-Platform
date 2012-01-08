@@ -14,7 +14,7 @@ class JMainServerInformationProcessor : public JServerNetworkDataProcessorBase
 public:
 	explicit JMainServerInformationProcessor(JSession* session,JSocketBase *socket);
 	void process(const QByteArray& data);
-	EProcessorType getProcessorType()const;
+    JType getProcessorType()const;
 
 	void replyMtime(const NetworkData::JHead& head,JTime_t mtime);
 	void replyData(const NetworkData::JHead& head,JTime_t currentTime,const QByteArray& data);

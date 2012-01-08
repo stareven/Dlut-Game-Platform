@@ -3,7 +3,7 @@
 #include <QDataStream>
 
 /*!
-	\class JVersion jversion.h "global/jversion.h"
+	\class JVersion jversion.h <DataStruct/JVersion>
 	\ingroup global
 	\brief 管理版本号。
 	

@@ -2,7 +2,7 @@
 #define JINFORMATIONREQUESTBYHEADBASE_H
 
 #include "jrequestbase.h"
-#include "../network/jinformation.h"
+#include "../global/jhead.h"
 
 #include <QSet>
 

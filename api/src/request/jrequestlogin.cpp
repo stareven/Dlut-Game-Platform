@@ -24,7 +24,7 @@
 	  -# 调用 connectToHost() 函数连接服务器。
 	  -# 调用 login() 函数发送用户名、密码及登录身份。
 	  
-	登录成功后，服务器会返回用户ID及\ref LoginHashCode 。\n
+	登录成功后，服务器会返回用户ID及 LoginHashCode 。\n
 	JRequestLogin 会自动通过 JLoginHashCodeRecorder 将它们记录下来。
 */
 

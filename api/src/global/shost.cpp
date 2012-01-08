@@ -1,7 +1,7 @@
 #include "shost.h"
 
 /*!
-	\class SHost shost.h "global/shost.h"
+	\class SHost shost.h <DataStruct/SHost>
 	\ingroup global
 	\brief 记录一个地址和端口。
 */

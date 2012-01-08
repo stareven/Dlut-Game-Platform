@@ -5,7 +5,8 @@
 
 /*!
 	\file shost.h
-	\brief 定义了 SHost 结构。
+	\ingroup global
+	\brief 定义了 SHost 结构体。
 */
 
 struct SHost

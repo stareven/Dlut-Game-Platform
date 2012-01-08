@@ -14,7 +14,7 @@ class JSnakeServerProcessor : public JServerNetworkDataProcessorBase
 public:
 	explicit JSnakeServerProcessor(JSession* session,JSocketBase *socket);
 	void process(const QByteArray& data);
-	EProcessorType getProcessorType()const;
+    JType getProcessorType()const;
 protected slots:
 	void on_socket_disconnected();
 private:

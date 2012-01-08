@@ -53,7 +53,7 @@ void JMainServerLoginProcessor::process(const QByteArray& data)
 	sendData(outdata);
 }
 
-EProcessorType JMainServerLoginProcessor::getProcessorType()const
+JType JMainServerLoginProcessor::getProcessorType()const
 {
 	return EPI_LOGIN;
 }

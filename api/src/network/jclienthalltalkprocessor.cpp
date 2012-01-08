@@ -36,7 +36,7 @@ void JClientHallTalkProcessor::process(const QByteArray& data)
 	emit rcvMessage(msg);
 }
 
-EProcessorType JClientHallTalkProcessor::getProcessorType()const
+JType JClientHallTalkProcessor::getProcessorType()const
 {
 	return EPI_HallTalk;
 }

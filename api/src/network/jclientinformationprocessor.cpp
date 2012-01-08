@@ -1,7 +1,7 @@
 #include "jclientinformationprocessor.h"
 
 #include "jmainclientsocket.h"
-#include "jinformation.h"
+#include "../global/jhead.h"
 #include "jinformationmanager.h"
 #include "jsession.h"
 
@@ -52,7 +52,7 @@ void JClientInformationProcessor::requestUploadData(const JHead& head,const QByt
 	sendData(outdata);
 }
 
-EProcessorType JClientInformationProcessor::getProcessorType()const
+JType JClientInformationProcessor::getProcessorType()const
 {
 	return EPI_INFORMATION;
 }

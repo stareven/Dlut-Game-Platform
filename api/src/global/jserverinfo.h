@@ -7,6 +7,12 @@
 #include "jglobal.h"
 #include "shost.h"
 
+/*!
+    \file jserverinfo.h
+    \ingroup global
+    \brief 定义了 JServerInfo 类
+*/
+
 class JServerInfo : public JSerializableData
 {
 public:

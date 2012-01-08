@@ -38,7 +38,7 @@ typedef qint16 JCode;
 typedef uint JTime_t;
 
 /*!
-	\defgroup global globalapi
+	\defgroup global global
 	\brief 整个项目需要用到的一些数据定义等。
 */
 

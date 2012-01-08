@@ -4,7 +4,8 @@
 #include <QDataStream>
 
 #include "../global/jcodeerror.h"
-#include "jinformation.h"
+#include "../global/jhead.h"
+#include "../global/jinformation.h"
 
 using namespace NetworkData;
 
@@ -38,7 +39,7 @@ void JServerInformationProcessorBase::process(const QByteArray& data)
 	}
 }
 
-EProcessorType JServerInformationProcessorBase::getProcessorType()const
+JType JServerInformationProcessorBase::getProcessorType()const
 {
 	return EPI_INFORMATION;
 }

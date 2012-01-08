@@ -3,7 +3,13 @@
 
 #include <QByteArray>
 
-#include "../network/jinformation.h"
+#include "../global/jhead.h"
+
+/*!
+    \file jserializabledata.h
+    \ingroup global
+    \brief 定义了 JSerializableData 接口
+*/
 
 class JSerializableData
 {

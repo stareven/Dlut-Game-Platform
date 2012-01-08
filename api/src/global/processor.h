@@ -1,6 +1,12 @@
 #ifndef PROCESSOR_H
 #define PROCESSOR_H
 
+/*!
+    \file processor.h
+    \ingroup global
+    \brief 协议类型
+*/
+
 enum EProcessorType{
 	EPI_LOGIN,
 	EPI_INFORMATION,
@@ -9,16 +15,8 @@ enum EProcessorType{
 	EPI_ControlRole,
 	EPI_HallTalk,
 
-	EPI_UserType=0x1000,
-	EPI_UserType_1,
-	EPI_UserType_2,
-	EPI_UserType_3,
-	EPI_UserType_4,
-	EPI_UserType_5,
-	EPI_UserType_6,
-	EPI_UserType_7,
-	EPI_UserType_8,
-	EPI_UserType_9,
+    EPI_UserType=0x0100,
+    EPI_MaxType=0x1000,
 };
 
 #endif // PROCESSOR_H

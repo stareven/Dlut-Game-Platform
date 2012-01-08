@@ -149,7 +149,7 @@ void JSnakeServerProcessor::process(const QByteArray& data)
 	}
 }
 
-EProcessorType JSnakeServerProcessor::getProcessorType()const
+JType JSnakeServerProcessor::getProcessorType()const
 {
 	return Snake::SnakeProcessorType;
 }

@@ -27,7 +27,7 @@ void JMainServerControlRoleProcessor::process(const QByteArray& data)
 	}
 }
 
-EProcessorType JMainServerControlRoleProcessor::getProcessorType()const
+JType JMainServerControlRoleProcessor::getProcessorType()const
 {
 	return EPI_ControlRole;
 }

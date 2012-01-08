@@ -47,6 +47,6 @@ void JClientLoginProcessor::process(const QByteArray& data){
     emit loginCode(code);
 }
 
-EProcessorType JClientLoginProcessor::getProcessorType()const{
+JType JClientLoginProcessor::getProcessorType()const{
     return EPI_LOGIN;
 }

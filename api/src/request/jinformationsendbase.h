@@ -1,7 +1,7 @@
 #ifndef JINFORMATIONSENDBASE_H
 #define JINFORMATIONSENDBASE_H
 
-#include "../network/jinformation.h"
+#include "../global/jhead.h"
 #include <QMap>
 
 #include "jrequestbase.h"

@@ -1,7 +1,7 @@
 #ifndef JINFORMATIONMANAGER_H
 #define JINFORMATIONMANAGER_H
 
-#include "jinformation.h"
+#include "../global/jinformation.h"
 
 #include <QHash>
 

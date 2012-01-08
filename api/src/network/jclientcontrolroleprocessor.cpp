@@ -40,7 +40,7 @@ void JClientControlRoleProcessor::process(const QByteArray& data)
 	emit receiveControlRoleResult(userId,result);
 }
 
-EProcessorType JClientControlRoleProcessor::getProcessorType()const
+JType JClientControlRoleProcessor::getProcessorType()const
 {
 	return EPI_ControlRole;
 }

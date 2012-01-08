@@ -5,6 +5,12 @@
 
 #include <QMap>
 
+/*!
+    \file jgamelist.h
+    \ingroup global
+    \brief 定义了 JGameList 类
+*/
+
 class JGameList : public JSerializableData , public QMap<JID,QString>
 {
 public:
@@ -12,8 +18,6 @@ public:
 	void fromByteArray(const QByteArray& data);
 	QByteArray toByteArray()const;
 	NetworkData::JHead head()const;
-private:
-	//QMap<JID,QString> m_list;
 };
 
 #endif // JGAMELIST_H
