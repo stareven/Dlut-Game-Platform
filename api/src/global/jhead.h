@@ -3,6 +3,12 @@
 
 #include "jglobal.h"
 
+/*!
+    \file jhead.h
+    \ingroup global
+    \brief 定义了 NetworkData::JHead 结构体
+*/
+
 namespace NetworkData{
     struct JHead{
         JType m_type;
