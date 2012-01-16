@@ -6,6 +6,12 @@
 #include "jglobal.h"
 #include "jhead.h"
 
+/*!
+    \file jinformation.h
+    \ingroup global
+    \brief 定义了 NetworkData::JInformation 类
+*/
+
 namespace NetworkData{
 	enum EInformationProtocol{
 		EIP_DownloadRemoteMtime,
@@ -18,11 +24,8 @@ namespace NetworkData{
 	{
 	public:
 		JInformation(const JHead& head=JHead(-1));
-		/// update m_remoteMtime
 		JCode setRemoteMtime(JTime_t time);
-		/// update m_localMtime
 		JCode setLocalMtime(JTime_t time);
-		/// update data
 		JCode setData(const QByteArray& data);
 
 		JTime_t getRemoteMtime()const;
