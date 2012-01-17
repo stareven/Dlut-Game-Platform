@@ -7,6 +7,12 @@
 
 #include "../global/jglobal.h"
 
+/*!
+    \file jsocketbase.h
+    \ingroup socket
+    \brief 定义了 JSocketBase 类
+*/
+
 class QTcpSocket;
 
 class JNetworkDataProcessorBase;
@@ -35,7 +41,6 @@ protected:
 private slots:
     void on_socket_readyRead();
 	void on_socket_error(QAbstractSocket::SocketError);
-	void on_socket_connected();
 private:
 	QHash<JType,JNetworkDataProcessorBase*> m_processors;
 	JSession* m_session;

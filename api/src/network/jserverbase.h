@@ -8,6 +8,12 @@ class QByteArray;
 class QTcpSocket;
 class JServerSocketBase;
 
+/*!
+    \file jserverbase.h
+    \ingroup socket
+    \brief 定义了 JServerBase 类
+*/
+
 class JServerBase : public QObject
 {
     Q_OBJECT

@@ -5,6 +5,12 @@
 
 class JSocketBase;
 
+/*!
+    \file jsocketstrategy.h
+    \ingroup socket
+    \brief 定义了 JSocketStrategy 类
+*/
+
 class JSocketStrategy : public QObject
 {
     Q_OBJECT

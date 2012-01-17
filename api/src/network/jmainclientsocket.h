@@ -3,6 +3,12 @@
 
 #include "jclientsocketbase.h"
 
+/*!
+    \file jmainclientsocket.h
+    \ingroup socket
+    \brief 定义了 JMainClientSocket 类
+*/
+
 class JMainClientSocket : public JClientSocketBase
 {
     Q_OBJECT
