@@ -232,7 +232,7 @@ bool MySQLCreater::dropDb() {
 }
 
 bool MySQLCreater::dropIni() {
-	dgpdbIni->clear();
+//	dgpdbIni->clear();	//not erase old data
 	return true;
 }
 
@@ -338,6 +338,7 @@ bool MySQLCreater::createDb() {
 }
 
 bool MySQLCreater::createIni() {
+	dgpdbIni->setValue("drive", "mysql");
 	dgpdbIni->beginGroup("MySQL");
 	dgpdbIni->setValue("database", dbName);
 	dgpdbIni->setValue("user", userName);

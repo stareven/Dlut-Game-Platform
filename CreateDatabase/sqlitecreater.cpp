@@ -58,6 +58,7 @@ bool SQLiteCreater::exec() {
 }
 
 bool SQLiteCreater::finalCheck() {
+//	qDebug() << "+ sqlite finalcheck called";
 	return finalCheckDbName();
 }
 
@@ -77,6 +78,7 @@ bool SQLiteCreater::finalCheckDbName() {
 }
 
 bool SQLiteCreater::confirmOverwrite() {
+//	qDebug() << "+ sqlite confirmOverwrite called";
 	return confirmOverwriteDb() && confirmOverwriteIni();
 }
 
@@ -126,6 +128,7 @@ bool SQLiteCreater::confirmOverwriteIni() {
 }
 
 bool SQLiteCreater::doDrop() {
+//	qDebug() << "+ sqlite doDrop called";
 	return dropDb() && dropIni();
 }
 
@@ -141,16 +144,17 @@ bool SQLiteCreater::dropDb() {
 			return false;
 		}
 	} else {
-		return false;
+		return true;
 	}
 }
 
 bool SQLiteCreater::dropIni() {
-	dgpdbIni->clear();
+//	dgpdbIni->clear();	//not erase old data
 	return true;
 }
 
 bool SQLiteCreater::doCreate() {
+//	qDebug() << "+ sqlite doCreate called";
 	return createDb() && createIni();
 }
 
@@ -241,6 +245,7 @@ bool SQLiteCreater::createDb() {
 }
 
 bool SQLiteCreater::createIni() {
+	dgpdbIni->setValue("drive", "sqlite");
 	dgpdbIni->beginGroup("SQLite");
 	dgpdbIni->setValue("database", dbName);
 	dgpdbIni->endGroup();
