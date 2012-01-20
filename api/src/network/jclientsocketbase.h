@@ -3,15 +3,17 @@
 
 #include "jsocketbase.h"
 
+/*!
+    \file jclientsocketbase.h
+    \ingroup socket
+    \brief 定义了 JClientSocketBase 类
+*/
+
 class JClientSocketBase : public JSocketBase
 {
     Q_OBJECT
-    JClientSocketBase(const JClientSocketBase&);
-    JClientSocketBase& operator=(const JClientSocketBase&);
 protected:
 	explicit JClientSocketBase(QTcpSocket* const socket,QObject *parent = 0);
-public:
-	//static JClientSocketBase* getInstance();
 };
 
 #endif // JCLIENTSOCKETBASE_H
