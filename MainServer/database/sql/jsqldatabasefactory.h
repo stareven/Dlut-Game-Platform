@@ -10,7 +10,7 @@ class JSQLDatabaseFactory : public JAbstractDatabaseFactory
 {
 	explicit JSQLDatabaseFactory(QObject *parent = 0);
 public:
-	~JSQLDatabaseFactory();
+//	~JSQLDatabaseFactory();
 	static JSQLDatabaseFactory *getInstance();
 	JAbstractLoginDB *createLoginDB();
 	JAbstractUserInfoDB *createUserInfoDB();

@@ -13,36 +13,7 @@ JSQLUserInfoDB::JSQLUserInfoDB(QSqlDatabase *dgpDB, QObject *parent) :
 	JAbstractUserInfoDB(parent), userInfoDB(dgpDB)
 {
 	qDebug() << "+ JSQLUserInfo constructed";
-//	if (!connectCount++) {
-//		QTextCodec *codec = QTextCodec::codecForName("UTF-8");
-//		QTextCodec::setCodecForCStrings(codec);
-//		QTextCodec::setCodecForTr(codec);
-
-//		userInfoDB = new QSqlDatabase;
-//		//	userInfoDB->addDatabase("QSQL");
-//		*userInfoDB = QSqlDatabase::addDatabase("QSQL", "userInfoDB");
-//		userInfoDB->setHostName("localhost");
-//		userInfoDB->setDatabaseName("dgpdb");
-//		userInfoDB->setUserName("dgproot");
-//		userInfoDB->setPassword("dgproot");
-//		if (userInfoDB->open()) {
-//			qDebug() << "userInfoDB is open";
-//		} else
-//			qDebug() << "userInfoDB fail";
-//		userInfoDB->exec("SET NAMES 'latin1'");
-//	} else {
-//		//nothing...
-//	}
 }
-
-//JSQLUserInfoDB::~JSQLUserInfoDB() {
-//	if (!--connectCunt) {
-//		userInfoDB->close();
-//		delete userInfoDB;
-//	} else {
-//		//nothing...
-//	}
-//}
 
 JUserInfo JSQLUserInfoDB::getUserInfoById(JID userID) {
 	qDebug() << "+ getUserInfoById";

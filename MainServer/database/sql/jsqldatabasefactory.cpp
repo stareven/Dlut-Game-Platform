@@ -17,18 +17,23 @@
 
 //int JSQLDatabaseFactory::connectCount = 0;
 
-JSQLDatabaseFactory::~JSQLDatabaseFactory() {
-	qDebug() << "++ JSALDatabaseFactory destructed";
-//	if (!--connectCount) {
-//		qDebug() << "connectCount = " << connectCount;
-		qDebug() << "dgpdb close...";
-		dgpDB->close();
-		delete dgpDB;
-//	} else {
-//		qDebug() << "connectCount = " << connectCount;
-//		//nothing...
-//	}
-}
+//JSQLDatabaseFactory::~JSQLDatabaseFactory() {
+//	qDebug() << "++ JSQLDatabaseFactory destructed";
+////	if (!--connectCount) {
+////		qDebug() << "connectCount = " << connectCount;
+//		if (dgpDB->isOpen()) {
+//			qDebug() << "dgpdb close...";
+//			dgpDB->close();
+//			delete dgpDB;
+//		} else {
+//			//already closed
+//			qDebug() << "dgpdb closed before destructed";
+//		}
+////	} else {
+////		qDebug() << "connectCount = " << connectCount;
+////		//nothing...
+////	}
+//}
 
 JSQLDatabaseFactory::JSQLDatabaseFactory(QObject *parent) :
 	JAbstractDatabaseFactory(parent)
@@ -50,7 +55,7 @@ JSQLDatabaseFactory::JSQLDatabaseFactory(QObject *parent) :
 //		QTextCodec::setCodecForTr(codec);
 	qDebug() << "dgpdb.ini read ";
 
-	if (dgpdbIni->contains("MySQL/database")) {
+	if (dgpdbIni->value("drive").toString() == "mysql") {
 		qDebug() << "database type: MySQL";
 		dgpdbIni->beginGroup("MySQL");
 		*dgpDB = QSqlDatabase::addDatabase("QMYSQL", "dgpdb");
@@ -62,12 +67,15 @@ JSQLDatabaseFactory::JSQLDatabaseFactory(QObject *parent) :
 //		dgpDB->setDatabaseName("dgpdb");
 //		dgpDB->setUserName("dgproot");
 //		dgpDB->setPassword("dgproot");
-	} else {
+	} else if (dgpdbIni->value("drive").toString() == "sqlite") {
 		qDebug() << "database type: SQLite";
 		dgpdbIni->beginGroup("SQLite");
 		*dgpDB = QSqlDatabase::addDatabase("QSQLITE", "dgpdb");
 		dgpDB->setDatabaseName(dgpdbIni->value("database").toString());
 		dgpdbIni->endGroup();
+	} else {
+		qDebug() << "the profile of database is incomplete";
+		qDebug() << "Field \"drive\" not found";
 	}
 		if (dgpDB->open()) {
 			qDebug() << "dgpdb connect...";
@@ -76,10 +84,6 @@ JSQLDatabaseFactory::JSQLDatabaseFactory(QObject *parent) :
 			qDebug() << dgpDB->lastError().databaseText();
 			qDebug() << "dgpdb connect fali...";
 		}
-//	} else {
-//		qDebug() << "connectCount = " << connectCount;
-//		//nothing...
-//	}
 }
 
 

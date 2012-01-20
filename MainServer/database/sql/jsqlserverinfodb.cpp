@@ -9,59 +9,11 @@
 #include <QSqlError>
 #include <QDebug>
 
-/*
-bool initDatabase(QSqlDatabase *db) {
-	QTextCodec *codec = QTextCodec::codecForName("UTF-8");
-	QTextCodec::setCodecForCStrings(codec);
-	QTextCodec::setCodecForTr(codec);
-
-	db->addDatabase("SQL");
-	db->setHostName("localhost");
-	db->setDatabaseName("dgpdb");
-	db->setUserName("dgproot");
-	db->setPassword("dgproot");
-	if (db->open()) {
-		db->exec("SET NAMES 'latin1'");
-		return true;
-	} else
-		return false;
-}
-*/
-
 JSQLServerInfoDB::JSQLServerInfoDB(QSqlDatabase *dgpDB, QObject *parent) :
 	JAbstractServerInfoDB(parent), serverInfoDB(dgpDB)
 {
 	qDebug() << "+ JSQLSerInfoDB constructed";
-//	if (!connectCount++) {
-//		QTextCodec *codec = QTextCodec::codecForName("UTF-8");
-//		QTextCodec::setCodecForCStrings(codec);
-//		QTextCodec::setCodecForTr(codec);
-
-//		serverInfoDB = new QSqlDatabase;
-//		//	serverInfoDB->addDatabase("QSQL");
-//		*serverInfoDB = QSqlDatabase::addDatabase("QSQL", "serverInfoDB");
-//		serverInfoDB->setHostName("localhost");
-//		serverInfoDB->setDatabaseName("dgpdb");
-//		serverInfoDB->setUserName("dgproot");
-//		serverInfoDB->setPassword("dgproot");
-//		if (serverInfoDB->open()) {
-//			qDebug() << "serverInfoDB is open!";
-//		} else
-//			qDebug() << "serverInfoDB fail...";
-//		serverInfoDB->exec("SET NAMES 'latin1'");
-//	} else {
-//		//nothing...
-//	}
 }
-
-//JSQLServerInfoDB::~JSQLServerInfoDB() {
-//	if (!--connectCount) {
-//		serverInfoDB->close();
-//		delete serverInfoDB;
-//	} else {
-//		//nothing...
-//	}
-//}
 
 JServerInfo JSQLServerInfoDB::getServerInfoById(JID ID) {
 	qDebug() << "+ getServerInfoById";

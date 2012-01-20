@@ -13,50 +13,13 @@
 #include <QSqlError>
 #include <QDebug>
 
-//JSQLLoginDB::JSQLLoginDB(QObject *parent) :
-//	JAbstractLoginDB(parent)
-//{
-//	if (!connectCount++) {
-//		QTextCodec *codec = QTextCodec::codecForName("UTF-8");
-//		QTextCodec::setCodecForCStrings(codec);
-//		QTextCodec::setCodecForTr(codec);
-
-//		loginDB = new QSqlDatabase;
-//		//	loginDB->addDatabase("QSQL");
-//		*loginDB = QSqlDatabase::addDatabase("QSQL", "loginDB");
-//		loginDB->setHostName("localhost");
-//		loginDB->setDatabaseName("dgpdb");
-//		loginDB->setUserName("dgproot");
-//		loginDB->setPassword("dgproot");
-//		if (loginDB->open()) {
-//			qDebug() << "loginDB successful";
-//		} else
-//			qDebug() << "loginDB fail";
-//		loginDB->exec("SET NAMES 'latin1'");
-//	} else {
-//		//nothing...
-//	}
-//}
 
 JSQLLoginDB::JSQLLoginDB(QSqlDatabase *dgpDB, QObject *parent) :
 	JAbstractLoginDB(parent), loginDB(dgpDB)
 {
 	qDebug() << "+ JSQLLoginDB constructed";
-//	QSqlQuery *query = new QSqlQuery(*loginDB);
-
-//	qDebug() << query->driver()->hasFeature(QSqlDriver::PreparedQueries);
-//	qDebug() << query->driver()->hasFeature(QSqlDriver::NamedPlaceholders);
-//	qDebug() << query->driver()->hasFeature(QSqlDriver::PositionalPlaceholders);
 }
 
-//JSQLLoginDB::~JSQLLoginDB() {
-//	if (!--connectCount) {
-//		loginDB->close();
-//		delete loginDB;
-//	} else {
-//		//nothing...
-//	}
-//}
 
 JID JSQLLoginDB::checkLoginName(const QString &loginName) {
 	qDebug() << "+ checkLoginName";

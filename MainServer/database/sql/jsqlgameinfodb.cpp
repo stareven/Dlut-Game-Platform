@@ -9,56 +9,11 @@
 #include <QSqlError>
 #include <QDebug>
 
-//bool initDatabase(QSqlDatabase *db) {
-//	QTextCodec *codec = QTextCodec::codecForName("UTF-8");
-//	QTextCodec::setCodecForCStrings(codec);
-//	QTextCodec::setCodecForTr(codec);
-
-//	db->addDatabase("QMYSQL");
-//	db->setHostName("localhost");
-//	db->setDatabaseName("dgpdb");
-//	db->setUserName("dgproot");
-//	db->setPassword("dgproot");
-//	if (db->open()) {
-//		db->exec("SET NAMES 'latin1'");
-//		return true;
-//	} else
-//		return false;
-//}
-
 JSQLGameInfoDB::JSQLGameInfoDB(QSqlDatabase *dgpDB, QObject *parent) :
 	JAbstractGameInfoDB(parent), gameInfoDB(dgpDB)
 {
 	qDebug() << "+ JSQLGameInfoDB constructed";
-//	if (!connectCount++) {
-//		QTextCodec *codec = QTextCodec::codecForName("UTF-8");
-//		QTextCodec::setCodecForCStrings(codec);
-//		QTextCodec::setCodecForTr(codec);
-
-//		gameInfoDB = new QSqlDatabase;
-//		*gameInfoDB = QSqlDatabase::addDatabase("QMYSQL", "gameInfoDB");
-//		gameInfoDB->setHostName("localhost");
-//		gameInfoDB->setDatabaseName("dgpdb");
-//		gameInfoDB->setUserName("dgproot");
-//		gameInfoDB->setPassword("dgproot");
-//		if (gameInfoDB->open()) {
-//			qDebug() << "gameInfoDB is open!";
-//		} else
-//			qDebug() << "gameinfoDB fali...";
-//		gameInfoDB->exec("SET NAMES 'latin1'");
-//	} else {
-//		//nothing...
-//	}
 }
-
-//JSQLGameInfoDB::~JSQLGameInfoDB() {
-//	if (!--connectCount) {
-//		gameInfoDB->close();
-//		delete gameInfoDB;
-//	} else {
-//		//nothing...
-//	}
-//}
 
 JGameInfo JSQLGameInfoDB::getGameInfoById(JID ID) {
 	qDebug() << "+ getGameInfoById" <<endl;
